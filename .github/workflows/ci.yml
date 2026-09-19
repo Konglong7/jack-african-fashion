@@ -1,0 +1,124 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_PUBLIC_SITE_URL: http://localhost:3000
+  NEXT_TELEMETRY_DISABLED: '1'
+
+jobs:
+  verify:
+    name: Lint · Typecheck · Test · Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: E2E scripts syntax check
+        run: python3 -m py_compile tests/e2e/*.py
+
+  config-sanity:
+    name: Config sanity · 禁止凭据入库
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fail if real config files were committed
+        run: |
+          set -euo pipefail
+          # 只允许提交 *.example 模板，禁止提交真实 .env / 本地覆盖配置
+          forbidden=$(git ls-files | grep -E '(^|/)\.env$|(^|/)\.env\.(local|production|development|prod|dev)$|deploy\.config\.local\.ps1$' || true)
+          if [ -n "$forbidden" ]; then
+            echo "::error::检测到疑似真实配置文件被提交："
+            echo "$forbidden"
+            exit 1
+          fi
+          echo "OK: 未发现被提交的真实凭据文件"
+
+      - name: Fail on credential-like content
+        run: |
+          set -uo pipefail
+          # 文件名匹配只能挡住 .env；这一步再扫内容，挡住"把口令/密钥直接写进源码"这类情况。
+          # 注意两点（本地已实测过）：
+          #   1) git grep -E 不支持 (?i) 内联标志，大小写不敏感必须用 -i，否则会直接报错；
+          #   2) git grep 退出码 0=有命中、1=无命中、>1=出错 —— 出错必须显式 fail，
+          #      否则会被 || true 吞掉，变成"检查静默通过"的假绿灯。
+          PATFILE=$(mktemp)
+          cat > "$PATFILE" <<'PATTERNS'
+          -----BEGIN [A-Z ]*PRIVATE KEY-----
+          (AKIA|ASIA)[0-9A-Z]{16}
+          (password|passwd|secret|api[_-]?key|access[_-]?key|token)[[:space:]]*[:=][[:space:]]*["'][^"']{16,}["']
+          (password|passwd|secret|api[_-]?key|access[_-]?key|token)[[:space:]]*[:=][[:space:]]*[A-Za-z0-9/+_.@!-]{20,}[[:space:]]*$
+          PATTERNS
+
+          set +e
+          hits=$(git grep -nIiE -f "$PATFILE" -- . \
+              ':(exclude)*.example' \
+              ':(exclude)**/*.example' \
+              ':(exclude)package-lock.json' \
+              ':(exclude)**/package-lock.json')
+          code=$?
+          set -e
+          rm -f "$PATFILE"
+
+          if [ "$code" -gt 1 ]; then
+            echo "::error::凭据扫描本身执行失败（git grep exit=$code），请检查正则与路径排除语法"
+            exit 1
+          fi
+
+          # 白名单：只放行仓库内置的显式开发占位值
+          # 白名单只放行"一眼可辨的占位值"，不要放行 `${...}`——
+          # 否则 `password: "${REAL_SECRET}"` 这种真泄漏会被整行静默过滤掉。
+          filtered=$(printf '%s\n' "$hits" \
+            | grep -viE 'replace-me|change-me|dev-only|<JWT>|your-|placeholder|example\.com|your-domain' \
+            || true)
+
+          if [ -n "$filtered" ]; then
+            echo "::error::检测到疑似硬编码凭据内容："
+            echo "$filtered"
+            exit 1
+          fi
+          echo "OK: 未发现疑似硬编码凭据（git grep exit=$code）"
+
+      - name: Fail if real business data was committed
+        run: |
+          set -euo pipefail
+          # 真实访客分析数据不允许入库
+          if git ls-files --error-unmatch data/analytics.json >/dev/null 2>&1; then
+            echo "::error::data/analytics.json（真实访客分析数据）不应被提交"
+            exit 1
+          fi
+          echo "OK: 未发现真实业务分析数据"

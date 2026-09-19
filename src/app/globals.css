@@ -1,0 +1,168 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Brand palette — warm, African-inspired, professional */
+  --color-brand-black: #1a1a1a;
+  --color-brand-brown: #3d2b1f;
+  --color-brand-cream: #faf6f0;
+  --color-brand-sand: #e8dcc8;
+  --color-brand-orange: #d97706;
+  --color-brand-gold: #b8860b;
+  --color-brand-wine: #7b1e3b;
+  --color-brand-emerald: #0f766e;
+
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Iowan Old Style', Palatino, 'Palatino Linotype', Georgia, serif;
+
+  /* Spacing scale */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-brand-black);
+  background-color: var(--color-brand-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-brand-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-sand);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-brown);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 2px;
+}
+
+/* Touch and mobile browser optimizations */
+html,
+body {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Hide scrollbar utility for touch scrollable rails */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth image loading — opacity fade handled per-component, never hide by default */
+img {
+  transition: opacity 0.3s ease;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-sand) var(--color-brand-cream);
+}
+
+/* Smooth hover transitions for interactive elements */
+a,
+button {
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Hero sparkle dots — opacity/transform only, GPU-cheap. Paused under reduced motion. */
+@keyframes hero-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.5);
+  }
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--color-brand-orange);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--color-brand-orange);
+  color: white;
+}
+
+/* Respect users who prefer reduced motion: kill CSS animations/transitions and
+   smooth scrolling. framer-motion JS animations are guarded globally by
+   <MotionConfig reducedMotion="user"> in RootChrome. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@layer components {
+  .input-control {
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-brand-sand);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--color-brand-black);
+    outline: none;
+  }
+
+  .input-control:focus {
+    border-color: var(--color-brand-orange);
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.2);
+  }
+
+  .small-add-button {
+    align-self: flex-start;
+    border-radius: 0.5rem;
+    border: 1px dashed var(--color-brand-sand);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--color-brand-brown);
+  }
+
+  .small-add-button:hover {
+    border-color: var(--color-brand-orange);
+    color: var(--color-brand-orange);
+  }
+}

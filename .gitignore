@@ -1,0 +1,99 @@
+# =====================================================================
+# Jack African Fashion — Git 忽略规则
+# ---------------------------------------------------------------------
+# 原则：只提交「源码 + 运行所需的数据与素材 + 文档 + 示例配置」，
+#       构建产物、依赖、开发残留、真实凭据与业务分析数据一律不入库。
+# =====================================================================
+
+# ------------------------- 依赖与构建产物 -------------------------
+node_modules/
+.next/
+out/
+dist/
+build/
+.swc/
+*.tsbuildinfo
+.turbo/
+
+# ------------------------- 敏感配置（保留 *.example 模板）-------------------------
+.env
+.env.*
+!.env.example
+deploy/deploy.config.local.ps1
+*.pem
+*.key
+*.jks
+*.keystore
+*.p12
+
+# ------------------------- 日志与运行时残留 -------------------------
+*.log
+tmp-next-*
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.pid
+
+# ------------------------- 业务分析数据（真实访客数据，绝不可公开）-------------------------
+data/analytics.json
+data/analytics.json.tmp
+data/*.tmp
+data/*.bak
+
+# ------------------------- 部署产物 -------------------------
+deploy-package.tar.gz
+*-deploy.tar.gz
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+
+# ------------------------- 开发期临时产物与截图（体积大、与源码无关）-------------------------
+artifacts/
+test_screenshots/
+output/
+test-results/
+playwright-report/
+
+# 根目录散落的调试截图与 DOM dump（注意：public/ 下的图片不受影响）
+/*.png
+/*.jpg
+/*.jpeg
+/admin-products-dom.json
+
+# 素材与参考图（业务原始素材，不入库）
+上新/
+模特素材图片/
+模特素材/
+参考图/
+参考素材/
+
+# ------------------------- 本地工具缓存 -------------------------
+.playwright-cli/
+.playwright-mcp/
+.superpowers/
+.claude/
+.cache/
+
+# ------------------------- Python（E2E 脚本）-------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ------------------------- IDE / 编辑器 -------------------------
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# ------------------------- 操作系统 -------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/

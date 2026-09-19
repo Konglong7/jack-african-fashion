@@ -1,0 +1,811 @@
+[
+  {
+    "id": "1",
+    "slug": "elegant-pleated-maxi-dress",
+    "name": "Elegant Pleated Maxi Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/elegant-pleated-maxi-dress.jpg",
+    "images": [
+      "/images/products/elegant-pleated-maxi-dress.jpg",
+      "/images/products/elegant-pleated-maxi-dress-2.jpg",
+      "/images/products/elegant-pleated-maxi-dress-3.jpg",
+      "/images/products/elegant-pleated-maxi-dress.png",
+      "/images/products/elegant-pleated-maxi-dress-410d3770.png",
+      "/images/products/elegant-pleated-maxi-dress-0d617846.png"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Pleated",
+      "Maxi",
+      "African Market"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Wine",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Emerald",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Gold",
+        "hex": "#d4a017"
+      }
+    ],
+    "description": "A timeless pleated maxi dress crafted from premium stretch pleated fabric. Flattering on all body shapes and a steady best-seller across African boutique markets. Lightweight, breathable, and easy to pack for shipping.",
+    "features": [
+      "Premium stretch pleated crepe",
+      "Flattering A-line cut for all figures",
+      "Available up to 3XL (plus size friendly)",
+      "Quick production turnaround for restocks"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Elegant Pleated Maxi Dress. Please share the wholesale price, available colors and current stock.",
+    "isNew": true,
+    "isPopular": true,
+    "priceMin": 6.8,
+    "priceMax": 9.5
+  },
+  {
+    "id": "2",
+    "slug": "african-market-two-piece-set",
+    "name": "African Market Two Piece Set",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/african-market-two-piece-set.jpg",
+    "images": [
+      "/images/products/african-market-two-piece-set.jpg",
+      "/images/products/african-market-two-piece-set-2.jpg",
+      "/images/products/african-market-two-piece-set-3.png"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Two Piece",
+      "Ankara Print",
+      "Best Seller"
+    ],
+    "sizes": [
+      "S",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Multi Print A",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Multi Print B",
+        "hex": "#15803d"
+      },
+      {
+        "name": "Multi Print C",
+        "hex": "#b91c1c"
+      }
+    ],
+    "description": "A versatile two-piece set designed for the African market — comfortable top and matching bottom, easy to mix and sell. One of our most repeated styles by Nigerian and Ghanaian boutiques.",
+    "features": [
+      "Matching top + bottom set",
+      "Soft breathable Ankara-inspired print",
+      "Strong repeat-order style",
+      "Mixed sizes available per batch"
+    ],
+    "whatsappMessage": "Hello Jack, I want to know the wholesale price for the African Market Two Piece Set and the prints you have in stock.",
+    "isNew": false,
+    "isPopular": true,
+    "priceMin": 8.5,
+    "priceMax": 12.8
+  },
+  {
+    "id": "3",
+    "slug": "plus-size-loose-dress",
+    "name": "Plus Size Loose Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/plus-size-loose-dress.jpg",
+    "images": [
+      "/images/products/plus-size-loose-dress.jpg",
+      "/images/products/plus-size-loose-dress-2.jpg",
+      "/images/products/plus-size-loose-dress-3.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock",
+    "tags": [
+      "Plus Size",
+      "Loose Fit",
+      "Comfort"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      },
+      {
+        "name": "Terracotta",
+        "hex": "#9a3412"
+      }
+    ],
+    "description": "A relaxed, flowing loose dress cut specifically for plus size customers. Generous fit through the hips and arms, made from durable fabric that holds shape wash after wash — perfect for everyday boutique stock.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Flowy, comfortable silhouette",
+      "Durable double-stitched seams",
+      "Solid colours that photograph well for resale"
+    ],
+    "whatsappMessage": "Hello Jack, I'd like the wholesale price for the Plus Size Loose Dress. How many pieces per size ratio?",
+    "isNew": false,
+    "isPopular": true,
+    "priceMin": 7.8,
+    "priceMax": 11.5
+  },
+  {
+    "id": "4",
+    "slug": "stretch-pleated-dress",
+    "name": "Stretch Pleated Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/stretch-pleated-dress.jpg",
+    "images": [
+      "/images/products/stretch-pleated-dress.jpg",
+      "/images/products/stretch-pleated-dress-2.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock",
+    "tags": [
+      "Pleated",
+      "Stretch",
+      "All Size"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Burgundy",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      },
+      {
+        "name": "Teal",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Mustard",
+        "hex": "#a16207"
+      }
+    ],
+    "description": "Our signature stretch pleated dress in a forgiving free-size fit. The fabric stretches comfortably across sizes, making it a low-risk, high-turnover wholesale item.",
+    "features": [
+      "Stretch fabric fits multiple sizes",
+      "Wrinkle-resistant — ships flat and clean",
+      "Steady re-order favourite",
+      "Rich, fast colours"
+    ],
+    "whatsappMessage": "Hello Jack, I want the wholesale price for the Stretch Pleated Dress and your current colour chart.",
+    "isNew": false,
+    "isPopular": true,
+    "priceMin": 6.8,
+    "priceMax": 9.5
+  },
+  {
+    "id": "5",
+    "slug": "plus-size-wrap-dress",
+    "name": "Plus Size Wrap Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/plus-size-wrap-dress.jpg",
+    "images": [
+      "/images/products/plus-size-wrap-dress.jpg",
+      "/images/products/plus-size-wrap-dress-2.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock",
+    "tags": [
+      "Plus Size",
+      "Wrap",
+      "Flattering"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Wine",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Emerald",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "A wrap-style dress engineered for curves. The adjustable wrap waist flatters fuller figures and the durable fabric keeps its shape — a dependable plus-size best-seller.",
+    "features": [
+      "Adjustable wrap waist",
+      "Curvy, body-flattering cut",
+      "Plus size grading to 5XL",
+      "Wash-and-wear durability"
+    ],
+    "whatsappMessage": "Hello Jack, I want the wholesale price for the Plus Size Wrap Dress and your size ratios.",
+    "isNew": false,
+    "isPopular": true,
+    "priceMin": 7.8,
+    "priceMax": 11.5
+  },
+  {
+    "id": "6",
+    "slug": "plus-size-ankara-print-maxi-dress",
+    "name": "Ankara Print Maxi Dress",
+    "category": "Two Piece Sets",
+    "image": "/images/products/psd0708-07-ankara-print-maxi-dress.jpg",
+    "images": [
+      "/images/products/psd0708-07-ankara-print-maxi-dress.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Plus Size",
+      "Wholesale",
+      "Ankara"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Orange",
+        "hex": "#E2541F"
+      },
+      {
+        "name": "Yellow",
+        "hex": "#F2C040"
+      },
+      {
+        "name": "Blue",
+        "hex": "#1B4A7C"
+      }
+    ],
+    "description": "Vibrant Ankara print maxi dress with fitted bodice and flowing skirt, designed for curvy figures and ready for wholesale bulk orders.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Premium fabric that holds shape wash after wash",
+      "Double-stitched seams for wholesale durability",
+      "Available for ready stock and custom orders"
+    ],
+    "whatsappMessage": "Hello Jack, I'd like the wholesale price for the Ankara Print Maxi Dress. How many pieces per size ratio?",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Style Highlights",
+          "body": "Vibrant Ankara print maxi dress with fitted bodice and flowing skirt, designed for curvy figures and ready for wholesale bulk orders.",
+          "image": "/images/products/psd0708-07-ankara-print-maxi-dress.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "7",
+    "slug": "plus-size-ruffle-tiered-ankara-dress",
+    "name": "Ruffle Tiered Ankara Dress",
+    "category": "Two Piece Sets",
+    "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.jpg",
+    "images": [
+      "/images/products/psd0708-22-ruffle-tiered-ankara-dress.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Plus Size",
+      "Wholesale",
+      "Ankara"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Plum Purple",
+        "hex": "#6B3A6B"
+      },
+      {
+        "name": "Cream",
+        "hex": "#F5E6D3"
+      }
+    ],
+    "description": "Flirty ruffle-tiered Ankara dress designed to flatter curves, perfect for boutiques seeking wholesale African fashion inventory.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Premium fabric that holds shape wash after wash",
+      "Double-stitched seams for wholesale durability",
+      "Available for ready stock and custom orders"
+    ],
+    "whatsappMessage": "Hello Jack, I'd like the wholesale price for the Ruffle Tiered Ankara Dress. How many pieces per size ratio?",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Style Highlights",
+          "body": "Flirty ruffle-tiered Ankara dress designed to flatter curves, perfect for boutiques seeking wholesale African fashion inventory.",
+          "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "8",
+    "slug": "plus-size-ankara-print-midi-dress",
+    "name": "Ankara Print Midi Dress",
+    "category": "Two Piece Sets",
+    "image": "/images/products/psd0708-33-ankara-print-midi-dress.jpg",
+    "images": [
+      "/images/products/psd0708-33-ankara-print-midi-dress.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Plus Size",
+      "Wholesale",
+      "Ankara"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Royal Blue",
+        "hex": "#4169E1"
+      },
+      {
+        "name": "Orange",
+        "hex": "#FFA500"
+      },
+      {
+        "name": "Golden Yellow",
+        "hex": "#FFD700"
+      }
+    ],
+    "description": "Vibrant Ankara print midi dress with short sleeves and fitted waist, designed for plus-size comfort and available for bulk wholesale orders.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Premium fabric that holds shape wash after wash",
+      "Double-stitched seams for wholesale durability",
+      "Available for ready stock and custom orders"
+    ],
+    "whatsappMessage": "Hello Jack, I'd like the wholesale price for the Ankara Print Midi Dress. How many pieces per size ratio?",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Style Highlights",
+          "body": "Vibrant Ankara print midi dress with short sleeves and fitted waist, designed for plus-size comfort and available for bulk wholesale orders.",
+          "image": "/images/products/psd0708-33-ankara-print-midi-dress.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "9",
+    "slug": "christmas-festive-party-dress-01",
+    "name": "Christmas Festive Party Dress 01",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/xmas-01-hook-01.jpg",
+    "images": [
+      "/images/products/xmas-01-hook-01.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Christmas 2026",
+      "Holiday Collection",
+      "New Arrival",
+      "Plus Size",
+      "Wholesale",
+      "Festive Glamour"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "As Shown in Collage",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Wine Red",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Emerald Green",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#111111"
+      },
+      {
+        "name": "Champagne Gold",
+        "hex": "#d4a017"
+      }
+    ],
+    "description": "2026 Christmas festive party dress #01. Eye-catching holiday silhouette designed for Christmas banquets, festive events, and celebratory gatherings. Cut for comfortable plus-size elegance up to 5XL with vibrant festive colors shown in the photo. Direct factory wholesale pricing from Guangzhou for African boutique importers.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Rich festive holiday color palette as shown in collage",
+      "Double-stitched seams and durable wholesale export finish",
+      "Guangzhou ready stock and custom orders for African boutiques"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Christmas Festive Party Dress 01 (Christmas 2026 Collection). Please share the wholesale quotation, available colors, and current ready-stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Christmas 2026 Style Highlights",
+          "body": "2026 Christmas festive party dress #01. Eye-catching holiday silhouette designed for Christmas banquets, festive events, and celebratory gatherings. Cut for comfortable plus-size elegance up to 5XL with vibrant festive colors shown in the photo. Direct factory wholesale pricing from Guangzhou for African boutique importers.",
+          "image": "/images/products/xmas-01-hook-01.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "10",
+    "slug": "holiday-evening-gala-dress-01",
+    "name": "Holiday Evening Gala Dress 01",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/xmas-03-evening-01.jpg",
+    "images": [
+      "/images/products/xmas-03-evening-01.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Christmas 2026",
+      "Holiday Collection",
+      "New Arrival",
+      "Plus Size",
+      "Wholesale",
+      "Evening Gala"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "As Shown in Collage",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Wine Red",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Emerald Green",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#111111"
+      },
+      {
+        "name": "Champagne Gold",
+        "hex": "#d4a017"
+      }
+    ],
+    "description": "High-glamour holiday evening gala gown #01. Striking statement piece tailored for Christmas night galas, New Year parties, and celebratory dinners. Lustrous drape and vibrant color blocking that catches every light. Available for wholesale bulk purchase.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Rich festive holiday color palette as shown in collage",
+      "Double-stitched seams and durable wholesale export finish",
+      "Guangzhou ready stock and custom orders for African boutiques"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Holiday Evening Gala Dress 01 (Christmas 2026 Collection). Please share the wholesale quotation, available colors, and current ready-stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Christmas 2026 Style Highlights",
+          "body": "High-glamour holiday evening gala gown #01. Striking statement piece tailored for Christmas night galas, New Year parties, and celebratory dinners. Lustrous drape and vibrant color blocking that catches every light. Available for wholesale bulk purchase.",
+          "image": "/images/products/xmas-03-evening-01.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "11",
+    "slug": "boutique-restock-holiday-dress-01",
+    "name": "Boutique Restock Favorite Holiday Dress 01",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/xmas-05-boutique-01.jpg",
+    "images": [
+      "/images/products/xmas-05-boutique-01.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Christmas 2026",
+      "Holiday Collection",
+      "New Arrival",
+      "Plus Size",
+      "Wholesale",
+      "Boutique Bestseller"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "As Shown in Collage",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Wine Red",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Emerald Green",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#111111"
+      },
+      {
+        "name": "Champagne Gold",
+        "hex": "#d4a017"
+      }
+    ],
+    "description": "Top trending wholesale boutique restock style #01 for the Christmas shopping rush. High turnover rate with strong customer appeal in African retail markets. Multiple colors available for bulk mix-and-match orders.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Rich festive holiday color palette as shown in collage",
+      "Double-stitched seams and durable wholesale export finish",
+      "Guangzhou ready stock and custom orders for African boutiques"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Boutique Restock Favorite Holiday Dress 01 (Christmas 2026 Collection). Please share the wholesale quotation, available colors, and current ready-stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Christmas 2026 Style Highlights",
+          "body": "Top trending wholesale boutique restock style #01 for the Christmas shopping rush. High turnover rate with strong customer appeal in African retail markets. Multiple colors available for bulk mix-and-match orders.",
+          "image": "/images/products/xmas-05-boutique-01.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "12",
+    "slug": "vibrant-print-festive-dress-01",
+    "name": "Vibrant Print Multi-Color Festive Dress 01",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/xmas-07-print-01.jpg",
+    "images": [
+      "/images/products/xmas-07-print-01.jpg"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "tags": [
+      "Christmas 2026",
+      "Holiday Collection",
+      "New Arrival",
+      "Plus Size",
+      "Wholesale",
+      "African Print"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "As Shown in Collage",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Wine Red",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Emerald Green",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#111111"
+      },
+      {
+        "name": "Champagne Gold",
+        "hex": "#d4a017"
+      }
+    ],
+    "description": "Vibrant African-inspired multi-color festive dress #01. Rich saturated prints and contrast palettes that celebrate the festive season in bold style. Ready stock available for fast export packaging from Guangzhou.",
+    "features": [
+      "True plus size grading up to 5XL",
+      "Rich festive holiday color palette as shown in collage",
+      "Double-stitched seams and durable wholesale export finish",
+      "Guangzhou ready stock and custom orders for African boutiques"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Vibrant Print Multi-Color Festive Dress 01 (Christmas 2026 Collection). Please share the wholesale quotation, available colors, and current ready-stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Christmas 2026 Style Highlights",
+          "body": "Vibrant African-inspired multi-color festive dress #01. Rich saturated prints and contrast palettes that celebrate the festive season in bold style. Ready stock available for fast export packaging from Guangzhou.",
+          "image": "/images/products/xmas-07-print-01.jpg",
+          "layout": "full-width"
+        }
+      ]
+    }
+  }
+]
