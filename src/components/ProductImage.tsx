@@ -25,7 +25,7 @@ interface ProductImageProps {
  * always looks complete even before real photos are added.
  *
  * Usage: drop the real photo into the path defined in products.ts
- * (e.g. /images/products/elegant-pleated-maxi-dress.jpg) and it will
+ * (e.g. /images/products/elegant-pleated-maxi-dress.webp) and it will
  * appear automatically on next refresh.
  */
 export function ProductImage({

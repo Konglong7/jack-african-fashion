@@ -636,7 +636,7 @@ powershell -ExecutionPolicy Bypass -File deploy\auto-update.ps1
 | 2 | 商品与站点内容是**进程内缓存且无外部失效机制**：用脚本直接改 JSON 后必须重启进程才能生效 | 加基于文件 mtime 的失效判断，或提供 `POST /api/admin/reload` |
 | 3 | 24 个测试中有 **6 个是"读源码做字符串断言"的契约测试**，它们锁住架构约束但**不对运行行为做验证**；组件层没有 jsdom 测试（无 `.test.tsx`），因为项目没有 vitest 配置文件、环境是 node | 补 vitest 配置 + jsdom，为交互组件（筛选、画廊、上传队列）补真实渲染测试 |
 | 4 | `tests/e2e/test_ui.py` 硬编码端口 **3005**，与其它脚本的 3000 不一致，且无 `main` 守卫（pytest 收集时会直接执行） | 统一改为读 `BASE_URL` 环境变量，并加 `if __name__ == '__main__':` 守卫 |
-| 5 | `public/images/site/` 下多为**未压缩的大 PNG**（单张可达 1.9 MB，目录合计约 18 MB） | 批量转 WebP/AVIF 并设定尺寸上限；或用 `next/image` 的 `sizes` 进一步细分 |
+| 5 | 站点素材与商品图已**全量转 WebP**（`quality=82`、**尺寸不变**）：`public/images/site/` 18.3 MB → 2.8 MB，`public/images/products/` 7.3 MB → 2.8 MB，`public/` 合计 25.7 MB → 5.6 MB；但**没有 AVIF 转换、也没有宽度上限**，`next/image` 仍会按 `deviceSizes` 对同一张 WebP 重新编码（`favicon.ico` / `apple-touch-icon.png` / `logo*.png` 与首页 `wholesale-banner.jpg` 刻意保留原格式，避免 PWA 图标与既有脚本兼容问题） | 需要更省流量时再补 AVIF 与按用途的宽度上限；`formats: ['image/avif', 'image/webp']` 已在 `next.config.ts:30` 开启，前端继续用 `sizes` 细分下发尺寸 |
 | 6 | 商品详情页的富内容字段（`specs` / `sizeChart` / `materialCare` / `production` / `packagingShipping` / `faq`）**schema 已定义但没有数据填充**，目前只用到 `detailSections` | 在后台编辑器补齐这些字段的表单与校验 |
 | 7 | 商品目录在仓库中为 **12 条 Demo 数据**（真实商业数据已抽离） | 部署时用批导脚本注入你自己的商品库（`scripts/bulk-add-*.mjs`，用法与额外依赖见 [`scripts/README.md`](./scripts/README.md)） |
 | 8 | 无 CSP（`Content-Security-Policy`）响应头 | 在 `next.config.ts` 的 `headers()` 中补 CSP，注意放开 GA4 与 `wa.me` |
@@ -656,12 +656,12 @@ powershell -ExecutionPolicy Bypass -File deploy\auto-update.ps1
 - ✅ **无真实联系方式**：真实 WhatsApp 业务号已替换为 Demo 示例值
   （`8613800000000` / `+86 138 0000 0000`），门店定位链接改为通用地图搜索地址。
 - ✅ **无真实商业数据**：商品目录从 500+ 条真实商品抽离为 **12 条 Demo 数据**，
-  商品图从 523 张（115 MB）精简为 23 张（7.3 MB）；
+  商品图从 523 张（115 MB）精简为 23 张（2.8 MB）；站点素材另从 18 MB 压到 2.8 MB；
   **真实访客分析数据 `data/analytics.json` 已被 `.gitignore` 忽略，不入库**。
 - ✅ **无真实客户信息**：埋点数据中的 IP 落盘前**已掩码**，访客标识为 HMAC 派生值，
   且原始数据文件本身不入库。
 - ✅ **仓库卫生**：开发期残留（构建产物、依赖、部署包、调试截图、素材原图、工具缓存）
-  全部排除，仓库从 **1.38 GB 收敛到约 26 MB**。
+  全部排除，仓库从 **1.38 GB 收敛到约 6.7 MB**。
 - ✅ **CI 门禁**：`config-sanity` job 做三道检查 ——
   ① 禁止真实 `.env` / 本地部署配置被提交；② 内容扫描命中私钥头、AWS Access Key、
   高熵口令赋值即 fail；③ 禁止 `data/analytics.json` 入库。

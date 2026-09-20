@@ -4,14 +4,14 @@
     "slug": "elegant-pleated-maxi-dress",
     "name": "Elegant Pleated Maxi Dress",
     "category": "Plus Size Dresses",
-    "image": "/images/products/elegant-pleated-maxi-dress.jpg",
+    "image": "/images/products/elegant-pleated-maxi-dress.webp",
     "images": [
-      "/images/products/elegant-pleated-maxi-dress.jpg",
-      "/images/products/elegant-pleated-maxi-dress-2.jpg",
-      "/images/products/elegant-pleated-maxi-dress-3.jpg",
-      "/images/products/elegant-pleated-maxi-dress.png",
-      "/images/products/elegant-pleated-maxi-dress-410d3770.png",
-      "/images/products/elegant-pleated-maxi-dress-0d617846.png"
+      "/images/products/elegant-pleated-maxi-dress.webp",
+      "/images/products/elegant-pleated-maxi-dress-2.webp",
+      "/images/products/elegant-pleated-maxi-dress-3.webp",
+      "/images/products/elegant-pleated-maxi-dress-4.webp",
+      "/images/products/elegant-pleated-maxi-dress-410d3770.webp",
+      "/images/products/elegant-pleated-maxi-dress-0d617846.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -68,11 +68,11 @@
     "slug": "african-market-two-piece-set",
     "name": "African Market Two Piece Set",
     "category": "Plus Size Dresses",
-    "image": "/images/products/african-market-two-piece-set.jpg",
+    "image": "/images/products/african-market-two-piece-set.webp",
     "images": [
-      "/images/products/african-market-two-piece-set.jpg",
-      "/images/products/african-market-two-piece-set-2.jpg",
-      "/images/products/african-market-two-piece-set-3.png"
+      "/images/products/african-market-two-piece-set.webp",
+      "/images/products/african-market-two-piece-set-2.webp",
+      "/images/products/african-market-two-piece-set-3.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -125,11 +125,11 @@
     "slug": "plus-size-loose-dress",
     "name": "Plus Size Loose Dress",
     "category": "Plus Size Dresses",
-    "image": "/images/products/plus-size-loose-dress.jpg",
+    "image": "/images/products/plus-size-loose-dress.webp",
     "images": [
-      "/images/products/plus-size-loose-dress.jpg",
-      "/images/products/plus-size-loose-dress-2.jpg",
-      "/images/products/plus-size-loose-dress-3.jpg"
+      "/images/products/plus-size-loose-dress.webp",
+      "/images/products/plus-size-loose-dress-2.webp",
+      "/images/products/plus-size-loose-dress-3.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -182,10 +182,10 @@
     "slug": "stretch-pleated-dress",
     "name": "Stretch Pleated Dress",
     "category": "Plus Size Dresses",
-    "image": "/images/products/stretch-pleated-dress.jpg",
+    "image": "/images/products/stretch-pleated-dress.webp",
     "images": [
-      "/images/products/stretch-pleated-dress.jpg",
-      "/images/products/stretch-pleated-dress-2.jpg"
+      "/images/products/stretch-pleated-dress.webp",
+      "/images/products/stretch-pleated-dress-2.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -241,10 +241,10 @@
     "slug": "plus-size-wrap-dress",
     "name": "Plus Size Wrap Dress",
     "category": "Plus Size Dresses",
-    "image": "/images/products/plus-size-wrap-dress.jpg",
+    "image": "/images/products/plus-size-wrap-dress.webp",
     "images": [
-      "/images/products/plus-size-wrap-dress.jpg",
-      "/images/products/plus-size-wrap-dress-2.jpg"
+      "/images/products/plus-size-wrap-dress.webp",
+      "/images/products/plus-size-wrap-dress-2.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -297,9 +297,9 @@
     "slug": "plus-size-ankara-print-maxi-dress",
     "name": "Ankara Print Maxi Dress",
     "category": "Two Piece Sets",
-    "image": "/images/products/psd0708-07-ankara-print-maxi-dress.jpg",
+    "image": "/images/products/psd0708-07-ankara-print-maxi-dress.webp",
     "images": [
-      "/images/products/psd0708-07-ankara-print-maxi-dress.jpg"
+      "/images/products/psd0708-07-ankara-print-maxi-dress.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -350,7 +350,7 @@
           "enabled": true,
           "title": "Style Highlights",
           "body": "Vibrant Ankara print maxi dress with fitted bodice and flowing skirt, designed for curvy figures and ready for wholesale bulk orders.",
-          "image": "/images/products/psd0708-07-ankara-print-maxi-dress.jpg",
+          "image": "/images/products/psd0708-07-ankara-print-maxi-dress.webp",
           "layout": "full-width"
         }
       ]
@@ -361,9 +361,9 @@
     "slug": "plus-size-ruffle-tiered-ankara-dress",
     "name": "Ruffle Tiered Ankara Dress",
     "category": "Two Piece Sets",
-    "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.jpg",
+    "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.webp",
     "images": [
-      "/images/products/psd0708-22-ruffle-tiered-ankara-dress.jpg"
+      "/images/products/psd0708-22-ruffle-tiered-ankara-dress.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -410,7 +410,7 @@
           "enabled": true,
           "title": "Style Highlights",
           "body": "Flirty ruffle-tiered Ankara dress designed to flatter curves, perfect for boutiques seeking wholesale African fashion inventory.",
-          "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.jpg",
+          "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.webp",
           "layout": "full-width"
         }
       ]
@@ -421,9 +421,9 @@
     "slug": "plus-size-ankara-print-midi-dress",
     "name": "Ankara Print Midi Dress",
     "category": "Two Piece Sets",
-    "image": "/images/products/psd0708-33-ankara-print-midi-dress.jpg",
+    "image": "/images/products/psd0708-33-ankara-print-midi-dress.webp",
     "images": [
-      "/images/products/psd0708-33-ankara-print-midi-dress.jpg"
+      "/images/products/psd0708-33-ankara-print-midi-dress.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -474,7 +474,7 @@
           "enabled": true,
           "title": "Style Highlights",
           "body": "Vibrant Ankara print midi dress with short sleeves and fitted waist, designed for plus-size comfort and available for bulk wholesale orders.",
-          "image": "/images/products/psd0708-33-ankara-print-midi-dress.jpg",
+          "image": "/images/products/psd0708-33-ankara-print-midi-dress.webp",
           "layout": "full-width"
         }
       ]
@@ -485,9 +485,9 @@
     "slug": "christmas-festive-party-dress-01",
     "name": "Christmas Festive Party Dress 01",
     "category": "Plus Size Dresses",
-    "image": "/images/products/xmas-01-hook-01.jpg",
+    "image": "/images/products/xmas-01-hook-01.webp",
     "images": [
-      "/images/products/xmas-01-hook-01.jpg"
+      "/images/products/xmas-01-hook-01.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -556,7 +556,7 @@
           "enabled": true,
           "title": "Christmas 2026 Style Highlights",
           "body": "2026 Christmas festive party dress #01. Eye-catching holiday silhouette designed for Christmas banquets, festive events, and celebratory gatherings. Cut for comfortable plus-size elegance up to 5XL with vibrant festive colors shown in the photo. Direct factory wholesale pricing from Guangzhou for African boutique importers.",
-          "image": "/images/products/xmas-01-hook-01.jpg",
+          "image": "/images/products/xmas-01-hook-01.webp",
           "layout": "full-width"
         }
       ]
@@ -567,9 +567,9 @@
     "slug": "holiday-evening-gala-dress-01",
     "name": "Holiday Evening Gala Dress 01",
     "category": "Plus Size Dresses",
-    "image": "/images/products/xmas-03-evening-01.jpg",
+    "image": "/images/products/xmas-03-evening-01.webp",
     "images": [
-      "/images/products/xmas-03-evening-01.jpg"
+      "/images/products/xmas-03-evening-01.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -638,7 +638,7 @@
           "enabled": true,
           "title": "Christmas 2026 Style Highlights",
           "body": "High-glamour holiday evening gala gown #01. Striking statement piece tailored for Christmas night galas, New Year parties, and celebratory dinners. Lustrous drape and vibrant color blocking that catches every light. Available for wholesale bulk purchase.",
-          "image": "/images/products/xmas-03-evening-01.jpg",
+          "image": "/images/products/xmas-03-evening-01.webp",
           "layout": "full-width"
         }
       ]
@@ -649,9 +649,9 @@
     "slug": "boutique-restock-holiday-dress-01",
     "name": "Boutique Restock Favorite Holiday Dress 01",
     "category": "Plus Size Dresses",
-    "image": "/images/products/xmas-05-boutique-01.jpg",
+    "image": "/images/products/xmas-05-boutique-01.webp",
     "images": [
-      "/images/products/xmas-05-boutique-01.jpg"
+      "/images/products/xmas-05-boutique-01.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -720,7 +720,7 @@
           "enabled": true,
           "title": "Christmas 2026 Style Highlights",
           "body": "Top trending wholesale boutique restock style #01 for the Christmas shopping rush. High turnover rate with strong customer appeal in African retail markets. Multiple colors available for bulk mix-and-match orders.",
-          "image": "/images/products/xmas-05-boutique-01.jpg",
+          "image": "/images/products/xmas-05-boutique-01.webp",
           "layout": "full-width"
         }
       ]
@@ -731,9 +731,9 @@
     "slug": "vibrant-print-festive-dress-01",
     "name": "Vibrant Print Multi-Color Festive Dress 01",
     "category": "Plus Size Dresses",
-    "image": "/images/products/xmas-07-print-01.jpg",
+    "image": "/images/products/xmas-07-print-01.webp",
     "images": [
-      "/images/products/xmas-07-print-01.jpg"
+      "/images/products/xmas-07-print-01.webp"
     ],
     "moq": 500,
     "moqOptions": [
@@ -802,7 +802,7 @@
           "enabled": true,
           "title": "Christmas 2026 Style Highlights",
           "body": "Vibrant African-inspired multi-color festive dress #01. Rich saturated prints and contrast palettes that celebrate the festive season in bold style. Ready stock available for fast export packaging from Guangzhou.",
-          "image": "/images/products/xmas-07-print-01.jpg",
+          "image": "/images/products/xmas-07-print-01.webp",
           "layout": "full-width"
         }
       ]

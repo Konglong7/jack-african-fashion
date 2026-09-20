@@ -47,22 +47,22 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   categories: [
     {
       name: 'Plus Size Dresses',
-      image: '/images/site/02-category-plus-size-dresses.png',
+      image: '/images/site/02-category-plus-size-dresses.webp',
       description: 'Loose, flattering fits from XL to 5XL — a top seller across African boutiques.'
     },
     {
       name: 'Two Piece Sets',
-      image: '/images/site/03-category-two-piece-sets.png',
+      image: '/images/site/03-category-two-piece-sets.webp',
       description: 'Matching top and bottom sets that sell fast and photograph beautifully.'
     },
     {
       name: 'Pleated Dresses',
-      image: '/images/site/04-category-pleated-styles.png',
+      image: '/images/site/04-category-pleated-styles.webp',
       description: 'Stretch pleated styles in rich colours — our most re-ordered category.'
     },
     {
       name: 'Maxi Dresses',
-      image: '/images/site/05-category-maxi-dresses.png',
+      image: '/images/site/05-category-maxi-dresses.webp',
       description: 'Bold African print maxi dresses with full coverage and statement colour.'
     },
     {
@@ -72,7 +72,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     },
     {
       name: 'Custom Orders',
-      image: '/images/site/12-category-custom-orders.png',
+      image: '/images/site/12-category-custom-orders.webp',
       description: 'Send your reference pictures — we quote by fabric, size and quantity.'
     }
   ],
