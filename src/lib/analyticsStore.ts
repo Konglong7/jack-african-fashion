@@ -70,12 +70,16 @@ export async function recordAnalyticsEvent(input: unknown, meta: AnalyticsMeta =
     summary.days[day] ||= { page_view: 0, whatsapp_click: 0 };
     summary.days[day][event.event] += 1;
 
-    if (event.event === 'page_view') summary.pages[event.path] = (summary.pages[event.path] || 0) + 1;
+    if (event.event === 'page_view') {
+      summary.pages[event.path] = (summary.pages[event.path] || 0) + 1;
+    }
     if (event.event === 'whatsapp_click') {
       summary.whatsappPages[event.path] = (summary.whatsappPages[event.path] || 0) + 1;
     }
     const campaignKey = [event.source, event.campaign].filter(Boolean).join(' / ');
-    if (campaignKey) summary.campaigns[campaignKey] = (summary.campaigns[campaignKey] || 0) + 1;
+    if (campaignKey) {
+      summary.campaigns[campaignKey] = (summary.campaigns[campaignKey] || 0) + 1;
+    }
 
     summary.recent = retainRecentEvents([event, ...summary.recent], new Date(event.at));
 
@@ -110,17 +114,27 @@ export function maskIp(value: string) {
   return 'Unknown';
 }
 
-export function buildAnalyticsEvent(input: unknown, meta: AnalyticsMeta = {}): AnalyticsEvent | null {
+export function buildAnalyticsEvent(
+  input: unknown,
+  meta: AnalyticsMeta = {}
+): AnalyticsEvent | null {
   if (!input || typeof input !== 'object') return null;
   const data = input as Record<string, unknown>;
   const event: AnalyticsEventName | null =
-    data.event === 'whatsapp_click' ? 'whatsapp_click' : data.event === 'page_view' ? 'page_view' : null;
+    data.event === 'whatsapp_click'
+      ? 'whatsapp_click'
+      : data.event === 'page_view'
+        ? 'page_view'
+        : null;
   if (!event) return null;
 
   const now = meta.now || new Date();
   const ip = meta.ip || 'local';
   const userAgent = meta.userAgent || '';
-  const visitorHash = createHmac('sha256', meta.secret || process.env.ADMIN_SECRET || 'local-analytics')
+  const visitorHash = createHmac(
+    'sha256',
+    meta.secret || process.env.ADMIN_SECRET || 'local-analytics'
+  )
     .update(`${ip}|${userAgent}`)
     .digest('hex')
     .slice(0, 8)
@@ -161,15 +175,23 @@ export function retainRecentEvents(events: AnalyticsEvent[], now = new Date()) {
 
 export function normalizeAnalyticsSummary(input: unknown, now = new Date()): AnalyticsSummary {
   const data = input && typeof input === 'object' ? (input as Partial<AnalyticsSummary>) : {};
-  const recent = Array.isArray(data.recent)
-    ? data.recent.map(normalizeStoredEvent).filter((event): event is AnalyticsEvent => event !== null)
-    : [];
+  let recent: AnalyticsEvent[] = [];
+  if (Array.isArray(data.recent)) {
+    recent = data.recent
+      .map(normalizeStoredEvent)
+      .filter((event): event is AnalyticsEvent => event !== null);
+  }
   const retained = retainRecentEvents(recent, now);
-  const knownVisitors = Array.isArray(data.knownVisitors)
-    ? data.knownVisitors.filter((value): value is string => typeof value === 'string' && Boolean(value))
-    : [];
+  let knownVisitors: string[] = [];
+  if (Array.isArray(data.knownVisitors)) {
+    knownVisitors = data.knownVisitors.filter(
+      (value): value is string => typeof value === 'string' && Boolean(value)
+    );
+  }
   for (const event of retained) {
-    if (event.visitorId && !knownVisitors.includes(event.visitorId)) knownVisitors.push(event.visitorId);
+    if (event.visitorId && !knownVisitors.includes(event.visitorId)) {
+      knownVisitors.push(event.visitorId);
+    }
   }
   const firstIdentifiableEvent = retained
     .filter((event) => event.visitorId)
@@ -183,7 +205,8 @@ export function normalizeAnalyticsSummary(input: unknown, now = new Date()): Ana
     },
     days: data.days && typeof data.days === 'object' ? data.days : {},
     pages: data.pages && typeof data.pages === 'object' ? data.pages : {},
-    whatsappPages: data.whatsappPages && typeof data.whatsappPages === 'object' ? data.whatsappPages : {},
+    whatsappPages:
+      data.whatsappPages && typeof data.whatsappPages === 'object' ? data.whatsappPages : {},
     campaigns: data.campaigns && typeof data.campaigns === 'object' ? data.campaigns : {},
     knownVisitors: [...new Set(knownVisitors)],
     statsStartedAt:

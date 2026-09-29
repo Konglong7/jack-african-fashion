@@ -49,6 +49,7 @@ describe('site image mapping', () => {
       SITE_IMAGES.whatsappContact,
       SITE_IMAGES.whatsappCatalogBanner,
       SITE_IMAGES.africanMarketCollage,
+      ...Object.values(SITE_IMAGES.trust),
       ...SITE_IMAGES.blog
     ];
 

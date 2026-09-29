@@ -54,9 +54,24 @@ export default async function AdminDashboard() {
       <section className='mb-8'>
         <h2 className='text-brand-black mb-3 text-lg font-bold'>Product overview</h2>
         <div className='grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4'>
-          <StatCard label='Total Products' value={stats.total} color='text-brand-orange' icon='box' />
-          <StatCard label='Ready Stock' value={stats.ready} color='text-brand-emerald' icon='check' />
-          <StatCard label='Custom Available' value={stats.custom} color='text-brand-gold' icon='star' />
+          <StatCard
+            label='Total Products'
+            value={stats.total}
+            color='text-brand-orange'
+            icon='box'
+          />
+          <StatCard
+            label='Ready Stock'
+            value={stats.ready}
+            color='text-brand-emerald'
+            icon='check'
+          />
+          <StatCard
+            label='Custom Available'
+            value={stats.custom}
+            color='text-brand-gold'
+            icon='star'
+          />
           <StatCard
             label='Missing Images'
             value={stats.missing}

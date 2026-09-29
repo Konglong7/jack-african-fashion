@@ -37,10 +37,13 @@ Write-Host '[1/2] 正在打包（排除依赖 / 构建产物 / 开发残留）..
 Push-Location $ProjectRoot
 try {
     # 采用白名单方式打包：只带运行必需的内容，避免把开发残留一起传上服务器
+    # 0921*.png are local, unpublished assets until product records are registered.
     & tar -czf $packName `
         --exclude='data/analytics.json' `
         --exclude='data/analytics.json.tmp' `
         --exclude='*.bak' `
+        --exclude='data/raw-assets' `
+        --exclude='public/images/products/0921*.png' `
         src public data deploy package.json package-lock.json `
         next.config.ts tsconfig.json next-env.d.ts postcss.config.mjs eslint.config.mjs ecosystem.config.cjs
     if ($LASTEXITCODE -ne 0) { throw 'tar 打包失败' }
@@ -58,7 +61,7 @@ Write-Host "  2) 进入 $RemoteDir 的上级目录"
 Write-Host "  3) 上传本包：$PackFile，然后右键解压到站点目录"
 Write-Host ''
 Write-Host '==== 方式 B：命令行 scp ====' -ForegroundColor Cyan
-Write-Host "    scp `"$PackFile`" $VPS_USER@$VPS_HOST:/root/"
+Write-Host "    scp `"$PackFile`" $VPS_USER@${VPS_HOST}:/root/"
 Write-Host "    ssh $VPS_USER@$VPS_HOST"
 Write-Host "    mkdir -p $RemoteDir"
 Write-Host "    tar -xzf /root/$packName -C $RemoteDir"

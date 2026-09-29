@@ -49,7 +49,7 @@ describe('homepage marketing image layout', () => {
     expect(hero).toContain('See Styles');
     expect(hero).toContain('View All Products');
     expect(hero).toContain('Yulong Fashion Plaza');
-    expect(hero).toContain('Factory Network');
+    expect(hero).toContain('Own Factory');
     expect(hero).toContain('hidden sm:block');
     expect(hero).toContain('sm:min-h-[max(720px,56.25vw)]');
 
@@ -76,16 +76,20 @@ describe('homepage marketing image layout', () => {
     expect(categories).not.toContain("ref={ref}\n          className='grid");
   });
 
-  test('optimizes mobile scroll depth with 2-column categories and Africa trust guarantees', () => {
+  test('keeps mobile trust proof factual and avoids unsupported guarantees', () => {
     const categories = readHomeComponent('Categories.tsx');
     const custom = readHomeComponent('CustomOrderProcess.tsx');
     const trustStrip = readHomeComponent('AfricaTrustStrip.tsx');
 
     expect(categories).toContain('grid-cols-2');
     expect(custom).toContain('grid-cols-2');
-    expect(trustStrip).toContain('Free GZ Cargo Delivery');
-    expect(trustStrip).toContain('Low MOQ & Mix Batch');
+    expect(trustStrip).toContain('Cargo Agent Coordination');
+    expect(trustStrip).toContain('MOQ Confirmed by Style');
     expect(trustStrip).toContain('Showroom Video Check');
-    expect(trustStrip).toContain('24–48h Quick Dispatch');
+    expect(trustStrip).toContain('Dispatch After Confirmation');
+    expect(trustStrip).not.toContain('10 pcs/style');
+    expect(trustStrip).not.toContain('Free GZ Cargo Delivery');
+    expect(trustStrip).not.toContain('24–48h Quick Dispatch');
+    expect(custom).not.toContain('100 pcs per style');
   });
 });

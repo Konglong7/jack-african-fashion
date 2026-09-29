@@ -3,11 +3,7 @@ import type { NextRequest } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { randomBytes } from 'crypto';
-import {
-  buildUploadFilename,
-  isAllowedImageBuffer,
-  uploadErrorFor
-} from '@/lib/uploadValidation';
+import { buildUploadFilename, isAllowedImageBuffer, uploadErrorFor } from '@/lib/uploadValidation';
 import { readFormDataBody } from '@/lib/apiRequest';
 
 // POST /api/admin/upload — receive one or more images and save to public/images/products/
@@ -35,7 +31,10 @@ export async function POST(req: NextRequest) {
     await fs.mkdir(UPLOAD_DIR, { recursive: true });
   } catch (error) {
     console.error('[Upload] Failed to create upload directory:', error);
-    return NextResponse.json({ ok: false, error: 'Upload storage is unavailable' }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: 'Upload storage is unavailable' },
+      { status: 500 }
+    );
   }
 
   const uploaded: { name: string; url: string; size: number }[] = [];

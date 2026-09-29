@@ -1,19 +1,20 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand palette — warm, African-inspired, professional */
-  --color-brand-black: #1a1a1a;
-  --color-brand-brown: #3d2b1f;
-  --color-brand-cream: #faf6f0;
-  --color-brand-sand: #e8dcc8;
-  --color-brand-orange: #d97706;
-  --color-brand-gold: #b8860b;
-  --color-brand-wine: #7b1e3b;
-  --color-brand-emerald: #0f766e;
+  /* Brand palette — African luxury, vibrant, high-contrast, regal */
+  --color-brand-black: #0c0a09;
+  --color-brand-brown: #2d1e15;
+  --color-brand-cream: #faf8f5;
+  --color-brand-sand: #e6dac6;
+  --color-brand-orange: #d96b0b;
+  --color-brand-gold: #d4af37;
+  --color-brand-wine: #831843;
+  --color-brand-emerald: #059669;
 
   /* Typography */
-  --font-sans: ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Iowan Old Style', Palatino, 'Palatino Linotype', Georgia, serif;
+  --font-sans:
+    var(--font-sans), 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-display), 'Playfair Display', Georgia, serif;
 
   /* Spacing scale */
   --spacing-18: 4.5rem;

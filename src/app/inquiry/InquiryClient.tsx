@@ -133,7 +133,7 @@ export function InquiryClient({ siteContent }: { siteContent: SiteContent }) {
                       <button
                         type='button'
                         onClick={() => removeItem(item.id)}
-                        className='text-brand-brown/45 hover:text-red-600 text-sm font-bold transition-colors'
+                        className='text-brand-brown/45 text-sm font-bold transition-colors hover:text-red-600'
                       >
                         Remove
                       </button>
@@ -177,7 +177,7 @@ export function InquiryClient({ siteContent }: { siteContent: SiteContent }) {
                             onChange={(e) =>
                               updateItem(item.id, { quantity: Number(e.target.value) })
                             }
-                            className='border-brand-sand focus:bg-brand-cream/40 w-full border-x py-2 text-center text-sm font-semibold text-brand-black focus:outline-none'
+                            className='border-brand-sand focus:bg-brand-cream/40 text-brand-black w-full border-x py-2 text-center text-sm font-semibold focus:outline-none'
                           />
                           <button
                             type='button'

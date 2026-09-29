@@ -55,8 +55,8 @@ export function Categories({ categories }: { categories: SiteCategory[] }) {
               Wholesale Styles for Every Boutique
             </h2>
             <p className='text-brand-brown/70 mx-auto mt-3 max-w-2xl sm:mx-0'>
-              Browse the categories African buyers order most. Each style is available for ready stock
-              or custom production.
+              Browse the categories African buyers order most. Each style is available for ready
+              stock or custom production.
             </p>
           </div>
           <Link
@@ -110,7 +110,7 @@ export function Categories({ categories }: { categories: SiteCategory[] }) {
                     <h3 className='text-brand-black group-hover:text-brand-orange mb-1 text-sm font-semibold transition-colors sm:mb-1.5 sm:text-lg'>
                       {cat.name}
                     </h3>
-                    <p className='text-brand-brown/70 mb-3 text-xs leading-snug line-clamp-2 sm:mb-4 sm:text-sm sm:leading-relaxed'>
+                    <p className='text-brand-brown/70 mb-3 line-clamp-2 text-xs leading-snug sm:mb-4 sm:text-sm sm:leading-relaxed'>
                       {cat.description}
                     </p>
                     <motion.span

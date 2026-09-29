@@ -33,7 +33,14 @@ export function ContactClient({
     e.preventDefault();
     const msg = `Hello Jack, I'm contacting you from your website.\n\nName: ${formData.name}\nCountry: ${formData.country}\nSubject: ${formData.subject}\n\n${formData.message}`;
     setSubmittedMsg(msg);
-    window.open(siteWhatsAppLink(siteContent, msg), '_blank');
+    const targetUrl = siteWhatsAppLink(siteContent, msg);
+    const isMobile =
+      typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = targetUrl;
+    } else {
+      window.open(targetUrl, '_blank');
+    }
     setSubmitted(true);
   };
 
@@ -206,7 +213,7 @@ export function ContactClient({
                           window.setTimeout(() => setCopied(false), 2000);
                         }
                       }}
-                      className='border-brand-sand hover:border-brand-orange hover:text-brand-orange inline-flex items-center justify-center rounded-full border bg-white px-6 py-3.5 font-semibold text-brand-brown transition-colors'
+                      className='border-brand-sand hover:border-brand-orange hover:text-brand-orange text-brand-brown inline-flex items-center justify-center rounded-full border bg-white px-6 py-3.5 font-semibold transition-colors'
                     >
                       {copied ? 'Copied to Clipboard!' : 'Copy Message Text'}
                     </button>
@@ -349,27 +356,27 @@ export function ContactClient({
               {[
                 {
                   q: 'What is the minimum order quantity (MOQ)?',
-                  a: 'For ready stock, MOQ starts from 30–50 pcs depending on the style. For custom production, MOQ is usually 100 pcs per style.'
+                  a: 'MOQ varies by product, current stock batch and custom-production requirements. Use the product page as the starting point and confirm the quantity before ordering.'
                 },
                 {
                   q: 'How long does production take?',
-                  a: 'Ready stock ships within 1–3 days. Custom orders typically take 15–30 days depending on complexity and quantity.'
+                  a: 'Lead time depends on the style, fabric, quantity, sampling and factory schedule. We provide an order-specific estimate after the details are confirmed.'
                 },
                 {
-                  q: 'Do you ship to Africa?',
-                  a: 'Yes, we ship to Nigeria, Ghana, Kenya, Tanzania, Zimbabwe and other African countries. We work with trusted shipping partners.'
+                  q: 'Do you support shipping to African countries?',
+                  a: 'Yes. We can pack orders in Guangzhou and coordinate transfer to your nominated forwarder or an agreed shipping partner. Route, cost and timing are confirmed per order.'
                 },
                 {
                   q: 'Can I send my own style pictures?',
-                  a: "Absolutely! Send us reference pictures on WhatsApp and we'll quote based on fabric, detail and quantity."
+                  a: 'Yes. Send clear reference pictures, fabric direction, sizes, colors and quantity on WhatsApp so we can review feasibility, MOQ and lead time.'
                 },
                 {
                   q: 'What payment methods do you accept?',
-                  a: 'We accept bank transfer, Western Union, and other common methods. Details are provided after order confirmation.'
+                  a: 'Available payment method, account details and payment schedule are provided in the written order confirmation. Verify all details directly with our team before paying.'
                 },
                 {
                   q: 'Do you offer samples?',
-                  a: 'Yes, we can provide samples for custom orders. Sample cost is refundable against bulk order.'
+                  a: 'Sample availability, cost and timing depend on the product and custom requirements. These terms must be confirmed before sampling starts.'
                 }
               ].map((faq, i) => (
                 <div key={i} className='rounded-xl bg-white p-5 shadow-sm'>

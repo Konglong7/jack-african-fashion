@@ -18,10 +18,10 @@ export function PopularProductsClient({
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className='bg-white py-16 sm:py-20 relative overflow-hidden'>
+    <section className='relative overflow-hidden bg-white py-16 sm:py-20'>
       {/* Decorative top gradient line */}
       <motion.div
-        className='absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-orange to-transparent'
+        className='via-brand-orange absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-transparent to-transparent'
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : {}}
         transition={{ duration: 1.2, ease: 'easeOut' }}
@@ -37,7 +37,7 @@ export function PopularProductsClient({
         >
           <div>
             <motion.span
-              className='text-brand-orange text-sm font-semibold tracking-[0.2em] uppercase block'
+              className='text-brand-orange block text-sm font-semibold tracking-[0.2em] uppercase'
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -70,7 +70,13 @@ export function PopularProductsClient({
             whileHover={{ x: 5 }}
           >
             View All Products
-            <svg className='h-4 w-4' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+            <svg
+              className='h-4 w-4'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={2}
+              viewBox='0 0 24 24'
+            >
               <path d='M5 12h14M12 5l7 7-7 7' />
             </svg>
           </motion.a>
@@ -81,7 +87,7 @@ export function PopularProductsClient({
         <div className='mt-10 flex justify-center'>
           <a
             href='/catalog'
-            className='inline-flex min-h-12 items-center justify-center rounded-full bg-brand-black px-8 text-sm font-bold text-white transition-colors hover:bg-brand-orange'
+            className='bg-brand-black hover:bg-brand-orange inline-flex min-h-12 items-center justify-center rounded-full px-8 text-sm font-bold text-white transition-colors'
           >
             View Full Product Catalog
           </a>

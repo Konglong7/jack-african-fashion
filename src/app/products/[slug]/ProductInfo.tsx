@@ -7,6 +7,7 @@ import { CheckIcon, WhatsAppIcon } from '@/components/Icons';
 import { InquiryAddButton } from '@/components/InquiryAddButton';
 import type { Product } from '@/lib/db';
 import { getProductSizes } from '@/lib/productDefaults';
+import { absoluteSiteUrl } from '@/lib/siteUrl';
 
 interface Props {
   product: Product;
@@ -16,11 +17,12 @@ interface Props {
 export function ProductInfo({ product, siteContent }: Props) {
   const sizes = getProductSizes(product.sizes);
   const sizeRange = sizes.length > 1 ? `${sizes[0]} - ${sizes[sizes.length - 1]}` : sizes[0];
-  const whatsappMessage = `Hello Jack, I like this style: ${product.name}. Please add me on WhatsApp. I want to discuss today's ready stock, available colors and sizes, real photos/video, wholesale price, packing, and delivery. MOQ: ${product.moq} pcs.`;
+  const productUrl = absoluteSiteUrl(`/products/${product.slug}`);
+  const whatsappMessage = `Hello Jack, I like this style: ${product.name} (${productUrl}). Please add me on WhatsApp. I want to discuss today's ready stock, available colors and sizes, real photos/video, wholesale price, packing, and delivery. MOQ: ${product.moq} pcs.`;
   const whatsappLink = siteWhatsAppLink(siteContent, whatsappMessage);
   const similarStyleLink = siteWhatsAppLink(
     siteContent,
-    `Hello Jack, I like ${product.name}. I want to send you a similar style picture for quotation.`
+    `Hello Jack, I like ${product.name} (${productUrl}). I want to send you a similar style picture for quotation.`
   );
 
   return (
@@ -36,32 +38,37 @@ export function ProductInfo({ product, siteContent }: Props) {
             {[product.category, ...product.tags.slice(0, 3)].map((tag) => (
               <span
                 key={tag}
-                className='rounded-full bg-brand-cream px-3 py-1 text-xs font-semibold text-brand-brown'
+                className='bg-brand-cream text-brand-brown rounded-full px-3 py-1 text-xs font-semibold'
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h1 className='font-display text-3xl font-bold leading-tight text-brand-black sm:text-4xl'>
+          <h1 className='font-display text-brand-black text-3xl leading-tight font-bold sm:text-4xl'>
             {product.name}
           </h1>
-          <p className='mt-3 max-w-xl text-base leading-7 text-brand-brown/75'>
+          <p className='text-brand-brown/75 mt-3 max-w-xl text-base leading-7'>
             {product.description}
           </p>
         </div>
 
-        <div className='grid grid-cols-3 overflow-hidden border border-brand-sand/70 bg-white text-center'>
+        <div className='border-brand-gold/30 to-brand-cream/40 grid grid-cols-3 overflow-hidden rounded-xl border bg-gradient-to-b from-white text-center shadow-sm'>
           <InfoCell label='MOQ' value={`${product.moq} pcs`} />
           <InfoCell label='Stock' value={product.stockType} />
-          <InfoCell label='Price' value='WhatsApp quote' />
+          <InfoCell label='Wholesale' value='WhatsApp Quote' />
         </div>
 
-        <div className='flex items-center gap-2 rounded-lg bg-brand-cream/80 px-3.5 py-2 text-xs font-medium text-brand-brown/85'>
-          <svg className='h-4 w-4 shrink-0 text-brand-orange' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-            <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M5 13l4 4L19 7' />
-          </svg>
-          <span>Free delivery to your Guangzhou cargo agent (Lagos / Accra / Nairobi routes)</span>
+        {/* Trade Trust Badges */}
+        <div className='grid grid-cols-2 gap-2 text-xs font-semibold'>
+          <div className='border-brand-gold/25 bg-brand-gold/10 text-brand-brown flex items-center gap-2 rounded-lg border px-3 py-2'>
+            <span className='flex h-2 w-2 animate-pulse rounded-full bg-emerald-500' />
+            <span className='truncate'>Live Video Inspection</span>
+          </div>
+          <div className='border-brand-sand text-brand-brown flex items-center gap-2 rounded-lg border bg-white px-3 py-2'>
+            <span className='bg-brand-orange h-2 w-2 rounded-full' />
+            <span className='truncate'>Guangzhou Cargo Handover</span>
+          </div>
         </div>
 
         <div className='space-y-3'>
@@ -80,30 +87,30 @@ export function ProductInfo({ product, siteContent }: Props) {
               href={similarStyleLink}
               target='_blank'
               rel='noopener noreferrer'
-              className='rounded-full border-2 border-brand-black bg-white px-5 py-3 text-center text-sm font-bold text-brand-black transition-colors hover:bg-brand-black hover:text-white'
+              className='border-brand-black text-brand-black hover:bg-brand-black rounded-full border-2 bg-white px-5 py-3 text-center text-sm font-bold transition-colors hover:text-white'
             >
               Send similar style picture
             </a>
             <InquiryAddButton
               product={product}
               item={{ quantity: product.moq }}
-              className='rounded-full border-2 border-brand-sand bg-white px-5 py-3 text-sm font-bold text-brand-brown transition-colors hover:border-brand-black hover:text-brand-black'
+              className='border-brand-sand text-brand-brown hover:border-brand-black hover:text-brand-black rounded-full border-2 bg-white px-5 py-3 text-sm font-bold transition-colors'
             >
               Save to inquiry list
             </InquiryAddButton>
           </div>
         </div>
 
-        <section className='border border-brand-sand/70 bg-brand-cream/70 p-5'>
-          <p className='text-xs font-bold uppercase text-brand-orange'>Ask on WhatsApp for</p>
-          <ul className='mt-4 space-y-3 text-sm text-brand-brown/75'>
+        <section className='border-brand-sand/70 bg-brand-cream/70 border p-5'>
+          <p className='text-brand-orange text-xs font-bold uppercase'>Ask on WhatsApp for</p>
+          <ul className='text-brand-brown/75 mt-4 space-y-3 text-sm'>
             {[
               `Professional reply for MOQ ${product.moq}+ wholesale orders`,
               'Real stock photos/video, colors, and size mix before quote',
               'Stable new arrivals and repeat-buyer updates on WhatsApp'
             ].map((item) => (
               <li key={item} className='flex gap-3'>
-                <CheckIcon className='mt-0.5 h-4 w-4 shrink-0 text-brand-emerald' />
+                <CheckIcon className='text-brand-emerald mt-0.5 h-4 w-4 shrink-0' />
                 <span>{item}</span>
               </li>
             ))}
@@ -118,18 +125,22 @@ export function ProductInfo({ product, siteContent }: Props) {
           />
           <StockNote
             title='Colors & prints'
-            value='Ready batch updates'
-            note="Ask for today's colors and prints on WhatsApp, with real photos or video when available."
+            value={
+              product.colors.length > 0
+                ? product.colors.map((color) => color.name).join(' / ')
+                : 'Confirm current batch'
+            }
+            note='Colors can change by stock batch. Ask for current photos or video before confirming your order.'
           />
         </section>
 
         {product.features.length > 0 && (
-          <section className='border-t border-brand-sand/70 pt-5'>
-            <p className='text-xs font-bold uppercase text-brand-orange'>Selling points</p>
-            <ul className='mt-4 grid gap-3 text-sm text-brand-brown/75 sm:grid-cols-2 lg:grid-cols-1'>
+          <section className='border-brand-sand/70 border-t pt-5'>
+            <p className='text-brand-orange text-xs font-bold uppercase'>Selling points</p>
+            <ul className='text-brand-brown/75 mt-4 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-1'>
               {product.features.slice(0, 6).map((feature) => (
                 <li key={feature} className='flex gap-3'>
-                  <CheckIcon className='mt-0.5 h-4 w-4 shrink-0 text-brand-emerald' />
+                  <CheckIcon className='text-brand-emerald mt-0.5 h-4 w-4 shrink-0' />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -138,12 +149,12 @@ export function ProductInfo({ product, siteContent }: Props) {
         )}
       </div>
 
-      <div className='fixed inset-x-0 bottom-0 z-40 border-t border-brand-sand bg-white/95 px-3 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] shadow-2xl backdrop-blur md:hidden'>
+      <div className='border-brand-sand fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 px-3 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] shadow-2xl backdrop-blur md:hidden'>
         <div className='mx-auto flex max-w-md items-center gap-2'>
           <InquiryAddButton
             product={product}
             item={{ quantity: product.moq }}
-            className='flex items-center justify-center gap-1.5 rounded-full border border-brand-black bg-white px-3.5 py-3 text-xs font-bold text-brand-black shrink-0 shadow-sm transition-transform active:scale-95'
+            className='border-brand-black text-brand-black flex shrink-0 items-center justify-center gap-1.5 rounded-full border bg-white px-3.5 py-3 text-xs font-bold shadow-sm transition-transform active:scale-95'
           >
             Save Inquiry
           </InquiryAddButton>
@@ -154,7 +165,7 @@ export function ProductInfo({ product, siteContent }: Props) {
             className='flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-white shadow-sm transition-transform active:scale-95'
           >
             <WhatsAppIcon className='h-5 w-5' />
-            Talk ready stock on WhatsApp
+            WhatsApp (Stock & Quote)
           </a>
         </div>
       </div>
@@ -164,19 +175,19 @@ export function ProductInfo({ product, siteContent }: Props) {
 
 function InfoCell({ label, value }: { label: string; value: string }) {
   return (
-    <div className='border-r border-brand-sand/70 p-3 last:border-r-0'>
-      <p className='text-xs font-semibold uppercase text-brand-brown/50'>{label}</p>
-      <p className='mt-1 text-sm font-bold text-brand-black'>{value}</p>
+    <div className='border-brand-sand/70 border-r p-3 last:border-r-0'>
+      <p className='text-brand-brown/50 text-xs font-semibold uppercase'>{label}</p>
+      <p className='text-brand-black mt-1 text-sm font-bold'>{value}</p>
     </div>
   );
 }
 
 function StockNote({ title, value, note }: { title: string; value: string; note: string }) {
   return (
-    <div className='border border-brand-sand bg-white p-4'>
-      <p className='text-xs font-bold uppercase text-brand-orange'>{title}</p>
-      <p className='mt-2 text-base font-bold text-brand-black'>{value}</p>
-      <p className='mt-2 text-sm leading-6 text-brand-brown/65'>{note}</p>
+    <div className='border-brand-sand border bg-white p-4'>
+      <p className='text-brand-orange text-xs font-bold uppercase'>{title}</p>
+      <p className='text-brand-black mt-2 text-base font-bold'>{value}</p>
+      <p className='text-brand-brown/65 mt-2 text-sm leading-6'>{note}</p>
     </div>
   );
 }

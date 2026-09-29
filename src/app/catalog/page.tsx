@@ -10,9 +10,9 @@ import { CatalogClient } from './CatalogClient';
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: 'Wholesale Catalog | Ready Stock & Custom African Fashion',
+  title: "Women's Clothing Wholesale Catalog | Guangzhou Supplier",
   description:
-    'Browse Guangzhou wholesale women clothing catalog: plus size dresses, pleated sets, maxi gowns, and jumpsuits. Ready stock and custom factory production.'
+    "Browse Jack African Fashion's Guangzhou women's clothing wholesale catalog for African boutiques: dresses, plus sizes, two piece sets, ready stock and custom production."
 };
 
 // Catalog data is rendered server-side; URL filters stay in the client so this
@@ -33,11 +33,12 @@ export default async function CatalogPage() {
             Wholesale Catalog
           </span>
           <h1 className='font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl'>
-            Browse Our Wholesale Collection
+            Guangzhou Women&apos;s Clothing Wholesale Catalog
           </h1>
           <p className='text-brand-cream/70 mx-auto mt-4 max-w-2xl'>
-            Ready stock and custom styles for African boutiques and importers. Click &ldquo;Ask for
-            Price&quot; on any product to get a quote on WhatsApp.
+            Jack African Fashion supplies ready-stock and custom women&apos;s clothing for African
+            boutiques, wholesalers and importers. Select a product to check MOQ, sizes, colors and
+            current availability.
           </p>
         </div>
       </section>
@@ -51,11 +52,7 @@ export default async function CatalogPage() {
           </section>
         }
       >
-        <CatalogClient
-          products={products}
-          siteContent={siteContent}
-          categories={categories}
-        />
+        <CatalogClient products={products} siteContent={siteContent} categories={categories} />
       </Suspense>
     </>
   );

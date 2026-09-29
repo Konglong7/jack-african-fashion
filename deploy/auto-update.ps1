@@ -102,10 +102,11 @@ echo "  零停机重启 PM2..."
 pm2 reload __PM2_APP__ 2>/dev/null || pm2 restart __PM2_APP__
 
 echo "  等待服务就绪..."
+set +e
 OK=0
 for i in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15; do
   sleep 2
-  if curl -sf -o /dev/null http://127.0.0.1:3000; then
+  if curl -sf -o /dev/null http://127.0.0.1:3200 || curl -sf -o /dev/null http://127.0.0.1:3000; then
     echo "DEPLOY_OK"
     OK=1
     break

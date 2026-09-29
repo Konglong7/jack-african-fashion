@@ -25,7 +25,8 @@ describe('mobile conversion layout', () => {
     const inquiryFloating = readComponent('InquiryFloating.tsx');
 
     expect(inquiryFloating).toContain('if (count === 0)');
-    expect(inquiryFloating).toContain('left-4 bottom-4');
+    expect(inquiryFloating).toContain('bottom-4');
+    expect(inquiryFloating).toContain('left-4');
   });
 
   test('keeps catalog filters in a horizontal rail on phones', () => {
@@ -33,7 +34,8 @@ describe('mobile conversion layout', () => {
 
     expect(catalog).toContain('overflow-x-auto');
     expect(catalog).toContain('flex-nowrap');
-    expect(catalog).toContain('shrink-0 whitespace-nowrap');
+    expect(catalog).toContain('shrink-0');
+    expect(catalog).toContain('whitespace-nowrap');
   });
 
   test('uses a concise tablet and desktop navigation set', () => {

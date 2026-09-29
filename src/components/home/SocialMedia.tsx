@@ -3,7 +3,7 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import { siteWhatsAppLink } from '@/lib/siteContentTypes';
+import { isConfiguredSocialLink, siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { WhatsAppIcon } from '@/components/Icons';
 import { SiteImage } from '@/components/SiteImage';
@@ -60,6 +60,9 @@ export function SocialMedia({ siteContent }: { siteContent: SiteContent }) {
     siteContent.socialLinks.tiktok,
     siteContent.socialLinks.instagram
   ];
+  const socialCards = SOCIAL_CARDS.map((card, index) => ({ card, href: hrefs[index] })).filter(
+    ({ card, href }) => card.name === 'WhatsApp Catalog' || isConfiguredSocialLink(href)
+  );
 
   return (
     <section className='bg-brand-cream relative overflow-hidden py-16 sm:py-20'>
@@ -81,7 +84,8 @@ export function SocialMedia({ siteContent }: { siteContent: SiteContent }) {
             Follow Our Latest Styles
           </h2>
           <p className='text-brand-brown/70 mx-auto mt-3 max-w-2xl'>
-            New styles are updated regularly on Facebook, TikTok, Instagram and WhatsApp.
+            Use WhatsApp for current stock inquiries. Verified brand social profiles appear here
+            when they are configured.
           </p>
         </motion.div>
 
@@ -129,10 +133,10 @@ export function SocialMedia({ siteContent }: { siteContent: SiteContent }) {
             visible: { transition: { staggerChildren: 0.12 } }
           }}
         >
-          {SOCIAL_CARDS.map((card, index) => (
+          {socialCards.map(({ card, href }) => (
             <motion.a
               key={card.name}
-              href={hrefs[index]}
+              href={href}
               target='_blank'
               rel='noopener noreferrer'
               className='group relative overflow-hidden rounded-xl bg-white p-6 text-center shadow-sm'

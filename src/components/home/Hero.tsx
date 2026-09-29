@@ -10,7 +10,14 @@ import { SiteImage } from '@/components/SiteImage';
 import { WhatsAppIcon } from '@/components/Icons';
 import { Marquee } from '@/components/motion/Marquee';
 
-const HERO_PROOF = ['Yulong Fashion Plaza', 'Ready Stock', 'Factory Network', 'Export Packing'];
+const HERO_PROOF = [
+  'Yulong Fashion Plaza Showroom',
+  'Own Factory',
+  'African B2B Service',
+  'Ready Stock',
+  'Custom Production',
+  'Export Packing'
+];
 
 export function Hero({ siteContent }: { siteContent: SiteContent }) {
   const ref = useRef(null);
@@ -26,98 +33,74 @@ export function Hero({ siteContent }: { siteContent: SiteContent }) {
   return (
     <section
       ref={ref}
-      className='bg-brand-black relative flex flex-col overflow-hidden sm:min-h-[max(720px,56.25vw)] sm:flex-row sm:items-center'
+      className='bg-brand-black relative flex min-h-[600px] flex-col justify-end overflow-hidden sm:min-h-[max(720px,56.25vw)] sm:justify-center'
     >
-      {/* Banner image */}
-      <motion.div
-        className='relative h-[208px] shrink-0 sm:absolute sm:inset-0 sm:h-auto'
-        style={{ y: bgY }}
-      >
+      {/* Banner image with parallax */}
+      <motion.div className='absolute inset-0' style={{ y: bgY }}>
         <SiteImage
           src={SITE_IMAGES.hero}
-          alt='African women fashion wholesale hero banner'
+          alt="Jack African Fashion Guangzhou African women's clothing wholesale supplier"
           priority
           sizes='100vw'
           className='absolute inset-0'
-          imageClassName='sm:![object-position:center_top]'
+          imageClassName='![object-position:center_top] sm:![object-position:center_top]'
           position='center top'
         />
-        <div className='from-brand-black/35 absolute inset-0 bg-gradient-to-t via-transparent to-transparent sm:bg-gradient-to-r sm:from-black/80 sm:via-black/45 sm:to-black/5' />
+        {/* Editorial contrast gradient: vertical on mobile, lateral on desktop */}
+        <div className='from-brand-black via-brand-black/75 to-brand-black/25 absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r sm:from-black/80 sm:via-black/45 sm:to-black/5' />
       </motion.div>
 
-      {/* Static warm glow overlay — animating a gradient string repaints the whole
-          hero every frame, so this is a fixed layered radial gradient instead. */}
+      {/* Atmospheric gold luxury glow */}
       <div
-        className='pointer-events-none absolute inset-0 hidden opacity-25 sm:block'
+        className='pointer-events-none absolute inset-0 opacity-40'
         style={{
           background:
-            'radial-gradient(circle at 20% 30%, rgba(212,160,23,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(217,119,6,0.3) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(123,30,59,0.2) 0%, transparent 50%)'
+            'radial-gradient(circle at 20% 30%, rgba(212,175,55,0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(217,107,11,0.2) 0%, transparent 50%)'
         }}
       />
 
-      {/* Ambient sparkle dots — opacity-only (cheap, no layout/repaint).
-          On prefers-reduced-motion these freeze via MotionConfig in RootChrome. */}
-      <div
-        className='pointer-events-none absolute inset-0 hidden overflow-hidden sm:block'
-        aria-hidden='true'
-      >
-        {[
-          { left: '12%', top: '18%' },
-          { left: '23%', top: '62%' },
-          { left: '34%', top: '8%' },
-          { left: '45%', top: '44%' },
-          { left: '56%', top: '78%' },
-          { left: '67%', top: '12%' },
-          { left: '78%', top: '50%' },
-          { left: '88%', top: '25%' }
-        ].map((p, i) => (
-          <span
-            key={i}
-            className='bg-brand-gold/40 absolute h-1 w-1 rounded-full'
-            style={{
-              left: p.left,
-              top: p.top,
-              animation: `hero-twinkle ${4 + (i % 5)}s ease-in-out ${(i % 7) * 0.4}s infinite`
-            }}
-          />
-        ))}
-      </div>
-
       {/* Content */}
       <motion.div
-        className='bg-brand-black relative z-10 mx-auto w-full max-w-7xl overflow-hidden px-4 pt-5 pb-5 sm:overflow-visible sm:bg-transparent sm:py-24'
+        className='relative z-10 mx-auto w-full max-w-7xl px-4 pt-20 pb-16 sm:py-24'
         style={{ y: textY }}
       >
         <div className='max-w-2xl'>
-          <span className='text-brand-gold border-brand-gold/40 mb-3 inline-block border-b pb-2 text-xs font-semibold tracking-[0.12em] uppercase sm:mb-6 sm:text-sm sm:tracking-[0.3em]'>
+          <span className='text-brand-gold border-brand-gold/40 mb-3 inline-block border-b pb-1.5 text-xs font-semibold tracking-[0.2em] uppercase sm:mb-6 sm:text-sm sm:tracking-[0.25em]'>
             {siteContent.heroEyebrow}
           </span>
 
-          <h1 className='font-display mb-3 max-w-[21rem] text-3xl leading-[1.05] font-bold break-words text-white sm:mb-6 sm:max-w-none sm:text-5xl lg:text-6xl xl:text-7xl'>
+          <h1 className='font-display mb-3 max-w-[22rem] text-3xl leading-[1.08] font-bold break-words text-white sm:mb-6 sm:max-w-none sm:text-5xl lg:text-6xl xl:text-7xl'>
             {siteContent.heroTitle}{' '}
-            <span className='text-brand-gold inline-block drop-shadow-[0_0_24px_rgba(212,160,23,0.35)]'>
+            <span className='text-brand-gold inline-block drop-shadow-[0_0_24px_rgba(212,175,55,0.4)]'>
               {siteContent.heroAccent}
             </span>
           </h1>
 
-          <p className='text-brand-cream/90 mb-5 max-w-2xl text-[0.95rem] leading-6 sm:mb-8 sm:text-lg sm:leading-relaxed lg:text-xl'>
+          <p className='text-brand-cream/90 mb-6 max-w-2xl text-[0.95rem] leading-6 sm:mb-8 sm:text-lg sm:leading-relaxed lg:text-xl'>
             <span className='sm:hidden'>
-              Ready-stock womenswear support for African boutiques and importers.
+              Jack African Fashion supplies ready-stock and custom women&apos;s clothing from
+              Guangzhou to African boutiques, wholesalers and importers.
             </span>
             <span className='hidden sm:inline'>{siteContent.heroBody}</span>
           </p>
 
-          <div className='flex flex-col gap-3 sm:flex-row sm:gap-4'>
+          <div className='flex flex-col gap-3.5 sm:flex-row sm:gap-4'>
+            <motion.a
+              href={siteWhatsAppLink(siteContent)}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='group inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 py-4 text-base font-bold text-white shadow-xl shadow-green-950/25 transition-all hover:bg-[#20ba5a] active:scale-[0.98]'
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <WhatsAppIcon className='h-5 w-5' />
+              <span>Talk Stock on WhatsApp</span>
+            </motion.a>
+
             <Link
               href='/catalog'
-              className='group bg-brand-orange hover:bg-brand-gold relative inline-flex min-h-14 items-center justify-center gap-2 overflow-hidden rounded-full px-8 py-4 text-base font-semibold text-white transition-colors sm:min-h-0 sm:self-auto'
+              className='group hover:border-brand-gold/60 relative inline-flex min-h-14 items-center justify-center gap-2 overflow-hidden rounded-full border border-white/30 bg-white/10 px-8 py-4 text-base font-semibold text-white backdrop-blur transition-all hover:bg-white/20 active:scale-[0.98]'
             >
-              <motion.span
-                className='absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0'
-                initial={{ x: '-100%' }}
-                whileHover={{ x: '100%' }}
-                transition={{ duration: 0.6 }}
-              />
               <span className='relative z-10'>View All Products</span>
               <svg
                 className='relative z-10 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1'
@@ -129,26 +112,14 @@ export function Hero({ siteContent }: { siteContent: SiteContent }) {
                 <path d='M5 12h14M12 5l7 7-7 7' />
               </svg>
             </Link>
-
-            <motion.a
-              href={siteWhatsAppLink(siteContent)}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-white/10 px-8 py-3 text-base font-semibold text-white backdrop-blur transition-all hover:border-white/50 hover:bg-white/20 sm:min-h-0 sm:px-8 sm:py-4 sm:self-auto'
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <WhatsAppIcon className='h-5 w-5' />
-              Talk Stock on WhatsApp
-            </motion.a>
           </div>
 
           {/* Trust indicators */}
-          <div className='border-brand-gold/20 mt-5 grid grid-cols-2 gap-x-4 gap-y-2.5 border-l pl-4 sm:mt-12 sm:flex sm:w-fit sm:flex-wrap sm:items-center sm:gap-x-7 sm:gap-y-3 sm:rounded-full sm:border-0 sm:bg-black/20 sm:px-5 sm:py-3 sm:backdrop-blur-sm'>
+          <div className='border-brand-gold/30 mt-6 grid grid-cols-2 gap-x-4 gap-y-2.5 border-l pl-4 sm:mt-12 sm:flex sm:w-fit sm:flex-wrap sm:items-center sm:gap-x-7 sm:gap-y-3 sm:rounded-full sm:border sm:border-white/10 sm:bg-black/35 sm:px-5 sm:py-3 sm:backdrop-blur-md'>
             {HERO_PROOF.map((item) => (
-              <div key={item} className='text-brand-cream/80 flex items-center gap-2'>
+              <div key={item} className='text-brand-cream/85 flex items-center gap-2'>
                 <svg
-                  className='text-brand-gold h-5 w-5 shrink-0'
+                  className='text-brand-gold h-4 w-4 shrink-0'
                   fill='currentColor'
                   viewBox='0 0 20 20'
                 >
@@ -161,11 +132,11 @@ export function Hero({ siteContent }: { siteContent: SiteContent }) {
 
           <a
             href='#home-categories'
-            className='text-brand-gold border-brand-gold/30 mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border px-5 text-sm font-bold tracking-[0.12em] uppercase sm:hidden'
+            className='text-brand-gold border-brand-gold/40 mt-5 inline-flex min-h-11 items-center gap-2 rounded-full border px-5 text-xs font-bold tracking-[0.16em] uppercase sm:hidden'
           >
             See Styles
             <svg
-              className='h-5 w-5 animate-bounce'
+              className='h-4 w-4 animate-bounce'
               fill='none'
               stroke='currentColor'
               strokeWidth={2}

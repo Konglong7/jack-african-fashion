@@ -29,7 +29,7 @@ function warnOnceIfUsingDevDefaults(usingDefaults: boolean) {
       ' 该值已公开在源码中，任何人都能登录管理后台并伪造会话。',
       ' 仅可用于本机开发；上线前请在 .env.local 中设置：',
       '   ADMIN_USERNAME / ADMIN_PASSWORD / ADMIN_SECRET',
-      ' 生成强密钥：node -e "console.log(require(\'crypto\').randomBytes(32).toString(\'hex\'))"',
+      " 生成强密钥：node -e \"console.log(require('crypto').randomBytes(32).toString('hex'))\"",
       '============================================================',
       ''
     ].join('\n')

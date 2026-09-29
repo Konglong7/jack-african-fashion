@@ -56,7 +56,7 @@ export function InquiryToast() {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: -20, opacity: 0, scale: 0.95 }}
             transition={{ type: 'spring', damping: 20, stiffness: 350 }}
-            className='pointer-events-auto flex items-center gap-3 rounded-full border border-brand-sand/80 bg-white/98 py-2 pr-2 pl-3.5 shadow-2xl shadow-black/10 backdrop-blur-md'
+            className='border-brand-sand/80 pointer-events-auto flex items-center gap-3 rounded-full border bg-white/98 py-2 pr-2 pl-3.5 shadow-2xl shadow-black/10 backdrop-blur-md'
             role='status'
           >
             <div className='bg-brand-emerald flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-white shadow-sm'>
@@ -64,9 +64,9 @@ export function InquiryToast() {
             </div>
 
             <div className='flex items-center gap-2 text-xs sm:text-sm'>
-              <span className='font-bold text-brand-black'>Added to Inquiry List</span>
+              <span className='text-brand-black font-bold'>Added to Inquiry List</span>
               <span className='text-brand-brown/60'>·</span>
-              <span className='font-medium text-brand-brown/80'>
+              <span className='text-brand-brown/80 font-medium'>
                 {toast.count} {toast.count === 1 ? 'style' : 'styles'}
               </span>
             </div>

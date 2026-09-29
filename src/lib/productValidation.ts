@@ -25,8 +25,19 @@ export function normalizeProductInput(input: ProductInput): ProductValidationRes
   const slug = asTrimmedString(input.slug) || slugify(name);
   if (!slug) return { ok: false, error: 'slug could not be generated' };
 
-  const moq = asPositiveNumber(input.moq, 30);
-  const moqOptions = asPositiveNumberArray(input.moqOptions, [30, 100, 300]);
+  const moq = Number(input.moq);
+  if (!Number.isFinite(moq) || moq <= 0) {
+    return { ok: false, error: 'MOQ is required and must be greater than 0' };
+  }
+  const normalizedMoq = Math.round(moq);
+  const moqOptions = Array.from(
+    new Set(
+      asPositiveNumberArray(input.moqOptions, [normalizedMoq]).filter(
+        (item) => item >= normalizedMoq
+      )
+    )
+  ).sort((a, b) => a - b);
+  if (moqOptions.length === 0) moqOptions.push(normalizedMoq);
   const stockType = isStockType(input.stockType) ? input.stockType : 'Ready Stock & Custom';
 
   return {
@@ -39,7 +50,7 @@ export function normalizeProductInput(input: ProductInput): ProductValidationRes
       images: asImagePathArray(input.images),
       priceMin: asOptionalPrice(input.priceMin),
       priceMax: asOptionalPrice(input.priceMax),
-      moq,
+      moq: normalizedMoq,
       moqOptions,
       stockType,
       tags: asStringArray(input.tags),
@@ -79,11 +90,6 @@ function isStockType(value: unknown): value is StockType {
   return typeof value === 'string' && STOCK_TYPES.includes(value as StockType);
 }
 
-function asPositiveNumber(value: unknown, fallback: number): number {
-  const num = Number(value);
-  return Number.isFinite(num) && num > 0 ? num : fallback;
-}
-
 function asOptionalPrice(value: unknown): number | undefined {
   const num = Number(value);
   return Number.isFinite(num) && num > 0 ? Math.round(num * 100) / 100 : undefined;
@@ -102,10 +108,7 @@ function asStringArray(value: unknown, fallback: string[] = []): string[] {
   return source.map((item) => asTrimmedString(item)).filter(Boolean);
 }
 
-function asColors(
-  value: unknown,
-  fallback: Product['colors'] = []
-): Product['colors'] {
+function asColors(value: unknown, fallback: Product['colors'] = []): Product['colors'] {
   if (!Array.isArray(value)) return fallback;
 
   const normalized = value

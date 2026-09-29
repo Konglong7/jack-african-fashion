@@ -3,9 +3,9 @@ import { getSiteContent } from '@/lib/siteContent';
 import { CustomOrdersClient } from './CustomOrdersClient';
 
 export const metadata: Metadata = {
-  title: "Custom Women's Fashion Orders | Factory Production Guangzhou",
+  title: "Custom Women's Fashion Orders | Own Factory Guangzhou",
   description:
-    'Send reference photos, fabric requirements, sizes, and quantity to Jack African Fashion. Direct factory quotes and custom production for African boutiques and importers.'
+    'Send reference photos, fabric requirements, sizes and quantity to Jack African Fashion for own-factory custom production, MOQ confirmation and quotation from Guangzhou.'
 };
 
 export default async function CustomOrdersPage() {

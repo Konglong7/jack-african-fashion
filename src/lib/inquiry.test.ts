@@ -36,7 +36,8 @@ describe('inquiry helpers', () => {
 
   test('counts selected styles from local storage', () => {
     const storage = {
-      getItem: (key: string) => (key === INQUIRY_STORAGE_KEY ? JSON.stringify([dress, dress]) : null)
+      getItem: (key: string) =>
+        key === INQUIRY_STORAGE_KEY ? JSON.stringify([dress, dress]) : null
     };
 
     expect(getInquiryItemCount(storage)).toBe(2);

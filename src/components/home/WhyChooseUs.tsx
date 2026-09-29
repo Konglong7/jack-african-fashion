@@ -39,9 +39,9 @@ const SELLING_POINTS = [
     )
   },
   {
-    title: 'Factory Production',
+    title: 'Own Factory Production',
     description:
-      'Reference pictures can be quoted by fabric, size ratio and quantity, then handled through Guangzhou production partners.',
+      'Custom styles are developed and produced through Jack African Fashion’s own factory, with fabric, size ratio and quantity confirmed before production.',
     icon: (
       <svg
         className='h-8 w-8'

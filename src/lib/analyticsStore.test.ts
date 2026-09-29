@@ -54,7 +54,12 @@ describe('analytics visitor details', () => {
     expect(event?.visitorId).toBe(
       buildAnalyticsEvent(
         { event: 'page_view', path: '/catalog' },
-        { ip: '197.210.53.18', userAgent: 'Mozilla/5.0 (Linux; Android 14; Mobile)', now: NOW, secret: 'test-secret' }
+        {
+          ip: '197.210.53.18',
+          userAgent: 'Mozilla/5.0 (Linux; Android 14; Mobile)',
+          now: NOW,
+          secret: 'test-secret'
+        }
       )?.visitorId
     );
   });
@@ -92,10 +97,13 @@ describe('analytics visitor details', () => {
   });
 
   test('loads legacy summaries without clearing their totals', () => {
-    const summary = normalizeAnalyticsSummary({
-      totals: { page_view: 9, whatsapp_click: 2 },
-      recent: [{ event: 'page_view', path: '/', campaign: '', at: NOW.toISOString() }]
-    }, NOW);
+    const summary = normalizeAnalyticsSummary(
+      {
+        totals: { page_view: 9, whatsapp_click: 2 },
+        recent: [{ event: 'page_view', path: '/', campaign: '', at: NOW.toISOString() }]
+      },
+      NOW
+    );
 
     expect(summary.totals).toEqual({ page_view: 9, whatsapp_click: 2 });
     expect(summary.recent[0]).toMatchObject({ visitorId: '', ip: 'Unknown', device: 'Unknown' });
@@ -107,10 +115,13 @@ describe('analytics visitor details', () => {
       { ip: '197.210.53.18', userAgent: 'Mobile', now: NOW, secret: 'test-secret' }
     )!;
 
-    const summary = normalizeAnalyticsSummary({
-      totals: { page_view: 3, whatsapp_click: 0 },
-      recent: [visitor, { ...visitor, event: 'whatsapp_click' }]
-    }, NOW);
+    const summary = normalizeAnalyticsSummary(
+      {
+        totals: { page_view: 3, whatsapp_click: 0 },
+        recent: [visitor, { ...visitor, event: 'whatsapp_click' }]
+      },
+      NOW
+    );
 
     expect(summary.knownVisitors).toEqual([visitor.visitorId]);
     expect(summary.statsStartedAt).toBe(visitor.at);

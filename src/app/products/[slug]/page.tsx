@@ -8,6 +8,7 @@ import { ProductGalleryClient } from '@/components/ProductGalleryClient';
 import ProductJsonLd from './jsonLd';
 import { ProductInfo } from './ProductInfo';
 import { ProductDetailNav, ProductDetailSections } from './ProductDetailSections';
+import { getSiteOrigin, absoluteSiteUrl } from '@/lib/siteUrl';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -26,10 +27,10 @@ export async function generateMetadata({ params }: PageProps) {
   const product = await getProductBySlug(slug);
   if (!product) return { title: 'Product Not Found' };
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const baseUrl = getSiteOrigin();
 
   return {
-    title: `${product.name} | Jack African Fashion Wholesale`,
+    title: `${product.name} Wholesale | Guangzhou Women's Clothing Supplier`,
     description: product.description.slice(0, 160),
     keywords: [
       product.name,
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: PageProps) {
       'Guangzhou'
     ].join(', '),
     openGraph: {
-      title: `${product.name} | Jack African Fashion Wholesale`,
+      title: `${product.name} Wholesale | Jack African Fashion Guangzhou`,
       description: product.description.slice(0, 160),
       images: product.images && product.images.length > 0 ? product.images : [product.image],
       url: `${baseUrl}/products/${product.slug}`,
@@ -80,7 +81,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
     .map((item) => item.product)
     .slice(0, 4);
 
-  const whatsappLink = siteWhatsAppLink(siteContent, product.whatsappMessage);
+  const productUrl = absoluteSiteUrl(`/products/${product.slug}`);
+  const galleryWhatsAppMessage = product.whatsappMessage.includes('http')
+    ? product.whatsappMessage
+    : `${product.whatsappMessage} (${productUrl})`;
+  const whatsappLink = siteWhatsAppLink(siteContent, galleryWhatsAppMessage);
 
   return (
     <>

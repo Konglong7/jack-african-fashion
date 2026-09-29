@@ -52,7 +52,13 @@ export function ImageLightbox({ images, index, onClose, onIndexChange }: ImageLi
             aria-label='Close preview'
             className='absolute top-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20'
           >
-            <svg className='h-6 w-6' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+            <svg
+              className='h-6 w-6'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={2}
+              viewBox='0 0 24 24'
+            >
               <path d='M6 18L18 6M6 6l12 12' />
             </svg>
           </button>
@@ -69,7 +75,13 @@ export function ImageLightbox({ images, index, onClose, onIndexChange }: ImageLi
                 aria-label='Previous image'
                 className='absolute top-1/2 left-4 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20'
               >
-                <svg className='h-6 w-6' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+                <svg
+                  className='h-6 w-6'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth={2}
+                  viewBox='0 0 24 24'
+                >
                   <path d='M15 19l-7-7 7-7' />
                 </svg>
               </button>
@@ -82,7 +94,13 @@ export function ImageLightbox({ images, index, onClose, onIndexChange }: ImageLi
                 aria-label='Next image'
                 className='absolute top-1/2 right-4 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20'
               >
-                <svg className='h-6 w-6' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+                <svg
+                  className='h-6 w-6'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth={2}
+                  viewBox='0 0 24 24'
+                >
                   <path d='M9 5l7 7-7 7' />
                 </svg>
               </button>

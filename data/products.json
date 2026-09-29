@@ -50,12 +50,12 @@
         "hex": "#d4a017"
       }
     ],
-    "description": "A timeless pleated maxi dress crafted from premium stretch pleated fabric. Flattering on all body shapes and a steady best-seller across African boutique markets. Lightweight, breathable, and easy to pack for shipping.",
+    "description": "A pleated maxi dress made with stretch pleated fabric in an A-line shape. Available sizes, colors, fabric details and current stock are confirmed for each wholesale batch.",
     "features": [
       "Premium stretch pleated crepe",
       "Flattering A-line cut for all figures",
       "Available up to 3XL (plus size friendly)",
-      "Quick production turnaround for restocks"
+      "Production timing confirmed for each order"
     ],
     "whatsappMessage": "Hello Jack, I'm interested in the Elegant Pleated Maxi Dress. Please share the wholesale price, available colors and current stock.",
     "isNew": true,
@@ -67,7 +67,7 @@
     "id": "2",
     "slug": "african-market-two-piece-set",
     "name": "African Market Two Piece Set",
-    "category": "Plus Size Dresses",
+    "category": "Two Piece Sets",
     "image": "/images/products/african-market-two-piece-set.webp",
     "images": [
       "/images/products/african-market-two-piece-set.webp",
@@ -84,7 +84,7 @@
     "tags": [
       "Two Piece",
       "Ankara Print",
-      "Best Seller"
+      "Coordinated Set"
     ],
     "sizes": [
       "S",
@@ -107,11 +107,11 @@
         "hex": "#b91c1c"
       }
     ],
-    "description": "A versatile two-piece set designed for the African market — comfortable top and matching bottom, easy to mix and sell. One of our most repeated styles by Nigerian and Ghanaian boutiques.",
+    "description": "A coordinated two-piece style with a matching top and bottom for wholesale inquiries. Available prints, sizes, fabric details and current stock are confirmed for each batch.",
     "features": [
       "Matching top + bottom set",
       "Soft breathable Ankara-inspired print",
-      "Strong repeat-order style",
+      "Matching set for boutique assortments",
       "Mixed sizes available per batch"
     ],
     "whatsappMessage": "Hello Jack, I want to know the wholesale price for the African Market Two Piece Set and the prints you have in stock.",
@@ -223,12 +223,12 @@
         "hex": "#a16207"
       }
     ],
-    "description": "Our signature stretch pleated dress in a forgiving free-size fit. The fabric stretches comfortably across sizes, making it a low-risk, high-turnover wholesale item.",
+    "description": "A stretch pleated dress with a flexible fit. Available measurements, colors, fabric details and current batch quantities are confirmed before quotation.",
     "features": [
-      "Stretch fabric fits multiple sizes",
-      "Wrinkle-resistant — ships flat and clean",
-      "Steady re-order favourite",
-      "Rich, fast colours"
+      "Stretch fabric with a flexible fit",
+      "Pleated construction suited to flat packing",
+      "Measurements confirmed by current style",
+      "Color options confirmed by current batch"
     ],
     "whatsappMessage": "Hello Jack, I want the wholesale price for the Stretch Pleated Dress and your current colour chart.",
     "isNew": false,
@@ -279,7 +279,7 @@
         "hex": "#1e293b"
       }
     ],
-    "description": "A wrap-style dress engineered for curves. The adjustable wrap waist flatters fuller figures and the durable fabric keeps its shape — a dependable plus-size best-seller.",
+    "description": "A wrap-style dress with an adjustable waist and extended size options. Measurements, fabric details, colors and current stock are confirmed before quotation.",
     "features": [
       "Adjustable wrap waist",
       "Curvy, body-flattering cut",
@@ -296,7 +296,7 @@
     "id": "6",
     "slug": "plus-size-ankara-print-maxi-dress",
     "name": "Ankara Print Maxi Dress",
-    "category": "Two Piece Sets",
+    "category": "Plus Size Dresses",
     "image": "/images/products/psd0708-07-ankara-print-maxi-dress.webp",
     "images": [
       "/images/products/psd0708-07-ankara-print-maxi-dress.webp"
@@ -360,7 +360,7 @@
     "id": "7",
     "slug": "plus-size-ruffle-tiered-ankara-dress",
     "name": "Ruffle Tiered Ankara Dress",
-    "category": "Two Piece Sets",
+    "category": "Plus Size Dresses",
     "image": "/images/products/psd0708-22-ruffle-tiered-ankara-dress.webp",
     "images": [
       "/images/products/psd0708-22-ruffle-tiered-ankara-dress.webp"
@@ -420,7 +420,7 @@
     "id": "8",
     "slug": "plus-size-ankara-print-midi-dress",
     "name": "Ankara Print Midi Dress",
-    "category": "Two Piece Sets",
+    "category": "Plus Size Dresses",
     "image": "/images/products/psd0708-33-ankara-print-midi-dress.webp",
     "images": [
       "/images/products/psd0708-33-ankara-print-midi-dress.webp"
@@ -540,7 +540,7 @@
         "hex": "#d4a017"
       }
     ],
-    "description": "2026 Christmas festive party dress #01. Eye-catching holiday silhouette designed for Christmas banquets, festive events, and celebratory gatherings. Cut for comfortable plus-size elegance up to 5XL with vibrant festive colors shown in the photo. Direct factory wholesale pricing from Guangzhou for African boutique importers.",
+    "description": "2026 Christmas festive party dress #01 with a holiday silhouette and extended size options up to 5XL. Available colors, current quantity, MOQ and production details are confirmed before wholesale quotation.",
     "features": [
       "True plus size grading up to 5XL",
       "Rich festive holiday color palette as shown in collage",
@@ -555,7 +555,7 @@
         {
           "enabled": true,
           "title": "Christmas 2026 Style Highlights",
-          "body": "2026 Christmas festive party dress #01. Eye-catching holiday silhouette designed for Christmas banquets, festive events, and celebratory gatherings. Cut for comfortable plus-size elegance up to 5XL with vibrant festive colors shown in the photo. Direct factory wholesale pricing from Guangzhou for African boutique importers.",
+          "body": "2026 Christmas festive party dress #01 with a holiday silhouette and extended size options up to 5XL. Available colors, current quantity, MOQ and production details are confirmed before wholesale quotation.",
           "image": "/images/products/xmas-01-hook-01.webp",
           "layout": "full-width"
         }
@@ -666,7 +666,7 @@
       "New Arrival",
       "Plus Size",
       "Wholesale",
-      "Boutique Bestseller"
+      "Boutique Style"
     ],
     "sizes": [
       "Free Size",
@@ -704,7 +704,7 @@
         "hex": "#d4a017"
       }
     ],
-    "description": "Top trending wholesale boutique restock style #01 for the Christmas shopping rush. High turnover rate with strong customer appeal in African retail markets. Multiple colors available for bulk mix-and-match orders.",
+    "description": "A festive wholesale dress offered in multiple colors for boutique assortment planning. Available sizes, color mix, current quantity and production options are confirmed before quotation.",
     "features": [
       "True plus size grading up to 5XL",
       "Rich festive holiday color palette as shown in collage",
@@ -719,7 +719,7 @@
         {
           "enabled": true,
           "title": "Christmas 2026 Style Highlights",
-          "body": "Top trending wholesale boutique restock style #01 for the Christmas shopping rush. High turnover rate with strong customer appeal in African retail markets. Multiple colors available for bulk mix-and-match orders.",
+          "body": "A festive wholesale dress offered in multiple colors for boutique assortment planning. Available sizes, color mix, current quantity and production options are confirmed before quotation.",
           "image": "/images/products/xmas-05-boutique-01.webp",
           "layout": "full-width"
         }
@@ -803,6 +803,3859 @@
           "title": "Christmas 2026 Style Highlights",
           "body": "Vibrant African-inspired multi-color festive dress #01. Rich saturated prints and contrast palettes that celebrate the festive season in bold style. Ready stock available for fast export packaging from Guangzhou.",
           "image": "/images/products/xmas-07-print-01.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "13",
+    "slug": "plus-size-batwing-sleeve-shift-dress-0921001",
+    "name": "Plus Size Batwing Sleeve Shift Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921001.webp",
+    "images": [
+      "/images/products/0921001.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 7.8,
+    "priceMax": 11.5,
+    "tags": [
+      "Plus Size",
+      "Ready Stock",
+      "African Market",
+      "Shift Dress",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Classic Wine",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Onyx Black",
+        "hex": "#1a1a1a"
+      }
+    ],
+    "description": "A relaxed, elegant batwing shift dress cut specifically for curvy African figures. Durable crepe fabric holds its silhouette through humid climates. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Batwing Sleeve Shift Dress (Code: 0921001). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Batwing Sleeve Shift Dress — Style Details",
+          "body": "A relaxed, elegant batwing shift dress cut specifically for curvy African figures. Durable crepe fabric holds its silhouette through humid climates. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921001.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "14",
+    "slug": "plus-size-tiered-ruffle-flounce-dress-0921002",
+    "name": "Plus Size Tiered Ruffle Flounce Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921002.webp",
+    "images": [
+      "/images/products/0921002.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.2,
+    "priceMax": 12,
+    "tags": [
+      "Plus Size",
+      "Ruffle",
+      "Boutique Restock",
+      "Flounce",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Emerald Green",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Terracotta",
+        "hex": "#9a3412"
+      },
+      {
+        "name": "Deep Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Tiered ruffle flounce dress with a flattering silhouette and comfortable waistline. Easy to style for Sunday service and social celebrations. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Tiered Ruffle Flounce Dress (Code: 0921002). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Tiered Ruffle Flounce Dress — Style Details",
+          "body": "Tiered ruffle flounce dress with a flattering silhouette and comfortable waistline. Easy to style for Sunday service and social celebrations. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921002.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "15",
+    "slug": "plus-size-embroidered-neckline-kaftan-dress-0921003",
+    "name": "Plus Size Embroidered Neckline Kaftan Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921003.webp",
+    "images": [
+      "/images/products/0921003.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9,
+    "priceMax": 13.5,
+    "tags": [
+      "Plus Size",
+      "Kaftan",
+      "Embroidery",
+      "Wholesale",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Mustard Gold",
+        "hex": "#a16207"
+      },
+      {
+        "name": "Burgundy",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Jet Black",
+        "hex": "#111111"
+      }
+    ],
+    "description": "Flowy boutique kaftan dress featuring contrast embroidered trim at the neckline and cuffs. A staple for West African boutique restocks. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Embroidered Neckline Kaftan Dress (Code: 0921003). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Embroidered Neckline Kaftan Dress — Style Details",
+          "body": "Flowy boutique kaftan dress featuring contrast embroidered trim at the neckline and cuffs. A staple for West African boutique restocks. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921003.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "16",
+    "slug": "plus-size-high-waist-empire-maxi-gown-0921004",
+    "name": "Plus Size High-Waist Empire Maxi Gown",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921004.webp",
+    "images": [
+      "/images/products/0921004.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.5,
+    "priceMax": 12.8,
+    "tags": [
+      "Plus Size",
+      "Empire Waist",
+      "Maxi Gown",
+      "Stretch Knit",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Teal Green",
+        "hex": "#0f766e"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Plum",
+        "hex": "#581c87"
+      }
+    ],
+    "description": "Empire waist maxi gown designed for an elongated silhouette. Crafted with soft, non-sheer stretch knit that drapes beautifully. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size High-Waist Empire Maxi Gown (Code: 0921004). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size High-Waist Empire Maxi Gown — Style Details",
+          "body": "Empire waist maxi gown designed for an elongated silhouette. Crafted with soft, non-sheer stretch knit that drapes beautifully. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921004.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "17",
+    "slug": "plus-size-asymmetric-hem-bodycon-dress-0921005",
+    "name": "Plus Size Asymmetric Hem Bodycon Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921005.webp",
+    "images": [
+      "/images/products/0921005.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 7.5,
+    "priceMax": 10.8,
+    "tags": [
+      "Plus Size",
+      "Bodycon",
+      "Asymmetric",
+      "Evening",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Ruby Red",
+        "hex": "#b91c1c"
+      },
+      {
+        "name": "Sapphire",
+        "hex": "#1d4ed8"
+      },
+      {
+        "name": "Black",
+        "hex": "#1a1a1a"
+      }
+    ],
+    "description": "Curvy bodycon dress with modern asymmetric hemline and side ruching. Highly popular for evening and celebration assortments. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Asymmetric Hem Bodycon Dress (Code: 0921005). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Asymmetric Hem Bodycon Dress — Style Details",
+          "body": "Curvy bodycon dress with modern asymmetric hemline and side ruching. Highly popular for evening and celebration assortments. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921005.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "18",
+    "slug": "plus-size-flute-sleeve-a-line-dress-0921006",
+    "name": "Plus Size Flute Sleeve A-Line Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921006.webp",
+    "images": [
+      "/images/products/0921006.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8,
+    "priceMax": 11.8,
+    "tags": [
+      "Plus Size",
+      "Flute Sleeve",
+      "A-Line",
+      "Modest Fashion",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Olive Green",
+        "hex": "#4d7c0f"
+      },
+      {
+        "name": "Burnt Orange",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Statement flute sleeve dress with a forgiving A-line drape. Ideal for boutique assortments seeking modest yet striking silhouettes. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Flute Sleeve A-Line Dress (Code: 0921006). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Flute Sleeve A-Line Dress — Style Details",
+          "body": "Statement flute sleeve dress with a forgiving A-line drape. Ideal for boutique assortments seeking modest yet striking silhouettes. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921006.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "19",
+    "slug": "plus-size-wrap-front-midi-dress-0921007",
+    "name": "Plus Size Wrap Front Midi Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921007.webp",
+    "images": [
+      "/images/products/0921007.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 7.8,
+    "priceMax": 11.2,
+    "tags": [
+      "Plus Size",
+      "Wrap Dress",
+      "Midi",
+      "Adjustable",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Crimson Red",
+        "hex": "#991b1b"
+      },
+      {
+        "name": "Forest Green",
+        "hex": "#166534"
+      },
+      {
+        "name": "Midnight",
+        "hex": "#0f172a"
+      }
+    ],
+    "description": "Adjustable wrap front midi dress with belted tie and v-neckline. Flexible fit grading ensures fast turnover for retail boutiques. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Wrap Front Midi Dress (Code: 0921007). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Wrap Front Midi Dress — Style Details",
+          "body": "Adjustable wrap front midi dress with belted tie and v-neckline. Flexible fit grading ensures fast turnover for retail boutiques. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921007.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "20",
+    "slug": "plus-size-lantern-sleeve-bohemian-dress-0921008",
+    "name": "Plus Size Lantern Sleeve Bohemian Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921008.webp",
+    "images": [
+      "/images/products/0921008.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.5,
+    "priceMax": 12.5,
+    "tags": [
+      "Plus Size",
+      "Lantern Sleeve",
+      "Boho",
+      "Geometric",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Copper Rust",
+        "hex": "#9a3412"
+      },
+      {
+        "name": "Golden Yellow",
+        "hex": "#ca8a04"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Lantern sleeve bohemian silhouette featuring vibrant geometric borders. Lightweight breathable blend suited for tropical markets. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Lantern Sleeve Bohemian Dress (Code: 0921008). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Lantern Sleeve Bohemian Dress — Style Details",
+          "body": "Lantern sleeve bohemian silhouette featuring vibrant geometric borders. Lightweight breathable blend suited for tropical markets. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921008.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "21",
+    "slug": "plus-size-peplum-hem-cocktail-dress-0921009",
+    "name": "Plus Size Peplum Hem Cocktail Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921009.webp",
+    "images": [
+      "/images/products/0921009.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.8,
+    "priceMax": 13,
+    "tags": [
+      "Plus Size",
+      "Peplum",
+      "Cocktail",
+      "Party Dress",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Royal Purple",
+        "hex": "#6b21a8"
+      },
+      {
+        "name": "Emerald",
+        "hex": "#047857"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#111111"
+      }
+    ],
+    "description": "Structured peplum hem dress offering a sculpted silhouette. High-density poly-stretch fabric prevents clinging and wrinkling. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Peplum Hem Cocktail Dress (Code: 0921009). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Peplum Hem Cocktail Dress — Style Details",
+          "body": "Structured peplum hem dress offering a sculpted silhouette. High-density poly-stretch fabric prevents clinging and wrinkling. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921009.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "22",
+    "slug": "plus-size-front-slit-celebration-maxi-0921010",
+    "name": "Plus Size Front Slit Celebration Maxi",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921010.webp",
+    "images": [
+      "/images/products/0921010.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.2,
+    "priceMax": 13.8,
+    "tags": [
+      "Plus Size",
+      "Maxi",
+      "Celebration",
+      "Church Wear",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Wine",
+        "hex": "#831843"
+      },
+      {
+        "name": "Deep Royal",
+        "hex": "#1e40af"
+      },
+      {
+        "name": "Gold Tone",
+        "hex": "#d97706"
+      }
+    ],
+    "description": "Elegant celebration maxi dress with graceful front overlap slit and extended length. Perfect for church, weddings, and formal events. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Front Slit Celebration Maxi (Code: 0921010). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Front Slit Celebration Maxi — Style Details",
+          "body": "Elegant celebration maxi dress with graceful front overlap slit and extended length. Perfect for church, weddings, and formal events. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921010.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "23",
+    "slug": "plus-size-cold-shoulder-evening-dress-0921011",
+    "name": "Plus Size Cold-Shoulder Evening Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921011.webp",
+    "images": [
+      "/images/products/0921011.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.6,
+    "priceMax": 12.6,
+    "tags": [
+      "Plus Size",
+      "Cold Shoulder",
+      "Evening Gown",
+      "Ready Stock",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#701a75"
+      },
+      {
+        "name": "Midnight Blue",
+        "hex": "#1e1b4b"
+      },
+      {
+        "name": "Teal",
+        "hex": "#115e59"
+      }
+    ],
+    "description": "Flattering cold-shoulder cut with flutter sleeve detail. Engineered to flatter arms while maintaining an opulent, dressy appeal. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Cold-Shoulder Evening Dress (Code: 0921011). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Cold-Shoulder Evening Dress — Style Details",
+          "body": "Flattering cold-shoulder cut with flutter sleeve detail. Engineered to flatter arms while maintaining an opulent, dressy appeal. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921011.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "24",
+    "slug": "plus-size-v-neck-pleated-tier-dress-0921012",
+    "name": "Plus Size V-Neck Pleated Tier Dress",
+    "category": "Plus Size Dresses",
+    "image": "/images/products/0921012.webp",
+    "images": [
+      "/images/products/0921012.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.9,
+    "priceMax": 13.2,
+    "tags": [
+      "Plus Size",
+      "V-Neck",
+      "Tiered",
+      "Micro Pleat",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Deep Red",
+        "hex": "#991b1b"
+      },
+      {
+        "name": "Peacock Blue",
+        "hex": "#0284c7"
+      },
+      {
+        "name": "Emerald",
+        "hex": "#065f46"
+      }
+    ],
+    "description": "V-neck tiered dress combining micro-pleats with a generous flare skirt. One of our most requested repeat-order boutique styles. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size V-Neck Pleated Tier Dress (Code: 0921012). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size V-Neck Pleated Tier Dress — Style Details",
+          "body": "V-neck tiered dress combining micro-pleats with a generous flare skirt. One of our most requested repeat-order boutique styles. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921012.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "25",
+    "slug": "african-market-ankara-print-two-piece-set-0921013",
+    "name": "African Market Ankara Print Two-Piece Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921013.webp",
+    "images": [
+      "/images/products/0921013.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.5,
+    "priceMax": 14.2,
+    "tags": [
+      "Two Piece Sets",
+      "Ankara Print",
+      "Wide Leg",
+      "Coordinated Set",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Multi Print Orange",
+        "hex": "#ea580c"
+      },
+      {
+        "name": "Multi Print Teal",
+        "hex": "#0d9488"
+      },
+      {
+        "name": "Multi Print Red",
+        "hex": "#dc2626"
+      }
+    ],
+    "description": "Vibrant matching Ankara-inspired top and wide-leg trouser set. Sold as coordinated sets with mixed sizes available per batch. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the African Market Ankara Print Two-Piece Set (Code: 0921013). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "African Market Ankara Print Two-Piece Set — Style Details",
+          "body": "Vibrant matching Ankara-inspired top and wide-leg trouser set. Sold as coordinated sets with mixed sizes available per batch. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921013.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "26",
+    "slug": "peplum-top-and-pencil-skirt-set-0921014",
+    "name": "Peplum Top and Pencil Skirt Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921014.webp",
+    "images": [
+      "/images/products/0921014.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.8,
+    "priceMax": 14.5,
+    "tags": [
+      "Two Piece Sets",
+      "Peplum",
+      "Pencil Skirt",
+      "Church Fashion",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Royal Blue",
+        "hex": "#1d4ed8"
+      },
+      {
+        "name": "Wine Red",
+        "hex": "#9f1239"
+      },
+      {
+        "name": "Jet Black",
+        "hex": "#09090b"
+      }
+    ],
+    "description": "Tailored peplum blouse paired with a high-waist pencil skirt. Sharp construction ideal for African corporate and Sunday attire. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Peplum Top and Pencil Skirt Set (Code: 0921014). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Peplum Top and Pencil Skirt Set — Style Details",
+          "body": "Tailored peplum blouse paired with a high-waist pencil skirt. Sharp construction ideal for African corporate and Sunday attire. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921014.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "27",
+    "slug": "belted-tunic-top-palazzo-pants-set-0921015",
+    "name": "Belted Tunic Top & Palazzo Pants Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921015.webp",
+    "images": [
+      "/images/products/0921015.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.2,
+    "priceMax": 15,
+    "tags": [
+      "Two Piece Sets",
+      "Palazzo Pants",
+      "Tunic Set",
+      "Modest Wear",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Earthy Terracotta",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Olive Mist",
+        "hex": "#3f6212"
+      },
+      {
+        "name": "Classic Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Relaxed longline tunic with fabric belt paired with flowing palazzo pants. Highly versatile for daily wear and upscale boutique sales. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Belted Tunic Top & Palazzo Pants Set (Code: 0921015). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Belted Tunic Top & Palazzo Pants Set — Style Details",
+          "body": "Relaxed longline tunic with fabric belt paired with flowing palazzo pants. Highly versatile for daily wear and upscale boutique sales. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921015.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "28",
+    "slug": "kimono-robe-slip-dress-two-piece-set-0921016",
+    "name": "Kimono Robe & Slip Dress Two-Piece Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921016.webp",
+    "images": [
+      "/images/products/0921016.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.5,
+    "priceMax": 15.5,
+    "tags": [
+      "Two Piece Sets",
+      "Kimono",
+      "Slip Dress",
+      "Luxury B2B",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Champagne Gold",
+        "hex": "#d97706"
+      },
+      {
+        "name": "Emerald Green",
+        "hex": "#065f46"
+      },
+      {
+        "name": "Wine",
+        "hex": "#831843"
+      }
+    ],
+    "description": "Two-piece ensemble featuring a flowing open-front kimono cardigan over a coordinated slip dress. High-end boutique presentation. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Kimono Robe & Slip Dress Two-Piece Set (Code: 0921016). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Kimono Robe & Slip Dress Two-Piece Set — Style Details",
+          "body": "Two-piece ensemble featuring a flowing open-front kimono cardigan over a coordinated slip dress. High-end boutique presentation. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921016.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "29",
+    "slug": "crop-blouse-tiered-maxi-skirt-set-0921017",
+    "name": "Crop Blouse & Tiered Maxi Skirt Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921017.webp",
+    "images": [
+      "/images/products/0921017.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9,
+    "priceMax": 13.8,
+    "tags": [
+      "Two Piece Sets",
+      "Tiered Skirt",
+      "Crop Top",
+      "Festival Wear",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Sunset Yellow",
+        "hex": "#eab308"
+      },
+      {
+        "name": "Coral Pink",
+        "hex": "#f43f5e"
+      },
+      {
+        "name": "Sky Blue",
+        "hex": "#0284c7"
+      }
+    ],
+    "description": "Flirty smocked crop blouse paired with an expansive tiered maxi skirt. Easy-fitting elastic grading for broad customer appeal. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Crop Blouse & Tiered Maxi Skirt Set (Code: 0921017). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Crop Blouse & Tiered Maxi Skirt Set — Style Details",
+          "body": "Flirty smocked crop blouse paired with an expansive tiered maxi skirt. Easy-fitting elastic grading for broad customer appeal. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921017.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "30",
+    "slug": "casual-blazer-and-trouser-suit-set-0921018",
+    "name": "Casual Blazer and Trouser Suit Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921018.webp",
+    "images": [
+      "/images/products/0921018.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 11,
+    "priceMax": 16.5,
+    "tags": [
+      "Two Piece Sets",
+      "Blazer Suit",
+      "Business Wear",
+      "Tailored Set",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Cobalt Blue",
+        "hex": "#2563eb"
+      },
+      {
+        "name": "Blush Pink",
+        "hex": "#be185d"
+      },
+      {
+        "name": "Ivory White",
+        "hex": "#f8fafc"
+      }
+    ],
+    "description": "Single-breasted lightweight blazer and tapered trousers designed for African professional women. Breathable tropical fabric blend. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Casual Blazer and Trouser Suit Set (Code: 0921018). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Casual Blazer and Trouser Suit Set — Style Details",
+          "body": "Single-breasted lightweight blazer and tapered trousers designed for African professional women. Breathable tropical fabric blend. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921018.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "31",
+    "slug": "ruffle-sleeve-blouse-mermaid-skirt-set-0921019",
+    "name": "Ruffle Sleeve Blouse & Mermaid Skirt Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921019.webp",
+    "images": [
+      "/images/products/0921019.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.6,
+    "priceMax": 14.4,
+    "tags": [
+      "Two Piece Sets",
+      "Mermaid Skirt",
+      "Ruffle Sleeve",
+      "Party Set",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Fuchsia",
+        "hex": "#c026d3"
+      },
+      {
+        "name": "Turquoise",
+        "hex": "#0891b2"
+      },
+      {
+        "name": "Onyx",
+        "hex": "#18181b"
+      }
+    ],
+    "description": "Dramatic ruffle shoulder blouse with a curve-hugging mermaid silhouette skirt. Ideal for event and party boutique assortments. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Ruffle Sleeve Blouse & Mermaid Skirt Set (Code: 0921019). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Ruffle Sleeve Blouse & Mermaid Skirt Set — Style Details",
+          "body": "Dramatic ruffle shoulder blouse with a curve-hugging mermaid silhouette skirt. Ideal for event and party boutique assortments. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921019.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "32",
+    "slug": "one-shoulder-drape-top-wide-trouser-set-0921020",
+    "name": "One-Shoulder Drape Top & Wide Trouser Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921020.webp",
+    "images": [
+      "/images/products/0921020.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10,
+    "priceMax": 14.8,
+    "tags": [
+      "Two Piece Sets",
+      "One Shoulder",
+      "Wide Trouser",
+      "Runway Style",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Bright Red",
+        "hex": "#ef4444"
+      },
+      {
+        "name": "Mustard Gold",
+        "hex": "#ca8a04"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e3a8a"
+      }
+    ],
+    "description": "Chic asymmetrical one-shoulder drape top matched with high-waisted palazzo trousers. High visual impact for boutique window displays. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the One-Shoulder Drape Top & Wide Trouser Set (Code: 0921020). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "One-Shoulder Drape Top & Wide Trouser Set — Style Details",
+          "body": "Chic asymmetrical one-shoulder drape top matched with high-waisted palazzo trousers. High visual impact for boutique window displays. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921020.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "33",
+    "slug": "short-sleeve-peplum-slit-skirt-set-0921021",
+    "name": "Short-Sleeve Peplum & Slit Skirt Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921021.webp",
+    "images": [
+      "/images/products/0921021.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.4,
+    "priceMax": 13.9,
+    "tags": [
+      "Two Piece Sets",
+      "Peplum",
+      "Workwear",
+      "Fast Selling",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Teal",
+        "hex": "#0d9488"
+      },
+      {
+        "name": "Plum Purple",
+        "hex": "#7e22ce"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#171717"
+      }
+    ],
+    "description": "Everyday professional peplum set with front overlap slit skirt. Crease-resistant poly fabric ensures all-day pristine appearance. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Short-Sleeve Peplum & Slit Skirt Set (Code: 0921021). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Short-Sleeve Peplum & Slit Skirt Set — Style Details",
+          "body": "Everyday professional peplum set with front overlap slit skirt. Crease-resistant poly fabric ensures all-day pristine appearance. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921021.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "34",
+    "slug": "lantern-sleeve-top-fitted-pants-set-0921022",
+    "name": "Lantern Sleeve Top & Fitted Pants Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921022.webp",
+    "images": [
+      "/images/products/0921022.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.5,
+    "priceMax": 14,
+    "tags": [
+      "Two Piece Sets",
+      "Lantern Sleeve",
+      "Slim Pants",
+      "Ready Stock",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Burnt Orange",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Forest Green",
+        "hex": "#15803d"
+      },
+      {
+        "name": "Deep Blue",
+        "hex": "#1d4ed8"
+      }
+    ],
+    "description": "Voluminous lantern sleeve blouse with coordinated stretch slim trousers. Balances top volume with clean lines below. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Lantern Sleeve Top & Fitted Pants Set (Code: 0921022). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Lantern Sleeve Top & Fitted Pants Set — Style Details",
+          "body": "Voluminous lantern sleeve blouse with coordinated stretch slim trousers. Balances top volume with clean lines below. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921022.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "35",
+    "slug": "high-neck-wrap-blouse-a-line-skirt-set-0921023",
+    "name": "High-Neck Wrap Blouse & A-Line Skirt Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921023.webp",
+    "images": [
+      "/images/products/0921023.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.8,
+    "priceMax": 14.5,
+    "tags": [
+      "Two Piece Sets",
+      "High Neck",
+      "A-Line",
+      "Modest Fashion",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Ruby",
+        "hex": "#be123c"
+      },
+      {
+        "name": "Gold",
+        "hex": "#b45309"
+      },
+      {
+        "name": "Navy Blue",
+        "hex": "#1e3a8a"
+      }
+    ],
+    "description": "Modest high-neck wrap top with an expansive A-line skirt. Elegant proportioning tailored for East and Southern African boutiques. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the High-Neck Wrap Blouse & A-Line Skirt Set (Code: 0921023). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "High-Neck Wrap Blouse & A-Line Skirt Set — Style Details",
+          "body": "Modest high-neck wrap top with an expansive A-line skirt. Elegant proportioning tailored for East and Southern African boutiques. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921023.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "36",
+    "slug": "sleeveless-vest-straight-leg-trouser-set-0921024",
+    "name": "Sleeveless Vest & Straight-Leg Trouser Set",
+    "category": "Two Piece Sets",
+    "image": "/images/products/0921024.webp",
+    "images": [
+      "/images/products/0921024.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.5,
+    "priceMax": 15.2,
+    "tags": [
+      "Two Piece Sets",
+      "Vest Suit",
+      "Modern Tailored",
+      "Corporate",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Camel Khaki",
+        "hex": "#b45309"
+      },
+      {
+        "name": "Black",
+        "hex": "#18181b"
+      },
+      {
+        "name": "Sage Green",
+        "hex": "#4d7c0f"
+      }
+    ],
+    "description": "Modern tailored longline vest with matching straight-leg formal trousers. Very strong seller for metropolitan boutique buyers. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Sleeveless Vest & Straight-Leg Trouser Set (Code: 0921024). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Sleeveless Vest & Straight-Leg Trouser Set — Style Details",
+          "body": "Modern tailored longline vest with matching straight-leg formal trousers. Very strong seller for metropolitan boutique buyers. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921024.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "37",
+    "slug": "stretch-accordion-pleated-maxi-dress-0921025",
+    "name": "Stretch Accordion Pleated Maxi Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921025.webp",
+    "images": [
+      "/images/products/0921025.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.5,
+    "priceMax": 12.5,
+    "tags": [
+      "Pleated Dresses",
+      "Accordion Pleat",
+      "Maxi",
+      "High Stretch",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Emerald",
+        "hex": "#047857"
+      },
+      {
+        "name": "Burgundy",
+        "hex": "#881337"
+      },
+      {
+        "name": "Royal Blue",
+        "hex": "#1d4ed8"
+      },
+      {
+        "name": "Black",
+        "hex": "#0a0a0a"
+      }
+    ],
+    "description": "Fine accordion pleated dress with high stretch recovery. Flat-packs tightly to save international air and sea freight costs. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Stretch Accordion Pleated Maxi Dress (Code: 0921025). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Stretch Accordion Pleated Maxi Dress — Style Details",
+          "body": "Fine accordion pleated dress with high stretch recovery. Flat-packs tightly to save international air and sea freight costs. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921025.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "38",
+    "slug": "sunburst-pleat-metallic-finish-dress-0921026",
+    "name": "Sunburst Pleat Metallic Finish Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921026.webp",
+    "images": [
+      "/images/products/0921026.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.5,
+    "priceMax": 14,
+    "tags": [
+      "Pleated Dresses",
+      "Sunburst Pleat",
+      "Metallic Sheen",
+      "Celebration",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Gold Shimmer",
+        "hex": "#d97706"
+      },
+      {
+        "name": "Rose Bronze",
+        "hex": "#be185d"
+      },
+      {
+        "name": "Silver Pewter",
+        "hex": "#475569"
+      }
+    ],
+    "description": "Lustrous sunburst pleated dress with subtle metallic sheen. A standout piece for wedding guests and celebration collections. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Sunburst Pleat Metallic Finish Dress (Code: 0921026). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Sunburst Pleat Metallic Finish Dress — Style Details",
+          "body": "Lustrous sunburst pleated dress with subtle metallic sheen. A standout piece for wedding guests and celebration collections. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921026.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "39",
+    "slug": "tiered-micro-pleat-midi-dress-0921027",
+    "name": "Tiered Micro-Pleat Midi Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921027.webp",
+    "images": [
+      "/images/products/0921027.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.8,
+    "priceMax": 12.8,
+    "tags": [
+      "Pleated Dresses",
+      "Micro Pleat",
+      "Tiered Midi",
+      "Boutique Restock",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Cobalt",
+        "hex": "#1e40af"
+      },
+      {
+        "name": "Wine",
+        "hex": "#9f1239"
+      },
+      {
+        "name": "Teal",
+        "hex": "#0f766e"
+      }
+    ],
+    "description": "Three-tiered micro-pleat midi dress with comfortable stretch neckline. Flattering flow that fits a broad range of body profiles. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Tiered Micro-Pleat Midi Dress (Code: 0921027). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Tiered Micro-Pleat Midi Dress — Style Details",
+          "body": "Three-tiered micro-pleat midi dress with comfortable stretch neckline. Flattering flow that fits a broad range of body profiles. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921027.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "40",
+    "slug": "ombre-dip-dye-pleated-maxi-gown-0921028",
+    "name": "Ombre Dip-Dye Pleated Maxi Gown",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921028.webp",
+    "images": [
+      "/images/products/0921028.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.8,
+    "priceMax": 14.5,
+    "tags": [
+      "Pleated Dresses",
+      "Ombre Gradient",
+      "Dip Dye",
+      "Maxi Gown",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Sunset Orange-Red",
+        "hex": "#ea580c"
+      },
+      {
+        "name": "Ocean Blue-Teal",
+        "hex": "#0284c7"
+      },
+      {
+        "name": "Plum-Berry",
+        "hex": "#701a75"
+      }
+    ],
+    "description": "Stunning ombre gradient dip-dye effect across sharp vertical pleats. Creates dramatic visual impact on boutique social media feeds. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Ombre Dip-Dye Pleated Maxi Gown (Code: 0921028). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Ombre Dip-Dye Pleated Maxi Gown — Style Details",
+          "body": "Stunning ombre gradient dip-dye effect across sharp vertical pleats. Creates dramatic visual impact on boutique social media feeds. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921028.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "41",
+    "slug": "batwing-pleated-high-neck-dress-0921029",
+    "name": "Batwing Pleated High-Neck Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921029.webp",
+    "images": [
+      "/images/products/0921029.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.9,
+    "priceMax": 13,
+    "tags": [
+      "Pleated Dresses",
+      "Batwing",
+      "High Neck",
+      "Modest Luxury",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Deep Emerald",
+        "hex": "#064e3b"
+      },
+      {
+        "name": "Midnight Black",
+        "hex": "#09090b"
+      },
+      {
+        "name": "Rich Burgundy",
+        "hex": "#831843"
+      }
+    ],
+    "description": "High-neck batwing pleated silhouette with tapered cuff detailing. Generous upper cut with clean vertical line drop. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Batwing Pleated High-Neck Dress (Code: 0921029). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Batwing Pleated High-Neck Dress — Style Details",
+          "body": "High-neck batwing pleated silhouette with tapered cuff detailing. Generous upper cut with clean vertical line drop. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921029.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "42",
+    "slug": "color-block-pleated-shift-dress-0921030",
+    "name": "Color-Block Pleated Shift Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921030.webp",
+    "images": [
+      "/images/products/0921030.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.2,
+    "priceMax": 12.2,
+    "tags": [
+      "Pleated Dresses",
+      "Color Block",
+      "Shift Dress",
+      "Wash and Wear",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Black/Gold/Cream",
+        "hex": "#a16207"
+      },
+      {
+        "name": "Navy/Teal/White",
+        "hex": "#0369a1"
+      },
+      {
+        "name": "Wine/Rose/Black",
+        "hex": "#881337"
+      }
+    ],
+    "description": "Striking graphic color-block panels on fine accordion pleating. Lightweight wash-and-wear durability with no iron required. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Color-Block Pleated Shift Dress (Code: 0921030). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Color-Block Pleated Shift Dress — Style Details",
+          "body": "Striking graphic color-block panels on fine accordion pleating. Lightweight wash-and-wear durability with no iron required. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921030.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "43",
+    "slug": "belted-pleated-shirt-dress-0921031",
+    "name": "Belted Pleated Shirt Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921031.webp",
+    "images": [
+      "/images/products/0921031.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9,
+    "priceMax": 13.2,
+    "tags": [
+      "Pleated Dresses",
+      "Shirt Dress",
+      "Belted",
+      "Smart Casual",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Olive Green",
+        "hex": "#3f6212"
+      },
+      {
+        "name": "Terracotta",
+        "hex": "#9a3412"
+      },
+      {
+        "name": "Navy Blue",
+        "hex": "#1e3a8a"
+      }
+    ],
+    "description": "Collared shirt dress styling on the bodice flowing into an accordion pleated skirt. Includes matching fabric waist belt. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Belted Pleated Shirt Dress (Code: 0921031). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Belted Pleated Shirt Dress — Style Details",
+          "body": "Collared shirt dress styling on the bodice flowing into an accordion pleated skirt. Includes matching fabric waist belt. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921031.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "44",
+    "slug": "cold-shoulder-pleated-party-dress-0921032",
+    "name": "Cold-Shoulder Pleated Party Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921032.webp",
+    "images": [
+      "/images/products/0921032.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.8,
+    "priceMax": 12.8,
+    "tags": [
+      "Pleated Dresses",
+      "Cold Shoulder",
+      "Party Dress",
+      "Swing Hem",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Bright Red",
+        "hex": "#dc2626"
+      },
+      {
+        "name": "Royal Purple",
+        "hex": "#7e22ce"
+      },
+      {
+        "name": "Teal",
+        "hex": "#0d9488"
+      }
+    ],
+    "description": "Cold-shoulder cutouts framed by flutter pleat sleeves and a swing hem. Designed for fast retail turnaround in urban boutiques. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Cold-Shoulder Pleated Party Dress (Code: 0921032). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Cold-Shoulder Pleated Party Dress — Style Details",
+          "body": "Cold-shoulder cutouts framed by flutter pleat sleeves and a swing hem. Designed for fast retail turnaround in urban boutiques. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921032.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "45",
+    "slug": "geometric-print-pleated-maxi-dress-0921033",
+    "name": "Geometric Print Pleated Maxi Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921033.webp",
+    "images": [
+      "/images/products/0921033.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.2,
+    "priceMax": 13.5,
+    "tags": [
+      "Pleated Dresses",
+      "Geometric Print",
+      "Maxi",
+      "Colorfast",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Multi Geo Gold",
+        "hex": "#b45309"
+      },
+      {
+        "name": "Multi Geo Blue",
+        "hex": "#1d4ed8"
+      },
+      {
+        "name": "Multi Geo Green",
+        "hex": "#15803d"
+      }
+    ],
+    "description": "African-inspired geometric border print pressed onto stretch pleated crepe. Does not warp or stretch out of shape after washing. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Geometric Print Pleated Maxi Dress (Code: 0921033). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Geometric Print Pleated Maxi Dress — Style Details",
+          "body": "African-inspired geometric border print pressed onto stretch pleated crepe. Does not warp or stretch out of shape after washing. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921033.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "46",
+    "slug": "asymmetric-hem-pleated-cocktail-dress-0921034",
+    "name": "Asymmetric Hem Pleated Cocktail Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921034.webp",
+    "images": [
+      "/images/products/0921034.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.6,
+    "priceMax": 12.6,
+    "tags": [
+      "Pleated Dresses",
+      "Asymmetric Hem",
+      "Handkerchief",
+      "Cocktail",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL"
+    ],
+    "colors": [
+      {
+        "name": "Magenta",
+        "hex": "#be185d"
+      },
+      {
+        "name": "Sapphire Blue",
+        "hex": "#1e40af"
+      },
+      {
+        "name": "Jet Black",
+        "hex": "#18181b"
+      }
+    ],
+    "description": "Dramatic handkerchief asymmetric hemline that ripples with movement. A proven best-seller for weekend outings and functions. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Asymmetric Hem Pleated Cocktail Dress (Code: 0921034). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Asymmetric Hem Pleated Cocktail Dress — Style Details",
+          "body": "Dramatic handkerchief asymmetric hemline that ripples with movement. A proven best-seller for weekend outings and functions. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921034.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "47",
+    "slug": "long-sleeve-pleated-evening-gown-0921035",
+    "name": "Long-Sleeve Pleated Evening Gown",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921035.webp",
+    "images": [
+      "/images/products/0921035.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10,
+    "priceMax": 14.8,
+    "tags": [
+      "Pleated Dresses",
+      "Long Sleeve",
+      "Evening Gown",
+      "Floor Length",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Wine Red",
+        "hex": "#9f1239"
+      },
+      {
+        "name": "Deep Forest Green",
+        "hex": "#065f46"
+      },
+      {
+        "name": "Gold Amber",
+        "hex": "#d97706"
+      }
+    ],
+    "description": "Modest full-length sleeve pleated gown with modest crew neck and floor-grazing hem. Premium weighted knit drape. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Long-Sleeve Pleated Evening Gown (Code: 0921035). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Long-Sleeve Pleated Evening Gown — Style Details",
+          "body": "Modest full-length sleeve pleated gown with modest crew neck and floor-grazing hem. Premium weighted knit drape. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921035.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "48",
+    "slug": "ruffle-neckline-pleated-swing-dress-0921036",
+    "name": "Ruffle Neckline Pleated Swing Dress",
+    "category": "Pleated Dresses",
+    "image": "/images/products/0921036.webp",
+    "images": [
+      "/images/products/0921036.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.5,
+    "priceMax": 12.4,
+    "tags": [
+      "Pleated Dresses",
+      "Off Shoulder",
+      "Swing Dress",
+      "Ruffle Neck",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Coral Red",
+        "hex": "#ef4444"
+      },
+      {
+        "name": "Mustard",
+        "hex": "#ca8a04"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Ruffled elasticated neckline that can be worn on or off the shoulder. Bouncy micro-pleating with exceptional comfort. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Ruffle Neckline Pleated Swing Dress (Code: 0921036). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Ruffle Neckline Pleated Swing Dress — Style Details",
+          "body": "Ruffled elasticated neckline that can be worn on or off the shoulder. Bouncy micro-pleating with exceptional comfort. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921036.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "49",
+    "slug": "african-sunset-motif-tiered-maxi-dress-0921037",
+    "name": "African Sunset Motif Tiered Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921037.webp",
+    "images": [
+      "/images/products/0921037.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.6,
+    "priceMax": 12.8,
+    "tags": [
+      "Maxi Dresses",
+      "Sunset Motif",
+      "Tiered Maxi",
+      "Colorfast",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Sunset Red/Orange",
+        "hex": "#ea580c"
+      },
+      {
+        "name": "Warm Amber",
+        "hex": "#d97706"
+      },
+      {
+        "name": "Royal Indigo",
+        "hex": "#312e81"
+      }
+    ],
+    "description": "Rich sunset motif print on a multi-tiered sweeping maxi dress. Vibrant colorfast dyes engineered for African sunlight resistance. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the African Sunset Motif Tiered Maxi Dress (Code: 0921037). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "African Sunset Motif Tiered Maxi Dress — Style Details",
+          "body": "Rich sunset motif print on a multi-tiered sweeping maxi dress. Vibrant colorfast dyes engineered for African sunlight resistance. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921037.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "50",
+    "slug": "v-neck-wrap-front-bohemian-maxi-dress-0921038",
+    "name": "V-Neck Wrap Front Bohemian Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921038.webp",
+    "images": [
+      "/images/products/0921038.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.2,
+    "priceMax": 12.2,
+    "tags": [
+      "Maxi Dresses",
+      "Wrap Front",
+      "Boho Chic",
+      "Breathable",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Emerald Floral",
+        "hex": "#047857"
+      },
+      {
+        "name": "Ruby Floral",
+        "hex": "#b91c1c"
+      },
+      {
+        "name": "Sapphire Floral",
+        "hex": "#1d4ed8"
+      }
+    ],
+    "description": "Deep V-neck crossover bodice with an expansive A-line skirt sweep. Soft breathable viscose blend suited for warm climates. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the V-Neck Wrap Front Bohemian Maxi Dress (Code: 0921038). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "V-Neck Wrap Front Bohemian Maxi Dress — Style Details",
+          "body": "Deep V-neck crossover bodice with an expansive A-line skirt sweep. Soft breathable viscose blend suited for warm climates. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921038.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "51",
+    "slug": "cape-sleeve-regal-african-maxi-gown-0921039",
+    "name": "Cape Sleeve Regal African Maxi Gown",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921039.webp",
+    "images": [
+      "/images/products/0921039.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.5,
+    "priceMax": 15.5,
+    "tags": [
+      "Maxi Dresses",
+      "Cape Sleeve",
+      "Regal Gown",
+      "Wedding Guest",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Imperial Gold",
+        "hex": "#ca8a04"
+      },
+      {
+        "name": "Royal Purple",
+        "hex": "#6b21a8"
+      },
+      {
+        "name": "Deep Wine",
+        "hex": "#881337"
+      }
+    ],
+    "description": "Dramatic integrated cape sleeves that cascade down the back of this stately maxi gown. Top choice for wedding guests and mothers of the bride. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Cape Sleeve Regal African Maxi Gown (Code: 0921039). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Cape Sleeve Regal African Maxi Gown — Style Details",
+          "body": "Dramatic integrated cape sleeves that cascade down the back of this stately maxi gown. Top choice for wedding guests and mothers of the bride. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921039.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "52",
+    "slug": "ankara-print-high-slit-maxi-dress-0921040",
+    "name": "Ankara Print High-Slit Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921040.webp",
+    "images": [
+      "/images/products/0921040.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.8,
+    "priceMax": 13,
+    "tags": [
+      "Maxi Dresses",
+      "Side Slit",
+      "Ankara Motif",
+      "Wax Finish",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Multi Print Yellow",
+        "hex": "#eab308"
+      },
+      {
+        "name": "Multi Print Blue",
+        "hex": "#2563eb"
+      },
+      {
+        "name": "Multi Print Green",
+        "hex": "#16a34a"
+      }
+    ],
+    "description": "Traditional geometric motif maxi dress with a tailored side slit for comfort and styling. High-density wax-feel cotton finish. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Ankara Print High-Slit Maxi Dress (Code: 0921040). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Ankara Print High-Slit Maxi Dress — Style Details",
+          "body": "Traditional geometric motif maxi dress with a tailored side slit for comfort and styling. High-density wax-feel cotton finish. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921040.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "53",
+    "slug": "smocked-bodice-off-shoulder-maxi-dress-0921041",
+    "name": "Smocked Bodice Off-Shoulder Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921041.webp",
+    "images": [
+      "/images/products/0921041.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 7.9,
+    "priceMax": 11.8,
+    "tags": [
+      "Maxi Dresses",
+      "Smocked Bodice",
+      "Off Shoulder",
+      "Flexible Fit",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Turquoise",
+        "hex": "#0891b2"
+      },
+      {
+        "name": "Hot Pink",
+        "hex": "#db2777"
+      },
+      {
+        "name": "Classic Black",
+        "hex": "#171717"
+      }
+    ],
+    "description": "Flexible smocked elastic bodice provides effortless fit across multiple bust measurements. Expansive flared skirt for easy movement. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Smocked Bodice Off-Shoulder Maxi Dress (Code: 0921041). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Smocked Bodice Off-Shoulder Maxi Dress — Style Details",
+          "body": "Flexible smocked elastic bodice provides effortless fit across multiple bust measurements. Expansive flared skirt for easy movement. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921041.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "54",
+    "slug": "button-down-shirt-collar-tiered-maxi-0921042",
+    "name": "Button-Down Shirt Collar Tiered Maxi",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921042.webp",
+    "images": [
+      "/images/products/0921042.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9,
+    "priceMax": 13.4,
+    "tags": [
+      "Maxi Dresses",
+      "Button Down",
+      "Shirt Dress",
+      "Belted",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Olive Green",
+        "hex": "#4d7c0f"
+      },
+      {
+        "name": "Terracotta Rust",
+        "hex": "#c2410c"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Sophisticated full-length button-down maxi dress with structured collar and matching waist belt. Balances corporate and casual wear. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Button-Down Shirt Collar Tiered Maxi (Code: 0921042). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Button-Down Shirt Collar Tiered Maxi — Style Details",
+          "body": "Sophisticated full-length button-down maxi dress with structured collar and matching waist belt. Balances corporate and casual wear. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921042.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "55",
+    "slug": "flutter-sleeve-floral-maxi-dress-0921043",
+    "name": "Flutter Sleeve Floral Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921043.webp",
+    "images": [
+      "/images/products/0921043.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.4,
+    "priceMax": 12.5,
+    "tags": [
+      "Maxi Dresses",
+      "Flutter Sleeve",
+      "Floral",
+      "Boutique Restock",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Wine Floral",
+        "hex": "#9f1239"
+      },
+      {
+        "name": "Navy Floral",
+        "hex": "#1e3a8a"
+      },
+      {
+        "name": "Teal Floral",
+        "hex": "#0f766e"
+      }
+    ],
+    "description": "Romantic flutter sleeves with empire waist and flowing gathered tiers. Excellent drape on curvy silhouettes. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Flutter Sleeve Floral Maxi Dress (Code: 0921043). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Flutter Sleeve Floral Maxi Dress — Style Details",
+          "body": "Romantic flutter sleeves with empire waist and flowing gathered tiers. Excellent drape on curvy silhouettes. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921043.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "56",
+    "slug": "halter-neck-backless-resort-maxi-dress-0921044",
+    "name": "Halter-Neck Backless Resort Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921044.webp",
+    "images": [
+      "/images/products/0921044.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.8,
+    "priceMax": 13.2,
+    "tags": [
+      "Maxi Dresses",
+      "Halter Neck",
+      "Resort Wear",
+      "Evening",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Bright Coral",
+        "hex": "#f43f5e"
+      },
+      {
+        "name": "Gold Tone",
+        "hex": "#eab308"
+      },
+      {
+        "name": "Deep Emerald",
+        "hex": "#065f46"
+      }
+    ],
+    "description": "High halter neckline with an elegant low back and sweeping hemline. High-demand item for holiday resorts and celebration events. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Halter-Neck Backless Resort Maxi Dress (Code: 0921044). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Halter-Neck Backless Resort Maxi Dress — Style Details",
+          "body": "High halter neckline with an elegant low back and sweeping hemline. High-demand item for holiday resorts and celebration events. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921044.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "57",
+    "slug": "longline-kaftan-style-maxi-dress-0921045",
+    "name": "Longline Kaftan Style Maxi Dress",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921045.webp",
+    "images": [
+      "/images/products/0921045.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 8.5,
+    "priceMax": 12.6,
+    "tags": [
+      "Maxi Dresses",
+      "Kaftan",
+      "Modest Fashion",
+      "Loose Fit",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Rich Mustard",
+        "hex": "#a16207"
+      },
+      {
+        "name": "Burgundy",
+        "hex": "#7b1e3b"
+      },
+      {
+        "name": "Midnight",
+        "hex": "#0f172a"
+      }
+    ],
+    "description": "Loose kaftan cut with contrast taping along sleeves and placket. Highly comfortable, loose-fitting design for modest fashion buyers. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Longline Kaftan Style Maxi Dress (Code: 0921045). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Longline Kaftan Style Maxi Dress — Style Details",
+          "body": "Loose kaftan cut with contrast taping along sleeves and placket. Highly comfortable, loose-fitting design for modest fashion buyers. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921045.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "58",
+    "slug": "keyhole-neckline-ankara-flounce-maxi-0921046",
+    "name": "Keyhole Neckline Ankara Flounce Maxi",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921046.webp",
+    "images": [
+      "/images/products/0921046.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.2,
+    "priceMax": 13.8,
+    "tags": [
+      "Maxi Dresses",
+      "Keyhole Neck",
+      "Flounce Hem",
+      "Ankara",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Orange / Navy Geo",
+        "hex": "#ea580c"
+      },
+      {
+        "name": "Green / Gold Geo",
+        "hex": "#15803d"
+      },
+      {
+        "name": "Red / Black Geo",
+        "hex": "#b91c1c"
+      }
+    ],
+    "description": "Teardrop keyhole neckline accent with voluminous circular flounce hem. Vibrant traditional Ankara patterns. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Keyhole Neckline Ankara Flounce Maxi (Code: 0921046). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Keyhole Neckline Ankara Flounce Maxi — Style Details",
+          "body": "Teardrop keyhole neckline accent with voluminous circular flounce hem. Vibrant traditional Ankara patterns. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921046.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "59",
+    "slug": "batwing-kimono-sleeve-belted-maxi-0921047",
+    "name": "Batwing Kimono Sleeve Belted Maxi",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921047.webp",
+    "images": [
+      "/images/products/0921047.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.4,
+    "priceMax": 14,
+    "tags": [
+      "Maxi Dresses",
+      "Kimono Sleeve",
+      "Belted",
+      "Curvy Friendly",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Plum Purple",
+        "hex": "#7e22ce"
+      },
+      {
+        "name": "Teal Blue",
+        "hex": "#0284c7"
+      },
+      {
+        "name": "Burgundy Wine",
+        "hex": "#881337"
+      }
+    ],
+    "description": "Generous batwing kimono sleeves with an adjustable sash belt. Drapes naturally and flatters fuller body types. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Batwing Kimono Sleeve Belted Maxi (Code: 0921047). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Batwing Kimono Sleeve Belted Maxi — Style Details",
+          "body": "Generous batwing kimono sleeves with an adjustable sash belt. Drapes naturally and flatters fuller body types. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921047.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "60",
+    "slug": "mermaid-hem-ankara-evening-maxi-0921048",
+    "name": "Mermaid Hem Ankara Evening Maxi",
+    "category": "Maxi Dresses",
+    "image": "/images/products/0921048.webp",
+    "images": [
+      "/images/products/0921048.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10,
+    "priceMax": 14.8,
+    "tags": [
+      "Maxi Dresses",
+      "Mermaid Cut",
+      "Evening Gown",
+      "High Glamour",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Gold / Emerald",
+        "hex": "#d97706"
+      },
+      {
+        "name": "Royal / Wine",
+        "hex": "#1e40af"
+      },
+      {
+        "name": "Black / Bronze",
+        "hex": "#18181b"
+      }
+    ],
+    "description": "Contoured mermaid silhouette featuring flare hem panels. Tailored specifically for formal evening wear, galas, and celebrations. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Mermaid Hem Ankara Evening Maxi (Code: 0921048). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Mermaid Hem Ankara Evening Maxi — Style Details",
+          "body": "Contoured mermaid silhouette featuring flare hem panels. Tailored specifically for formal evening wear, galas, and celebrations. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921048.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "61",
+    "slug": "wide-leg-african-print-belted-jumpsuit-0921049",
+    "name": "Wide-Leg African Print Belted Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921049.webp",
+    "images": [
+      "/images/products/0921049.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.5,
+    "priceMax": 14.2,
+    "tags": [
+      "Jumpsuits",
+      "Wide Leg",
+      "Belted Jumpsuit",
+      "Ankara Print",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Multi Print Amber",
+        "hex": "#d97706"
+      },
+      {
+        "name": "Multi Print Cobalt",
+        "hex": "#2563eb"
+      },
+      {
+        "name": "Multi Print Emerald",
+        "hex": "#059669"
+      }
+    ],
+    "description": "Contemporary wide-leg one-piece jumpsuit with tailored collar and matching waist sash. Breathable and movement-friendly. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Wide-Leg African Print Belted Jumpsuit (Code: 0921049). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Wide-Leg African Print Belted Jumpsuit — Style Details",
+          "body": "Contemporary wide-leg one-piece jumpsuit with tailored collar and matching waist sash. Breathable and movement-friendly. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921049.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "62",
+    "slug": "one-shoulder-drape-wide-leg-jumpsuit-0921050",
+    "name": "One-Shoulder Drape Wide-Leg Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921050.webp",
+    "images": [
+      "/images/products/0921050.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.2,
+    "priceMax": 15,
+    "tags": [
+      "Jumpsuits",
+      "One Shoulder",
+      "Palazzo Jumpsuit",
+      "Formal",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Scarlet Red",
+        "hex": "#dc2626"
+      },
+      {
+        "name": "Sapphire Blue",
+        "hex": "#1d4ed8"
+      },
+      {
+        "name": "Black",
+        "hex": "#111111"
+      }
+    ],
+    "description": "Striking one-shoulder silhouette with pleated drape and flowing palazzo legs. Red carpet ready for boutique formal collections. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the One-Shoulder Drape Wide-Leg Jumpsuit (Code: 0921050). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "One-Shoulder Drape Wide-Leg Jumpsuit — Style Details",
+          "body": "Striking one-shoulder silhouette with pleated drape and flowing palazzo legs. Red carpet ready for boutique formal collections. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921050.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "63",
+    "slug": "v-neck-wrap-front-palazzo-jumpsuit-0921051",
+    "name": "V-Neck Wrap Front Palazzo Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921051.webp",
+    "images": [
+      "/images/products/0921051.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.8,
+    "priceMax": 14.5,
+    "tags": [
+      "Jumpsuits",
+      "Wrap Front",
+      "Palazzo",
+      "Ready Stock",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "L",
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL"
+    ],
+    "colors": [
+      {
+        "name": "Forest Green",
+        "hex": "#166534"
+      },
+      {
+        "name": "Wine Red",
+        "hex": "#9f1239"
+      },
+      {
+        "name": "Navy",
+        "hex": "#1e293b"
+      }
+    ],
+    "description": "Crossover wrap bodice with elasticized back waist and wide leg cut. Easy to wear and quick to retail across African boutiques. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the V-Neck Wrap Front Palazzo Jumpsuit (Code: 0921051). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "V-Neck Wrap Front Palazzo Jumpsuit — Style Details",
+          "body": "Crossover wrap bodice with elasticized back waist and wide leg cut. Easy to wear and quick to retail across African boutiques. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921051.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "64",
+    "slug": "lantern-sleeve-tailored-utility-jumpsuit-0921052",
+    "name": "Lantern Sleeve Tailored Utility Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921052.webp",
+    "images": [
+      "/images/products/0921052.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.5,
+    "priceMax": 15.5,
+    "tags": [
+      "Jumpsuits",
+      "Lantern Sleeve",
+      "Utility Fashion",
+      "Front Zip",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Khaki Camel",
+        "hex": "#a16207"
+      },
+      {
+        "name": "Army Olive",
+        "hex": "#3f6212"
+      },
+      {
+        "name": "Charcoal",
+        "hex": "#334155"
+      }
+    ],
+    "description": "Full-length lantern sleeve jumpsuit with breast pockets and metallic zip front. Combines modern utility styling with feminine volume. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Lantern Sleeve Tailored Utility Jumpsuit (Code: 0921052). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Lantern Sleeve Tailored Utility Jumpsuit — Style Details",
+          "body": "Full-length lantern sleeve jumpsuit with breast pockets and metallic zip front. Combines modern utility styling with feminine volume. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921052.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "65",
+    "slug": "cold-shoulder-flounce-jumpsuit-0921053",
+    "name": "Cold-Shoulder Flounce Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921053.webp",
+    "images": [
+      "/images/products/0921053.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.6,
+    "priceMax": 14,
+    "tags": [
+      "Jumpsuits",
+      "Cold Shoulder",
+      "Flounce",
+      "Party Jumpsuit",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL"
+    ],
+    "colors": [
+      {
+        "name": "Royal Purple",
+        "hex": "#7c3aed"
+      },
+      {
+        "name": "Teal",
+        "hex": "#0d9488"
+      },
+      {
+        "name": "Onyx Black",
+        "hex": "#171717"
+      }
+    ],
+    "description": "Romantic cold-shoulder cutouts with cascading flounce over the bust. Straight-leg cut elongates the overall silhouette. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Cold-Shoulder Flounce Jumpsuit (Code: 0921053). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Cold-Shoulder Flounce Jumpsuit — Style Details",
+          "body": "Romantic cold-shoulder cutouts with cascading flounce over the bust. Straight-leg cut elongates the overall silhouette. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921053.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "66",
+    "slug": "plus-size-cape-sleeve-wide-leg-jumpsuit-0921054",
+    "name": "Plus Size Cape Sleeve Wide-Leg Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921054.webp",
+    "images": [
+      "/images/products/0921054.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10.8,
+    "priceMax": 16,
+    "tags": [
+      "Jumpsuits",
+      "Plus Size",
+      "Cape Sleeve",
+      "Celebration",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "XL",
+      "XXL",
+      "3XL",
+      "4XL",
+      "5XL"
+    ],
+    "colors": [
+      {
+        "name": "Imperial Wine",
+        "hex": "#831843"
+      },
+      {
+        "name": "Deep Navy",
+        "hex": "#172554"
+      },
+      {
+        "name": "Emerald",
+        "hex": "#064e3b"
+      }
+    ],
+    "description": "Stately cape sleeve overlay paired with an expansive wide-leg palazzo pant. Designed specifically for plus-size celebration dressing. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Plus Size Cape Sleeve Wide-Leg Jumpsuit (Code: 0921054). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": true,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Plus Size Cape Sleeve Wide-Leg Jumpsuit — Style Details",
+          "body": "Stately cape sleeve overlay paired with an expansive wide-leg palazzo pant. Designed specifically for plus-size celebration dressing. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921054.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "67",
+    "slug": "off-shoulder-ruffle-trim-ankara-jumpsuit-0921055",
+    "name": "Off-Shoulder Ruffle Trim Ankara Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921055.webp",
+    "images": [
+      "/images/products/0921055.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 9.4,
+    "priceMax": 13.8,
+    "tags": [
+      "Jumpsuits",
+      "Off Shoulder",
+      "Ruffle Trim",
+      "African Print",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "M",
+      "L",
+      "XL",
+      "XXL",
+      "3XL"
+    ],
+    "colors": [
+      {
+        "name": "Sunset Multi",
+        "hex": "#ea580c"
+      },
+      {
+        "name": "Ocean Multi",
+        "hex": "#0284c7"
+      },
+      {
+        "name": "Emerald Multi",
+        "hex": "#059669"
+      }
+    ],
+    "description": "Elasticized off-shoulder neckline with layered ruffle accent. High-quality African print cotton blend with excellent wash fastness. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Off-Shoulder Ruffle Trim Ankara Jumpsuit (Code: 0921055). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Off-Shoulder Ruffle Trim Ankara Jumpsuit — Style Details",
+          "body": "Elasticized off-shoulder neckline with layered ruffle accent. High-quality African print cotton blend with excellent wash fastness. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921055.webp",
+          "layout": "full-width"
+        }
+      ]
+    }
+  },
+  {
+    "id": "68",
+    "slug": "halter-neck-pleated-wide-jumpsuit-0921056",
+    "name": "Halter-Neck Pleated Wide Jumpsuit",
+    "category": "Jumpsuits",
+    "image": "/images/products/0921056.webp",
+    "images": [
+      "/images/products/0921056.webp"
+    ],
+    "moq": 500,
+    "moqOptions": [
+      500,
+      1000,
+      3000
+    ],
+    "stockType": "Ready Stock & Custom",
+    "priceMin": 10,
+    "priceMax": 14.8,
+    "tags": [
+      "Jumpsuits",
+      "Halter Neck",
+      "Pleated Leg",
+      "Luxury Wholesale",
+      "Guangzhou Supplier",
+      "2026 Collection"
+    ],
+    "sizes": [
+      "Free Size",
+      "M",
+      "L",
+      "XL",
+      "2XL"
+    ],
+    "colors": [
+      {
+        "name": "Golden Ochre",
+        "hex": "#ca8a04"
+      },
+      {
+        "name": "Ruby Red",
+        "hex": "#b91c1c"
+      },
+      {
+        "name": "Midnight Navy",
+        "hex": "#0f172a"
+      }
+    ],
+    "description": "Micro-pleated wide leg jumpsuit with an elegant halter tie neck. Flowing movement and easy packing for boutique wholesale inventory. Measurements, fabric composition, available colorways, batch size ratios and current ready stock are confirmed prior to quotation.",
+    "features": [
+      "Premium export-grade stitching and durable seams",
+      "Curated specifically for African boutique and wholesale resale",
+      "Mixed sizes and color ratios available per 500-piece batch",
+      "Guangzhou factory-direct dispatch with freight agent coordination"
+    ],
+    "whatsappMessage": "Hello Jack, I'm interested in the Halter-Neck Pleated Wide Jumpsuit (Code: 0921056). Please share wholesale pricing, color card, and stock quantity.",
+    "isNew": true,
+    "isPopular": false,
+    "detailPage": {
+      "detailSections": [
+        {
+          "enabled": true,
+          "title": "Halter-Neck Pleated Wide Jumpsuit — Style Details",
+          "body": "Micro-pleated wide leg jumpsuit with an elegant halter tie neck. Flowing movement and easy packing for boutique wholesale inventory. Export-ready packaging and pre-shipment quality inspection included for all orders.",
+          "image": "/images/products/0921056.webp",
           "layout": "full-width"
         }
       ]

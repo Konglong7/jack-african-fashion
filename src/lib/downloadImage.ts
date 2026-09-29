@@ -25,11 +25,7 @@ export function getFileExtension(url?: string): string {
   return 'jpg';
 }
 
-export function getProductImageFilename(
-  productName: string,
-  index?: number,
-  url?: string
-): string {
+export function getProductImageFilename(productName: string, index?: number, url?: string): string {
   const base = sanitizeFilename(productName) || 'style';
   const suffix = typeof index === 'number' ? `-photo-${index + 1}` : '';
   const ext = getFileExtension(url);
@@ -41,10 +37,7 @@ export function getProductImageFilename(
  * Uses fetch + blob when possible for genuine direct downloads with custom filename,
  * falling back to HTML5 anchor download for CORS-restricted assets.
  */
-export async function downloadImageFile(
-  url: string,
-  filename: string
-): Promise<boolean> {
+export async function downloadImageFile(url: string, filename: string): Promise<boolean> {
   if (!url || typeof window === 'undefined') return false;
 
   try {

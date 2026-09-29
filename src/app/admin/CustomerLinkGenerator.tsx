@@ -33,7 +33,7 @@ export function CustomerLinkGenerator({ siteUrl = '' }: { siteUrl?: string }) {
           maxLength={50}
           placeholder='Ghana-Amina'
           aria-label='Customer alias'
-          className='border-brand-sand text-brand-black min-w-0 flex-1 rounded-lg border bg-white px-3 py-2 text-sm outline-none focus:border-brand-orange'
+          className='border-brand-sand text-brand-black focus:border-brand-orange min-w-0 flex-1 rounded-lg border bg-white px-3 py-2 text-sm outline-none'
         />
         <button
           type='submit'
@@ -54,7 +54,7 @@ export function CustomerLinkGenerator({ siteUrl = '' }: { siteUrl?: string }) {
           <button
             type='button'
             onClick={copyLink}
-            className='border-brand-sand text-brand-black rounded-lg border px-4 py-2 text-sm font-bold hover:border-brand-orange'
+            className='border-brand-sand text-brand-black hover:border-brand-orange rounded-lg border px-4 py-2 text-sm font-bold'
           >
             {copied ? 'Copied' : 'Copy link'}
           </button>

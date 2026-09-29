@@ -77,7 +77,7 @@ function sendLocalEvent(event: 'page_view' | 'whatsapp_click', path: string) {
   try {
     stored = sessionStorage.getItem(attributionKey);
   } catch {}
-  const attribution = resolveAttribution(window.location.search, stored);
+  const attribution = resolveAttribution(window.location.search, stored, document.referrer);
   if (attribution.serialized) {
     try {
       sessionStorage.setItem(attributionKey, attribution.serialized);

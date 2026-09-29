@@ -40,7 +40,12 @@ export function UploadQueue({ files, onReorder, onRemove, onClear, onPreview }: 
         </button>
       </div>
 
-      <Reorder.Group axis='y' values={files} onReorder={onReorder} className='grid grid-cols-2 gap-3 sm:grid-cols-4'>
+      <Reorder.Group
+        axis='y'
+        values={files}
+        onReorder={onReorder}
+        className='grid grid-cols-2 gap-3 sm:grid-cols-4'
+      >
         {files.map((file, i) => (
           <QueueItem
             key={objectUrls[i] || i}
@@ -90,7 +95,7 @@ function QueueItem({
 
       {/* Cover badge */}
       {isCover && (
-        <span className='absolute top-1 left-1 z-10 rounded bg-brand-gold px-1.5 py-0.5 text-[10px] font-bold text-white'>
+        <span className='bg-brand-gold absolute top-1 left-1 z-10 rounded px-1.5 py-0.5 text-[10px] font-bold text-white'>
           Cover · 主图
         </span>
       )}
@@ -104,7 +109,13 @@ function QueueItem({
         className='absolute top-1 left-1 z-10 flex h-6 w-6 cursor-grab items-center justify-center rounded bg-black/50 text-white opacity-0 transition-opacity group-hover:opacity-100 active:cursor-grabbing'
         style={{ left: isCover ? 'auto' : undefined, right: isCover ? undefined : 'auto' }}
       >
-        <svg className='h-4 w-4' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+        <svg
+          className='h-4 w-4'
+          fill='none'
+          stroke='currentColor'
+          strokeWidth={2}
+          viewBox='0 0 24 24'
+        >
           <path d='M4 8h16M4 16h16' />
         </svg>
       </button>

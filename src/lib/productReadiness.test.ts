@@ -60,9 +60,9 @@ describe('product readiness', () => {
   });
 
   it('reports needs-info when only a single cover image is present', () => {
-    expect(
-      getReadinessStatus(baseProduct({ images: ['/images/products/test-dress.jpg'] }))
-    ).toBe('needs-info');
+    expect(getReadinessStatus(baseProduct({ images: ['/images/products/test-dress.jpg'] }))).toBe(
+      'needs-info'
+    );
   });
 
   it('treats a detail section image as gallery coverage', () => {

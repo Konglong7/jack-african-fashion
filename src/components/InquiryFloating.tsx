@@ -40,7 +40,7 @@ export function InquiryFloating() {
   return (
     <Link
       href='/inquiry'
-      className='group bg-brand-black fixed left-4 bottom-4 z-50 rounded-full p-3.5 text-white shadow-2xl transition-all hover:scale-110 hover:bg-brand-orange active:scale-95 md:right-6 md:bottom-24 md:left-auto md:p-4'
+      className='group bg-brand-black hover:bg-brand-orange fixed bottom-4 left-4 z-50 rounded-full p-3.5 text-white shadow-2xl transition-all hover:scale-110 active:scale-95 md:right-6 md:bottom-24 md:left-auto md:p-4'
       aria-label={label}
       title='Open inquiry cart'
     >
@@ -58,7 +58,7 @@ export function InquiryFloating() {
         <circle cx='18' cy='20' r='1' />
       </svg>
       {count > 0 && (
-        <span className='bg-brand-orange absolute -top-1 -right-1 flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs font-bold text-white shadow-md ring-2 ring-white animate-pulse'>
+        <span className='bg-brand-orange absolute -top-1 -right-1 flex h-6 min-w-6 animate-pulse items-center justify-center rounded-full px-1.5 text-xs font-bold text-white shadow-md ring-2 ring-white'>
           {count}
         </span>
       )}

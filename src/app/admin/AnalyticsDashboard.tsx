@@ -16,7 +16,9 @@ export function AnalyticsDashboard({
   const todayEvents = analytics.recent.filter((event) => chinaDay(new Date(event.at)) === today);
   const todayVisitors = uniqueVisitors(todayEvents.filter((event) => event.event === 'page_view'));
   const productViewers = uniqueVisitors(
-    todayEvents.filter((event) => event.event === 'page_view' && event.path.startsWith('/products/'))
+    todayEvents.filter(
+      (event) => event.event === 'page_view' && event.path.startsWith('/products/')
+    )
   );
   const whatsappVisitors = uniqueVisitors(
     todayEvents.filter((event) => event.event === 'whatsapp_click')
@@ -37,16 +39,22 @@ export function AnalyticsDashboard({
       <div className='mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between'>
         <div>
           <p className='text-brand-orange text-xs font-bold uppercase'>Visitor Snapshot</p>
-          <h2 className='text-brand-black mt-1 text-xl font-bold sm:text-2xl'>Sales Contact Dashboard</h2>
-          <p className='text-brand-brown/60 mt-1 text-sm'>Beijing time · masked IP · conversion focused</p>
+          <h2 className='text-brand-black mt-1 text-xl font-bold sm:text-2xl'>
+            Sales Contact Dashboard
+          </h2>
+          <p className='text-brand-brown/60 mt-1 text-sm'>
+            Beijing time · masked IP · conversion focused
+          </p>
         </div>
         <div className='flex items-center gap-3'>
           {analytics.updatedAt && (
-            <p className='text-brand-brown/50 text-xs'>Updated {formatChinaTime(analytics.updatedAt)}</p>
+            <p className='text-brand-brown/50 text-xs'>
+              Updated {formatChinaTime(analytics.updatedAt)}
+            </p>
           )}
           <Link
             href='/admin'
-            className='border-brand-sand text-brand-black rounded-lg border bg-white px-3 py-2 text-xs font-bold hover:border-brand-orange'
+            className='border-brand-sand text-brand-black hover:border-brand-orange rounded-lg border bg-white px-3 py-2 text-xs font-bold'
           >
             Refresh
           </Link>
@@ -59,7 +67,9 @@ export function AnalyticsDashboard({
         <LifetimeStat label='Total WhatsApp clicks' value={analytics.totals.whatsapp_click} />
         <LifetimeStat
           label='Tracking since'
-          value={analytics.statsStartedAt ? formatChinaDate(analytics.statsStartedAt) : 'Not started'}
+          value={
+            analytics.statsStartedAt ? formatChinaDate(analytics.statsStartedAt) : 'Not started'
+          }
         />
       </div>
 
@@ -73,9 +83,24 @@ export function AnalyticsDashboard({
       <div className='mb-4 grid gap-4 lg:grid-cols-2'>
         <Panel title='Customer journey' note='Today'>
           <div className='space-y-4'>
-            <FunnelRow label='Website visitors' value={todayVisitors} total={todayVisitors} tone='black' />
-            <FunnelRow label='Product viewers' value={productViewers} total={todayVisitors} tone='orange' />
-            <FunnelRow label='WhatsApp' value={whatsappVisitors} total={todayVisitors} tone='green' />
+            <FunnelRow
+              label='Website visitors'
+              value={todayVisitors}
+              total={todayVisitors}
+              tone='black'
+            />
+            <FunnelRow
+              label='Product viewers'
+              value={productViewers}
+              total={todayVisitors}
+              tone='orange'
+            />
+            <FunnelRow
+              label='WhatsApp'
+              value={whatsappVisitors}
+              total={todayVisitors}
+              tone='green'
+            />
           </div>
         </Panel>
 
@@ -89,7 +114,7 @@ export function AnalyticsDashboard({
         <RankPanel title='Best contact products' note='Last 30 days' items={bestProducts} />
       </div>
 
-      <div className='mb-4 border-brand-sand/60 border bg-white'>
+      <div className='border-brand-sand/60 mb-4 border bg-white'>
         <div className='border-brand-sand/60 flex items-center justify-between border-b px-5 py-4'>
           <h3 className='text-brand-black text-sm font-bold'>High-intent activity</h3>
           <span className='text-brand-brown/50 text-xs'>Latest product and WhatsApp actions</span>
@@ -153,7 +178,12 @@ function Kpi({
   value: number | string;
   tone: 'black' | 'orange' | 'green';
 }) {
-  const color = tone === 'green' ? 'text-brand-emerald' : tone === 'orange' ? 'text-brand-orange' : 'text-brand-black';
+  const color =
+    tone === 'green'
+      ? 'text-brand-emerald'
+      : tone === 'orange'
+        ? 'text-brand-orange'
+        : 'text-brand-black';
   return (
     <div className='rounded-lg bg-white p-4 shadow-sm sm:p-5'>
       <p className={`${color} text-2xl font-bold sm:text-3xl`}>{value}</p>
@@ -193,7 +223,12 @@ function FunnelRow({
   total: number;
   tone: 'black' | 'orange' | 'green';
 }) {
-  const color = tone === 'green' ? 'bg-brand-emerald' : tone === 'orange' ? 'bg-brand-orange' : 'bg-brand-black';
+  const color =
+    tone === 'green'
+      ? 'bg-brand-emerald'
+      : tone === 'orange'
+        ? 'bg-brand-orange'
+        : 'bg-brand-black';
   const width = total ? Math.round((value / total) * 100) : 0;
   return (
     <div className='grid grid-cols-[100px_minmax(0,1fr)_36px] items-center gap-3 text-xs sm:grid-cols-[120px_minmax(0,1fr)_40px]'>
@@ -213,7 +248,7 @@ function TrendBars({ items }: { items: Array<{ day: string; label: string; value
       {items.map((item) => (
         <div key={item.day} className='flex h-full min-w-0 flex-col items-center justify-end gap-1'>
           <span className='text-brand-black text-[10px] font-bold'>{item.value}</span>
-          <div className='flex h-24 w-full items-end bg-brand-cream'>
+          <div className='bg-brand-cream flex h-24 w-full items-end'>
             <div
               className='bg-brand-emerald w-full'
               style={{ height: item.value ? `${Math.max((item.value / max) * 100, 8)}%` : '2px' }}
@@ -240,7 +275,10 @@ function RankPanel({
       {items.length ? (
         <div className='space-y-2'>
           {items.slice(0, 5).map(([label, value], index) => (
-            <div key={label} className='border-brand-sand/50 flex items-center gap-3 border-b py-2 last:border-0'>
+            <div
+              key={label}
+              className='border-brand-sand/50 flex items-center gap-3 border-b py-2 last:border-0'
+            >
               <span className='text-brand-orange w-5 text-xs font-bold'>{index + 1}</span>
               <span className='text-brand-brown min-w-0 flex-1 truncate text-sm'>{label}</span>
               <strong className='text-brand-black text-sm'>{value}</strong>
@@ -259,11 +297,19 @@ function ActivityRow({ event, product }: { event: AnalyticsEvent; product: strin
   return (
     <div className='grid gap-2 px-5 py-3 sm:grid-cols-[140px_130px_minmax(0,1fr)_150px] sm:items-center'>
       <span className='text-brand-brown/60 text-xs'>{formatChinaTime(event.at)}</span>
-      <span className='text-brand-black font-mono text-xs font-bold'>{event.visitorId || 'Legacy'}</span>
-      <Link href={event.path} target='_blank' className='text-brand-black hover:text-brand-orange truncate text-sm font-semibold'>
+      <span className='text-brand-black font-mono text-xs font-bold'>
+        {event.visitorId || 'Legacy'}
+      </span>
+      <Link
+        href={event.path}
+        target='_blank'
+        className='text-brand-black hover:text-brand-orange truncate text-sm font-semibold'
+      >
         {product}
       </Link>
-      <span className={`w-max rounded px-2 py-1 text-[10px] font-bold ${whatsapp ? 'bg-green-100 text-green-800' : 'bg-brand-cream text-brand-brown'}`}>
+      <span
+        className={`w-max rounded px-2 py-1 text-[10px] font-bold ${whatsapp ? 'bg-green-100 text-green-800' : 'bg-brand-cream text-brand-brown'}`}
+      >
         {whatsapp ? 'WhatsApp click' : 'Product view'}
       </span>
     </div>
@@ -277,14 +323,20 @@ function DetailRow({ event, returning }: { event: AnalyticsEvent; returning: boo
       <span className='text-brand-black font-mono font-bold'>
         {event.visitorId || 'Legacy'} {returning ? '· Returning' : ''}
       </span>
-      <span className='text-brand-brown truncate'>{event.path} · {event.device} · {event.ip}</span>
+      <span className='text-brand-brown truncate'>
+        {event.path} · {event.device} · {event.ip}
+      </span>
       <span className='text-brand-black truncate sm:text-right'>{sourceLabel(event)}</span>
     </div>
   );
 }
 
 function Empty({ text, compact = false }: { text: string; compact?: boolean }) {
-  return <p className={`text-brand-brown/50 text-sm ${compact ? 'py-5' : 'px-5 py-8 text-center'}`}>{text}</p>;
+  return (
+    <p className={`text-brand-brown/50 text-sm ${compact ? 'py-5' : 'px-5 py-8 text-center'}`}>
+      {text}
+    </p>
+  );
 }
 
 function sevenDayWhatsAppTrend(events: AnalyticsEvent[]) {
@@ -295,7 +347,11 @@ function sevenDayWhatsAppTrend(events: AnalyticsEvent[]) {
     return {
       day,
       label: day.slice(5),
-      value: uniqueVisitors(events.filter((event) => event.event === 'whatsapp_click' && chinaDay(new Date(event.at)) === day))
+      value: uniqueVisitors(
+        events.filter(
+          (event) => event.event === 'whatsapp_click' && chinaDay(new Date(event.at)) === day
+        )
+      )
     };
   });
 }

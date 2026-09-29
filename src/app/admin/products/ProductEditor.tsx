@@ -37,8 +37,8 @@ export function ProductEditor({ product, categories, onClose, onSaved }: Props) 
     images: (product?.images || []).join('\n'),
     priceMin: product?.priceMin || '',
     priceMax: product?.priceMax || '',
-    moq: product?.moq || 30,
-    moqOptions: (product?.moqOptions || [30, 100, 300]).join(', '),
+    moq: product?.moq || '',
+    moqOptions: (product?.moqOptions || []).join(', '),
     stockType: product?.stockType || ('Ready Stock & Custom' as StockType),
     tags: (product?.tags || []).join(', '),
     sizes: product?.sizes || DEFAULT_PRODUCT_SIZES,
@@ -446,7 +446,10 @@ export function ProductEditor({ product, categories, onClose, onSaved }: Props) 
                       className='input-control'
                     />
                   </Field>
-                  <Field label='MOQ Options' hint='comma-separated: 30, 100, 300'>
+                  <Field
+                    label='MOQ Options'
+                    hint='comma-separated quantities, each not below the main MOQ'
+                  >
                     <input
                       value={form.moqOptions}
                       onChange={(e) => set('moqOptions', e.target.value)}
@@ -1116,7 +1119,7 @@ function getCustomStyleTemplate(): DetailPageDraft {
   return {
     ...template,
     specs: [
-      { label: 'Custom MOQ', value: '100 pcs per style' },
+      { label: 'Custom MOQ', value: 'Confirmed by style, fabric, and quantity' },
       { label: 'Custom scope', value: 'Fabric, color, label, and details by quotation' }
     ],
     faq: [

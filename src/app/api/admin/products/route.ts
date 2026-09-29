@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getProducts, createProduct } from '@/lib/db';
 import { normalizeProductInput } from '@/lib/productValidation';
 import { readJsonBody } from '@/lib/apiRequest';
@@ -25,6 +26,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const product = await createProduct(validation.product);
+    revalidatePath('/');
+    revalidatePath('/catalog');
+    revalidatePath(`/products/${product.slug}`);
+    revalidatePath('/sitemap.xml');
     return NextResponse.json({ ok: true, product }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

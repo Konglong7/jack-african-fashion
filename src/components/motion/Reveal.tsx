@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  motion,
-  useInView,
-  useReducedMotion,
-  type Variants
-} from 'framer-motion';
+import { motion, useInView, useReducedMotion, type Variants } from 'framer-motion';
 import { useRef } from 'react';
 
 /* ------------------------------------------------------------------ */
@@ -63,13 +58,7 @@ interface RevealProps {
   once?: boolean;
 }
 
-export function Reveal({
-  children,
-  className,
-  delay = 0,
-  y = 32,
-  once = true
-}: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 32, once = true }: RevealProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once, margin: '-80px' });
   const prefersReduced = useReducedMotion();

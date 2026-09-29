@@ -39,6 +39,11 @@ data/analytics.json
 data/analytics.json.tmp
 data/*.tmp
 data/*.bak
+data/raw-assets/
+新建文件夹/
+
+# 本地数据快照（仅用于运维恢复，不进入 Git）
+backups/data/
 
 # ------------------------- 部署产物 -------------------------
 deploy-package.tar.gz

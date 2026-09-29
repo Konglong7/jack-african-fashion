@@ -16,8 +16,8 @@ export function AnnouncementBar({ siteContent }: { siteContent: SiteContent }) {
   return (
     <div className='bg-brand-black text-brand-cream text-xs sm:text-sm'>
       <div className='mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-2 sm:justify-between'>
-        <p className='truncate tracking-wide text-left sm:text-left'>
-          Wholesale Women&apos;s Fashion from Guangzhou · Ready Stock &amp; Custom Orders
+        <p className='truncate text-left tracking-wide sm:text-left'>
+          Jack African Fashion · Guangzhou African Women&apos;s Clothing Supplier
         </p>
         <a
           href={whatsappLink}
@@ -47,6 +47,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
     { label: 'New Arrivals', href: '/catalog?sort=newest' },
     { label: 'Custom Orders', href: '/custom-orders' },
     { label: 'About Us', href: '/about' },
+    { label: 'FAQ', href: '/faq' },
     { label: 'Contact', href: '/contact' }
   ];
 
@@ -190,9 +191,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                   href='/inquiry'
                   className='text-brand-brown hover:text-brand-orange relative flex p-1.5 transition-colors sm:p-2'
                   aria-label={
-                    inquiryCount > 0
-                      ? `Inquiry cart (${inquiryCount} items)`
-                      : 'Inquiry cart'
+                    inquiryCount > 0 ? `Inquiry cart (${inquiryCount} items)` : 'Inquiry cart'
                   }
                   title='Inquiry list'
                 >

@@ -30,9 +30,9 @@ const STEPS = [
   },
   {
     step: '02',
-    title: 'We Quote Based on Fabric, Size and Quantity',
+    title: 'Own Factory Quote & Production Plan',
     description:
-      'Our team checks fabric availability, production cost and gives you a competitive wholesale quote.',
+      'Our factory team reviews fabric, measurements, quantity and production requirements before providing a wholesale quotation.',
     icon: (
       <svg
         className='h-10 w-10'
@@ -64,9 +64,9 @@ const STEPS = [
   },
   {
     step: '04',
-    title: 'Production and Shipping',
+    title: 'Factory Production, Check & Handover',
     description:
-      'We produce, quality-check and arrange shipping to your country. You receive tracking updates.',
+      'Our factory produces the confirmed order, then goods are checked, packed and transferred to the agreed shipping partner.',
     icon: (
       <svg
         className='h-10 w-10'
@@ -87,40 +87,14 @@ export function CustomOrderProcess({ siteContent }: { siteContent: SiteContent }
 
   return (
     <section className='bg-brand-black text-brand-cream relative overflow-hidden py-12 sm:py-20'>
-      {/* Animated background elements */}
-      <motion.div
-        className='absolute top-0 left-0 h-full w-full'
+      {/* Warm ambient gold glow */}
+      <div
+        className='pointer-events-none absolute inset-0 opacity-30'
         style={{
-          backgroundImage:
-            'radial-gradient(circle at 20% 80%, rgba(212,160,23,0.1) 0%, transparent 50%)'
+          background:
+            'radial-gradient(circle at 20% 80%, rgba(212,175,55,0.25) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(217,107,11,0.15) 0%, transparent 50%)'
         }}
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%']
-        }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
       />
-
-      {/* Floating sparkle dots — opacity-only, frozen under reduced motion. */}
-      <div className='pointer-events-none absolute inset-0 overflow-hidden' aria-hidden='true'>
-        {[
-          { left: '10%', top: '20%' },
-          { left: '22%', top: '65%' },
-          { left: '33%', top: '12%' },
-          { left: '44%', top: '48%' },
-          { left: '55%', top: '80%' },
-          { left: '66%', top: '15%' }
-        ].map((p, i) => (
-          <span
-            key={i}
-            className='bg-brand-gold/20 absolute h-1 w-1 rounded-full'
-            style={{
-              left: p.left,
-              top: p.top,
-              animation: `hero-twinkle ${5 + (i % 4)}s ease-in-out ${(i % 6) * 0.5}s infinite`
-            }}
-          />
-        ))}
-      </div>
 
       <div className='relative mx-auto max-w-7xl px-4' ref={ref}>
         {/* Header */}
@@ -197,7 +171,7 @@ export function CustomOrderProcess({ siteContent }: { siteContent: SiteContent }
               }}
             >
               <motion.div
-                className='relative h-full overflow-hidden rounded-xl border border-white/10 bg-white/5 p-4 sm:p-6 backdrop-blur'
+                className='relative h-full overflow-hidden rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur sm:p-6'
                 whileHover={{
                   borderColor: 'rgba(212,160,23,0.3)',
                   backgroundColor: 'rgba(255,255,255,0.08)'
@@ -218,14 +192,16 @@ export function CustomOrderProcess({ siteContent }: { siteContent: SiteContent }
 
                 {/* Step number with glow */}
                 <motion.span
-                  className='font-display text-brand-gold/40 absolute top-3 right-3 sm:top-4 sm:right-4 text-2xl sm:text-4xl font-bold'
+                  className='font-display text-brand-gold/40 absolute top-3 right-3 text-2xl font-bold sm:top-4 sm:right-4 sm:text-4xl'
                   animate={{ opacity: 0.4 }}
                 >
                   {s.step}
                 </motion.span>
 
-                <h3 className='relative mt-1 sm:mt-3 mb-1 sm:mb-2 text-sm sm:text-lg font-semibold text-white line-clamp-2'>{s.title}</h3>
-                <p className='text-brand-cream/60 relative text-xs sm:text-sm leading-snug sm:leading-relaxed'>
+                <h3 className='relative mt-1 mb-1 line-clamp-2 text-sm font-semibold text-white sm:mt-3 sm:mb-2 sm:text-lg'>
+                  {s.title}
+                </h3>
+                <p className='text-brand-cream/60 relative text-xs leading-snug sm:text-sm sm:leading-relaxed'>
                   {s.description}
                 </p>
               </motion.div>
@@ -263,9 +239,9 @@ export function CustomOrderProcess({ siteContent }: { siteContent: SiteContent }
             transition={{ duration: 3, repeat: Infinity }}
           >
             <p className='text-brand-gold text-sm font-semibold sm:text-base'>
-              For custom production, MOQ is usually 100 pcs per style.
+              Custom-production MOQ depends on the style, fabric and factory requirements.
               <br className='hidden sm:block' />
-              Bigger quantity, better factory price.
+              Quantity, price and lead time are confirmed before production.
             </p>
           </motion.div>
 

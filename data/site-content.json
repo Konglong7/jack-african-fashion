@@ -1,22 +1,23 @@
 {
   "name": "Jack African Fashion",
-  "slogan": "Guangzhou Women's Fashion Wholesale for African Market",
-  "location": "Yulong Fashion Plaza",
+  "slogan": "Guangzhou African Women's Clothing Supplier",
+  "location": "Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China",
   "locationUrl": "https://www.google.com/maps/search/?api=1&query=Yulong+Fashion+Plaza+Guangzhou",
-  "business": "Women's Fashion Wholesale",
-  "whatsappNumber": "8613800000000",
-  "whatsappDisplay": "+86 138 0000 0000",
+  "business": "Women's Clothing Wholesale Supplier & Factory-Direct Manufacturer for African Markets",
+  "whatsappNumber": "8618926257367",
+  "whatsappDisplay": "+86 189 2625 7367",
+  "whatsappLink": "https://wa.me/message/3N5VOJCFAQIGO1",
   "defaultWhatsAppMessage": "Hello Jack, please add me on WhatsApp. I want to see current ready-stock styles, real stock photos/video, wholesale prices, and new arrivals.",
-  "heroEyebrow": "Guangzhou · African Market Wholesale",
-  "heroTitle": "Guangzhou Women's Fashion Wholesale for",
-  "heroAccent": "African Market",
-  "heroBody": "Professional Guangzhou womenswear wholesale support with ready stock, factory prices, custom styles, quality checking, and export packing for African boutiques and importers.",
-  "heroTrust": ["Ready Stock", "Factory Network", "Export Packing"],
+  "heroEyebrow": "Jack African Fashion · Guangzhou, China",
+  "heroTitle": "Guangzhou African Women's Clothing",
+  "heroAccent": "Wholesale Supplier",
+  "heroBody": "Jack African Fashion combines its own factory, Guangzhou office and Yulong Fashion Plaza showroom to supply ready-stock and custom women's clothing for African boutiques, wholesalers and importers.",
+  "heroTrust": ["Own Factory", "Guangzhou Showroom", "African B2B", "Export Packing"],
   "categories": [
     {
       "name": "Plus Size Dresses",
       "image": "/images/site/02-category-plus-size-dresses.webp",
-      "description": "Loose, flattering fits from XL to 5XL — a top seller across African boutiques."
+      "description": "Extended-size dress options from XL to 5XL, with measurements confirmed per style."
     },
     {
       "name": "Two Piece Sets",
@@ -26,7 +27,7 @@
     {
       "name": "Pleated Dresses",
       "image": "/images/site/04-category-pleated-styles.webp",
-      "description": "Stretch pleated styles in rich colours — our most re-ordered category."
+      "description": "Stretch pleated styles in multiple colors, subject to current batch confirmation."
     },
     {
       "name": "Maxi Dresses",

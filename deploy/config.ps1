@@ -16,6 +16,10 @@
 
 $ErrorActionPreference = 'Stop'
 
+$ConfigDir = if ($PSScriptRoot) { $PSScriptRoot } elseif ($PSCommandPath) { Split-Path -Parent $PSCommandPath } else { Join-Path (Get-Location).Path 'deploy' }
+$localConfig = Join-Path $ConfigDir 'deploy.config.local.ps1'
+if ($localConfig -and (Test-Path -LiteralPath $localConfig)) { . $localConfig }
+
 function Get-RequiredEnv {
     param(
         [Parameter(Mandatory = $true)][string]$Name,
@@ -69,9 +73,8 @@ $RemoteDir = Get-OptionalEnv -Name 'REMOTE_DIR' -Default '/var/www/jack-fashion-
 # 线上站点 URL —— 部署完成后用于验证公网可访问性
 $SiteUrl = Get-OptionalEnv -Name 'SITE_URL' -Default 'https://example.com'
 
+# 本地项目根目录
+$ProjectRoot = Get-OptionalEnv -Name 'PROJECT_ROOT' -Default (Split-Path -Parent $ConfigDir)
+
 # 打包产物路径
 $PackFile = Join-Path $ProjectRoot 'deploy-package.tar.gz'
-
-# 允许点源本地私有配置覆盖以上任意项（该文件不入库）
-$localConfig = Join-Path $PSScriptRoot 'deploy.config.local.ps1'
-if (Test-Path $localConfig) { . $localConfig }

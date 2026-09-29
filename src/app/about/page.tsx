@@ -1,14 +1,16 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { DeferredMapEmbed } from '@/components/DeferredMapEmbed';
+import { TrustProofGallery } from '@/components/trust/TrustProofGallery';
 import { getSiteContent } from '@/lib/siteContent';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 
 export const metadata: Metadata = {
-  title: "About Us | Guangzhou Women's Fashion Wholesale Base",
+  title: "About Jack African Fashion | Guangzhou Own-Factory Women's Clothing Supplier",
   description:
-    'Jack African Fashion operates from Yulong Fashion Plaza in Guangzhou, providing African boutiques, wholesalers and importers with ready stock, factory production, quality inspection, and export packing.'
+    'Jack African Fashion operates zamique.com as its official B2B website, with an own factory and office/showroom at Yulong Fashion Plaza in Guangzhou, serving African wholesale buyers.'
 };
 
 export default async function AboutPage() {
@@ -20,39 +22,39 @@ export default async function AboutPage() {
     'Hello Jack, I want to know more about your wholesale services and Guangzhou supply capability.'
   );
 
-  const heroProof = ['Yulong Fashion Plaza', 'Ready Stock', 'Factory Network', 'Export Packing'];
+  const heroProof = ['Own Factory', 'Yulong Showroom', 'Ready Stock', 'Export Packing'];
   const capabilities = [
     {
-      title: 'Factory coordination',
-      body: 'We work closely with production partners for repeat styles, custom references, size requests and bulk replenishment.'
+      title: 'Own factory production',
+      body: 'Custom styles are developed and produced through our own factory after fabric, size, quantity and production details are confirmed.'
     },
     {
-      title: 'Warehouse packing',
-      body: 'Ready-stock orders are sorted, counted, packed and prepared for export routes from Guangzhou.'
+      title: 'Guangzhou showroom',
+      body: 'Our office and showroom at Yulong Fashion Plaza support product selection, stock communication and buyer visits by appointment.'
     },
     {
       title: 'Quality inspection',
-      body: 'Fabric, stitching, colour, size mix and finishing are checked before orders leave our packing flow.'
+      body: 'Fabric, stitching, colour, size mix and finishing are checked against the confirmed order before packing.'
     },
     {
-      title: 'Custom production',
-      body: 'Send reference pictures, fabric direction and quantity. We coordinate sampling, quotation and production details.'
+      title: 'Export packing',
+      body: 'Orders are counted, packed and prepared in Guangzhou for the buyer’s nominated forwarder or an agreed shipping route.'
     },
     {
-      title: 'Africa route support',
-      body: 'We prepare clear order information for shipping partners familiar with African wholesale buyers.'
+      title: 'African B2B service',
+      body: 'We have confirmed service experience with boutiques, wholesalers and importers in Nigeria, Ghana, Kenya and other African markets.'
     }
   ];
   const process = [
     {
       step: '01',
       title: 'Source and select',
-      body: 'We track Guangzhou market supply and choose styles for African boutiques, importers and distributors.'
+      body: 'We confirm suitable Guangzhou styles and product details for African boutiques, importers and distributors.'
     },
     {
       step: '02',
       title: 'Produce or restock',
-      body: 'Fast sellers move through ready stock, while custom references are handled through factory production partners.'
+      body: 'Ready-stock orders are confirmed by batch, while custom references are developed and produced through our own factory.'
     },
     {
       step: '03',
@@ -62,14 +64,14 @@ export default async function AboutPage() {
     {
       step: '04',
       title: 'Ship and update',
-      body: 'We keep communication direct on WhatsApp, from product confirmation to shipping updates.'
+      body: 'We provide direct WhatsApp communication from product confirmation through packing and cargo handover.'
     }
   ];
   const trustStats = [
-    { value: '1300+', label: 'Tenants in Yulong market' },
+    { value: 'Own', label: 'Factory production' },
     { value: 'No.229', label: 'Guangyuan Xi Road' },
-    { value: 'B2B', label: 'Wholesale focus' },
-    { value: 'MOQ 30', label: 'Ready-stock minimum' }
+    { value: 'B2B', label: 'African market service' },
+    { value: 'By style', label: 'MOQ confirmed per item' }
   ];
 
   return (
@@ -93,11 +95,13 @@ export default async function AboutPage() {
               About Jack African Fashion
             </span>
             <h1 className='font-display mt-4 max-w-3xl text-4xl font-bold sm:text-5xl lg:text-6xl'>
-              Guangzhou Wholesale Base for African Women&apos;s Fashion
+              Guangzhou Women&apos;s Clothing Supplier with Own Factory
             </h1>
             <p className='text-brand-cream/80 mt-5 max-w-2xl text-base leading-relaxed sm:text-lg'>
-              From Yulong Fashion Plaza in Guangzhou, we connect African boutiques and importers
-              with ready stock, factory production, quality checking and export packing support.
+              Jack African Fashion operates zamique.com as its official B2B website. From our own
+              factory, Guangzhou office and Yulong Fashion Plaza showroom, we serve African
+              boutiques, wholesalers, importers and fashion retailers with ready stock and custom
+              production.
             </p>
             <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
               <Link
@@ -139,8 +143,8 @@ export default async function AboutPage() {
             <div className='grid gap-4 sm:grid-cols-2'>
               <div className='relative aspect-[4/5] overflow-hidden rounded-xl bg-white shadow-sm'>
                 <Image
-                  src={SITE_IMAGES.aboutShowroom}
-                  alt='Guangzhou womenswear wholesale showroom display'
+                  src={SITE_IMAGES.trust.showroomPillarJack}
+                  alt='Jack Fashion Guangzhou wholesale showroom at Yulong Fashion Plaza'
                   fill
                   sizes='(max-width: 640px) 100vw, 320px'
                   className='object-cover'
@@ -149,8 +153,8 @@ export default async function AboutPage() {
               <div className='grid gap-4'>
                 <div className='relative aspect-[4/3] overflow-hidden rounded-xl bg-white shadow-sm'>
                   <Image
-                    src={SITE_IMAGES.warehouseShipping}
-                    alt='Warehouse packing for African fashion wholesale orders'
+                    src={SITE_IMAGES.trust.sizeBust4xl}
+                    alt='True 4XL 120cm bust flat tape measurement and QC notebook'
                     fill
                     sizes='(max-width: 640px) 100vw, 320px'
                     className='object-cover'
@@ -158,8 +162,8 @@ export default async function AboutPage() {
                 </div>
                 <div className='relative aspect-[4/3] overflow-hidden rounded-xl bg-white shadow-sm'>
                   <Image
-                    src={SITE_IMAGES.customOrders}
-                    alt='Custom production support for women fashion wholesale'
+                    src={SITE_IMAGES.trust.waybillHandoverLagos}
+                    alt='Guangzhou to Lagos Nigeria cargo receipt waybill handover'
                     fill
                     sizes='(max-width: 640px) 100vw, 320px'
                     className='object-cover'
@@ -177,19 +181,23 @@ export default async function AboutPage() {
               </h2>
               <div className='text-brand-brown/80 mt-6 space-y-4 leading-relaxed'>
                 <p>
-                  Jack African Fashion is positioned inside Guangzhou&apos;s garment trading
-                  ecosystem, where showroom supply, factory production and shipping resources are
-                  close together. That lets us move quickly from style selection to order packing.
+                  Jack African Fashion is a Guangzhou women&apos;s clothing wholesale supplier and
+                  factory-direct manufacturer. zamique.com is our official B2B website, and our
+                  office and showroom are located at Yulong Fashion Plaza, No.229 Guangyuan Xi Road,
+                  Yuexiu District, Guangzhou.
                 </p>
                 <p>
-                  We focus on the African women&apos;s fashion market: bold dresses, plus-size
-                  shapes, two-piece sets, pleated styles, jumpsuits and custom references that match
-                  what local boutiques can actually sell.
+                  Our own factory supports custom production, while our Guangzhou showroom supports
+                  ready-stock selection. We supply African women&apos;s dresses, plus-size styles,
+                  two piece sets, women&apos;s suits, blazer pants sets, pleated dresses, knit
+                  dresses and jumpsuits. Availability, sizes, colors and MOQ are confirmed per
+                  style.
                 </p>
                 <p>
-                  Our job is not only to show products. We help buyers confirm styles, compare
-                  fabric direction, coordinate production, check goods and prepare orders for export
-                  with clear WhatsApp communication.
+                  We have confirmed B2B service experience with buyers in Nigeria, Ghana, Kenya and
+                  other African markets. Our team supports style confirmation, production, quality
+                  checking, export packing and cargo coordination with direct WhatsApp
+                  communication.
                 </p>
               </div>
 
@@ -207,13 +215,15 @@ export default async function AboutPage() {
                 ))}
               </div>
               <p className='text-brand-brown/55 mt-3 text-xs'>
-                Market tenant and address details are based on public Yulong Fashion Plaza
-                information.
+                Official office and showroom address: Yulong Fashion Plaza, No.229 Guangyuan Xi
+                Road, Yuexiu District, Guangzhou, China.
               </p>
             </div>
           </div>
         </div>
       </section>
+
+      <TrustProofGallery whatsappUrl={whatsappLink} />
 
       <section className='bg-white py-12 sm:py-16'>
         <div className='mx-auto max-w-7xl px-4'>
@@ -301,13 +311,7 @@ export default async function AboutPage() {
             </div>
 
             <div className='relative overflow-hidden rounded-xl border border-white bg-white shadow-sm'>
-              <iframe
-                title='Yulong Fashion Plaza location map'
-                src={mapEmbedUrl}
-                loading='lazy'
-                referrerPolicy='no-referrer-when-downgrade'
-                className='h-[360px] w-full sm:h-[430px]'
-              />
+              <DeferredMapEmbed title='Yulong Fashion Plaza location map' src={mapEmbedUrl} />
               <div className='absolute right-4 bottom-4 left-4 max-w-sm rounded-xl bg-white/95 p-4 shadow-sm'>
                 <p className='text-brand-orange text-xs font-semibold tracking-[0.18em] uppercase'>
                   Market address

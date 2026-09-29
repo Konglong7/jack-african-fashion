@@ -130,11 +130,21 @@ function UploadedItem({
             aria-label='Copy URL'
           >
             {copied ? (
-              <svg className='h-3.5 w-3.5 text-brand-emerald' fill='currentColor' viewBox='0 0 20 20'>
+              <svg
+                className='text-brand-emerald h-3.5 w-3.5'
+                fill='currentColor'
+                viewBox='0 0 20 20'
+              >
                 <path d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' />
               </svg>
             ) : (
-              <svg className='h-3.5 w-3.5' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+              <svg
+                className='h-3.5 w-3.5'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth={2}
+                viewBox='0 0 24 24'
+              >
                 <path d='M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h6a2 2 0 002-2M8 5a2 2 0 012-2h6a2 2 0 012 2v0M16 17h2a2 2 0 002-2V7a2 2 0 00-2-2' />
               </svg>
             )}
@@ -145,7 +155,13 @@ function UploadedItem({
             className='text-brand-brown hover:text-brand-orange rounded p-1 transition-colors'
             aria-label='View'
           >
-            <svg className='h-3.5 w-3.5' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+            <svg
+              className='h-3.5 w-3.5'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={2}
+              viewBox='0 0 24 24'
+            >
               <path d='M15 12a3 3 0 11-6 0 3 3 0 016 0z' />
               <path d='M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z' />
             </svg>
@@ -153,7 +169,7 @@ function UploadedItem({
         </div>
       </div>
       {copied && (
-        <span className='text-brand-emerald absolute right-1 bottom-1 rounded bg-brand-cream/90 px-1.5 py-0.5 text-[9px] font-semibold'>
+        <span className='text-brand-emerald bg-brand-cream/90 absolute right-1 bottom-1 rounded px-1.5 py-0.5 text-[9px] font-semibold'>
           Copied!
         </span>
       )}

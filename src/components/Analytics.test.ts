@@ -4,7 +4,10 @@ import { describe, expect, test } from 'vitest';
 
 const source = readFileSync(join(process.cwd(), 'src', 'components', 'Analytics.tsx'), 'utf8');
 const layout = readFileSync(join(process.cwd(), 'src', 'app', 'layout.tsx'), 'utf8');
-const apiRoute = readFileSync(join(process.cwd(), 'src', 'app', 'api', 'analytics', 'route.ts'), 'utf8');
+const apiRoute = readFileSync(
+  join(process.cwd(), 'src', 'app', 'api', 'analytics', 'route.ts'),
+  'utf8'
+);
 const admin = readFileSync(join(process.cwd(), 'src', 'app', 'admin', 'page.tsx'), 'utf8');
 const dashboardPath = join(process.cwd(), 'src', 'app', 'admin', 'AnalyticsDashboard.tsx');
 const dashboard = existsSync(dashboardPath) ? readFileSync(dashboardPath, 'utf8') : '';

@@ -22,11 +22,7 @@ interface Props {
   categories: string[];
 }
 
-export function CatalogClient({
-  products,
-  siteContent,
-  categories
-}: Props) {
+export function CatalogClient({ products, siteContent, categories }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -128,10 +124,7 @@ export function CatalogClient({
     return result;
   }, [category, debouncedSearch, sort, products]);
 
-  const visibleProducts = useMemo(
-    () => filtered.slice(0, displayLimit),
-    [filtered, displayLimit]
-  );
+  const visibleProducts = useMemo(() => filtered.slice(0, displayLimit), [filtered, displayLimit]);
   const hasMore = displayLimit < filtered.length;
 
   const resetFilters = () => {
@@ -206,7 +199,7 @@ export function CatalogClient({
               <button
                 key={cat}
                 onClick={() => setCategory(cat)}
-                className={`shrink-0 whitespace-nowrap rounded-full px-4 py-1.5 text-sm transition-colors ${
+                className={`shrink-0 rounded-full px-4 py-1.5 text-sm whitespace-nowrap transition-colors ${
                   category === cat
                     ? 'bg-brand-black text-white'
                     : 'text-brand-brown hover:bg-brand-sand/50 border-brand-sand border bg-white'
@@ -226,7 +219,7 @@ export function CatalogClient({
               <button
                 type='button'
                 onClick={() => setCategory('All')}
-                className='border-brand-sand bg-brand-sand/40 hover:bg-brand-sand inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium text-brand-black transition-colors'
+                className='border-brand-sand bg-brand-sand/40 hover:bg-brand-sand text-brand-black inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium transition-colors'
               >
                 Category: {category}
                 <span className='text-brand-brown/60 font-bold'>✕</span>
@@ -236,7 +229,7 @@ export function CatalogClient({
               <button
                 type='button'
                 onClick={() => setSearch('')}
-                className='border-brand-sand bg-brand-sand/40 hover:bg-brand-sand inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium text-brand-black transition-colors'
+                className='border-brand-sand bg-brand-sand/40 hover:bg-brand-sand text-brand-black inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium transition-colors'
               >
                 Search: &quot;{debouncedSearch.trim()}&quot;
                 <span className='text-brand-brown/60 font-bold'>✕</span>
@@ -246,7 +239,7 @@ export function CatalogClient({
               <button
                 type='button'
                 onClick={() => setSort('newest')}
-                className='border-brand-sand bg-brand-sand/40 hover:bg-brand-sand inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium text-brand-black transition-colors'
+                className='border-brand-sand bg-brand-sand/40 hover:bg-brand-sand text-brand-black inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-medium transition-colors'
               >
                 Sort: {SORT_OPTIONS.find((s) => s.value === sort)?.label}
                 <span className='text-brand-brown/60 font-bold'>✕</span>
@@ -337,7 +330,7 @@ export function CatalogClient({
           <button
             type='button'
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className='border-brand-sand/80 bg-white/95 text-brand-black hover:bg-brand-black hover:text-white fixed right-4 bottom-20 z-40 flex h-10 w-10 items-center justify-center rounded-full border shadow-xl backdrop-blur transition-all active:scale-95 md:right-8 md:bottom-8'
+            className='border-brand-sand/80 text-brand-black hover:bg-brand-black fixed right-4 bottom-20 z-40 flex h-10 w-10 items-center justify-center rounded-full border bg-white/95 shadow-xl backdrop-blur transition-all hover:text-white active:scale-95 md:right-8 md:bottom-8'
             aria-label='Scroll to top'
             title='Back to top'
           >

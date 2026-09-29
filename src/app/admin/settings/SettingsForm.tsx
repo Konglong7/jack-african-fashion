@@ -99,6 +99,17 @@ export function SettingsForm({ initialSettings }: { initialSettings: SiteContent
                   className='input-control'
                 />
               </Field>
+              <Field
+                label='WhatsApp direct link'
+                hint='Official wa.me link used by all site CTA buttons'
+              >
+                <input
+                  value={form.whatsappLink}
+                  onChange={(e) => set('whatsappLink', e.target.value)}
+                  className='input-control'
+                  placeholder='https://wa.me/message/...'
+                />
+              </Field>
             </div>
             <Field label='Location'>
               <input
@@ -107,7 +118,10 @@ export function SettingsForm({ initialSettings }: { initialSettings: SiteContent
                 className='input-control'
               />
             </Field>
-            <Field label='Location URL' hint='Google Maps or other map link shown on footer and contact page'>
+            <Field
+              label='Location URL'
+              hint='Google Maps or other map link shown on footer and contact page'
+            >
               <input
                 value={form.locationUrl}
                 onChange={(e) => set('locationUrl', e.target.value)}

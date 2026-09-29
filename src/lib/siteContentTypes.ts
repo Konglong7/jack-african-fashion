@@ -12,6 +12,7 @@ export interface SiteContent {
   business: string;
   whatsappNumber: string;
   whatsappDisplay: string;
+  whatsappLink: string;
   defaultWhatsAppMessage: string;
   heroEyebrow: string;
   heroTitle: string;
@@ -28,27 +29,29 @@ export interface SiteContent {
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   name: 'Jack African Fashion',
-  slogan: "Guangzhou Women's Fashion Wholesale for African Market",
-  location: 'Yulong Fashion Plaza',
+  slogan: "Guangzhou African Women's Clothing Supplier",
+  location: 'Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
   // 通用地图搜索链接（不含具体商户点位）
   locationUrl: 'https://www.google.com/maps/search/?api=1&query=Yulong+Fashion+Plaza+Guangzhou',
-  business: "Women's Fashion Wholesale",
-  // Demo 示例号码：+86 138 0000 0000（真实号码请在后台「站点设置」中填写）
-  whatsappNumber: '8613800000000',
-  whatsappDisplay: '+86 138 0000 0000',
+  business: "Women's Clothing Wholesale Supplier & Factory-Direct Manufacturer for African Markets",
+  // 官方 WhatsApp 联系方式：+86 189 2625 7367
+  whatsappNumber: '8618926257367',
+  whatsappDisplay: '+86 189 2625 7367',
+  whatsappLink: 'https://wa.me/message/3N5VOJCFAQIGO1',
   defaultWhatsAppMessage:
     'Hello Jack, please add me on WhatsApp. I want to see current ready-stock styles, real stock photos/video, wholesale prices, and new arrivals.',
-  heroEyebrow: 'Guangzhou · African Market Wholesale',
-  heroTitle: "Guangzhou Women's Fashion Wholesale for",
-  heroAccent: 'African Market',
+  heroEyebrow: 'Jack African Fashion · Guangzhou, China',
+  heroTitle: "Guangzhou African Women's Clothing",
+  heroAccent: 'Wholesale Supplier',
   heroBody:
-    'Professional Guangzhou womenswear wholesale support with ready stock, factory prices, custom styles, quality checking, and export packing for African boutiques and importers.',
-  heroTrust: ['Ready Stock', 'Factory Network', 'Export Packing'],
+    "Jack African Fashion combines its own factory, Guangzhou office and Yulong Fashion Plaza showroom to supply ready-stock and custom women's clothing for African boutiques, wholesalers and importers.",
+  heroTrust: ['Own Factory', 'Guangzhou Showroom', 'African B2B', 'Export Packing'],
   categories: [
     {
       name: 'Plus Size Dresses',
       image: '/images/site/02-category-plus-size-dresses.webp',
-      description: 'Loose, flattering fits from XL to 5XL — a top seller across African boutiques.'
+      description:
+        'Extended-size dress options from XL to 5XL, with measurements confirmed per style.'
     },
     {
       name: 'Two Piece Sets',
@@ -58,7 +61,8 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     {
       name: 'Pleated Dresses',
       image: '/images/site/04-category-pleated-styles.webp',
-      description: 'Stretch pleated styles in rich colours — our most re-ordered category.'
+      description:
+        'Stretch pleated styles in multiple colors, subject to current batch confirmation.'
     },
     {
       name: 'Maxi Dresses',
@@ -102,6 +106,7 @@ export function normalizeSiteContent(input: unknown): SiteContent {
       ''
     ),
     whatsappDisplay: text(data.whatsappDisplay, DEFAULT_SITE_CONTENT.whatsappDisplay),
+    whatsappLink: whatsappUrl(data.whatsappLink, DEFAULT_SITE_CONTENT.whatsappLink),
     defaultWhatsAppMessage: text(
       data.defaultWhatsAppMessage,
       DEFAULT_SITE_CONTENT.defaultWhatsAppMessage
@@ -147,7 +152,27 @@ function imagePath(value: unknown): string | undefined {
 }
 
 export function siteWhatsAppLink(content: SiteContent, message = content.defaultWhatsAppMessage) {
+  if (content.whatsappLink) return content.whatsappLink;
   return `https://wa.me/${content.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+const SOCIAL_PLATFORM_HOME_PATHS = new Set([
+  'facebook.com/',
+  'www.facebook.com/',
+  'tiktok.com/',
+  'www.tiktok.com/',
+  'instagram.com/',
+  'www.instagram.com/'
+]);
+
+export function isConfiguredSocialLink(value: string): boolean {
+  try {
+    const parsed = new URL(value);
+    if (parsed.protocol !== 'https:' && parsed.protocol !== 'http:') return false;
+    const key = `${parsed.hostname.toLowerCase()}${parsed.pathname.replace(/\/+$/, '/')}`;
+    return !SOCIAL_PLATFORM_HOME_PATHS.has(key);
+  } catch {
+    return false;
+  }
 }
 
 function text(value: unknown, fallback: string): string {
@@ -160,6 +185,17 @@ function url(value: unknown, fallback: string): string {
   return /^(\/|https?:\/\/)/.test(trimmed) ? trimmed : fallback;
 }
 
+function whatsappUrl(value: unknown, fallback: string): string {
+  if (typeof value !== 'string') return fallback;
+  try {
+    const parsed = new URL(value.trim());
+    return parsed.protocol === 'https:' && parsed.hostname === 'wa.me'
+      ? parsed.toString()
+      : fallback;
+  } catch {
+    return fallback;
+  }
+}
 function stringArray(value: unknown, fallback: string[]): string[] {
   if (!Array.isArray(value)) return fallback;
   const items = value.map((item) => (typeof item === 'string' ? item.trim() : '')).filter(Boolean);

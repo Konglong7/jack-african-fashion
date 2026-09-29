@@ -58,11 +58,11 @@ export function CustomOrdersClient({
     e.preventDefault();
     const refImagesNote =
       referenceFiles.length > 0
-        ? `\n\nReference images attached: ${referenceFiles.map((f) => f.name).join(', ')}`
+        ? `\n\nReference files selected on the website (attach them manually in WhatsApp): ${referenceFiles.map((file) => file.name).join(', ')}`
         : '';
     const whatsappMsg = `Hello Jack, I want to make a custom order.\n\nName: ${formData.name}\nCountry: ${formData.country}\nWhatsApp: ${formData.whatsapp}\nCategory: ${formData.category}\nQuantity: ${formData.quantity}\n\n${formData.message}${refImagesNote}`;
     setSubmittedMsg(whatsappMsg);
-    window.open(siteWhatsAppLink(siteContent, whatsappMsg), '_blank');
+    window.open(siteWhatsAppLink(siteContent, whatsappMsg), '_blank', 'noopener,noreferrer');
     setSubmitted(true);
   };
 
@@ -78,8 +78,9 @@ export function CustomOrdersClient({
             Custom Women&apos;s Fashion Orders
           </h1>
           <p className='text-brand-cream/70 mx-auto mt-4 max-w-2xl leading-relaxed'>
-            Tell us what style you need. Send us pictures, size details and quantity. We will check
-            fabric, production cost and give you a suitable wholesale quote.
+            Tell us what style you need. Our own factory reviews reference pictures, size details,
+            fabric direction and quantity before confirming custom-production feasibility and a
+            wholesale quotation.
           </p>
         </div>
       </section>
@@ -100,9 +101,9 @@ export function CustomOrdersClient({
           {/* MOQ notice */}
           <div className='bg-brand-gold/10 border-brand-gold/30 mb-8 rounded-xl border p-5 text-center'>
             <p className='text-brand-brown text-sm font-medium sm:text-base'>
-              For custom production, MOQ is usually{' '}
-              <span className='font-bold'>100 pcs per style</span>. For ready stock, small wholesale
-              orders are also available.
+              Custom-production MOQ depends on the style, fabric, workmanship and factory
+              requirements. We confirm the applicable quantity, price and lead time before sampling
+              or production.
             </p>
           </div>
 
@@ -114,11 +115,12 @@ export function CustomOrdersClient({
                 </svg>
               </div>
               <h2 className='font-display text-brand-black mb-3 text-2xl font-bold'>
-                Inquiry Sent!
+                WhatsApp Draft Prepared
               </h2>
               <p className='text-brand-brown/70 mx-auto mb-6 max-w-md'>
-                We&apos;ve opened WhatsApp with your details pre-filled. If it didn&apos;t open
-                automatically, please message us directly.
+                Your order details were prepared for WhatsApp. If you selected reference files,
+                attach them manually in the WhatsApp conversation; browsers cannot attach local
+                files to a WhatsApp link automatically.
               </p>
               <div className='flex flex-col items-center justify-center gap-3 sm:flex-row'>
                 <a
@@ -142,7 +144,7 @@ export function CustomOrdersClient({
                       window.setTimeout(() => setCopied(false), 2000);
                     }
                   }}
-                  className='border-brand-sand hover:border-brand-orange hover:text-brand-orange inline-flex items-center justify-center rounded-full border bg-white px-6 py-3.5 font-semibold text-brand-brown transition-colors'
+                  className='border-brand-sand hover:border-brand-orange hover:text-brand-orange text-brand-brown inline-flex items-center justify-center rounded-full border bg-white px-6 py-3.5 font-semibold transition-colors'
                 >
                   {copied ? 'Copied to Clipboard!' : 'Copy Order Text'}
                 </button>

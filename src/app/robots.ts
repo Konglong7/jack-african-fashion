@@ -1,11 +1,29 @@
-export default function robots() {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+import type { MetadataRoute } from 'next';
+import { getSiteOrigin } from '@/lib/siteUrl';
+
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = getSiteOrigin();
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/admin/', '/api/']
-    },
-    sitemap: `${baseUrl}/sitemap.xml`
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/admin/', '/api/', '/inquiry']
+      },
+      {
+        userAgent: [
+          'GPTBot',
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'PerplexityBot',
+          'ClaudeBot',
+          'Google-Extended'
+        ],
+        allow: '/',
+        disallow: ['/admin/', '/api/', '/inquiry']
+      }
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl
   };
 }

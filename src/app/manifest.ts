@@ -2,7 +2,7 @@ export default function manifest() {
   return {
     name: 'Jack African Fashion',
     short_name: 'Jack Fashion',
-    description: "Guangzhou Women's Fashion Wholesale for African Market",
+    description: "Jack African Fashion — Guangzhou African women's clothing supplier",
     start_url: '/',
     display: 'standalone',
     background_color: '#faf6f0',

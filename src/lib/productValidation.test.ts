@@ -6,13 +6,47 @@ describe('normalizeProductInput', () => {
   it('uses broad default sizes and colors when omitted', () => {
     const result = normalizeProductInput({
       name: 'AI Uploaded Dress',
-      category: 'Maxi Dresses'
+      category: 'Maxi Dresses',
+      moq: 500
     });
 
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.product.sizes).toEqual(DEFAULT_PRODUCT_SIZES);
     expect(result.product.colors).toEqual(DEFAULT_PRODUCT_COLORS);
+  });
+
+  it('requires an explicit MOQ instead of inventing a low default', () => {
+    const result = normalizeProductInput({
+      name: 'MOQ Missing Dress',
+      category: 'Maxi Dresses'
+    });
+
+    expect(result.ok).toBe(false);
+    if (result.ok) return;
+    expect(result.error).toContain('MOQ');
+  });
+
+  it('drops MOQ options below the main MOQ and uses the main MOQ when omitted', () => {
+    const result = normalizeProductInput({
+      name: 'MOQ Rules Dress',
+      category: 'Maxi Dresses',
+      moq: 500,
+      moqOptions: [100, 500, 1000]
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.product.moqOptions).toEqual([500, 1000]);
+
+    const withoutOptions = normalizeProductInput({
+      name: 'MOQ Base Dress',
+      category: 'Maxi Dresses',
+      moq: 500
+    });
+    expect(withoutOptions.ok).toBe(true);
+    if (!withoutOptions.ok) return;
+    expect(withoutOptions.product.moqOptions).toEqual([500]);
   });
 
   it('rejects empty category values', () => {
@@ -28,7 +62,8 @@ describe('normalizeProductInput', () => {
   it('accepts custom admin-managed categories', () => {
     const result = normalizeProductInput({
       name: 'Linen Dress',
-      category: 'Linen Dresses'
+      category: 'Linen Dresses',
+      moq: 500
     });
 
     expect(result.ok).toBe(true);
@@ -62,6 +97,7 @@ describe('normalizeProductInput', () => {
     const result = normalizeProductInput({
       name: 'Boutique Dress',
       category: 'Maxi Dresses',
+      moq: 500,
       detailPage: {
         specs: [
           { label: 'Lead time', value: '7-15 days' },
@@ -136,7 +172,8 @@ describe('normalizeProductInput', () => {
   it('keeps detailPage optional for existing products', () => {
     const result = normalizeProductInput({
       name: 'Legacy Dress',
-      category: 'Pleated Dresses'
+      category: 'Pleated Dresses',
+      moq: 500
     });
 
     expect(result.ok).toBe(true);

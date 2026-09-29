@@ -276,7 +276,7 @@ function ProductAdminCard({
   return (
     <div className='bg-brand-sand/30 overflow-hidden rounded-xl bg-white shadow-sm'>
       <div
-        className='group relative cursor-pointer bg-brand-sand/40'
+        className='group bg-brand-sand/40 relative cursor-pointer'
         onContextMenu={onContextMenu}
         onClick={onOpenCategoryMenu}
         title='Right-click to change category'
@@ -335,7 +335,7 @@ function ProductAdminCard({
           <button
             onClick={onDelete}
             disabled={deleting}
-            className='text-brand-brown/60 hover:bg-red-50 hover:text-red-600 rounded-lg px-2 py-1 text-xs font-bold transition-colors disabled:opacity-50'
+            className='text-brand-brown/60 rounded-lg px-2 py-1 text-xs font-bold transition-colors hover:bg-red-50 hover:text-red-600 disabled:opacity-50'
             aria-label='Delete'
           >
             {deleting ? '…' : 'Delete'}
@@ -369,7 +369,7 @@ function CategoryMenu({
 
   return (
     <div
-      className='fixed z-50 w-60 overflow-hidden rounded-xl border border-brand-sand bg-white shadow-xl'
+      className='border-brand-sand fixed z-50 w-60 overflow-hidden rounded-xl border bg-white shadow-xl'
       style={{ left, top }}
       onClick={(e) => e.stopPropagation()}
     >
@@ -419,9 +419,7 @@ function PublishingStatus({ product }: { product: Product }) {
     <div className='space-y-1'>
       <span
         className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${
-          ready
-            ? 'bg-brand-emerald/10 text-brand-emerald'
-            : 'bg-brand-gold/10 text-brand-brown'
+          ready ? 'bg-brand-emerald/10 text-brand-emerald' : 'bg-brand-gold/10 text-brand-brown'
         }`}
       >
         {summary.label}

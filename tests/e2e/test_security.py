@@ -48,8 +48,9 @@ def assert_true(condition, message):
 def main():
     status, headers, _ = request("/admin")
     assert_true(status == 307, f"Expected /admin to redirect when unauthenticated, got {status}")
+    login_location = urllib.parse.urlparse(headers.get("location", ""))
     assert_true(
-        headers.get("location", "").startswith("/admin/login"),
+        login_location.path == "/admin/login",
         f"Expected /admin redirect to login, got {headers.get('location')}",
     )
 
@@ -76,9 +77,20 @@ def main():
         opener=auth_opener,
     )
     assert_true(status == 200, f"Expected valid login to return 200, got {status}: {body[:120]}")
-    assert_true(any(cookie.name == "jack_admin_session" for cookie in cookie_jar), "Missing admin session cookie")
+    session_cookie = next(
+        (cookie for cookie in cookie_jar if cookie.name == "jack_admin_session"),
+        None,
+    )
+    assert_true(session_cookie is not None, "Missing admin session cookie")
 
-    status, _, body = request("/api/admin/products", opener=auth_opener)
+    # Secure cookies are intentionally not sent by CookieJar over local HTTP.
+    # The server-side auth path is still tested by explicitly replaying the
+    # cookie received from the successful login response.
+    status, _, body = request(
+        "/api/admin/products",
+        headers={"Cookie": f"{session_cookie.name}={session_cookie.value}"},
+        opener=auth_opener,
+    )
     assert_true(status == 200, f"Expected authenticated API to return 200, got {status}: {body[:120]}")
     assert_true('"products"' in body, "Expected products JSON after authenticated request")
 

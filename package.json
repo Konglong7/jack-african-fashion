@@ -9,6 +9,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
+    "verify:assets": "node scripts/verify-assets.mjs",
+    "data:backup": "node scripts/data-snapshot.mjs backup",
+    "data:list": "node scripts/data-snapshot.mjs list",
+    "data:restore": "node scripts/data-snapshot.mjs restore",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "type-check": "tsc --noEmit"

@@ -60,6 +60,10 @@ export function getReadinessSummary(product: Product): {
 function hasGalleryImages(product: Product): boolean {
   return (
     Boolean(product.images && product.images.length > 1) ||
-    Boolean(product.detailPage?.detailSections?.some((section) => section.enabled !== false && section.image))
+    Boolean(
+      product.detailPage?.detailSections?.some(
+        (section) => section.enabled !== false && section.image
+      )
+    )
   );
 }

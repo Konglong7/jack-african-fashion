@@ -5,7 +5,9 @@ import type { Product } from './db';
  * For the image-led inquiry workflow, FAQs should complement WhatsApp conversations
  * rather than replace them.
  */
-export function DEFAULT_PRODUCT_FAQ(productName: string): Array<{ question: string; answer: string }> {
+export function DEFAULT_PRODUCT_FAQ(
+  productName: string
+): Array<{ question: string; answer: string }> {
   return [
     {
       question: 'Can I mix colors and sizes?',
@@ -13,15 +15,18 @@ export function DEFAULT_PRODUCT_FAQ(productName: string): Array<{ question: stri
     },
     {
       question: 'Can you produce a similar style from my picture?',
-      answer: 'Yes. Send reference photos, target quantity, fabric expectations, and destination market. We can produce custom orders for most styles at reasonable quantities.'
+      answer:
+        'Yes. Send reference photos, target quantity, fabric expectations, and destination market. We can produce custom orders for most styles at reasonable quantities.'
     },
     {
       question: 'How do I get the best wholesale price?',
-      answer: "Share quantity, size ratio, colors, shipping destination, and whether you need ready stock or custom production. We'll provide a competitive quote within 24 hours."
+      answer:
+        "Share quantity, size ratio, colors, shipping destination, and whether you need ready stock or custom production. We'll provide a competitive quote within 24 hours."
     },
     {
       question: 'Do you check quality before shipping?',
-      answer: 'Yes. Fabric, stitching, size mix, and packing can be checked before dispatch. We accept photos or video upon request.'
+      answer:
+        'Yes. Fabric, stitching, size mix, and packing can be checked before dispatch. We accept photos or video upon request.'
     }
   ];
 }
@@ -74,9 +79,8 @@ export const DEFAULT_PRODUCT_COLORS = [
 /**
  * Size requirement note text for product detail pages.
  */
-export const SIZE_REQUIREMENT_NOTE = (
-  'Available sizes are shown above. Send your preferred size ratio on WhatsApp before quotation.'
-);
+export const SIZE_REQUIREMENT_NOTE =
+  'Available sizes are shown above. Send your preferred size ratio on WhatsApp before quotation.';
 
 /**
  * Gets product-specific sizes, falling back to default broad sizes.

@@ -71,10 +71,7 @@ export default function AdminUploadPage() {
   }
 
   // Safely manage blob URLs for file previews and revoke on cleanup
-  const filePreviewUrls = useMemo(
-    () => files.map((f) => URL.createObjectURL(f)),
-    [files]
-  );
+  const filePreviewUrls = useMemo(() => files.map((f) => URL.createObjectURL(f)), [files]);
 
   useEffect(() => {
     return () => {

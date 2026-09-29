@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { buildFooterLinks } from '@/lib/siteNavigation';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import { siteWhatsAppLink } from '@/lib/siteContentTypes';
+import { isConfiguredSocialLink, siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { WhatsAppIcon } from '@/components/Icons';
 
 export function Footer({ siteContent }: { siteContent: SiteContent }) {
@@ -34,7 +34,7 @@ export function Footer({ siteContent }: { siteContent: SiteContent }) {
 
       <div className='relative mx-auto max-w-7xl px-4 py-12 sm:py-16' ref={ref}>
         <motion.div
-          className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-12'
+          className='grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-8'
           initial='hidden'
           animate={inView ? 'visible' : 'hidden'}
           variants={{
@@ -56,12 +56,17 @@ export function Footer({ siteContent }: { siteContent: SiteContent }) {
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 }}
             >
-              <h3 className='font-display mb-1 text-2xl font-bold text-white'>Jack</h3>
-              <p className='text-brand-sand text-xs tracking-[0.2em] uppercase'>African Fashion</p>
+              <h3 className='font-display mb-1 text-2xl font-bold text-white'>
+                Jack African Fashion
+              </h3>
+              <p className='text-brand-sand text-xs tracking-[0.2em] uppercase'>
+                Guangzhou · African Market · B2B Wholesale
+              </p>
             </motion.div>
             <p className='text-brand-sand/80 mb-6 max-w-md text-sm leading-relaxed'>
-              {siteContent.slogan}. We provide ready stock, sourcing support and custom production
-              for boutiques, wholesalers and importers across Africa.
+              Jack African Fashion is a Guangzhou-based African women&apos;s clothing supplier for
+              boutiques, wholesalers, importers and fashion retailers. Ready stock and custom
+              production are confirmed by style and quantity.
             </p>
             <div className='text-brand-sand/80 space-y-2 text-sm'>
               <motion.p
@@ -108,7 +113,8 @@ export function Footer({ siteContent }: { siteContent: SiteContent }) {
           {/* Link columns */}
           {[
             { title: 'Company', links: footerLinks.company },
-            { title: 'Products', links: footerLinks.products },
+            { title: 'Wholesale', links: footerLinks.products },
+            { title: 'Markets', links: footerLinks.markets },
             { title: 'Help', links: footerLinks.help }
           ].map((column, colIndex) => (
             <motion.div
@@ -196,22 +202,26 @@ export function Footer({ siteContent }: { siteContent: SiteContent }) {
                   ),
                   label: 'Instagram'
                 }
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='text-brand-sand/60 transition-transform duration-200 hover:-translate-y-0.5 hover:text-white'
-                  aria-label={social.label}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1 }
-                  }}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              ]
+                .filter(
+                  (social) => social.label === 'WhatsApp' || isConfiguredSocialLink(social.href)
+                )
+                .map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-brand-sand/60 transition-transform duration-200 hover:-translate-y-0.5 hover:text-white'
+                    aria-label={social.label}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1 }
+                    }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
             </motion.div>
           </div>
         </motion.div>

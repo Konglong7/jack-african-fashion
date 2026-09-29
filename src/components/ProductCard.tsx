@@ -73,6 +73,19 @@ export function ProductCard({
           </div>
         </Link>
 
+        {/* Status badge at top-left */}
+        <div className='absolute top-2.5 left-2.5 z-20 flex flex-wrap gap-1'>
+          {product.isNew ? (
+            <span className='bg-brand-gold text-brand-black rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-sm'>
+              New
+            </span>
+          ) : product.stockType.includes('Ready') ? (
+            <span className='bg-brand-black/85 text-brand-gold ring-brand-gold/40 rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-sm ring-1 backdrop-blur-sm'>
+              Ready Stock
+            </span>
+          ) : null}
+        </div>
+
         {/* Quick download button at top-right */}
         <button
           type='button'
@@ -80,24 +93,51 @@ export function ProductCard({
           disabled={downloading}
           className={`absolute top-2.5 right-2.5 z-20 flex h-8 w-8 items-center justify-center rounded-full shadow-md backdrop-blur transition-all ${
             saved
-              ? 'bg-emerald-600 text-white opacity-100 scale-110'
-              : 'bg-white/90 text-brand-black opacity-85 hover:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 hover:bg-white hover:scale-105 active:scale-95'
+              ? 'scale-110 bg-emerald-600 text-white opacity-100'
+              : 'text-brand-black bg-white/90 opacity-85 hover:scale-105 hover:bg-white hover:opacity-100 active:scale-95 sm:opacity-0 sm:group-hover:opacity-100'
           }`}
           aria-label={`Save ${product.name} photo`}
           title='Save photo for WhatsApp status or reselling'
         >
           {downloading ? (
             <svg className='h-3.5 w-3.5 animate-spin' viewBox='0 0 24 24' fill='none'>
-              <circle className='opacity-25' cx='12' cy='12' r='10' stroke='currentColor' strokeWidth='4' />
-              <path className='opacity-75' fill='currentColor' d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z' />
+              <circle
+                className='opacity-25'
+                cx='12'
+                cy='12'
+                r='10'
+                stroke='currentColor'
+                strokeWidth='4'
+              />
+              <path
+                className='opacity-75'
+                fill='currentColor'
+                d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+              />
             </svg>
           ) : saved ? (
-            <svg className='h-4 w-4 text-white' fill='none' stroke='currentColor' strokeWidth={2.5} viewBox='0 0 24 24'>
+            <svg
+              className='h-4 w-4 text-white'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={2.5}
+              viewBox='0 0 24 24'
+            >
               <path strokeLinecap='round' strokeLinejoin='round' d='M5 13l4 4L19 7' />
             </svg>
           ) : (
-            <svg className='h-4 w-4' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
-              <path strokeLinecap='round' strokeLinejoin='round' d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.5V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3' />
+            <svg
+              className='h-4 w-4'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={2}
+              viewBox='0 0 24 24'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.5V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3'
+              />
             </svg>
           )}
         </button>
@@ -106,18 +146,18 @@ export function ProductCard({
       {/* Content */}
       <div className='flex flex-1 flex-col p-3 sm:p-4'>
         <Link href={`/products/${product.slug}`}>
-          <h3 className='mb-1.5 min-h-10 text-sm font-semibold text-brand-black line-clamp-2 transition-colors group-hover:text-brand-orange sm:text-base sm:min-h-12'>
+          <h3 className='text-brand-black group-hover:text-brand-orange mb-1.5 line-clamp-2 min-h-10 text-sm font-semibold transition-colors sm:min-h-12 sm:text-base'>
             {product.name}
           </h3>
         </Link>
 
-        <p className='mb-1.5 min-h-4 text-xs font-semibold text-brand-brown/70 line-clamp-1'>
+        <p className='text-brand-brown/70 mb-1.5 line-clamp-1 min-h-4 text-xs font-semibold'>
           {product.stockType.includes('Ready') ? 'Ready Stock' : product.stockType} ·{' '}
           {product.category}
         </p>
 
-        <p className='mb-3 min-h-10 text-xs leading-5 text-brand-brown/70'>
-          MOQ <span className='font-bold text-brand-black'>{product.moq} pcs</span> · Colors and
+        <p className='text-brand-brown/70 mb-3 min-h-10 text-xs leading-5'>
+          MOQ <span className='text-brand-black font-bold'>{product.moq} pcs</span> · Colors and
           sizes confirmed on WhatsApp
         </p>
 
@@ -128,14 +168,14 @@ export function ProductCard({
             target='_blank'
             rel='noopener noreferrer'
             aria-label={`Ask for ${product.name} price on WhatsApp`}
-            className='bg-brand-black hover:bg-brand-orange active:scale-[0.98] inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2.5 text-xs sm:text-sm font-semibold text-white transition-all'
+            className='bg-brand-black hover:bg-brand-orange inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2.5 text-xs font-semibold text-white transition-all active:scale-[0.98] sm:text-sm'
           >
             <WhatsAppIcon className='h-4 w-4 shrink-0' />
             <span className='truncate'>Ask Stock on WhatsApp</span>
           </a>
           <InquiryAddButton
             product={product}
-            className='text-brand-brown hover:text-brand-orange active:scale-[0.98] inline-flex w-full items-center justify-center py-1.5 text-xs font-bold transition-all'
+            className='text-brand-brown hover:text-brand-orange inline-flex w-full items-center justify-center py-1.5 text-xs font-bold transition-all active:scale-[0.98]'
           />
         </div>
       </div>

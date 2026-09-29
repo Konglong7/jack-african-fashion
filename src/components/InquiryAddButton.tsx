@@ -39,12 +39,12 @@ export function InquiryAddButton({
       type='button'
       onClick={addToInquiry}
       className={`${className} ${
-        added ? 'text-brand-emerald ring-1 ring-brand-emerald/40' : ''
+        added ? 'text-brand-emerald ring-brand-emerald/40 ring-1' : ''
       } transition-all duration-200 active:scale-95`}
     >
       {added ? (
         <span className='inline-flex items-center justify-center gap-1.5'>
-          <CheckIcon className='h-3.5 w-3.5 text-brand-emerald shrink-0' />
+          <CheckIcon className='text-brand-emerald h-3.5 w-3.5 shrink-0' />
           Added
         </span>
       ) : (

@@ -1,4 +1,5 @@
 import type { Product } from './db';
+import { absoluteSiteUrl } from './siteUrl';
 
 export interface InquiryItem {
   id: string;
@@ -48,6 +49,7 @@ export function buildInquiryMessage(items: InquiryItem[]): string {
     [
       `${index + 1}. ${item.name}`,
       `Style No: ${item.slug}`,
+      `Link: ${absoluteSiteUrl(`/products/${item.slug}`)}`,
       `Color: ${item.color || 'To confirm'}`,
       `Size: ${item.size || 'To confirm'}`,
       `Quantity: ${Math.max(item.moq, item.quantity || item.moq)} pcs`
@@ -55,7 +57,7 @@ export function buildInquiryMessage(items: InquiryItem[]): string {
   );
 
   return [
-    'Hello, I am interested in these wholesale styles:',
+    'Hello Jack, I am interested in these wholesale styles:',
     '',
     ...lines.flatMap((line) => [line, '']),
     'Please send me the wholesale price and more details.'
