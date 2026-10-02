@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
+import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, siteWhatsAppMessageLink, type SiteContent } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { WhatsAppIcon, UploadIcon, XIcon } from '@/components/Icons';
 
@@ -62,7 +62,7 @@ export function CustomOrdersClient({
         : '';
     const whatsappMsg = `Hello Jack, I want to make a custom order.\n\nName: ${formData.name}\nCountry: ${formData.country}\nWhatsApp: ${formData.whatsapp}\nCategory: ${formData.category}\nQuantity: ${formData.quantity}\n\n${formData.message}${refImagesNote}`;
     setSubmittedMsg(whatsappMsg);
-    window.open(siteWhatsAppLink(siteContent, whatsappMsg), '_blank', 'noopener,noreferrer');
+    window.open(siteWhatsAppMessageLink(siteContent, whatsappMsg), '_blank', 'noopener,noreferrer');
     setSubmitted(true);
   };
 
@@ -124,7 +124,7 @@ export function CustomOrdersClient({
               </p>
               <div className='flex flex-col items-center justify-center gap-3 sm:flex-row'>
                 <a
-                  href={siteWhatsAppLink(
+                  href={siteWhatsAppMessageLink(
                     siteContent,
                     submittedMsg || 'Hello Jack, I want to make a custom order.'
                   )}

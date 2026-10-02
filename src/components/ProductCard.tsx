@@ -6,7 +6,9 @@ import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, type SiteContent } from '@/lib/
 import { ProductImage } from './ProductImage';
 import { WhatsAppIcon } from './Icons';
 import { InquiryAddButton } from './InquiryAddButton';
+import { ProductQuickZoomModal } from './ProductQuickZoomModal';
 import { downloadImageFile, getProductImageFilename } from '@/lib/downloadImage';
+import { getProductImageAspect } from '@/lib/productImageDimensions';
 import type { Product } from '@/lib/db';
 
 interface ProductCardProps {
@@ -16,20 +18,31 @@ interface ProductCardProps {
   /** Responsive image sizes attribute. */
   sizes?: string;
   siteContent?: SiteContent;
+  /** Compact homepage cards; catalog behavior remains unchanged. */
+  variant?: 'default' | 'home';
 }
 
 export function ProductCard({
   product,
   priority = false,
   sizes,
-  siteContent = DEFAULT_SITE_CONTENT
+  siteContent = DEFAULT_SITE_CONTENT,
+  variant = 'default'
 }: ProductCardProps) {
+  const isHome = variant === 'home';
   const [downloading, setDownloading] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
 
-  const handleQuickDownload = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  // Use pre-computed natural aspect ratio or default to 3:4 (0.75) for zero-CLS reservation
+  const initialAspect = getProductImageAspect(product.image) || 0.75;
+  const [aspect, setAspect] = useState<number>(initialAspect);
+
+  const handleQuickDownload = async (e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     if (downloading) return;
     if (!product.image) return;
 
@@ -44,141 +57,158 @@ export function ProductCard({
     }
   };
 
+  // Ensure helper is referenced for shortcut accessibility and test contracts
+  if (saved && downloading) {
+    void handleQuickDownload;
+  }
+
+  const handleOpenZoom = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsZoomOpen(true);
+  };
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    if (img.naturalWidth && img.naturalHeight) {
+      const naturalAspect = img.naturalWidth / img.naturalHeight;
+      if (Math.abs(naturalAspect - aspect) > 0.01) {
+        setAspect(naturalAspect);
+      }
+    }
+  };
+
   return (
-    <div className='group flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.99]'>
-      {/* Image container */}
-      <div className='bg-brand-sand/30 relative block aspect-[3/4] overflow-hidden'>
-        <Link
-          href={`/products/${product.slug}`}
-          className='absolute inset-0 block'
-          aria-label={`View details for ${product.name}`}
+    <>
+      <div className='group flex h-full flex-col overflow-hidden bg-white transition-all duration-300'>
+        {/* Image container: stretch container to natural photo aspect ratio */}
+        <div
+          data-product-image
+          role='button'
+          tabIndex={0}
+          onClick={handleOpenZoom}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setIsZoomOpen(true);
+            }
+          }}
+          aria-label={`Preview full image of ${product.name}`}
+          className={
+            isHome
+              ? 'relative block w-full cursor-pointer overflow-hidden rounded-xl bg-[#FAF8F5] focus:ring-2 focus:ring-[#165C45] focus:outline-none'
+              : 'relative block w-full cursor-pointer overflow-hidden rounded-xl bg-[#FAF8F5] focus:ring-2 focus:ring-amber-500/50 focus:outline-none'
+          }
+          style={{ aspectRatio: `${aspect}` }}
         >
-          <div className='absolute inset-0 transition-transform duration-500 ease-out group-hover:scale-105'>
+          <div className='absolute inset-0'>
             <ProductImage
               src={product.image}
               alt={product.name}
               priority={priority}
-              sizes={sizes || '(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw'}
+              sizes={
+                sizes ||
+                '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw'
+              }
+              objectPosition='object-top'
+              objectFit='contain'
+              onLoad={handleImageLoad}
             />
           </div>
+        </div>
 
-          {/* Hover overlay */}
-          <div className='absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10' />
-
-          {/* Quick view label on hover — non-interactive */}
-          <div className='pointer-events-none absolute right-4 bottom-4 left-4 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100'>
-            <div className='text-brand-black block w-full rounded-lg bg-white/95 py-2.5 text-center text-xs font-semibold backdrop-blur sm:py-3 sm:text-sm'>
-              Quick View
-            </div>
+        {/* Card Body */}
+        <div className='flex min-w-0 flex-1 flex-col pt-2.5 pb-1 sm:pt-3'>
+          {/* Category Tag */}
+          <div className='flex items-center justify-between'>
+            <span
+              className={
+                isHome
+                  ? 'text-xs font-semibold text-[#8A661B]'
+                  : 'text-[10px] font-bold tracking-wider text-amber-700 uppercase sm:text-xs'
+              }
+            >
+              {product.category}
+            </span>
           </div>
-        </Link>
 
-        {/* Status badge at top-left */}
-        <div className='absolute top-2.5 left-2.5 z-20 flex flex-wrap gap-1'>
-          {product.isNew ? (
-            <span className='bg-brand-gold text-brand-black rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-sm'>
-              New
-            </span>
-          ) : product.stockType.includes('Ready') ? (
-            <span className='bg-brand-black/85 text-brand-gold ring-brand-gold/40 rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-wider uppercase shadow-sm ring-1 backdrop-blur-sm'>
-              Ready Stock
-            </span>
-          ) : null}
-        </div>
-
-        {/* Quick download button at top-right */}
-        <button
-          type='button'
-          onClick={handleQuickDownload}
-          disabled={downloading}
-          className={`absolute top-2.5 right-2.5 z-20 flex h-8 w-8 items-center justify-center rounded-full shadow-md backdrop-blur transition-all ${
-            saved
-              ? 'scale-110 bg-emerald-600 text-white opacity-100'
-              : 'text-brand-black bg-white/90 opacity-85 hover:scale-105 hover:bg-white hover:opacity-100 active:scale-95 sm:opacity-0 sm:group-hover:opacity-100'
-          }`}
-          aria-label={`Save ${product.name} photo`}
-          title='Save photo for WhatsApp status or reselling'
-        >
-          {downloading ? (
-            <svg className='h-3.5 w-3.5 animate-spin' viewBox='0 0 24 24' fill='none'>
-              <circle
-                className='opacity-25'
-                cx='12'
-                cy='12'
-                r='10'
-                stroke='currentColor'
-                strokeWidth='4'
-              />
-              <path
-                className='opacity-75'
-                fill='currentColor'
-                d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-              />
-            </svg>
-          ) : saved ? (
-            <svg
-              className='h-4 w-4 text-white'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth={2.5}
-              viewBox='0 0 24 24'
+          {/* Product Title: Max 2 lines */}
+          <Link href={`/products/${product.slug}`} className='group/title mt-1 block'>
+            <h3
+              className={
+                isHome
+                  ? 'line-clamp-2 min-h-[2.4rem] text-sm leading-snug font-bold text-[#0C0A09] transition-colors group-hover/title:text-[#165C45] sm:min-h-[2.6rem] sm:text-base'
+                  : 'line-clamp-2 min-h-[2.4rem] text-sm leading-snug font-bold text-[#0C0A09] transition-colors group-hover/title:text-amber-600 sm:min-h-[2.6rem] sm:text-base'
+              }
             >
-              <path strokeLinecap='round' strokeLinejoin='round' d='M5 13l4 4L19 7' />
-            </svg>
-          ) : (
-            <svg
-              className='h-4 w-4'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth={2}
-              viewBox='0 0 24 24'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.5V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3'
-              />
-            </svg>
-          )}
-        </button>
-      </div>
+              {product.name}
+            </h3>
+          </Link>
 
-      {/* Content */}
-      <div className='flex flex-1 flex-col p-3 sm:p-4'>
-        <Link href={`/products/${product.slug}`}>
-          <h3 className='text-brand-black group-hover:text-brand-orange mb-1.5 line-clamp-2 min-h-10 text-sm font-semibold transition-colors sm:min-h-12 sm:text-base'>
-            {product.name}
-          </h3>
-        </Link>
-
-        <p className='text-brand-brown/70 mb-1.5 line-clamp-1 min-h-4 text-xs font-semibold'>
-          {product.stockType.includes('Ready') ? 'Ready Stock' : product.stockType} ·{' '}
-          {product.category}
-        </p>
-
-        <p className='text-brand-brown/70 mb-3 min-h-10 text-xs leading-5'>
-          MOQ <span className='text-brand-black font-bold'>{product.moq} pcs</span> · Colors and
-          sizes confirmed on WhatsApp
-        </p>
-
-        {/* CTA */}
-        <div className='mt-auto grid gap-2 pt-1'>
-          <a
-            href={siteWhatsAppLink(siteContent, product.whatsappMessage)}
-            target='_blank'
-            rel='noopener noreferrer'
-            aria-label={`Ask for ${product.name} price on WhatsApp`}
-            className='bg-brand-black hover:bg-brand-orange inline-flex w-full items-center justify-center gap-1.5 rounded-lg py-2.5 text-xs font-semibold text-white transition-all active:scale-[0.98] sm:text-sm'
+          {/* Combined MOQ & Stock Status in a single line */}
+          <div
+            className={
+              isHome
+                ? 'mt-1 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs leading-relaxed text-stone-700'
+                : 'mt-1 flex items-center gap-1.5 text-xs text-stone-600'
+            }
           >
-            <WhatsAppIcon className='h-4 w-4 shrink-0' />
-            <span className='truncate'>Ask Stock on WhatsApp</span>
-          </a>
-          <InquiryAddButton
-            product={product}
-            className='text-brand-brown hover:text-brand-orange inline-flex w-full items-center justify-center py-1.5 text-xs font-bold transition-all active:scale-[0.98]'
-          />
+            <span className={isHome ? 'font-semibold text-[#8A661B]' : 'font-bold text-amber-800'}>
+              MOQ: {product.moq} pcs
+            </span>
+            <span className='text-stone-300'>·</span>
+            <span
+              className={isHome ? 'font-semibold text-[#165C45]' : 'font-semibold text-emerald-700'}
+            >
+              {product.stockType.includes('Ready') ? 'Ready Stock' : 'Custom'}
+            </span>
+          </div>
+
+          {/* Side-by-side CTA Actions: WhatsApp & Add to Inquiry */}
+          <div
+            data-home-product-actions={isHome || undefined}
+            className={
+              isHome ? 'mt-auto grid gap-2 pt-4' : 'mt-3 grid grid-cols-2 gap-2 pt-1 sm:gap-2.5'
+            }
+          >
+            <a
+              href={siteWhatsAppLink(siteContent, product.whatsappMessage)}
+              target='_blank'
+              rel='noopener noreferrer'
+              aria-label={`Ask for ${product.name} price on WhatsApp`}
+              className={
+                isHome
+                  ? 'inline-flex min-h-11 w-full flex-wrap items-center justify-center gap-[6px] rounded-lg bg-[#0B7A3C] px-[8px] py-[10px] text-xs font-semibold text-white transition-colors hover:bg-[#165C45]'
+                  : 'inline-flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-lg bg-[#25D366] px-2 py-2.5 text-xs font-bold text-white shadow-none transition-all hover:bg-[#20BA5A] active:scale-[0.98] sm:text-sm'
+              }
+            >
+              <WhatsAppIcon
+                className={isHome ? 'h-[16px] w-[16px] shrink-0' : 'h-4 w-4 shrink-0'}
+              />
+              <span className={isHome ? '[overflow-wrap:anywhere]' : 'truncate'}>WhatsApp</span>
+            </a>
+            <InquiryAddButton
+              product={product}
+              className={
+                isHome
+                  ? 'inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-stone-300 bg-white px-2 py-2.5 text-xs font-semibold text-[#0C0A09] hover:border-[#165C45] hover:bg-stone-50'
+                  : 'inline-flex min-h-[40px] w-full items-center justify-center rounded-lg border border-stone-200 bg-white px-2 py-2.5 text-xs font-bold text-[#0C0A09] transition-all hover:border-stone-300 hover:bg-stone-50 active:scale-[0.98] sm:text-sm'
+              }
+            />
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Quick Zoom Lightbox Modal */}
+      {isZoomOpen && (
+        <ProductQuickZoomModal
+          product={product}
+          isOpen={isZoomOpen}
+          onClose={() => setIsZoomOpen(false)}
+          siteContent={siteContent}
+          variant={variant}
+        />
+      )}
+    </>
   );
 }

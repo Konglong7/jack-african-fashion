@@ -44,7 +44,7 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
   heroTitle: "Guangzhou African Women's Clothing",
   heroAccent: 'Wholesale Supplier',
   heroBody:
-    "Jack African Fashion combines its own factory, Guangzhou office and Yulong Fashion Plaza showroom to supply ready-stock and custom women's clothing for African boutiques, wholesalers and importers.",
+    "Ready stock and custom women's clothing from Guangzhou for African boutiques, wholesalers and importers.",
   heroTrust: ['Own Factory', 'Guangzhou Showroom', 'African B2B', 'Export Packing'],
   categories: [
     {
@@ -154,6 +154,14 @@ function imagePath(value: unknown): string | undefined {
 export function siteWhatsAppLink(content: SiteContent, message = content.defaultWhatsAppMessage) {
   if (content.whatsappLink) return content.whatsappLink;
   return `https://wa.me/${content.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+/** Business short links have fixed greetings; preserve buyer-written form text
+ * by using the configured sales number for inquiry messages. */
+export function siteWhatsAppMessageLink(content: SiteContent, message: string) {
+  const number = content.whatsappNumber.replace(/\D/g, '');
+  if (!/^[1-9]\d{7,14}$/.test(number)) return siteWhatsAppLink(content, message);
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 const SOCIAL_PLATFORM_HOME_PATHS = new Set([
   'facebook.com/',

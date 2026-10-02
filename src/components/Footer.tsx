@@ -7,12 +7,68 @@ import { buildFooterLinks } from '@/lib/siteNavigation';
 import type { SiteContent } from '@/lib/siteContentTypes';
 import { isConfiguredSocialLink, siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { WhatsAppIcon } from '@/components/Icons';
+import homeStyles from '@/components/home/homepage.module.css';
 
-export function Footer({ siteContent }: { siteContent: SiteContent }) {
+export function Footer({
+  siteContent,
+  variant = 'default'
+}: {
+  siteContent: SiteContent;
+  variant?: 'default' | 'home';
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-50px' });
   const whatsappLink = siteWhatsAppLink(siteContent);
   const footerLinks = buildFooterLinks(siteContent.categories);
+
+  if (variant === 'home') {
+    return (
+      <footer className={homeStyles.homeFooter} role='contentinfo'>
+        <div className={homeStyles.container}>
+          <div className={homeStyles.footerBrand}>
+            <h2 className='font-display'>{siteContent.name}</h2>
+            <p>
+              Guangzhou women&apos;s clothing wholesale for African boutiques, wholesalers and
+              importers.
+            </p>
+            <p>
+              WhatsApp:{' '}
+              <a href={whatsappLink} target='_blank' rel='noopener noreferrer'>
+                {siteContent.whatsappDisplay}
+              </a>
+            </p>
+            <address>
+              <a href={siteContent.locationUrl} target='_blank' rel='noopener noreferrer'>
+                {siteContent.location}
+              </a>
+            </address>
+          </div>
+          <div className={homeStyles.footerGrid}>
+            {[
+              { title: 'Company', links: footerLinks.company },
+              { title: 'Wholesale', links: footerLinks.products },
+              { title: 'Markets', links: footerLinks.markets },
+              { title: 'Help', links: footerLinks.help }
+            ].map((column) => (
+              <div key={column.title}>
+                <h3>{column.title}</h3>
+                <ul>
+                  {column.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href}>{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+          <p className={homeStyles.footerBottom}>
+            © {new Date().getFullYear()} {siteContent.name}. All rights reserved.
+          </p>
+        </div>
+      </footer>
+    );
+  }
 
   return (
     <footer

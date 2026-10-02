@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useInView } from 'framer-motion';
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import { useRef } from 'react';
 import { SITE_IMAGES } from '@/lib/siteImages';
 

@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/admin/', '/api/', '/inquiry']
+        disallow: ['/admin', '/api/', '/inquiry']
       },
       {
         userAgent: [
@@ -17,10 +17,12 @@ export default function robots(): MetadataRoute.Robots {
           'ChatGPT-User',
           'PerplexityBot',
           'ClaudeBot',
-          'Google-Extended'
+          'Google-Extended',
+          'Applebot-Extended',
+          'Amazonbot'
         ],
         allow: '/',
-        disallow: ['/admin/', '/api/', '/inquiry']
+        disallow: ['/admin', '/api/', '/inquiry']
       }
     ],
     sitemap: `${baseUrl}/sitemap.xml`,

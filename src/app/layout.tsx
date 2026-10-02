@@ -58,12 +58,14 @@ export const metadata: Metadata = {
     type: 'website',
     url: baseUrl,
     locale: 'en_US',
-    siteName: 'Jack African Fashion'
+    siteName: 'Jack African Fashion',
+    images: ['/images/site/social-whatsapp-catalog-banner.webp']
   },
   twitter: {
     card: 'summary_large_image',
     title: "Jack African Fashion | Guangzhou Women's Clothing Supplier",
-    description: "Guangzhou women's clothing wholesale for African B2B buyers."
+    description: "Guangzhou women's clothing wholesale for African B2B buyers.",
+    images: ['/images/site/social-whatsapp-catalog-banner.webp']
   },
   robots: {
     index: true,
@@ -95,6 +97,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         '@type': 'Organization',
         '@id': `${baseUrl}/#organization`,
         name: BRAND_ENTITY.name,
+        logo: `${baseUrl}/images/site/logo.png`,
         url: baseUrl,
         description: BRAND_ENTITY.identityStatement,
         address: {

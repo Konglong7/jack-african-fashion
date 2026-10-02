@@ -6,6 +6,7 @@ import {
   INQUIRY_STORAGE_KEY,
   INQUIRY_UPDATED_EVENT,
   mergeInquiryItems,
+  refreshInquiryMinimums,
   notifyInquiryUpdated
 } from './inquiry';
 
@@ -32,6 +33,18 @@ describe('inquiry helpers', () => {
     expect(buildInquiryMessage([dress])).toContain('Pleated Maxi Dress');
     expect(buildInquiryMessage([dress])).toContain('Style No: pleated-maxi-dress');
     expect(buildInquiryMessage([dress])).toContain('Quantity: 50 pcs');
+  });
+
+  test('refreshes a saved MOQ while preserving buyer choices and order quantity', () => {
+    const saved = { ...dress, moq: 500, quantity: 600 };
+    expect(refreshInquiryMinimums([saved], { '1': 100 })[0])
+      .toMatchObject({ moq: 100, quantity: 600, color: 'Black', size: 'XL' });
+    expect(saved.moq).toBe(500);
+  });
+
+  test('enforces the current minimum without deleting an unavailable saved style', () => {
+    expect(refreshInquiryMinimums([dress], { '1': 100 })[0].quantity).toBe(100);
+    expect(refreshInquiryMinimums([dress], {})).toEqual([dress]);
   });
 
   test('counts selected styles from local storage', () => {

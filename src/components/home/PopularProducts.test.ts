@@ -27,12 +27,12 @@ describe('pickHomepageProducts', () => {
     ]);
   });
 
-  test('limits the homepage to twelve products', () => {
+  test('limits the homepage to eight products', () => {
     const picked = pickHomepageProducts(
       Array.from({ length: 20 }, (_, index) => product(String(index + 1), { isNew: true }))
     );
 
-    expect(picked).toHaveLength(12);
+    expect(picked).toHaveLength(8);
     expect(picked[0].id).toBe('20');
   });
 });

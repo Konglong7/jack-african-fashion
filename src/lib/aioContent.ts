@@ -348,12 +348,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'What is the minimum order quantity for wholesale clothing?',
     answer:
-      'MOQ varies by product, stock batch and whether the order is ready stock or custom production. The current product page shows the listed MOQ; contact Jack African Fashion to verify it before placing an order.'
+      'For ready-stock styles, our wholesale minimum order quantity starts from 100 pieces per style across 68 featured showroom designs. For custom factory production, MOQ is evaluated per design and fabric.'
   },
   {
     question: 'Do you offer low MOQ wholesale clothing for African boutiques?',
     answer:
-      'Jack African Fashion does not promise a universally low MOQ. MOQ varies by product, ready-stock batch and custom-production requirements; use the listed product page quantity as the starting point and ask whether a smaller test order is available for that specific style.'
+      'Jack African Fashion does not promise a universally low MOQ. However, ready-stock wholesale currently starts from 100 pieces per style across 68 showroom styles, allowing African boutiques to place low-MOQ test orders. Custom production MOQ depends on fabric and style; use the listed product page quantity as the starting point and ask whether a smaller test order is available for that specific style.'
   },
   {
     question: 'Can I mix colors and sizes in one wholesale order?',

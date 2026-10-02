@@ -1,23 +1,23 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import type { InquiryItem } from '@/lib/inquiry';
-import { buildInquiryMessage, INQUIRY_STORAGE_KEY, notifyInquiryUpdated } from '@/lib/inquiry';
+import { buildInquiryMessage, INQUIRY_STORAGE_KEY, notifyInquiryUpdated, refreshInquiryMinimums } from '@/lib/inquiry';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import { siteWhatsAppLink } from '@/lib/siteContentTypes';
+import { siteWhatsAppMessageLink } from '@/lib/siteContentTypes';
 import { WhatsAppIcon } from '@/components/Icons';
 
-export function InquiryClient({ siteContent }: { siteContent: SiteContent }) {
+export function InquiryClient({ siteContent, minimums }: { siteContent: SiteContent; minimums: Record<string, number> }) {
   const [items, setItems] = useState<InquiryItem[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setItems(readItems());
+    setItems(refreshInquiryMinimums(readItems(), minimums));
     setLoaded(true);
-  }, []);
+  }, [minimums]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -116,7 +116,7 @@ export function InquiryClient({ siteContent }: { siteContent: SiteContent }) {
                       fill
                       priority={index === 0}
                       sizes='88px'
-                      className='object-cover'
+                      className='object-contain'
                     />
                   </Link>
                   <div className='min-w-0'>
@@ -210,7 +210,7 @@ export function InquiryClient({ siteContent }: { siteContent: SiteContent }) {
                 Sends product names, style numbers, quantity, color and size in one message.
               </p>
               <a
-                href={siteWhatsAppLink(siteContent, message)}
+                href={siteWhatsAppMessageLink(siteContent, message)}
                 target='_blank'
                 rel='noopener noreferrer'
                 className='mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#20BA5A]'

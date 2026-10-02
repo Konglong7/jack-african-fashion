@@ -10,14 +10,24 @@ import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { WhatsAppIcon, SearchIcon } from '@/components/Icons';
 import { getInquiryItemCount, INQUIRY_UPDATED_EVENT } from '@/lib/inquiry';
 
-export function AnnouncementBar({ siteContent }: { siteContent: SiteContent }) {
+export function AnnouncementBar({
+  siteContent,
+  variant = 'default'
+}: {
+  siteContent: SiteContent;
+  variant?: 'default' | 'home';
+}) {
   const whatsappLink = siteWhatsAppLink(siteContent);
 
   return (
     <div className='bg-brand-black text-brand-cream text-xs sm:text-sm'>
       <div className='mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-2 sm:justify-between'>
         <p className='truncate text-left tracking-wide sm:text-left'>
-          Jack African Fashion · Guangzhou African Women&apos;s Clothing Supplier
+          {variant === 'home' ? (
+            'Guangzhou wholesale'
+          ) : (
+            <>Jack African Fashion · Guangzhou African Women&apos;s Clothing Supplier</>
+          )}
         </p>
         <a
           href={whatsappLink}
@@ -33,7 +43,14 @@ export function AnnouncementBar({ siteContent }: { siteContent: SiteContent }) {
   );
 }
 
-export function Header({ siteContent }: { siteContent: SiteContent }) {
+export function Header({
+  siteContent,
+  variant = 'default'
+}: {
+  siteContent: SiteContent;
+  variant?: 'default' | 'home';
+}) {
+  const isHome = variant === 'home';
   const pathname = usePathname();
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -91,20 +108,27 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
 
   return (
     <header className='sticky top-0 z-50' role='banner'>
-      <AnnouncementBar siteContent={siteContent} />
+      <AnnouncementBar siteContent={siteContent} variant={variant} />
       <motion.div
+        data-main-navigation
         className={`border-brand-sand/60 border-b backdrop-blur transition-colors duration-300 ${
           scrolled ? 'bg-white/98 shadow-sm' : 'bg-white/95'
         }`}
-        initial={{ y: -20, opacity: 0 }}
+        initial={isHome ? false : { y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
         <div className='mx-auto max-w-7xl px-4'>
-          <div className='flex h-16 items-center justify-between lg:h-20'>
+          <div
+            className={
+              isHome
+                ? 'flex min-h-[64px] flex-wrap items-center justify-between gap-[12px] py-[8px] lg:min-h-[80px]'
+                : 'flex h-16 items-center justify-between lg:h-20'
+            }
+          >
             {/* Logo */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={isHome ? false : { opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
@@ -121,10 +145,8 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                 </motion.span>
                 <motion.span
                   className='text-brand-brown text-[10px] tracking-[0.2em] uppercase sm:text-xs'
-                  animate={{
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  animate={isHome ? { opacity: 1 } : { opacity: [0.7, 1, 0.7] }}
+                  transition={isHome ? { duration: 0 } : { duration: 3, repeat: Infinity }}
                 >
                   African Fashion
                 </motion.span>
@@ -133,8 +155,12 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
 
             {/* Desktop nav */}
             <motion.nav
-              className='hidden items-center gap-4 md:flex lg:gap-7'
-              initial={{ opacity: 0 }}
+              className={
+                isHome
+                  ? 'hidden max-w-full min-w-0 flex-wrap items-center gap-x-4 gap-y-2 lg:flex lg:gap-x-7'
+                  : 'hidden items-center gap-4 md:flex lg:gap-7'
+              }
+              initial={isHome ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
@@ -143,7 +169,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                 return (
                   <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, y: -10 }}
+                    initial={isHome ? false : { opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.6 + i * 0.05 }}
                   >
@@ -151,8 +177,12 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                       href={link.href}
                       className={`group relative text-sm font-medium transition-colors ${
                         active
-                          ? 'text-brand-orange font-semibold'
-                          : 'text-brand-brown hover:text-brand-orange'
+                          ? isHome
+                            ? 'font-semibold text-[#165C45]'
+                            : 'text-brand-orange font-semibold'
+                          : isHome
+                            ? 'text-[#0C0A09] hover:text-[#165C45]'
+                            : 'text-brand-brown hover:text-brand-orange'
                       }`}
                     >
                       {link.label}
@@ -171,32 +201,44 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
 
             {/* Right actions */}
             <motion.div
-              className='flex items-center gap-2 sm:gap-4'
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
+              className={
+                isHome
+                  ? 'flex items-center gap-[8px] sm:gap-[12px]'
+                  : 'flex items-center gap-2 sm:gap-4'
+              }
+              initial={isHome ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
               <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href='/catalog'
-                  className='text-brand-brown hover:text-brand-orange flex p-1.5 transition-colors sm:p-2'
+                  className={
+                    isHome
+                      ? 'flex min-h-[44px] min-w-[44px] items-center justify-center text-[#0C0A09] hover:text-[#165C45]'
+                      : 'text-brand-brown hover:text-brand-orange flex p-1.5 transition-colors sm:p-2'
+                  }
                   aria-label='Search products'
                 >
-                  <SearchIcon className='h-5 w-5' />
+                  <SearchIcon className={isHome ? 'h-[20px] w-[20px]' : 'h-5 w-5'} />
                 </Link>
               </motion.div>
 
               <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href='/inquiry'
-                  className='text-brand-brown hover:text-brand-orange relative flex p-1.5 transition-colors sm:p-2'
+                  className={
+                    isHome
+                      ? 'relative flex min-h-[44px] min-w-[44px] items-center justify-center text-[#0C0A09] hover:text-[#165C45]'
+                      : 'text-brand-brown hover:text-brand-orange relative flex p-1.5 transition-colors sm:p-2'
+                  }
                   aria-label={
                     inquiryCount > 0 ? `Inquiry cart (${inquiryCount} items)` : 'Inquiry cart'
                   }
                   title='Inquiry list'
                 >
                   <svg
-                    className='h-5 w-5'
+                    className={isHome ? 'h-[20px] w-[20px]' : 'h-5 w-5'}
                     fill='none'
                     stroke='currentColor'
                     strokeWidth={2}
@@ -208,7 +250,9 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                     <circle cx='18' cy='20' r='1' />
                   </svg>
                   {inquiryCount > 0 && (
-                    <span className='bg-brand-orange absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold text-white shadow-sm ring-1 ring-white'>
+                    <span
+                      className={`${isHome ? 'bg-[#8A661B]' : 'bg-brand-orange'} absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold text-white shadow-sm ring-1 ring-white`}
+                    >
                       {inquiryCount}
                     </span>
                   )}
@@ -219,17 +263,25 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                 href={whatsappLink}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='bg-brand-orange hover:bg-brand-gold hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white transition-colors sm:inline-flex'
+                className={
+                  isHome
+                    ? 'hidden min-h-[44px] items-center gap-[8px] rounded-xl bg-[#0B7A3C] px-[16px] py-[10px] text-sm font-semibold text-white hover:bg-[#165C45] sm:inline-flex'
+                    : 'bg-brand-orange hover:bg-brand-gold hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white transition-colors sm:inline-flex'
+                }
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <WhatsAppIcon className='h-4 w-4' />
+                <WhatsAppIcon className={isHome ? 'h-[16px] w-[16px]' : 'h-4 w-4'} />
                 WhatsApp
               </motion.a>
 
               {/* Mobile menu button */}
               <motion.button
-                className='text-brand-black -mr-2 p-2 md:hidden'
+                className={
+                  isHome
+                    ? '-mr-[8px] flex h-[44px] w-[44px] items-center justify-center p-[8px] text-[#0C0A09] lg:hidden'
+                    : 'text-brand-black -mr-2 p-2 md:hidden'
+                }
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label='Toggle menu'
                 aria-expanded={menuOpen}
@@ -240,7 +292,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                   {menuOpen ? (
                     <motion.svg
                       key='close'
-                      className='h-6 w-6'
+                      className={isHome ? 'h-[24px] w-[24px]' : 'h-6 w-6'}
                       fill='none'
                       stroke='currentColor'
                       strokeWidth={2}
@@ -255,7 +307,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                   ) : (
                     <motion.svg
                       key='menu'
-                      className='h-6 w-6'
+                      className={isHome ? 'h-[24px] w-[24px]' : 'h-6 w-6'}
                       fill='none'
                       stroke='currentColor'
                       strokeWidth={2}
@@ -279,7 +331,11 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className='border-brand-sand/60 border-b bg-white shadow-lg md:hidden'
+            className={
+              isHome
+                ? 'border-brand-sand/60 border-b bg-white shadow-lg lg:hidden'
+                : 'border-brand-sand/60 border-b bg-white shadow-lg md:hidden'
+            }
             role='dialog'
             aria-modal='true'
             aria-label='Mobile navigation menu'
@@ -298,9 +354,15 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                   placeholder='Search styles, dresses, tags...'
                   value={drawerSearch}
                   onChange={(e) => setDrawerSearch(e.target.value)}
-                  className='border-brand-sand bg-brand-cream/50 placeholder:text-brand-brown/40 text-brand-black focus:border-brand-orange w-full rounded-full border py-2.5 pr-4 pl-10 text-sm focus:outline-none'
+                  className={
+                    isHome
+                      ? 'w-full rounded-full border border-stone-300 bg-[#FAF8F5] py-2.5 pr-4 pl-10 text-sm text-[#0C0A09] placeholder:text-[#453D36] focus:border-[#165C45] focus:outline-none'
+                      : 'border-brand-sand bg-brand-cream/50 placeholder:text-brand-brown/40 text-brand-black focus:border-brand-orange w-full rounded-full border py-2.5 pr-4 pl-10 text-sm focus:outline-none'
+                  }
                 />
-                <SearchIcon className='text-brand-brown/40 absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2' />
+                <SearchIcon
+                  className={`${isHome ? 'text-[#453D36]' : 'text-brand-brown/40'} absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2`}
+                />
               </form>
 
               {navLinks.map((link, i) => {
@@ -316,8 +378,8 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                       href={link.href}
                       className={`hover:bg-brand-cream/50 border-brand-sand/30 block rounded-lg border-b px-2 py-3 text-sm transition-colors last:border-0 ${
                         active
-                          ? 'text-brand-orange bg-brand-cream/30 font-bold'
-                          : 'text-brand-brown hover:text-brand-orange font-medium'
+                          ? `${isHome ? 'text-[#165C45]' : 'text-brand-orange'} bg-brand-cream/30 font-bold`
+                          : `${isHome ? 'text-[#453D36] hover:text-[#165C45]' : 'text-brand-brown hover:text-brand-orange'} font-medium`
                       }`}
                       onClick={() => setMenuOpen(false)}
                     >
@@ -330,7 +392,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                 href={whatsappLink}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='bg-brand-orange mt-3 inline-flex items-center justify-center gap-2 rounded-full py-3 font-semibold text-white'
+                className={`${isHome ? 'bg-[#0B7A3C]' : 'bg-brand-orange'} mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full py-3 font-semibold text-white`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -341,7 +403,7 @@ export function Header({ siteContent }: { siteContent: SiteContent }) {
                 Contact on WhatsApp
               </motion.a>
               <motion.p
-                className='text-brand-brown/60 mt-3 text-center text-xs'
+                className={`${isHome ? 'text-[#453D36]' : 'text-brand-brown/60'} mt-3 text-center text-xs`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}

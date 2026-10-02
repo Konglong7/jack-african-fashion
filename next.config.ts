@@ -2,8 +2,12 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // Quote-only pages generate metadata from local data. Emit it in head for
+  // every crawler, including clients that do not process streamed metadata.
+  htmlLimitedBots: /.*/,
   experimental: {
-    optimizePackageImports: ['framer-motion']
+    optimizePackageImports: ['framer-motion'],
+    imgOptConcurrency: 1
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
@@ -27,11 +31,11 @@ const nextConfig: NextConfig = {
   },
   images: {
     // Enable image optimization for better performance
-    formats: ['image/avif', 'image/webp'],
-    qualities: [85],
+    formats: ['image/webp', 'image/avif'],
+    qualities: [75, 85],
     minimumCacheTTL: 14_400,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    deviceSizes: [320, 480, 640, 960, 1280, 1920],
+    imageSizes: [32, 64, 96, 128, 160, 256],
     // Restrict remote patterns to trusted hosts to prevent SSRF
     remotePatterns: [
       {
@@ -42,6 +46,17 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/admin/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+          { key: 'Cache-Control', value: 'private, no-store, max-age=0' }
+        ]
+      },
+      {
+        source: '/api/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }]
+      },
       {
         source: '/(.*)',
         headers: [

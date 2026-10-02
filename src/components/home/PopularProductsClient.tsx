@@ -1,96 +1,34 @@
-'use client';
-
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import Link from 'next/link';
+import styles from './homepage.module.css';
 
 export function PopularProductsClient({
   children,
-  badge,
   title,
   description
 }: {
   children: React.ReactNode;
-  badge: string;
   title: string;
   description: string;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
-
   return (
-    <section className='relative overflow-hidden bg-white py-16 sm:py-20'>
-      {/* Decorative top gradient line */}
-      <motion.div
-        className='via-brand-orange absolute top-0 right-0 left-0 h-1 bg-gradient-to-r from-transparent to-transparent'
-        initial={{ scaleX: 0 }}
-        animate={inView ? { scaleX: 1 } : {}}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        style={{ originX: 0 }}
-      />
-
-      <div className='mx-auto max-w-7xl px-4' ref={ref}>
-        <motion.div
-          className='mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between'
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-        >
+    <section className={styles.section} aria-labelledby='home-products-title'>
+      <div className={styles.container}>
+        <div className={styles.productHeader}>
           <div>
-            <motion.span
-              className='text-brand-orange block text-sm font-semibold tracking-[0.2em] uppercase'
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              {badge}
-            </motion.span>
-            <motion.h2
-              className='font-display text-brand-black mt-3 text-3xl font-bold sm:text-4xl'
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <h2 id='home-products-title' className={`font-display ${styles.sectionHeading}`}>
               {title}
-            </motion.h2>
-            <motion.p
-              className='text-brand-brown/70 mt-3 max-w-xl'
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              {description}
-            </motion.p>
+            </h2>
+            <p className={styles.sectionDescription}>{description}</p>
           </div>
-          <motion.a
-            href='/catalog'
-            className='text-brand-orange hover:text-brand-gold inline-flex items-center gap-2 font-semibold whitespace-nowrap transition-colors'
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ x: 5 }}
-          >
+          <Link href='/catalog' className={styles.textLink}>
             View All Products
-            <svg
-              className='h-4 w-4'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth={2}
-              viewBox='0 0 24 24'
-            >
-              <path d='M5 12h14M12 5l7 7-7 7' />
-            </svg>
-          </motion.a>
-        </motion.div>
-
+          </Link>
+        </div>
         {children}
-
-        <div className='mt-10 flex justify-center'>
-          <a
-            href='/catalog'
-            className='bg-brand-black hover:bg-brand-orange inline-flex min-h-12 items-center justify-center rounded-full px-8 text-sm font-bold text-white transition-colors'
-          >
+        <div className={styles.productBottom}>
+          <Link href='/catalog' className={`${styles.button} ${styles.darkButton}`}>
             View Full Product Catalog
-          </a>
+          </Link>
         </div>
       </div>
     </section>

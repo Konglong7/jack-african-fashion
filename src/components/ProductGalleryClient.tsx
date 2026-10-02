@@ -10,6 +10,7 @@ import {
 } from '@/lib/downloadImage';
 
 import { WhatsAppIcon } from '@/components/Icons';
+import { ImageViewerModal } from '@/components/ImageViewerModal';
 
 interface Props {
   images: string[];
@@ -32,6 +33,31 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const displayImages = useMemo(() => (images.length > 0 ? images : []), [images]);
+  const [currentImageMeta, setCurrentImageMeta] = useState({ width: 0, height: 0 });
+  const imageAspect = useMemo(() => {
+    if (!currentImageMeta.width || !currentImageMeta.height) return 'standard';
+    const ratio = currentImageMeta.height / currentImageMeta.width;
+    if (ratio > 1.4) return 'tall';
+    if (ratio < 0.8) return 'wide';
+    if (ratio >= 0.8 && ratio <= 1.15) return 'square';
+    return 'standard';
+  }, [currentImageMeta]);
+
+  const isTallImage = imageAspect === 'tall';
+
+  const aspectClass = useMemo(() => {
+    if (isTallImage) {
+      return 'aspect-[9/16] max-h-[72vh] sm:aspect-[3/4] sm:max-h-[640px]';
+    }
+    switch (imageAspect) {
+      case 'wide':
+        return 'aspect-[4/3] sm:aspect-[16/10] max-h-[480px]';
+      case 'square':
+        return 'aspect-square max-h-[560px]';
+      default:
+        return 'aspect-[3/4] max-h-[640px]';
+    }
+  }, [imageAspect, isTallImage]);
 
   const handleDownloadCurrent = useCallback(
     async (e?: React.MouseEvent) => {
@@ -120,17 +146,9 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
     touchStartY.current = null;
   };
 
-  // Lightbox keyboard navigation (Arrow keys + Escape)
   useEffect(() => {
-    if (!lightboxOpen) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxOpen(false);
-      if (e.key === 'ArrowRight') nextImage();
-      if (e.key === 'ArrowLeft') prevImage();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightboxOpen, nextImage, prevImage]);
+    setCurrentImageMeta({ width: 0, height: 0 });
+  }, [mainIdx]);
 
   if (displayImages.length === 0) {
     return (
@@ -144,8 +162,14 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
     <>
       {/* Main image with zoom & mobile touch swipe */}
       <motion.div
-        className='bg-brand-sand/30 relative mb-4 aspect-[3/4] cursor-zoom-in overflow-hidden rounded-xl select-none'
-        onClick={() => setZoomed(!zoomed)}
+        className={`bg-stone-50 border border-stone-200/60 relative mb-4 cursor-zoom-in overflow-hidden rounded-xl select-none transition-[aspect-ratio] duration-300 ${aspectClass}`}
+        onClick={() => {
+          if (typeof window !== 'undefined' && window.innerWidth < 768) {
+            setLightboxOpen(true);
+          } else {
+            setZoomed(!zoomed);
+          }
+        }}
         onMouseMove={handleMouseMove}
         onMouseLeave={() => setZoomed(false)}
         onTouchStart={handleTouchStart}
@@ -165,6 +189,12 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
             alt={`${productName} - view ${mainIdx + 1}`}
             priority={mainIdx === 0}
             sizes='(max-width: 1024px) 100vw, 50vw'
+            objectFit='contain'
+            objectPosition='object-top'
+            onLoad={(event) => setCurrentImageMeta({
+              width: event.currentTarget.naturalWidth,
+              height: event.currentTarget.naturalHeight
+            })}
           />
         </motion.div>
 
@@ -313,7 +343,7 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
           )}
         </div>
 
-        {/* Zoom hint */}
+        {/* Zoom hint (Desktop) */}
         {!zoomed && (
           <motion.div
             className='absolute right-3 bottom-3 z-10 hidden items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-xs text-white backdrop-blur sm:flex'
@@ -333,6 +363,22 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
             Click to zoom
           </motion.div>
         )}
+
+        {/* Zoom hint (Mobile: tap to view full uncropped image) */}
+        <button
+          type='button'
+          onClick={(e) => {
+            e.stopPropagation();
+            setLightboxOpen(true);
+          }}
+          className='absolute right-2.5 bottom-2.5 z-10 flex sm:hidden items-center gap-1.5 rounded-full bg-stone-950/80 px-2.5 py-1 text-[11px] font-semibold text-white shadow-md backdrop-blur border border-white/10 active:scale-95'
+          aria-label='Tap to view full screen photo'
+        >
+          <svg className='h-3.5 w-3.5 text-amber-400' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+            <path strokeLinecap='round' strokeLinejoin='round' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4' />
+          </svg>
+          <span>Tap to Zoom Full</span>
+        </button>
       </motion.div>
 
       {/* Thumbnail row (horizontally scrollable on mobile, gridded on desktop) */}
@@ -399,7 +445,7 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
           </div>
         </div>
 
-        <div className='flex w-full items-center gap-2 sm:w-auto'>
+        <div className='flex w-full flex-wrap items-center gap-2 sm:w-auto'>
           <button
             type='button'
             onClick={handleDownloadCurrent}
@@ -534,201 +580,15 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
         </div>
       </div>
 
-      {/* Lightbox modal with keyboard and swipe support */}
-      <AnimatePresence>
-        {lightboxOpen && (
-          <motion.div
-            className='fixed inset-0 z-50 flex items-center justify-center bg-black/95'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setLightboxOpen(false)}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            {/* Lightbox header toolbar */}
-            <div className='absolute top-4 right-4 z-20 flex items-center gap-2.5'>
-              <button
-                type='button'
-                className={`flex h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold shadow-lg backdrop-blur transition-all ${
-                  downloadSavedSingle
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-white/15 text-white hover:bg-white/25'
-                }`}
-                onClick={handleDownloadCurrent}
-                disabled={downloadingSingle}
-                aria-label='Download high-res photo'
-              >
-                {downloadingSingle ? (
-                  <>
-                    <svg className='h-4 w-4 animate-spin' viewBox='0 0 24 24' fill='none'>
-                      <circle
-                        className='opacity-25'
-                        cx='12'
-                        cy='12'
-                        r='10'
-                        stroke='currentColor'
-                        strokeWidth='4'
-                      />
-                      <path
-                        className='opacity-75'
-                        fill='currentColor'
-                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
-                      />
-                    </svg>
-                    <span className='hidden sm:inline'>Saving...</span>
-                  </>
-                ) : downloadSavedSingle ? (
-                  <>
-                    <svg
-                      className='h-4 w-4 text-white'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth={2.5}
-                      viewBox='0 0 24 24'
-                    >
-                      <path strokeLinecap='round' strokeLinejoin='round' d='M5 13l4 4L19 7' />
-                    </svg>
-                    <span>Saved!</span>
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      className='h-4 w-4'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth={2}
-                      viewBox='0 0 24 24'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.5V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3'
-                      />
-                    </svg>
-                    <span className='hidden sm:inline'>Download Photo</span>
-                  </>
-                )}
-              </button>
-
-              {whatsappLink && (
-                <a
-                  href={whatsappLink}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='flex h-11 items-center gap-2 rounded-full bg-[#25D366] px-4 text-sm font-semibold text-white shadow-lg backdrop-blur transition-all hover:bg-[#20ba59] active:scale-95'
-                  aria-label='Inquire this style on WhatsApp'
-                >
-                  <WhatsAppIcon className='h-4 w-4' />
-                  <span className='hidden sm:inline'>Inquire on WhatsApp</span>
-                </a>
-              )}
-
-              <button
-                type='button'
-                className='flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white shadow-lg backdrop-blur transition-colors hover:bg-white/25'
-                onClick={() => setLightboxOpen(false)}
-                aria-label='Close lightbox'
-              >
-                <svg
-                  className='h-5 w-5'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={2}
-                  viewBox='0 0 24 24'
-                >
-                  <path d='M6 18L18 6M6 6l12 12' />
-                </svg>
-              </button>
-            </div>
-
-            {/* Navigation */}
-            {displayImages.length > 1 && (
-              <>
-                <button
-                  className='absolute top-1/2 left-4 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20'
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    prevImage();
-                  }}
-                  aria-label='Previous image'
-                >
-                  <svg
-                    className='h-6 w-6'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth={2}
-                    viewBox='0 0 24 24'
-                  >
-                    <path d='M15 19l-7-7 7-7' />
-                  </svg>
-                </button>
-                <button
-                  className='absolute top-1/2 right-4 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20'
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    nextImage();
-                  }}
-                  aria-label='Next image'
-                >
-                  <svg
-                    className='h-6 w-6'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth={2}
-                    viewBox='0 0 24 24'
-                  >
-                    <path d='M9 5l7 7-7 7' />
-                  </svg>
-                </button>
-              </>
-            )}
-
-            {/* Main image */}
-            <motion.div
-              className='relative mx-4 h-[80vh] w-full max-w-4xl'
-              onClick={(e) => e.stopPropagation()}
-              key={mainIdx}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-            >
-              <ProductImage
-                src={displayImages[mainIdx]}
-                alt={`${productName} - view ${mainIdx + 1}`}
-                sizes='100vw'
-              />
-            </motion.div>
-
-            {/* Thumbnail strip */}
-            <div className='absolute bottom-4 left-1/2 flex max-w-[90vw] -translate-x-1/2 scrollbar-none gap-2 overflow-x-auto rounded-full bg-black/50 p-2 backdrop-blur'>
-              {displayImages.map((imgSrc, i) => (
-                <button
-                  key={i}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setMainIdx(i);
-                  }}
-                  className={`h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 transition-all ${
-                    i === mainIdx
-                      ? 'border-brand-orange scale-105'
-                      : 'border-transparent opacity-50 hover:opacity-80'
-                  }`}
-                  aria-label={`Select photo ${i + 1}`}
-                >
-                  <ProductImage
-                    src={imgSrc}
-                    alt={`${productName} thumbnail ${i + 1}`}
-                    showName={false}
-                    sizes='48px'
-                  />
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Fullscreen mobile-first pinch-to-zoom & zero-crop Image Viewer */}
+      <ImageViewerModal
+        images={displayImages}
+        initialIndex={mainIdx}
+        productName={productName}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        whatsappLink={whatsappLink}
+      />
 
       {/* Floating download feedback toast */}
       <AnimatePresence>

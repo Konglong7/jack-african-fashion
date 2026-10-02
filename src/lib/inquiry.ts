@@ -31,6 +31,15 @@ export function mergeInquiryItems(items: InquiryItem[], item: InquiryItem): Inqu
   return [{ ...item, quantity: Math.max(item.moq, item.quantity || item.moq) }, ...next];
 }
 
+/** Refresh minimums without discarding the buyer's quantity, color or size. */
+export function refreshInquiryMinimums(items: InquiryItem[], minimums: Record<string, number>): InquiryItem[] {
+  return items.map((item) => {
+    const moq = minimums[item.id];
+    if (!Number.isFinite(moq) || moq <= 0) return item;
+    return { ...item, moq, quantity: Math.max(moq, item.quantity || moq) };
+  });
+}
+
 export function getInquiryItemCount(storage: Pick<Storage, 'getItem'>): number {
   try {
     const parsed = JSON.parse(storage.getItem(INQUIRY_STORAGE_KEY) || '[]');

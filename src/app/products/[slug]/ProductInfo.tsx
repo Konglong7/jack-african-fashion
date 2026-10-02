@@ -28,8 +28,8 @@ export function ProductInfo({ product, siteContent }: Props) {
   return (
     <motion.aside
       className='lg:sticky lg:top-24 lg:self-start'
-      initial={{ opacity: 0, x: 18 }}
-      animate={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.45 }}
     >
       <div className='space-y-6'>

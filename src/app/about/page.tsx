@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
 import { DeferredMapEmbed } from '@/components/DeferredMapEmbed';
 import { TrustProofGallery } from '@/components/trust/TrustProofGallery';
 import { getSiteContent } from '@/lib/siteContent';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
+import { pageMetadata } from '@/lib/pageMetadata';
 
-export const metadata: Metadata = {
-  title: "About Jack African Fashion | Guangzhou Own-Factory Women's Clothing Supplier",
-  description:
-    'Jack African Fashion operates zamique.com as its official B2B website, with an own factory and office/showroom at Yulong Fashion Plaza in Guangzhou, serving African wholesale buyers.'
-};
+export const metadata: Metadata = pageMetadata('/about',
+  'About Our Guangzhou Wholesale Team',
+  'Meet Jack African Fashion at Yulong Fashion Plaza in Guangzhou. Learn about our showroom, own-factory production and support for African wholesale buyers.'
+);
 
 export default async function AboutPage() {
   const siteContent = await getSiteContent();

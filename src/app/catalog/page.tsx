@@ -4,16 +4,16 @@ import { getProducts } from '@/lib/db';
 import { getSiteContent } from '@/lib/siteContent';
 import { ProductGridSkeleton } from '@/components/Skeleton';
 import { CatalogClient } from './CatalogClient';
+import { pageMetadata } from '@/lib/pageMetadata';
 
 // Catalog uses ISR: cached and revalidated every 60 seconds so new products
 // appear quickly without sacrificing performance.
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: "Women's Clothing Wholesale Catalog | Guangzhou Supplier",
-  description:
-    "Browse Jack African Fashion's Guangzhou women's clothing wholesale catalog for African boutiques: dresses, plus sizes, two piece sets, ready stock and custom production."
-};
+export const metadata: Metadata = pageMetadata('/catalog',
+  "Women's Clothing Wholesale Catalog",
+  "Browse women's dresses, plus sizes, two piece sets and jumpsuits for African boutiques. Confirm current MOQ, sizes, stock and custom production with our Guangzhou team."
+);
 
 // Catalog data is rendered server-side; URL filters stay in the client so this
 // page remains eligible for ISR and edge caching.
@@ -27,18 +27,17 @@ export default async function CatalogPage() {
   );
   return (
     <>
-      <section className='bg-brand-black py-12 text-white sm:py-16'>
+      <section className='bg-stone-950 py-12 text-white sm:py-16 border-b border-amber-500/20'>
         <div className='mx-auto max-w-7xl px-4 text-center'>
-          <span className='text-brand-gold text-sm font-semibold tracking-[0.2em] uppercase'>
-            Wholesale Catalog
+          <span className='inline-block rounded-full bg-amber-500/15 border border-amber-500/30 px-3.5 py-1 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-amber-400'>
+            Wholesale Catalog · MOQ by Style
           </span>
-          <h1 className='font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl'>
+          <h1 className='font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl text-white'>
             Guangzhou Women&apos;s Clothing Wholesale Catalog
           </h1>
-          <p className='text-brand-cream/70 mx-auto mt-4 max-w-2xl'>
-            Jack African Fashion supplies ready-stock and custom women&apos;s clothing for African
-            boutiques, wholesalers and importers. Select a product to check MOQ, sizes, colors and
-            current availability.
+          <p className='text-stone-300 mx-auto mt-4 max-w-2xl text-sm sm:text-base leading-relaxed'>
+            Jack African Fashion supplies factory-direct women&apos;s clothing for African
+            boutiques, wholesalers and importers. Check each style for its current MOQ, sizes and colors, then confirm stock and cargo dispatch on WhatsApp.
           </p>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BRAND_ENTITY, WHOLESALE_PAGES, getWholesalePage } from '@/lib/aioContent';
@@ -8,6 +8,7 @@ import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { getSiteOrigin } from '@/lib/siteUrl';
 import { WhatsAppIcon } from '@/components/Icons';
+import { pageMetadata } from '@/lib/pageMetadata';
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const content = getWholesalePage(category);
   if (!content) return { title: 'Wholesale Category Not Found' };
   return {
+    ...pageMetadata(`/wholesale/${content.slug}`, content.title, content.description),
     title: content.title,
     description: content.description,
     alternates: { canonical: `${baseUrl}/wholesale/${content.slug}` },
@@ -32,7 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: content.description,
       url: `${baseUrl}/wholesale/${content.slug}`,
       siteName: BRAND_ENTITY.name,
-      type: 'website'
+      type: 'website',
+      images: [SITE_IMAGES.whatsappCatalogBanner]
     }
   };
 }
@@ -299,13 +302,13 @@ export default async function WholesaleCategoryPage({ params }: PageProps) {
                 key={item.title}
                 className='border-brand-sand group overflow-hidden rounded-2xl border bg-white shadow-sm transition-all hover:shadow-md'
               >
-                <div className='relative aspect-[4/5] w-full overflow-hidden bg-stone-100'>
+                <div className='relative aspect-[4/5] w-full overflow-hidden bg-stone-50 p-1 flex items-center justify-center'>
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px'
-                    className='object-cover transition-transform duration-500 group-hover:scale-105'
+                    className='object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   <div className='absolute top-3 left-3'>
                     <span className='rounded-md bg-black/75 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm'>

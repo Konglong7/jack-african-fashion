@@ -9,7 +9,7 @@ export function pickHomepageProducts(products: Product[]) {
     ...newestFirst.filter((item) => item.isPopular),
     ...newestFirst
   ]) {
-    if (picked.size >= 12) break;
+    if (picked.size >= 8) break;
     picked.set(product.id, product);
   }
 

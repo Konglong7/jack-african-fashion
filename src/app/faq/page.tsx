@@ -2,15 +2,14 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BRAND_ENTITY, FAQ_ITEMS } from '@/lib/aioContent';
 import { getSiteOrigin } from '@/lib/siteUrl';
+import { pageMetadata } from '@/lib/pageMetadata';
 
 const baseUrl = getSiteOrigin();
 
-export const metadata: Metadata = {
-  title: "Wholesale Women's Clothing FAQ | Guangzhou Supplier",
-  description:
-    "Answers about Jack African Fashion, Guangzhou women's clothing wholesale, MOQ, ready stock, custom production, African markets, packing and shipping.",
-  alternates: { canonical: `${baseUrl}/faq` }
-};
+export const metadata: Metadata = pageMetadata('/faq',
+  "Women's Clothing Wholesale FAQ",
+  'Answers about Guangzhou clothing wholesale, MOQ, ready stock, custom production, African markets, packing and shipping with Jack African Fashion.'
+);
 
 export default function FaqPage() {
   const jsonLd = {

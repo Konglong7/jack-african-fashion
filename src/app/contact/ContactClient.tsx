@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import { useState } from 'react';
-import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
+import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, siteWhatsAppMessageLink, type SiteContent } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { WhatsAppIcon } from '@/components/Icons';
 
@@ -33,7 +33,7 @@ export function ContactClient({
     e.preventDefault();
     const msg = `Hello Jack, I'm contacting you from your website.\n\nName: ${formData.name}\nCountry: ${formData.country}\nSubject: ${formData.subject}\n\n${formData.message}`;
     setSubmittedMsg(msg);
-    const targetUrl = siteWhatsAppLink(siteContent, msg);
+    const targetUrl = siteWhatsAppMessageLink(siteContent, msg);
     const isMobile =
       typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isMobile) {
@@ -188,7 +188,7 @@ export function ContactClient({
                     </svg>
                   </div>
                   <h2 className='font-display text-brand-black mb-3 text-2xl font-bold'>
-                    Message Sent!
+                    WhatsApp Draft Prepared
                   </h2>
                   <p className='text-brand-brown/70 mx-auto mb-6 max-w-md'>
                     We&apos;ve opened WhatsApp with your message. If it didn&apos;t open, please
@@ -196,7 +196,7 @@ export function ContactClient({
                   </p>
                   <div className='flex flex-col items-center justify-center gap-3 sm:flex-row'>
                     <a
-                      href={siteWhatsAppLink(siteContent, submittedMsg || '')}
+                      href={siteWhatsAppMessageLink(siteContent, submittedMsg || '')}
                       target='_blank'
                       rel='noopener noreferrer'
                       className='bg-brand-orange hover:bg-brand-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-semibold text-white transition-colors'

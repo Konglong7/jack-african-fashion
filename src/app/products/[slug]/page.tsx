@@ -25,12 +25,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
-  if (!product) return { title: 'Product Not Found' };
+  if (!product) notFound();
 
   const baseUrl = getSiteOrigin();
 
   return {
-    title: `${product.name} Wholesale | Guangzhou Women's Clothing Supplier`,
+    title: `${product.name} Wholesale`,
     description: product.description.slice(0, 160),
     keywords: [
       product.name,
@@ -95,7 +95,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Breadcrumb */}
       <div className='bg-brand-cream border-brand-sand/60 border-b'>
         <div className='mx-auto max-w-7xl px-4 py-3'>
-          <nav className='text-brand-brown/60 flex items-center gap-2 text-sm'>
+          <nav aria-label='Breadcrumb' className='text-brand-brown/60 flex min-w-0 items-center gap-2 text-xs sm:text-sm'>
             <Link href='/' className='hover:text-brand-orange transition-colors'>
               Home
             </Link>
@@ -143,7 +143,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Related products */}
       {related.length > 0 && (
         <section id='similar-styles' className='bg-brand-cream scroll-mt-32 py-12 sm:py-16'>
-          <div className='mx-auto max-w-7xl px-4'>
+          <div className='mx-auto max-w-7xl px-3 sm:px-6 lg:px-8'>
             <div className='mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between'>
               <div>
                 <p className='text-brand-orange text-xs font-bold uppercase'>Similar Styles</p>
@@ -158,7 +158,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 View category
               </Link>
             </div>
-            <div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-4'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-8'>
               {related.map((p) => (
                 <ProductCard key={p.id} product={p} siteContent={siteContent} />
               ))}

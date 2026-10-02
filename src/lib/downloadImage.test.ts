@@ -52,10 +52,12 @@ describe('downloadImage utilities', () => {
 
     let mockLink: MockLink;
     let appendedChildren: unknown[] = [];
+    let revokeCallbacks: Array<() => void> = [];
 
     beforeEach(() => {
       vi.restoreAllMocks();
       appendedChildren = [];
+      revokeCallbacks = [];
       mockLink = {
         href: '',
         download: '',
@@ -67,7 +69,7 @@ describe('downloadImage utilities', () => {
           createObjectURL: vi.fn().mockReturnValue('blob:http://localhost/mock-blob'),
           revokeObjectURL: vi.fn()
         },
-        setTimeout: (fn: () => void) => setTimeout(fn, 10)
+        setTimeout: (fn: () => void) => revokeCallbacks.push(fn)
       };
 
       globalObj.document = {
@@ -88,6 +90,7 @@ describe('downloadImage utilities', () => {
     });
 
     afterEach(() => {
+      for (const callback of revokeCallbacks) callback();
       globalThis.fetch = originalFetch;
       globalThis.URL = originalURL;
       globalObj.window = originalWindow;

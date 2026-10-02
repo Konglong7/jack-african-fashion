@@ -8,34 +8,32 @@
 
 export function ProductCardSkeleton() {
   return (
-    <div className='overflow-hidden rounded-xl bg-white shadow-sm'>
+    <div className='overflow-hidden bg-white'>
       {/* Image skeleton */}
-      <div className='bg-brand-sand/30 relative aspect-[3/4] animate-pulse'>
-        <div className='from-brand-sand/50 to-brand-sand/20 absolute inset-0 bg-gradient-to-br' />
+      <div className='bg-stone-100 relative aspect-[3/4] animate-pulse rounded-xl'>
+        <div className='from-stone-200/50 to-stone-100 absolute inset-0 bg-gradient-to-br rounded-xl' />
       </div>
 
       {/* Content skeleton */}
-      <div className='p-4'>
-        {/* Title */}
-        <div className='bg-brand-sand/40 mb-1.5 h-5 w-3/4 animate-pulse rounded' />
-
+      <div className='pt-3 pb-1'>
         {/* Category */}
-        <div className='bg-brand-sand/30 mb-2 h-3 w-1/2 animate-pulse rounded' />
+        <div className='bg-stone-200/70 mb-2 h-3 w-1/4 animate-pulse rounded' />
 
-        {/* MOQ */}
-        <div className='mb-3 flex items-center gap-1.5'>
-          <div className='bg-brand-sand/30 h-3 w-8 animate-pulse rounded' />
-          <div className='bg-brand-sand/40 h-3 w-12 animate-pulse rounded' />
+        {/* Title */}
+        <div className='bg-stone-200/90 mb-1.5 h-4 w-5/6 animate-pulse rounded' />
+        <div className='bg-stone-200/70 mb-2 h-4 w-1/2 animate-pulse rounded' />
+
+        {/* MOQ & status row */}
+        <div className='mb-3 flex items-center gap-2'>
+          <div className='bg-stone-200/80 h-3 w-16 animate-pulse rounded' />
+          <div className='bg-stone-200/60 h-3 w-20 animate-pulse rounded' />
         </div>
 
-        {/* Tags */}
-        <div className='mb-3 flex gap-1'>
-          <div className='bg-brand-sand/30 h-4 w-14 animate-pulse rounded-full' />
-          <div className='bg-brand-sand/30 h-4 w-10 animate-pulse rounded-full' />
+        {/* CTA side-by-side buttons */}
+        <div className='grid grid-cols-2 gap-2 pt-1'>
+          <div className='bg-emerald-100/60 h-10 w-full animate-pulse rounded-lg' />
+          <div className='bg-stone-200/60 h-10 w-full animate-pulse rounded-lg' />
         </div>
-
-        {/* CTA button */}
-        <div className='bg-brand-sand/40 h-9 w-full animate-pulse rounded-lg' />
       </div>
     </div>
   );
@@ -46,7 +44,7 @@ export function ProductCardSkeleton() {
  */
 export function ProductGridSkeleton({ count = 8 }: { count?: number }) {
   return (
-    <div className='grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-8'>
       {Array.from({ length: count }).map((_, i) => (
         <ProductCardSkeleton key={i} />
       ))}

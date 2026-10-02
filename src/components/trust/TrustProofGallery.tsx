@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { WhatsAppIcon } from '@/components/Icons';
@@ -236,7 +236,7 @@ export function TrustProofGallery({ whatsappUrl }: { whatsappUrl?: string }) {
               >
                 {/* Image Container */}
                 <div
-                  className='relative aspect-[4/5] w-full cursor-pointer overflow-hidden bg-stone-100'
+                  className='relative aspect-[4/5] w-full cursor-pointer overflow-hidden bg-stone-50 p-1 flex items-center justify-center'
                   onClick={() => setSelectedImage(item)}
                 >
                   <Image
@@ -244,7 +244,7 @@ export function TrustProofGallery({ whatsappUrl }: { whatsappUrl?: string }) {
                     alt={item.title}
                     fill
                     sizes='(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 320px'
-                    className='object-cover transition-transform duration-500 group-hover:scale-105'
+                    className='object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   <div className='absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100' />
 

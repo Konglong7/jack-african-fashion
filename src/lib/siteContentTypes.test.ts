@@ -3,10 +3,19 @@ import {
   DEFAULT_SITE_CONTENT,
   isConfiguredSocialLink,
   normalizeSiteContent,
-  siteWhatsAppLink
+  siteWhatsAppLink,
+  siteWhatsAppMessageLink
 } from './siteContentTypes';
 
 describe('site content helpers', () => {
+  test('preserves generated inquiry text while generic CTAs keep the configured business link', () => {
+    const content = normalizeSiteContent({ whatsappNumber: '+86 189 2625 7367' });
+    const message = 'Dress & quantity: 500\nhttps://zamique.com/products/example';
+    const parsed = new URL(siteWhatsAppMessageLink(content, message));
+    expect(parsed.pathname).toBe('/8618926257367');
+    expect(parsed.searchParams.get('text')).toBe(message);
+    expect(siteWhatsAppLink(content)).toBe(content.whatsappLink);
+  });
   test('normalizes editable contact and hero fields', () => {
     const content = normalizeSiteContent({
       whatsappNumber: ' +86 189 2625 7367 ',

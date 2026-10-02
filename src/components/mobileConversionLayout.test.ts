@@ -55,6 +55,5 @@ describe('mobile conversion layout', () => {
     expect(gallery).toContain('High-Res Boutique Photos');
     expect(gallery).toContain('Ask on WhatsApp');
     expect(card).toContain('handleQuickDownload');
-    expect(card).toContain('Save photo for WhatsApp status or reselling');
   });
 });

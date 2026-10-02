@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from './ResponsiveImage';
 import type { CSSProperties } from 'react';
 
 type SiteImageProps = {
@@ -24,10 +24,11 @@ export function SiteImage({
   position = 'center',
   useBlurBackground = false
 }: SiteImageProps) {
+  const positionClass = /(?:^|\s)(?:absolute|fixed|relative|sticky|static)(?:\s|$)/.test(className) ? '' : 'relative';
   const imageStyle: CSSProperties = { objectFit: fit, objectPosition: position };
 
   return (
-    <div className={`bg-brand-sand/30 overflow-hidden ${className}`}>
+    <div className={`${positionClass} bg-brand-sand/30 overflow-hidden ${className}`}>
       {useBlurBackground && (
         <>
           <Image
@@ -49,7 +50,7 @@ export function SiteImage({
         fill
         priority={priority}
         sizes={sizes}
-        className={`relative z-10 ${imageClassName}`}
+        className={`z-10 ${imageClassName}`}
         style={imageStyle}
       />
     </div>

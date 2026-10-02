@@ -1,7 +1,9 @@
 'use client';
 
-import Image from 'next/image';
+import Image from './ResponsiveImage';
 import { useState } from 'react';
+import type { ImageProps } from 'next/image';
+import { isSupportedImageSource } from '../lib/imageSource';
 
 interface ProductImageProps {
   src: string;
@@ -13,6 +15,11 @@ interface ProductImageProps {
   showName?: boolean;
   /** Mark as above-the-fold for the LCP image. */
   priority?: boolean;
+  /** Product photos default to contain so every aspect ratio stays visible. */
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none';
+  /** Image position within container, e.g. 'object-top' or 'object-center'. */
+  objectPosition?: string;
+  onLoad?: ImageProps['onLoad'];
 }
 
 /**
@@ -34,26 +41,48 @@ export function ProductImage({
   className = '',
   sizes = '(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw',
   showName = true,
-  priority = false
+  priority = false,
+  objectFit = 'contain',
+  objectPosition,
+  onLoad
 }: ProductImageProps) {
-  const [errored, setErrored] = useState(false);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
 
   // ponytail: next/image rejects src that isn't a root-relative path or absolute URL,
   // and that rejection crashes the whole page (one bad product shouldn't take down the
   // home grid). Treat anything else as missing → placeholder.
-  const isValidSrc = typeof src === 'string' && /^(\/|https?:\/\/)/.test(src);
+  const isValidSrc = isSupportedImageSource(src);
 
-  if (!errored && isValidSrc) {
+  if (failedSrc !== src && isValidSrc) {
+    const hasExplicitFit = /object-(cover|contain|fill|none)/.test(className);
+    const fitClass = hasExplicitFit
+      ? ''
+      : objectFit === 'contain'
+        ? 'object-contain'
+        : objectFit === 'fill'
+          ? 'object-fill'
+          : objectFit === 'none'
+            ? 'object-none'
+            : 'object-cover';
+
+    const posClass = objectPosition
+      ? objectPosition.startsWith('object-')
+        ? objectPosition
+        : `object-${objectPosition}`
+      : '';
+
     return (
       <Image
+        key={src}
         src={src}
         alt={alt}
         fill
         sizes={sizes}
         priority={priority}
         quality={85}
-        onError={() => setErrored(true)}
-        className={`object-cover ${className}`}
+        onError={() => setFailedSrc(src)}
+        onLoad={onLoad}
+        className={[fitClass, posClass, className].filter(Boolean).join(' ')}
       />
     );
   }

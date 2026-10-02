@@ -11,7 +11,8 @@
 - Markets: Confirmed B2B service experience in Nigeria, Ghana, Kenya, Tanzania and South Africa
 - Products: African women's dresses, two piece sets, women's suits, blazer pants sets, pleated dresses, knit dresses, plus-size women's clothing, jumpsuits and ready-stock fashion
 - Services: Own-factory custom production, ready-stock confirmation, quality checking, export packing, direct WhatsApp communication and shipping coordination after route confirmation
-- MOQ: Varies by product, stock batch and custom-production requirements; verify the current product-page quantity before ordering
+- MOQ: Ready stock wholesale starts from 100 pcs per style across 68 featured styles, providing low-MOQ test orders for African boutique buyers; custom production MOQ is confirmed per design
+- Full AI Specification: https://zamique.com/llms-full.txt
 - Stock accuracy: Colors, sizes, quantity and price are reconfirmed for the current batch
 
 ## Main pages

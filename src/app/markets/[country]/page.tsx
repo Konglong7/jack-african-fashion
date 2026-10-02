@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BRAND_ENTITY, MARKET_PAGES, getMarketPage } from '@/lib/aioContent';
@@ -8,6 +8,7 @@ import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { getSiteOrigin } from '@/lib/siteUrl';
 import { WhatsAppIcon } from '@/components/Icons';
+import { pageMetadata } from '@/lib/pageMetadata';
 
 interface PageProps {
   params: Promise<{ country: string }>;
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!market) return { title: 'Market Page Not Found' };
 
   return {
+    ...pageMetadata(`/markets/${market.slug}`, market.title, market.description),
     title: market.title,
     description: market.description,
     alternates: { canonical: `${baseUrl}/markets/${market.slug}` },
@@ -33,7 +35,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: market.description,
       url: `${baseUrl}/markets/${market.slug}`,
       siteName: BRAND_ENTITY.name,
-      type: 'website'
+      type: 'website',
+      images: [SITE_IMAGES.whatsappCatalogBanner]
     }
   };
 }
@@ -305,13 +308,13 @@ export default async function MarketPage({ params }: PageProps) {
                 key={item.title}
                 className='border-brand-sand group overflow-hidden rounded-2xl border bg-white shadow-sm transition-all hover:shadow-md'
               >
-                <div className='relative aspect-[4/3] w-full overflow-hidden bg-stone-100'>
+                <div className='relative aspect-[4/3] w-full overflow-hidden bg-stone-50 p-1 flex items-center justify-center'>
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
                     sizes='(max-width: 640px) 100vw, 560px'
-                    className='object-cover transition-transform duration-500 group-hover:scale-105'
+                    className='object-contain transition-transform duration-500 group-hover:scale-105'
                   />
                   <div className='absolute top-3 left-3'>
                     <span className='rounded-md bg-black/75 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm'>

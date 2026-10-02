@@ -7,6 +7,7 @@ import type {
 } from './db';
 import { slugify } from './db';
 import { DEFAULT_PRODUCT_COLORS, DEFAULT_PRODUCT_SIZES } from './productDefaults';
+import { isSupportedImageSource } from './imageSource';
 
 const STOCK_TYPES: StockType[] = ['Ready Stock', 'Custom Available', 'Ready Stock & Custom'];
 
@@ -77,7 +78,7 @@ function asTrimmedString(value: unknown): string {
 function asImagePath(value: unknown): string {
   if (typeof value !== 'string') return '';
   const trimmed = value.trim();
-  if (trimmed === '' || /^(\/|https?:\/\/)/.test(trimmed)) return trimmed;
+  if (trimmed === '' || isSupportedImageSource(trimmed)) return trimmed;
   return '';
 }
 
