@@ -112,7 +112,7 @@ export function ProductCard({
               priority={priority}
               sizes={
                 sizes ||
-                '(max-width: 639px) 100vw, (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw'
+                '(max-width: 639px) calc((100vw - 32px) / 1.2), (max-width: 1023px) 50vw, (max-width: 1279px) 33vw, 25vw'
               }
               objectPosition='object-top'
               objectFit='contain'

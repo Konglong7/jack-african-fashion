@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import { buildWhatsAppLink } from '@/lib/whatsappRouter';
 
 const CARGO_EVIDENCES = [

@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import Image from '@/components/ResponsiveImage';
 import { useState } from 'react';
 import { buildWhatsAppLink } from '@/lib/whatsappRouter';
 
