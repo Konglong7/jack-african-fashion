@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { revalidatePath } from 'next/cache';
-import { getProductById, updateProduct, deleteProduct } from '@/lib/db';
+import { getProducts, getProductById, updateProduct, deleteProduct } from '@/lib/db';
 import { normalizeProductInput } from '@/lib/productValidation';
 import { readJsonBody } from '@/lib/apiRequest';
+import { publishProductChanges } from '@/lib/productPublication';
 
 interface Params {
   id: string;
@@ -34,16 +35,12 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<Params
   }
 
   try {
-    const previousProduct = await getProductById(id);
+    const before = await getProducts();
     const product = await updateProduct(id, validation.product);
     if (!product) {
       return NextResponse.json({ ok: false, error: 'Not found' }, { status: 404 });
     }
-    revalidatePath('/');
-    revalidatePath('/catalog');
-    if (previousProduct) revalidatePath(`/products/${previousProduct.slug}`);
-    revalidatePath(`/products/${product.slug}`);
-    revalidatePath('/sitemap.xml');
+    await publishProductChanges(before, await getProducts(), revalidatePath);
     return NextResponse.json({ ok: true, product });
   } catch (error) {
     return NextResponse.json(
@@ -56,14 +53,11 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<Params
 // DELETE /api/admin/products/[id] — delete product
 export async function DELETE(_req: NextRequest, { params }: { params: Promise<Params> }) {
   const { id } = await params;
-  const previousProduct = await getProductById(id);
+  const before = await getProducts();
   const deleted = await deleteProduct(id);
   if (!deleted) {
     return NextResponse.json({ ok: false, error: 'Not found' }, { status: 404 });
   }
-  revalidatePath('/');
-  revalidatePath('/catalog');
-  if (previousProduct) revalidatePath(`/products/${previousProduct.slug}`);
-  revalidatePath('/sitemap.xml');
+  await publishProductChanges(before, await getProducts(), revalidatePath);
   return NextResponse.json({ ok: true });
 }

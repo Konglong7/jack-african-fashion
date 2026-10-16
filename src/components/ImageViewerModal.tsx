@@ -12,6 +12,7 @@ interface ImageViewerModalProps {
   images: string[];
   initialIndex?: number;
   productName: string;
+  productId?: string;
   isOpen: boolean;
   onClose: () => void;
   whatsappLink?: string;
@@ -40,6 +41,7 @@ export function ImageViewerModal({
   images,
   initialIndex = 0,
   productName,
+  productId,
   isOpen,
   onClose,
   whatsappLink,
@@ -487,13 +489,15 @@ export function ImageViewerModal({
             {whatsappLink && (
               <a
                 href={whatsappLink}
+                data-product-id={productId}
+                data-cta-location='product-image-preview'
                 target='_blank'
                 rel='noopener noreferrer'
-                className={`flex ${isHome ? 'h-11 min-w-11 justify-center bg-[#0B7A3C] hover:bg-[#165C45]' : 'h-9 bg-[#25D366] hover:bg-[#20ba59]'} items-center gap-1.5 rounded-full px-3 text-xs font-bold text-white shadow-md transition-all active:scale-95`}
-                aria-label='Inquire about this style on WhatsApp'
+                className='flex h-11 min-w-11 justify-center bg-[#0B7A3E] hover:bg-[#086532] items-center gap-1.5 rounded-full px-3 text-xs font-bold text-white shadow-md transition-all active:scale-95'
+                aria-label='Chat on WhatsApp about this style'
               >
                 <WhatsAppIcon className='h-3.5 w-3.5' />
-                <span className='hidden sm:inline'>WhatsApp</span>
+                <span className='hidden sm:inline'>Chat on WhatsApp</span>
               </a>
             )}
 
@@ -568,10 +572,9 @@ export function ImageViewerModal({
                 src={currentImage}
                 alt={`${productName} view ${currentIndex + 1}`}
                 fill
-                priority
-                sizes='100vw'
+                unoptimized
+                loading='eager'
                 className='object-contain pointer-events-none select-none'
-                quality={85}
               />
             </div>
           </div>

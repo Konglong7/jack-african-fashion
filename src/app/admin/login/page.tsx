@@ -54,7 +54,7 @@ function AdminLoginForm() {
       <div className='w-full max-w-sm'>
         {/* Logo / Title */}
         <div className='mb-8 text-center'>
-          <h1 className='text-brand-black text-2xl font-bold'>Jack African Fashion</h1>
+          <h1 className='text-brand-black text-2xl font-bold'>Jack Fashion</h1>
           <p className='text-brand-brown/60 mt-1 text-sm'>Admin Panel</p>
         </div>
 

@@ -4,20 +4,25 @@ import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import type { InquiryItem } from '@/lib/inquiry';
-import { buildInquiryMessage, INQUIRY_STORAGE_KEY, notifyInquiryUpdated, refreshInquiryMinimums } from '@/lib/inquiry';
+import {
+  buildInquiryMessage,
+  INQUIRY_STORAGE_KEY,
+  notifyInquiryUpdated,
+  normalizeInquiryItems
+} from '@/lib/inquiry';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import { siteWhatsAppMessageLink } from '@/lib/siteContentTypes';
+import { siteWhatsAppLink, siteWhatsAppMessageLink } from '@/lib/siteContentTypes';
 import { WhatsAppIcon } from '@/components/Icons';
 
-export function InquiryClient({ siteContent, minimums }: { siteContent: SiteContent; minimums: Record<string, number> }) {
+export function InquiryClient({ siteContent }: { siteContent: SiteContent }) {
   const [items, setItems] = useState<InquiryItem[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    setItems(refreshInquiryMinimums(readItems(), minimums));
+    setItems(normalizeInquiryItems(readItems()));
     setLoaded(true);
-  }, [minimums]);
+  }, []);
 
   useEffect(() => {
     if (!loaded) return;
@@ -27,7 +32,7 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
 
   const message = useMemo(() => buildInquiryMessage(items), [items]);
   const totalPieces = useMemo(
-    () => items.reduce((sum, item) => sum + (item.quantity || item.moq), 0),
+    () => items.reduce((sum, item) => sum + (item.quantity || 1), 0),
     [items]
   );
 
@@ -35,7 +40,7 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
     setItems((current) =>
       current.map((item) =>
         item.id === id
-          ? { ...item, ...patch, quantity: Math.max(item.moq, patch.quantity || item.quantity) }
+          ? { ...item, ...patch, quantity: Math.max(1, patch.quantity || item.quantity) }
           : item
       )
     );
@@ -74,15 +79,18 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
               Inquiry List
             </h1>
             <p className='text-brand-brown/70 mt-2 max-w-2xl text-sm'>
-              Confirm color, size and quantity before sending everything to WhatsApp.
+              You can contact us on WhatsApp right away. Reviewing saved styles is optional.
             </p>
           </div>
-          <Link
-            href='/catalog'
-            className='border-brand-sand text-brand-brown hover:border-brand-orange hover:text-brand-orange inline-flex items-center justify-center rounded-full border bg-white px-5 py-2.5 text-sm font-bold shadow-sm transition-colors'
+          <a
+            href={siteWhatsAppLink(siteContent)}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#086532]'
           >
-            Add More Styles
-          </Link>
+            <WhatsAppIcon className='h-5 w-5 shrink-0' />
+            Chat on WhatsApp
+          </a>
         </div>
 
         {items.length === 0 ? (
@@ -155,16 +163,16 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
                           className='input-control'
                         />
                       </Field>
-                      <Field label={`Qty (MOQ ${item.moq})`}>
+                      <Field label='Requested qty (MOQ to confirm)'>
                         <div className='border-brand-sand flex items-center overflow-hidden rounded-lg border bg-white'>
                           <button
                             type='button'
                             onClick={() =>
                               updateItem(item.id, {
-                                quantity: Math.max(item.moq, (item.quantity || item.moq) - 10)
+                                quantity: Math.max(1, (item.quantity || 1) - 10)
                               })
                             }
-                            disabled={item.quantity <= item.moq}
+                            disabled={item.quantity <= 1}
                             className='hover:bg-brand-sand/30 text-brand-brown px-3 py-2 text-base font-bold transition-colors select-none disabled:opacity-30'
                             aria-label='Decrease quantity by 10'
                           >
@@ -172,7 +180,7 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
                           </button>
                           <input
                             type='number'
-                            min={item.moq}
+                            min={1}
                             value={item.quantity}
                             onChange={(e) =>
                               updateItem(item.id, { quantity: Number(e.target.value) })
@@ -183,7 +191,7 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
                             type='button'
                             onClick={() =>
                               updateItem(item.id, {
-                                quantity: (item.quantity || item.moq) + 10
+                                quantity: (item.quantity || 1) + 10
                               })
                             }
                             className='hover:bg-brand-sand/30 text-brand-brown px-3 py-2 text-base font-bold transition-colors select-none'
@@ -207,16 +215,17 @@ export function InquiryClient({ siteContent, minimums }: { siteContent: SiteCont
                 {items.length} selected style{items.length > 1 ? 's' : ''} · {totalPieces} pcs
               </h2>
               <p className='text-brand-cream/70 mt-2 text-sm'>
-                Sends product names, style numbers, quantity, color and size in one message.
+                Sends product names, style numbers, requested quantity, color and size in one
+                message. Final MOQ is confirmed on WhatsApp.
               </p>
               <a
                 href={siteWhatsAppMessageLink(siteContent, message)}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#20BA5A]'
+                className='mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#086532]'
               >
                 <WhatsAppIcon className='h-5 w-5' />
-                Send WhatsApp Inquiry
+                Chat on WhatsApp
               </a>
               <button
                 type='button'

@@ -6,6 +6,12 @@ import type { SiteContent } from '@/lib/siteContentTypes';
 export function SettingsForm({ initialSettings }: { initialSettings: SiteContent }) {
   const [form, setForm] = useState({
     ...initialSettings,
+    additionalLocations: (initialSettings.additionalLocations || [])
+      .map((location) => [location.name, location.address, location.mapUrl].join(' | '))
+      .join('\n'),
+    whatsappContacts: (initialSettings.whatsappContacts || [])
+      .map((contact) => [contact.link, contact.number, contact.display].join(' | '))
+      .join('\n'),
     heroTrust: initialSettings.heroTrust.join('\n'),
     categories: initialSettings.categories
       .map((category) =>
@@ -27,6 +33,20 @@ export function SettingsForm({ initialSettings }: { initialSettings: SiteContent
 
     const payload = {
       ...form,
+      additionalLocations: form.additionalLocations
+        .split('\n')
+        .filter((line) => line.trim())
+        .map((line) => {
+          const [name = '', address = '', mapUrl = ''] = line.split('|').map((part) => part.trim());
+          return { name, address, mapUrl };
+        }),
+      whatsappContacts: form.whatsappContacts
+        .split('\n')
+        .filter((line) => line.trim())
+        .map((line) => {
+          const [link = '', number = '', display = ''] = line.split('|').map((part) => part.trim());
+          return { link, number, display };
+        }),
       heroTrust: form.heroTrust
         .split('\n')
         .map((item) => item.trim())
@@ -101,7 +121,7 @@ export function SettingsForm({ initialSettings }: { initialSettings: SiteContent
               </Field>
               <Field
                 label='WhatsApp direct link'
-                hint='Official wa.me link used by all site CTA buttons'
+                hint='Used when the contact rotation list below is empty'
               >
                 <input
                   value={form.whatsappLink}
@@ -111,6 +131,17 @@ export function SettingsForm({ initialSettings }: { initialSettings: SiteContent
                 />
               </Field>
             </div>
+            <Field
+              label='WhatsApp contact rotation'
+              hint='One account per line: link | number | displayed number. New visitors are split evenly; the same browser session keeps the same contact.'
+            >
+              <textarea
+                value={form.whatsappContacts}
+                onChange={(e) => set('whatsappContacts', e.target.value)}
+                rows={3}
+                className='input-control resize-none'
+              />
+            </Field>
             <Field label='Location'>
               <input
                 value={form.location}
@@ -127,6 +158,17 @@ export function SettingsForm({ initialSettings }: { initialSettings: SiteContent
                 onChange={(e) => set('locationUrl', e.target.value)}
                 className='input-control'
                 placeholder='https://www.google.com/maps/place/...'
+              />
+            </Field>
+            <Field
+              label='Additional wholesale showrooms'
+              hint='One per line: showroom name | address | map URL'
+            >
+              <textarea
+                value={form.additionalLocations}
+                onChange={(e) => set('additionalLocations', e.target.value)}
+                rows={3}
+                className='input-control resize-none'
               />
             </Field>
             <Field label='Default WhatsApp message'>

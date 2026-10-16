@@ -1,389 +1,172 @@
-'use client';
-
 import Image from '@/components/ResponsiveImage';
-import { useState } from 'react';
-import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, siteWhatsAppMessageLink, type SiteContent } from '@/lib/siteContentTypes';
+import {
+  DEFAULT_SITE_CONTENT,
+  getSiteLocations,
+  siteWhatsAppLink,
+  type SiteContent
+} from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { WhatsAppIcon } from '@/components/Icons';
+import { SocialLinks, WhatsAppContacts } from '@/components/ContactLinks';
+
+const CONTACT_TOPICS = [
+  {
+    title: 'Stock & wholesale prices',
+    description: 'Ask for current styles, real stock photos and a wholesale quotation.'
+  },
+  {
+    title: 'Custom production',
+    description: 'Send your style pictures and discuss fabric, measurements and quantity.'
+  },
+  {
+    title: 'Shipping & packing',
+    description: 'Discuss your destination, cargo agent and packing requirements.'
+  },
+  {
+    title: 'Sizes & colors',
+    description: 'Check the available size mix, colors and measurements for a style.'
+  },
+  {
+    title: 'Visit appointments',
+    description: 'Arrange a visit to Yulong Fashion Plaza or LIUHUA Market, Shop 0081.'
+  },
+  {
+    title: 'Any other question',
+    description: 'Tell us what you need. You can start the conversation with a simple hello.'
+  }
+];
 
 export function ContactClient({
   initialSiteContent = DEFAULT_SITE_CONTENT
 }: {
   initialSiteContent?: SiteContent;
 }) {
-  const [siteContent] = useState<SiteContent>(initialSiteContent);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    country: '',
-    subject: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [submittedMsg, setSubmittedMsg] = useState('');
-  const [copied, setCopied] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const msg = `Hello Jack, I'm contacting you from your website.\n\nName: ${formData.name}\nCountry: ${formData.country}\nSubject: ${formData.subject}\n\n${formData.message}`;
-    setSubmittedMsg(msg);
-    const targetUrl = siteWhatsAppMessageLink(siteContent, msg);
-    const isMobile =
-      typeof navigator !== 'undefined' && /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    if (isMobile) {
-      window.location.href = targetUrl;
-    } else {
-      window.open(targetUrl, '_blank');
-    }
-    setSubmitted(true);
-  };
+  const siteContent = initialSiteContent;
+  const whatsappLink = siteWhatsAppLink(siteContent);
 
   return (
     <>
-      {/* Hero */}
-      <section className='bg-brand-black py-14 text-white sm:py-20'>
-        <div className='mx-auto max-w-7xl px-4 text-center'>
-          <span className='text-brand-gold text-sm font-semibold tracking-[0.2em] uppercase'>
-            Contact Us
-          </span>
-          <h1 className='font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl'>
-            Get in Touch
+      <section className='bg-brand-black py-12 text-white sm:py-16'>
+        <div className='mx-auto max-w-5xl px-4 text-center'>
+          <h1 className='font-display text-3xl font-bold sm:text-4xl lg:text-5xl'>
+            Contact Jack Fashion for Women&apos;s Clothing Wholesale
           </h1>
-          <p className='text-brand-cream/70 mx-auto mt-4 max-w-2xl leading-relaxed'>
-            Have a question about our products, wholesale prices, or custom orders? We&apos;re here
-            to help. Message us on WhatsApp for the fastest response.
+          <p className='text-brand-cream/80 mx-auto mt-5 max-w-2xl leading-relaxed'>
+            For prices, ready stock, custom styles, shipping or any other question, message our
+            Guangzhou team directly. No form to fill in.
           </p>
+          <a
+            href={whatsappLink}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-8 py-4 font-semibold text-white transition-colors hover:bg-[#086532] sm:w-auto'
+          >
+            <WhatsAppIcon className='h-5 w-5 shrink-0' />
+            Chat on WhatsApp
+          </a>
+          <WhatsAppContacts siteContent={siteContent} className='mt-3 justify-center text-white' />
         </div>
       </section>
 
-      <section className='bg-brand-cream py-12 sm:py-16'>
+      <section className='bg-brand-cream py-10 sm:py-14'>
         <div className='mx-auto max-w-6xl px-4'>
-          <div className='grid grid-cols-1 gap-8 lg:grid-cols-3'>
-            {/* Contact info */}
-            <div className='lg:col-span-1'>
-              <div className='mb-6 rounded-2xl bg-white p-6 shadow-sm'>
-                <h2 className='font-display text-brand-black mb-6 text-xl font-bold'>
-                  Contact Information
-                </h2>
-
-                <div className='space-y-5'>
-                  <div className='flex items-start gap-4'>
-                    <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#25D366]/10'>
-                      <WhatsAppIcon className='h-5 w-5 text-[#25D366]' />
-                    </div>
-                    <div>
-                      <p className='text-brand-black text-sm font-semibold'>WhatsApp</p>
-                      <a
-                        href={siteWhatsAppLink(siteContent, '')}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-brand-orange hover:text-brand-gold text-sm transition-colors'
-                      >
-                        {siteContent.whatsappDisplay}
-                      </a>
-                      <p className='text-brand-brown/50 mt-0.5 text-xs'>
-                        Fastest response — usually within hours
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className='flex items-start gap-4'>
-                    <div className='bg-brand-orange/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full'>
-                      <svg
-                        className='text-brand-orange h-5 w-5'
-                        fill='none'
-                        stroke='currentColor'
-                        strokeWidth={2}
-                        viewBox='0 0 24 24'
-                      >
-                        <path d='M15 10.5a3 3 0 11-6 0 3 3 0 016 0z' />
-                        <path d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z' />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className='text-brand-black text-sm font-semibold'>Location</p>
-                      <a
-                        href={siteContent.locationUrl}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-brand-orange hover:text-brand-gold text-sm transition-colors'
-                      >
-                        {siteContent.location}
-                      </a>
-                      <p className='text-brand-brown/50 mt-0.5 text-xs'>
-                        Yuexiu District, Guangzhou
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className='flex items-start gap-4'>
-                    <div className='bg-brand-orange/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full'>
-                      <svg
-                        className='text-brand-orange h-5 w-5'
-                        fill='none'
-                        stroke='currentColor'
-                        strokeWidth={2}
-                        viewBox='0 0 24 24'
-                      >
-                        <path d='M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z' />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className='text-brand-black text-sm font-semibold'>Business Hours</p>
-                      <p className='text-brand-brown/70 text-sm'>Mon–Sat, 9:00–18:00 (GMT+8)</p>
-                      <p className='text-brand-brown/50 mt-0.5 text-xs'>
-                        We reply on WhatsApp outside hours too
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Quick WhatsApp */}
-              <div className='overflow-hidden rounded-2xl bg-gradient-to-br from-[#25D366] to-[#128C7E] text-center text-white'>
-                <div className='relative aspect-[4/3]'>
-                  <Image
-                    src={SITE_IMAGES.whatsappContact}
-                    alt='WhatsApp contact guide for African fashion wholesale buyers'
-                    fill
-                    sizes='(max-width: 1024px) 100vw, 33vw'
-                    className='object-cover'
-                  />
-                </div>
-                <div className='p-6'>
-                  <WhatsAppIcon className='mx-auto mb-3 h-10 w-10' />
-                  <h3 className='mb-2 text-lg font-semibold'>Fastest Way to Reach Us</h3>
-                  <p className='mb-4 text-sm text-white/80'>
-                    Message us on WhatsApp for instant reply
-                  </p>
-                  <a
-                    href={siteWhatsAppLink(siteContent, 'Hello Jack, I have a question.')}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#128C7E] transition-colors hover:bg-white/90'
-                  >
-                    Chat Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact form */}
-            <div className='lg:col-span-2'>
-              {submitted ? (
-                <div className='rounded-2xl bg-white p-8 text-center shadow-sm sm:p-12'>
-                  <div className='bg-brand-emerald/15 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full'>
-                    <svg
-                      className='text-brand-emerald h-8 w-8'
-                      fill='currentColor'
-                      viewBox='0 0 20 20'
-                    >
-                      <path d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' />
-                    </svg>
-                  </div>
-                  <h2 className='font-display text-brand-black mb-3 text-2xl font-bold'>
-                    WhatsApp Draft Prepared
-                  </h2>
-                  <p className='text-brand-brown/70 mx-auto mb-6 max-w-md'>
-                    We&apos;ve opened WhatsApp with your message. If it didn&apos;t open, please
-                    message us directly.
-                  </p>
-                  <div className='flex flex-col items-center justify-center gap-3 sm:flex-row'>
-                    <a
-                      href={siteWhatsAppMessageLink(siteContent, submittedMsg || '')}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='bg-brand-orange hover:bg-brand-gold inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-semibold text-white transition-colors'
-                    >
-                      <WhatsAppIcon className='h-5 w-5' />
-                      Open WhatsApp
-                    </a>
-                    <button
-                      type='button'
-                      onClick={() => {
-                        if (typeof navigator !== 'undefined' && navigator.clipboard?.writeText) {
-                          navigator.clipboard.writeText(submittedMsg);
-                          setCopied(true);
-                          window.setTimeout(() => setCopied(false), 2000);
-                        }
-                      }}
-                      className='border-brand-sand hover:border-brand-orange hover:text-brand-orange text-brand-brown inline-flex items-center justify-center rounded-full border bg-white px-6 py-3.5 font-semibold transition-colors'
-                    >
-                      {copied ? 'Copied to Clipboard!' : 'Copy Message Text'}
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className='space-y-5 rounded-2xl bg-white p-6 shadow-sm sm:p-8'
-                >
-                  <h2 className='font-display text-brand-black text-xl font-bold sm:text-2xl'>
-                    Send Us a Message
-                  </h2>
-
-                  <div className='grid grid-cols-1 gap-5 sm:grid-cols-2'>
-                    <div>
-                      <label
-                        htmlFor='name'
-                        className='text-brand-brown mb-1.5 block text-sm font-medium'
-                      >
-                        Name *
-                      </label>
-                      <input
-                        type='text'
-                        id='name'
-                        name='name'
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        className='border-brand-sand bg-brand-cream/30 focus:border-brand-orange w-full rounded-lg border px-4 py-2.5 focus:outline-none'
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor='email'
-                        className='text-brand-brown mb-1.5 block text-sm font-medium'
-                      >
-                        Email (optional)
-                      </label>
-                      <input
-                        type='email'
-                        id='email'
-                        name='email'
-                        value={formData.email}
-                        onChange={handleChange}
-                        className='border-brand-sand bg-brand-cream/30 focus:border-brand-orange w-full rounded-lg border px-4 py-2.5 focus:outline-none'
-                      />
-                    </div>
-                  </div>
-
-                  <div className='grid grid-cols-1 gap-5 sm:grid-cols-2'>
-                    <div>
-                      <label
-                        htmlFor='country'
-                        className='text-brand-brown mb-1.5 block text-sm font-medium'
-                      >
-                        Country *
-                      </label>
-                      <input
-                        type='text'
-                        id='country'
-                        name='country'
-                        required
-                        placeholder='e.g. Nigeria'
-                        value={formData.country}
-                        onChange={handleChange}
-                        className='border-brand-sand bg-brand-cream/30 focus:border-brand-orange w-full rounded-lg border px-4 py-2.5 focus:outline-none'
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor='subject'
-                        className='text-brand-brown mb-1.5 block text-sm font-medium'
-                      >
-                        Subject *
-                      </label>
-                      <select
-                        id='subject'
-                        name='subject'
-                        required
-                        value={formData.subject}
-                        onChange={handleChange}
-                        className='border-brand-sand bg-brand-cream/30 focus:border-brand-orange w-full rounded-lg border px-4 py-2.5 focus:outline-none'
-                      >
-                        <option value=''>Select subject</option>
-                        <option>Wholesale Price Inquiry</option>
-                        <option>Ready Stock Order</option>
-                        <option>Custom Order</option>
-                        <option>Shipping Question</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor='message'
-                      className='text-brand-brown mb-1.5 block text-sm font-medium'
-                    >
-                      Message *
-                    </label>
-                    <textarea
-                      id='message'
-                      name='message'
-                      required
-                      rows={5}
-                      placeholder='Tell us what you need...'
-                      value={formData.message}
-                      onChange={handleChange}
-                      className='border-brand-sand bg-brand-cream/30 focus:border-brand-orange w-full resize-none rounded-lg border px-4 py-2.5 focus:outline-none'
-                    />
-                  </div>
-
-                  <button
-                    type='submit'
-                    className='bg-brand-orange hover:bg-brand-gold inline-flex w-full items-center justify-center gap-2 rounded-full py-4 text-base font-semibold text-white transition-colors'
-                  >
-                    Send Message via WhatsApp
-                    <svg
-                      className='h-5 w-5'
-                      fill='none'
-                      stroke='currentColor'
-                      strokeWidth={2}
-                      viewBox='0 0 24 24'
-                    >
-                      <path d='M5 12h14M12 5l7 7-7 7' />
-                    </svg>
-                  </button>
-                </form>
-              )}
-            </div>
+          <h2 className='font-display text-brand-black text-2xl font-bold sm:text-3xl'>
+            What Can We Help You With?
+          </h2>
+          <p className='text-brand-brown/80 mt-3 max-w-2xl leading-relaxed'>
+            Contact our team on WhatsApp for stock, MOQ, bulk-price quotations, custom requirements or
+            cargo handover. Send a style code or reference photo, quantity and destination; every
+            option below opens the same direct conversation.
+          </p>
+          <div className='mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+            {CONTACT_TOPICS.map((topic) => (
+              <a
+                key={topic.title}
+                href={whatsappLink}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='border-brand-sand hover:border-brand-orange flex flex-col rounded-xl border bg-white p-6 transition-colors'
+              >
+                <h3 className='text-brand-black font-semibold'>{topic.title}</h3>
+                <p className='text-brand-brown/80 mt-3 flex-1 text-sm leading-relaxed'>
+                  {topic.description}
+                </p>
+                <span className='mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#0B7A3C]'>
+                  <WhatsAppIcon className='h-5 w-5 shrink-0' />
+                  Chat on WhatsApp
+                </span>
+              </a>
+            ))}
           </div>
 
-          {/* FAQ */}
-          <div id='faq' className='mt-16'>
-            <h2 className='font-display text-brand-black mb-10 text-center text-2xl font-bold sm:text-3xl'>
-              Frequently Asked Questions
-            </h2>
-            <div className='mx-auto grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2'>
-              {[
-                {
-                  q: 'What is the minimum order quantity (MOQ)?',
-                  a: 'MOQ varies by product, current stock batch and custom-production requirements. Use the product page as the starting point and confirm the quantity before ordering.'
-                },
-                {
-                  q: 'How long does production take?',
-                  a: 'Lead time depends on the style, fabric, quantity, sampling and factory schedule. We provide an order-specific estimate after the details are confirmed.'
-                },
-                {
-                  q: 'Do you support shipping to African countries?',
-                  a: 'Yes. We can pack orders in Guangzhou and coordinate transfer to your nominated forwarder or an agreed shipping partner. Route, cost and timing are confirmed per order.'
-                },
-                {
-                  q: 'Can I send my own style pictures?',
-                  a: 'Yes. Send clear reference pictures, fabric direction, sizes, colors and quantity on WhatsApp so we can review feasibility, MOQ and lead time.'
-                },
-                {
-                  q: 'What payment methods do you accept?',
-                  a: 'Available payment method, account details and payment schedule are provided in the written order confirmation. Verify all details directly with our team before paying.'
-                },
-                {
-                  q: 'Do you offer samples?',
-                  a: 'Sample availability, cost and timing depend on the product and custom requirements. These terms must be confirmed before sampling starts.'
-                }
-              ].map((faq, i) => (
-                <div key={i} className='rounded-xl bg-white p-5 shadow-sm'>
-                  <h3 className='text-brand-black mb-2 font-semibold'>{faq.q}</h3>
-                  <p className='text-brand-brown/70 text-sm leading-relaxed'>{faq.a}</p>
+          <div className='mt-10 grid gap-6 lg:grid-cols-2'>
+            <div className='rounded-2xl bg-white p-6 sm:p-8'>
+              <h2 className='font-display text-brand-black text-2xl font-bold'>
+                Our Guangzhou Team
+              </h2>
+              <p className='text-brand-brown/80 mt-3 text-sm leading-relaxed'>
+                Contact Jack or Amber through our official WhatsApp numbers. We operate wholesale
+                showrooms at Yulong Fashion Plaza and LIUHUA Market, Shop 0081, in Guangzhou.
+                Confirm which showroom, appointment time and styles you want to see before visiting.
+              </p>
+              <dl className='mt-6 space-y-5 text-sm'>
+                <div>
+                  <dt className='text-brand-black font-semibold'>WhatsApp</dt>
+                  <dd className='mt-2'>
+                    <WhatsAppContacts siteContent={siteContent} className='text-[#0B7A3E]' />
+                  </dd>
                 </div>
-              ))}
+                <div>
+                  <dt className='text-brand-black font-semibold'>Wholesale showrooms</dt>
+                  {getSiteLocations(siteContent).map((location) => (
+                    <dd key={location.address} className='mt-2'>
+                      <a
+                        href={location.mapUrl}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-brand-brown/80 leading-relaxed underline underline-offset-4'
+                      >
+                        {location.address}
+                      </a>
+                    </dd>
+                  ))}
+                </div>
+                <div>
+                  <dt className='text-brand-black font-semibold'>Showroom appointments</dt>
+                  <dd className='text-brand-brown/80 mt-2 leading-relaxed'>
+                    Confirm your showroom and visit time on WhatsApp before travelling. Guangzhou
+                    uses China Standard Time (UTC+8).
+                  </dd>
+                </div>
+              </dl>
+              <SocialLinks siteContent={siteContent} className='mt-6' />
+            </div>
+            <div className='bg-brand-black overflow-hidden rounded-2xl text-white'>
+              <div className='relative aspect-[16/9]'>
+                <Image
+                  src={SITE_IMAGES.trust.showroomExterior}
+                  alt='Yulong Fashion Plaza, Jack Fashion wholesale base in Guangzhou'
+                  fill
+                  sizes='(max-width: 1023px) 100vw, 50vw'
+                  className='object-cover'
+                />
+              </div>
+              <div className='p-6'>
+                <h2 className='text-xl font-semibold'>Plan a Guangzhou Visit</h2>
+                <p className='mt-3 text-sm leading-relaxed text-white/80'>
+                  Message us on WhatsApp with your preferred date and the styles you would like to
+                  see. We will confirm the visit details with you.
+                </p>
+                <a
+                  href={whatsappLink}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#086532]'
+                >
+                  <WhatsAppIcon className='h-5 w-5 shrink-0' />
+                  Chat on WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>

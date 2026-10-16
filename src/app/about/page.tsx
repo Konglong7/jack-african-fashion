@@ -1,361 +1,259 @@
-import type { Metadata } from 'next';
-import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
-import { DeferredMapEmbed } from '@/components/DeferredMapEmbed';
-import { TrustProofGallery } from '@/components/trust/TrustProofGallery';
 import { getSiteContent } from '@/lib/siteContent';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
-import { SITE_IMAGES } from '@/lib/siteImages';
+import { BRAND_ENTITY } from '@/lib/aioContent';
 import { pageMetadata } from '@/lib/pageMetadata';
+import { WholesaleContact } from '@/components/home/WholesaleContact';
+import { WhatsAppIcon } from '@/components/Icons';
+import { getLegacyBrandName } from '@/lib/organizationJsonLd';
+import { FactoryGallery } from '@/components/FactoryGallery';
+import { AFRICAN_FASHION_SALES_ACCOUNTS, buildWhatsAppLink } from '@/lib/whatsappRouter';
 
-export const metadata: Metadata = pageMetadata('/about',
-  'About Our Guangzhou Wholesale Team',
-  'Meet Jack African Fashion at Yulong Fashion Plaza in Guangzhou. Learn about our showroom, own-factory production and support for African wholesale buyers.'
+export const metadata = pageMetadata(
+  '/about',
+  'Guangzhou Womenswear Manufacturer & Wholesaler | Jack Fashion Profile',
+  'Two decades of specialized African womenswear manufacturing. Guangzhou wholesale showrooms at Yulong Plaza & LIUHUA Market, ready-stock warehouse and custom OEM production.'
 );
+
+const MILESTONES = [
+  {
+    year: '2004',
+    title: 'Foundations in Guangzhou Wholesale Hub',
+    desc: 'Began operations in the heart of Guangzhou apparel trading clusters, focusing on authentic African wax prints, volume maxi skirts, and occasionwear.'
+  },
+  {
+    year: '2012',
+    title: 'Integrated Workshop & Dedicated Pattern Room',
+    desc: 'Established our proprietary sample drafting and multi-ply cutting lines, pioneering true-to-size plus-size grading specifically for African female curves.'
+  },
+  {
+    year: '2019',
+    title: 'Dual Showrooms at Yulong & LIUHUA Market',
+    desc: 'Opened flagship wholesale showrooms at Yulong Fashion Plaza (Guangyuan Xi Road) and LIUHUA Market (Shop 0081) to welcome international trade delegations.'
+  },
+  {
+    year: '2026',
+    title: 'Global Fast-Fulfillment & 600K+ Annual Capacity',
+    desc: 'Expanded direct export lines to over 30 countries across Nigeria, Ghana, Kenya, South Africa, UK, and the Americas with 48-hour ready-stock dispatch.'
+  }
+];
+
+const CORE_VALUES = [
+  {
+    title: 'Guaranteed Physical Showrooms',
+    desc: 'Real, physical wholesale showrooms at Yulong Fashion Plaza and LIUHUA Market Shop 0081 where buyers inspect fabric drape, seams, and fit live in Guangzhou.'
+  },
+  {
+    title: 'Honest Inventory & Fast Dispatch',
+    desc: 'Over 600,000 units of physical ready stock ready for same-week shipping. No fictitious mockups or phantom lead times.'
+  },
+  {
+    title: 'Strict Needle & Seam Safety QC',
+    desc: '100% in-line manual workmanship inspection paired with magnetic needle detector screening before export carton banding.'
+  },
+  {
+    title: 'Dedicated Regional Account Management',
+    desc: 'Personalized trade desks for West Africa, East/Southern Africa, custom OEM sampling, and cargo clearing coordination.'
+  }
+];
 
 export default async function AboutPage() {
   const siteContent = await getSiteContent();
-  const mapEmbedUrl =
-    'https://www.google.com/maps?q=Yulong%20Fashion%20Plaza%2C%20Guangzhou&output=embed';
-  const whatsappLink = siteWhatsAppLink(
-    siteContent,
-    'Hello Jack, I want to know more about your wholesale services and Guangzhou supply capability.'
-  );
-
-  const heroProof = ['Own Factory', 'Yulong Showroom', 'Ready Stock', 'Export Packing'];
-  const capabilities = [
-    {
-      title: 'Own factory production',
-      body: 'Custom styles are developed and produced through our own factory after fabric, size, quantity and production details are confirmed.'
-    },
-    {
-      title: 'Guangzhou showroom',
-      body: 'Our office and showroom at Yulong Fashion Plaza support product selection, stock communication and buyer visits by appointment.'
-    },
-    {
-      title: 'Quality inspection',
-      body: 'Fabric, stitching, colour, size mix and finishing are checked against the confirmed order before packing.'
-    },
-    {
-      title: 'Export packing',
-      body: 'Orders are counted, packed and prepared in Guangzhou for the buyer’s nominated forwarder or an agreed shipping route.'
-    },
-    {
-      title: 'African B2B service',
-      body: 'We have confirmed service experience with boutiques, wholesalers and importers in Nigeria, Ghana, Kenya and other African markets.'
-    }
-  ];
-  const process = [
-    {
-      step: '01',
-      title: 'Source and select',
-      body: 'We confirm suitable Guangzhou styles and product details for African boutiques, importers and distributors.'
-    },
-    {
-      step: '02',
-      title: 'Produce or restock',
-      body: 'Ready-stock orders are confirmed by batch, while custom references are developed and produced through our own factory.'
-    },
-    {
-      step: '03',
-      title: 'Inspect and pack',
-      body: 'Orders are checked, counted and packed with export shipping in mind before dispatch.'
-    },
-    {
-      step: '04',
-      title: 'Ship and update',
-      body: 'We provide direct WhatsApp communication from product confirmation through packing and cargo handover.'
-    }
-  ];
-  const trustStats = [
-    { value: 'Own', label: 'Factory production' },
-    { value: 'No.229', label: 'Guangyuan Xi Road' },
-    { value: 'B2B', label: 'African market service' },
-    { value: 'By style', label: 'MOQ confirmed per item' }
-  ];
+  const legacyBrandName = getLegacyBrandName();
 
   return (
-    <>
-      <section className='bg-brand-black relative overflow-hidden text-white'>
-        <div className='absolute inset-0'>
-          <Image
-            src={SITE_IMAGES.africanMarketCollage}
-            alt='African women fashion styles supplied from Guangzhou wholesale market'
-            fill
-            priority
-            sizes='100vw'
-            className='object-cover opacity-35'
-          />
-          <div className='absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/40' />
-        </div>
+    <div className='bg-[#F7F2EB] text-[#171615]'>
+      {/* Hero Section */}
+      <section className='border-b border-[#171615]/10 bg-gradient-to-b from-[#EEE5DA]/50 to-[#F7F2EB] py-14 sm:py-20 lg:py-24'>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <nav aria-label='Breadcrumb' className='mb-6 flex items-center gap-2 text-xs font-semibold text-[#6F6A64]'>
+            <Link href='/' className='hover:text-[#171615]'>Home</Link>
+            <span aria-hidden='true'>/</span>
+            <span className='text-[#B17C0E]'>About Jack Fashion</span>
+          </nav>
 
-        <div className='relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-end'>
-          <div>
-            <span className='text-brand-gold text-sm font-semibold tracking-[0.22em] uppercase'>
-              About Jack African Fashion
+          <div className='max-w-3xl'>
+            <span className='inline-block rounded-full bg-[#EEE5DA] px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-[#B17C0E]'>
+              Company Profile &amp; Manufacturing Ecosystem
             </span>
-            <h1 className='font-display mt-4 max-w-3xl text-4xl font-bold sm:text-5xl lg:text-6xl'>
-              Guangzhou Women&apos;s Clothing Supplier with Own Factory
+            <h1 className='font-display mt-4 text-3xl font-bold tracking-tight text-[#171615] sm:text-5xl lg:text-6xl'>
+              Two Decades of Crafting African Fashion &amp; Supplying Global Boutiques
             </h1>
-            <p className='text-brand-cream/80 mt-5 max-w-2xl text-base leading-relaxed sm:text-lg'>
-              Jack African Fashion operates zamique.com as its official B2B website. From our own
-              factory, Guangzhou office and Yulong Fashion Plaza showroom, we serve African
-              boutiques, wholesalers, importers and fashion retailers with ready stock and custom
-              production.
+            <p className='mt-6 text-base leading-relaxed text-[#6F6A64] sm:text-lg'>
+              {BRAND_ENTITY.identityStatement}
             </p>
-            <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
-              <Link
-                href='/catalog'
-                className='bg-brand-orange hover:bg-brand-gold inline-flex items-center justify-center rounded-full px-8 py-3.5 font-semibold text-white transition-colors'
-              >
-                View Catalog
-              </Link>
+            <p className='mt-3 text-sm leading-relaxed text-[#6F6A64]'>
+              From our flagship wholesale showrooms at Yulong Fashion Plaza and LIUHUA Market to our Guangzhou production floor, Jack Fashion operates a seamless, integrated supply chain connecting design, cutting, sewing, quality inspection, and direct African freight handover.
+            </p>
+
+            {legacyBrandName && (
+              <p className='mt-4 rounded-xl border border-[#171615]/10 bg-white/70 p-3 text-xs text-[#6F6A64]'>
+                <span className='font-semibold text-[#171615]'>Brand transition note:</span> Jack Fashion was previously presented online as {legacyBrandName}.
+              </p>
+            )}
+
+            <div className='mt-8 flex flex-wrap gap-4'>
               <a
-                href={whatsappLink}
+                href={siteWhatsAppLink(siteContent)}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='border-brand-cream/40 hover:bg-brand-cream hover:text-brand-black inline-flex items-center justify-center rounded-full border px-8 py-3.5 font-semibold text-white transition-colors'
+                className='inline-flex items-center gap-2 rounded-full bg-[#0B7A3E] px-7 py-3.5 text-xs font-bold text-white shadow-md transition-all hover:bg-[#086532]'
               >
-                Talk on WhatsApp
+                <WhatsAppIcon className='h-4 w-4' />
+                <span>Chat with Factory Principal</span>
               </a>
-            </div>
-          </div>
-
-          <div className='grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-2'>
-            {heroProof.map((item) => (
-              <div
-                key={item}
-                className='border-brand-cream/15 bg-brand-cream/10 rounded-xl border p-4'
+              <Link
+                href='/catalog'
+                className='inline-flex items-center gap-2 rounded-full border border-[#171615]/20 bg-white px-7 py-3.5 text-xs font-bold text-[#171615] shadow-xs transition-all hover:bg-[#171615] hover:text-[#F7F2EB]'
               >
-                <p className='text-brand-gold text-xs font-semibold tracking-[0.18em] uppercase'>
-                  Proof
-                </p>
-                <p className='mt-2 text-sm font-semibold sm:text-base'>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className='bg-brand-cream py-12 sm:py-16'>
-        <div className='mx-auto max-w-7xl px-4'>
-          <div className='grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center'>
-            <div className='grid gap-4 sm:grid-cols-2'>
-              <div className='relative aspect-[4/5] overflow-hidden rounded-xl bg-white shadow-sm'>
-                <Image
-                  src={SITE_IMAGES.trust.showroomPillarJack}
-                  alt='Jack Fashion Guangzhou wholesale showroom at Yulong Fashion Plaza'
-                  fill
-                  sizes='(max-width: 640px) 100vw, 320px'
-                  className='object-cover'
-                />
-              </div>
-              <div className='grid gap-4'>
-                <div className='relative aspect-[4/3] overflow-hidden rounded-xl bg-white shadow-sm'>
-                  <Image
-                    src={SITE_IMAGES.trust.sizeBust4xl}
-                    alt='True 4XL 120cm bust flat tape measurement and QC notebook'
-                    fill
-                    sizes='(max-width: 640px) 100vw, 320px'
-                    className='object-cover'
-                  />
-                </div>
-                <div className='relative aspect-[4/3] overflow-hidden rounded-xl bg-white shadow-sm'>
-                  <Image
-                    src={SITE_IMAGES.trust.waybillHandoverLagos}
-                    alt='Guangzhou to Lagos Nigeria cargo receipt waybill handover'
-                    fill
-                    sizes='(max-width: 640px) 100vw, 320px'
-                    className='object-cover'
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <span className='text-brand-orange text-sm font-semibold tracking-[0.2em] uppercase'>
-                Built Around African Buyers
-              </span>
-              <h2 className='font-display text-brand-black mt-3 text-3xl font-bold sm:text-4xl'>
-                A stronger Guangzhou partner for boutiques, wholesalers and importers.
-              </h2>
-              <div className='text-brand-brown/80 mt-6 space-y-4 leading-relaxed'>
-                <p>
-                  Jack African Fashion is a Guangzhou women&apos;s clothing wholesale supplier and
-                  factory-direct manufacturer. zamique.com is our official B2B website, and our
-                  office and showroom are located at Yulong Fashion Plaza, No.229 Guangyuan Xi Road,
-                  Yuexiu District, Guangzhou.
-                </p>
-                <p>
-                  Our own factory supports custom production, while our Guangzhou showroom supports
-                  ready-stock selection. We supply African women&apos;s dresses, plus-size styles,
-                  two piece sets, women&apos;s suits, blazer pants sets, pleated dresses, knit
-                  dresses and jumpsuits. Availability, sizes, colors and MOQ are confirmed per
-                  style.
-                </p>
-                <p>
-                  We have confirmed B2B service experience with buyers in Nigeria, Ghana, Kenya and
-                  other African markets. Our team supports style confirmation, production, quality
-                  checking, export packing and cargo coordination with direct WhatsApp
-                  communication.
-                </p>
-              </div>
-
-              <div className='mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4'>
-                {trustStats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className='border-brand-sand rounded-xl border bg-white p-4'
-                  >
-                    <p className='font-display text-brand-orange text-2xl font-bold'>
-                      {stat.value}
-                    </p>
-                    <p className='text-brand-brown/65 mt-1 text-xs leading-snug'>{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-              <p className='text-brand-brown/55 mt-3 text-xs'>
-                Official office and showroom address: Yulong Fashion Plaza, No.229 Guangyuan Xi
-                Road, Yuexiu District, Guangzhou, China.
-              </p>
+                <span>Explore Catalog Styles</span>
+                <span aria-hidden='true'>&rarr;</span>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <TrustProofGallery whatsappUrl={whatsappLink} />
-
-      <section className='bg-white py-12 sm:py-16'>
-        <div className='mx-auto max-w-7xl px-4'>
-          <div className='mb-10 max-w-2xl'>
-            <span className='text-brand-orange text-sm font-semibold tracking-[0.2em] uppercase'>
-              What Gives Buyers Confidence
+      {/* 20-Year Milestones Timeline */}
+      <section className='border-b border-[#171615]/10 py-16 sm:py-20'>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='max-w-2xl'>
+            <span className='text-xs font-bold uppercase tracking-wider text-[#B17C0E]'>
+              Our Heritage &amp; Evolution
             </span>
-            <h2 className='font-display text-brand-black mt-3 text-3xl font-bold sm:text-4xl'>
-              Supply strength you can see in the workflow.
+            <h2 className='font-display mt-2 text-2xl font-bold tracking-tight text-[#171615] sm:text-4xl'>
+              20 Years of Specialized African Womenswear Excellence
             </h2>
           </div>
 
-          <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-5'>
-            {capabilities.map((item) => (
-              <div key={item.title} className='border-brand-sand rounded-xl border p-5'>
-                <div className='bg-brand-orange mb-5 h-1.5 w-10 rounded-full' />
-                <h3 className='text-brand-black font-semibold'>{item.title}</h3>
-                <p className='text-brand-brown/70 mt-3 text-sm leading-relaxed'>{item.body}</p>
+          <div className='mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+            {MILESTONES.map((item, idx) => (
+              <div
+                key={idx}
+                className='relative rounded-[22px] border border-[#171615]/10 bg-white p-6 shadow-xs transition-all hover:-translate-y-1 hover:shadow-md'
+              >
+                <div className='font-mono text-2xl font-extrabold text-[#B17C0E]'>
+                  {item.year}
+                </div>
+                <h3 className='font-display mt-3 text-base font-bold text-[#171615]'>
+                  {item.title}
+                </h3>
+                <p className='mt-2 text-xs leading-relaxed text-[#6F6A64]'>
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className='bg-brand-black py-12 text-white sm:py-16'>
-        <div className='mx-auto max-w-7xl px-4'>
-          <div className='grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center'>
-            <div>
-              <span className='text-brand-gold text-sm font-semibold tracking-[0.2em] uppercase'>
-                Order Flow
-              </span>
-              <h2 className='font-display mt-3 text-3xl font-bold sm:text-4xl'>
-                From Guangzhou selection to packed wholesale order.
-              </h2>
-              <p className='text-brand-cream/70 mt-4 leading-relaxed'>
-                A serious supplier needs a repeatable process. We keep the steps simple, visible and
-                practical for buyers who need speed and clarity.
-              </p>
-            </div>
+      {/* Global Trade Support Desk Directory */}
+      <section className='border-b border-[#171615]/10 bg-[#EEE5DA]/40 py-16 sm:py-20'>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='max-w-2xl'>
+            <span className='text-xs font-bold uppercase tracking-wider text-[#B17C0E]'>
+              Global Trade Organization
+            </span>
+            <h2 className='font-display mt-2 text-2xl font-bold tracking-tight text-[#171615] sm:text-4xl'>
+              Dedicated Regional Trade Desks
+            </h2>
+            <p className='mt-3 text-sm text-[#6F6A64]'>
+              Our international export team provides specialized assistance for specific African markets, custom OEM sampling, and cargo agent handover.
+            </p>
+          </div>
 
-            <div className='grid gap-4 sm:grid-cols-2'>
-              {process.map((item) => (
-                <div
-                  key={item.step}
-                  className='border-brand-cream/15 bg-brand-cream/10 rounded-xl border p-5'
-                >
-                  <p className='font-display text-brand-gold text-3xl font-bold'>{item.step}</p>
-                  <h3 className='mt-4 font-semibold'>{item.title}</h3>
-                  <p className='text-brand-cream/70 mt-2 text-sm leading-relaxed'>{item.body}</p>
+          <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+            {AFRICAN_FASHION_SALES_ACCOUNTS.map((rep) => (
+              <div
+                key={rep.id}
+                className='flex flex-col justify-between rounded-[22px] border border-[#171615]/10 bg-white p-6 shadow-xs transition-all hover:border-[#E2AB2F]'
+              >
+                <div>
+                  <div className='flex items-center gap-3'>
+                    <div className='flex h-12 w-12 items-center justify-center rounded-full bg-[#171615] font-serif text-sm font-bold text-[#F7F2EB]'>
+                      {rep.avatarText}
+                    </div>
+                    <div>
+                      <h3 className='text-sm font-bold text-[#171615] sm:text-base'>
+                        {rep.name}
+                      </h3>
+                      <p className='text-xs font-semibold text-[#B17C0E]'>
+                        {rep.title}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className='mt-3 text-xs text-[#6F6A64]'>
+                    {rep.chineseTitle}
+                  </p>
+
+                  <div className='mt-3 flex flex-wrap gap-1'>
+                    {rep.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className='rounded-md bg-[#EEE5DA] px-2 py-0.5 text-[10px] font-medium text-stone-700'
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+
+                <div className='mt-6 pt-4 border-t border-[#171615]/8'>
+                  <a
+                    href={buildWhatsAppLink(rep)}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-[#0B7A3E] py-2.5 text-xs font-bold text-white shadow-xs transition-all hover:bg-[#086532]'
+                  >
+                    <WhatsAppIcon className='h-3.5 w-3.5' />
+                    <span>Connect with {rep.name}</span>
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className='bg-brand-cream py-12 sm:py-16'>
-        <div className='mx-auto max-w-7xl px-4'>
-          <div className='grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center'>
-            <div>
-              <span className='text-brand-orange text-sm font-semibold tracking-[0.2em] uppercase'>
-                Guangzhou Market Location
-              </span>
-              <h2 className='font-display text-brand-black mt-3 text-3xl font-bold sm:text-4xl'>
-                Based at {siteContent.location}, a known wholesale fashion market.
-              </h2>
-              <p className='text-brand-brown/80 mt-5 leading-relaxed'>
-                Yulong Fashion Plaza is publicly listed at No.229 Guangyuan Xi Road, Yuexiu
-                District, Guangzhou. For overseas buyers, this location matters: it places us close
-                to active garment suppliers, market showrooms, packing resources and export
-                logistics support.
-              </p>
-              <p className='text-brand-brown/70 mt-4 leading-relaxed'>
-                When customers ask where we are, we can show the exact market location and keep the
-                conversation grounded in a real Guangzhou wholesale base.
-              </p>
-              <a
-                href={siteContent.locationUrl}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='bg-brand-black hover:bg-brand-brown mt-7 inline-flex items-center justify-center rounded-full px-7 py-3 font-semibold text-white transition-colors'
-              >
-                Open in Google Maps
-              </a>
-            </div>
+      {/* Core Manufacturing Values & Standards */}
+      <section className='border-b border-[#171615]/10 py-16 sm:py-20'>
+        <div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+          <div className='max-w-2xl'>
+            <span className='text-xs font-bold uppercase tracking-wider text-[#B17C0E]'>
+              B2B Commitments
+            </span>
+            <h2 className='font-display mt-2 text-2xl font-bold tracking-tight text-[#171615] sm:text-4xl'>
+              Why Boutiques &amp; Wholesalers Partner With Us
+            </h2>
+          </div>
 
-            <div className='relative overflow-hidden rounded-xl border border-white bg-white shadow-sm'>
-              <DeferredMapEmbed title='Yulong Fashion Plaza location map' src={mapEmbedUrl} />
-              <div className='absolute right-4 bottom-4 left-4 max-w-sm rounded-xl bg-white/95 p-4 shadow-sm'>
-                <p className='text-brand-orange text-xs font-semibold tracking-[0.18em] uppercase'>
-                  Market address
-                </p>
-                <p className='text-brand-black mt-1 font-semibold'>Yulong Fashion Plaza</p>
-                <p className='text-brand-brown/70 mt-1 text-sm'>
-                  No.229 Guangyuan Xi Road, Yuexiu District, Guangzhou
+          <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4'>
+            {CORE_VALUES.map((val, i) => (
+              <div
+                key={i}
+                className='rounded-[22px] border border-[#171615]/10 bg-white p-6 shadow-xs'
+              >
+                <div className='mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#E2AB2F]/20 text-xs font-bold text-[#8A661B]'>
+                  0{i + 1}
+                </div>
+                <h3 className='font-display text-base font-bold text-[#171615]'>
+                  {val.title}
+                </h3>
+                <p className='mt-2 text-xs leading-relaxed text-[#6F6A64]'>
+                  {val.desc}
                 </p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className='bg-white py-12 sm:py-16'>
-        <div className='mx-auto max-w-4xl px-4 text-center'>
-          <span className='text-brand-orange text-sm font-semibold tracking-[0.2em] uppercase'>
-            Work With Us
-          </span>
-          <h2 className='font-display text-brand-black mt-3 text-3xl font-bold sm:text-4xl'>
-            Ready to build your next wholesale order from Guangzhou?
-          </h2>
-          <p className='text-brand-brown/70 mx-auto mt-4 max-w-2xl leading-relaxed'>
-            Send your target styles, quantity, sizes and country. We&apos;ll help you confirm what
-            is ready, what can be produced, and how to pack the order for your market.
-          </p>
-          <div className='mt-8 flex flex-col justify-center gap-4 sm:flex-row'>
-            <Link
-              href='/catalog'
-              className='bg-brand-orange hover:bg-brand-gold inline-flex items-center justify-center rounded-full px-8 py-3.5 font-semibold text-white transition-colors'
-            >
-              View Catalog
-            </Link>
-            <a
-              href={whatsappLink}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='bg-brand-black hover:bg-brand-brown inline-flex items-center justify-center rounded-full px-8 py-3.5 font-semibold text-white transition-colors'
-            >
-              Contact on WhatsApp
-            </a>
-          </div>
-        </div>
-      </section>
-    </>
+      {/* Guangzhou Factory & Showroom Evidence */}
+      <FactoryGallery path='/about' />
+
+      {/* Direct Contact & Showroom Visit Booking */}
+      <WholesaleContact siteContent={siteContent} />
+    </div>
   );
 }

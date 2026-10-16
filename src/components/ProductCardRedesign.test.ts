@@ -17,16 +17,17 @@ describe('ProductCard full-photo redesign contract', () => {
     expect(card).toContain('bg-white');
   });
 
-  test('merges MOQ and stock status into a single line', () => {
-    expect(card).toContain('MOQ: {product.moq} pcs');
+  test('merges evidence-gated MOQ and stock status into a single line', () => {
+    expect(card).toContain('getPublicProductFacts(product)');
+    expect(card).toContain('MOQ: {facts.moq}');
     expect(card).toContain('·');
-    expect(card).toContain("product.stockType.includes('Ready') ? 'Ready Stock' : 'Custom'");
+    expect(card).toContain('Stock: {facts.stock}');
   });
 
-  test('places WhatsApp and Add to Inquiry buttons side-by-side in a 2-column grid', () => {
-    expect(card).toContain('grid grid-cols-2 gap-2');
+  test('offers direct WhatsApp contact without an intermediate inquiry list', () => {
     expect(card).toContain('WhatsApp');
-    expect(card).toContain('InquiryAddButton');
+    expect(card).not.toContain('InquiryAddButton');
+    expect(card).not.toContain('grid grid-cols-2 gap-2');
   });
 
   test('restricts product title to maximum two lines', () => {

@@ -4,21 +4,18 @@ import { motion } from 'framer-motion';
 import type { SiteContent } from '@/lib/siteContentTypes';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { CheckIcon, WhatsAppIcon } from '@/components/Icons';
-import { InquiryAddButton } from '@/components/InquiryAddButton';
-import type { Product } from '@/lib/db';
-import { getProductSizes } from '@/lib/productDefaults';
 import { absoluteSiteUrl } from '@/lib/siteUrl';
+import { getPublicProductFacts, type PublicProduct } from '@/lib/productPublicFacts';
 
 interface Props {
-  product: Product;
+  product: PublicProduct;
   siteContent: SiteContent;
 }
 
 export function ProductInfo({ product, siteContent }: Props) {
-  const sizes = getProductSizes(product.sizes);
-  const sizeRange = sizes.length > 1 ? `${sizes[0]} - ${sizes[sizes.length - 1]}` : sizes[0];
+  const facts = getPublicProductFacts(product);
   const productUrl = absoluteSiteUrl(`/products/${product.slug}`);
-  const whatsappMessage = `Hello Jack, I like this style: ${product.name} (${productUrl}). Please add me on WhatsApp. I want to discuss today's ready stock, available colors and sizes, real photos/video, wholesale price, packing, and delivery. MOQ: ${product.moq} pcs.`;
+  const whatsappMessage = `Hello Jack, I like this style: ${product.name} (${productUrl}). Please add me on WhatsApp. I want to confirm today's stock, MOQ, available colors and sizes, real photos/video, wholesale price, packing, and delivery.`;
   const whatsappLink = siteWhatsAppLink(siteContent, whatsappMessage);
   const similarStyleLink = siteWhatsAppLink(
     siteContent,
@@ -35,7 +32,7 @@ export function ProductInfo({ product, siteContent }: Props) {
       <div className='space-y-6'>
         <div>
           <div className='mb-4 flex flex-wrap gap-2'>
-            {[product.category, ...product.tags.slice(0, 3)].map((tag) => (
+            {[product.category].map((tag) => (
               <span
                 key={tag}
                 className='bg-brand-cream text-brand-brown rounded-full px-3 py-1 text-xs font-semibold'
@@ -46,16 +43,16 @@ export function ProductInfo({ product, siteContent }: Props) {
           </div>
 
           <h1 className='font-display text-brand-black text-3xl leading-tight font-bold sm:text-4xl'>
-            {product.name}
+            {product.name} Wholesale
           </h1>
           <p className='text-brand-brown/75 mt-3 max-w-xl text-base leading-7'>
-            {product.description}
+            {facts.description}
           </p>
         </div>
 
         <div className='border-brand-gold/30 to-brand-cream/40 grid grid-cols-3 overflow-hidden rounded-xl border bg-gradient-to-b from-white text-center shadow-sm'>
-          <InfoCell label='MOQ' value={`${product.moq} pcs`} />
-          <InfoCell label='Stock' value={product.stockType} />
+          <InfoCell label='MOQ' value={facts.moq} />
+          <InfoCell label='Stock' value={facts.stock} />
           <InfoCell label='Wholesale' value='WhatsApp Quote' />
         </div>
 
@@ -63,41 +60,38 @@ export function ProductInfo({ product, siteContent }: Props) {
         <div className='grid grid-cols-2 gap-2 text-xs font-semibold'>
           <div className='border-brand-gold/25 bg-brand-gold/10 text-brand-brown flex items-center gap-2 rounded-lg border px-3 py-2'>
             <span className='flex h-2 w-2 animate-pulse rounded-full bg-emerald-500' />
-            <span className='truncate'>Live Video Inspection</span>
+            <span className='truncate'>Stock Photos / Video</span>
           </div>
           <div className='border-brand-sand text-brand-brown flex items-center gap-2 rounded-lg border bg-white px-3 py-2'>
             <span className='bg-brand-orange h-2 w-2 rounded-full' />
-            <span className='truncate'>Guangzhou Cargo Handover</span>
+            <span className='truncate'>Discuss Cargo Handover</span>
           </div>
         </div>
 
         <div className='space-y-3'>
           <a
             href={whatsappLink}
+            data-product-id={product.id}
+            data-cta-location='product-main'
             target='_blank'
             rel='noopener noreferrer'
-            className='flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-4 text-base font-bold text-white shadow-lg shadow-green-900/15 transition-transform hover:-translate-y-0.5'
+            className='flex w-full items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-6 py-4 text-base font-bold text-white shadow-lg shadow-green-900/15 transition-transform hover:-translate-y-0.5 hover:bg-[#086532]'
           >
             <WhatsAppIcon className='h-5 w-5' />
-            Discuss ready stock on WhatsApp
+            Chat on WhatsApp
           </a>
 
-          <div className='grid gap-3 sm:grid-cols-2'>
+          <div className='grid gap-3'>
             <a
               href={similarStyleLink}
+              data-product-id={product.id}
+              data-cta-location='product-custom'
               target='_blank'
               rel='noopener noreferrer'
               className='border-brand-black text-brand-black hover:bg-brand-black rounded-full border-2 bg-white px-5 py-3 text-center text-sm font-bold transition-colors hover:text-white'
             >
-              Send similar style picture
+              Send Style Pictures on WhatsApp
             </a>
-            <InquiryAddButton
-              product={product}
-              item={{ quantity: product.moq }}
-              className='border-brand-sand text-brand-brown hover:border-brand-black hover:text-brand-black rounded-full border-2 bg-white px-5 py-3 text-sm font-bold transition-colors'
-            >
-              Save to inquiry list
-            </InquiryAddButton>
           </div>
         </div>
 
@@ -105,9 +99,9 @@ export function ProductInfo({ product, siteContent }: Props) {
           <p className='text-brand-orange text-xs font-bold uppercase'>Ask on WhatsApp for</p>
           <ul className='text-brand-brown/75 mt-4 space-y-3 text-sm'>
             {[
-              `Professional reply for MOQ ${product.moq}+ wholesale orders`,
+              'Current MOQ and quantity options for this style',
               'Real stock photos/video, colors, and size mix before quote',
-              'Stable new arrivals and repeat-buyer updates on WhatsApp'
+              'New-arrival and repeat-order requirements on WhatsApp'
             ].map((item) => (
               <li key={item} className='flex gap-3'>
                 <CheckIcon className='text-brand-emerald mt-0.5 h-4 w-4 shrink-0' />
@@ -119,26 +113,24 @@ export function ProductInfo({ product, siteContent }: Props) {
 
         <section className='grid gap-3 sm:grid-cols-2'>
           <StockNote
-            title='Size coverage'
-            value={sizeRange || 'Mixed sizes'}
-            note='Ready-stock sizes can change by batch. We confirm the available mix clearly before you order.'
+            title='Listed size references'
+            value={facts.sizes}
+            note='Size labels are references. Confirm actual bust, waist, hip and length measurements and the available size run for this style.'
           />
           <StockNote
-            title='Colors & prints'
-            value={
-              product.colors.length > 0
-                ? product.colors.map((color) => color.name).join(' / ')
-                : 'Confirm current batch'
-            }
-            note='Colors can change by stock batch. Ask for current photos or video before confirming your order.'
+            title='Available colors'
+            value={facts.colors}
+            note='Confirm the available colors for your selected style and current batch on WhatsApp.'
           />
         </section>
 
-        {product.features.length > 0 && (
+        {facts.features.length > 0 && (
           <section className='border-brand-sand/70 border-t pt-5'>
-            <p className='text-brand-orange text-xs font-bold uppercase'>Selling points</p>
+            <p className='text-brand-orange text-xs font-bold uppercase'>
+              Style details to confirm
+            </p>
             <ul className='text-brand-brown/75 mt-4 grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-1'>
-              {product.features.slice(0, 6).map((feature) => (
+              {facts.features.slice(0, 6).map((feature) => (
                 <li key={feature} className='flex gap-3'>
                   <CheckIcon className='text-brand-emerald mt-0.5 h-4 w-4 shrink-0' />
                   <span>{feature}</span>
@@ -151,21 +143,16 @@ export function ProductInfo({ product, siteContent }: Props) {
 
       <div className='border-brand-sand fixed inset-x-0 bottom-0 z-40 border-t bg-white/95 px-3 pt-2.5 pb-[calc(0.625rem+env(safe-area-inset-bottom,0px))] shadow-2xl backdrop-blur md:hidden'>
         <div className='mx-auto flex max-w-md items-center gap-2'>
-          <InquiryAddButton
-            product={product}
-            item={{ quantity: product.moq }}
-            className='border-brand-black text-brand-black flex shrink-0 items-center justify-center gap-1.5 rounded-full border bg-white px-3.5 py-3 text-xs font-bold shadow-sm transition-transform active:scale-95'
-          >
-            Save Inquiry
-          </InquiryAddButton>
           <a
             href={whatsappLink}
+            data-product-id={product.id}
+            data-cta-location='product-mobile'
             target='_blank'
             rel='noopener noreferrer'
-            className='flex flex-1 items-center justify-center gap-2 rounded-full bg-[#25D366] px-4 py-3 text-sm font-bold text-white shadow-sm transition-transform active:scale-95'
+            className='flex flex-1 items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-4 py-3 text-sm font-bold text-white shadow-sm transition-transform hover:bg-[#086532] active:scale-95'
           >
             <WhatsAppIcon className='h-5 w-5' />
-            WhatsApp (Stock & Quote)
+            Chat on WhatsApp
           </a>
         </div>
       </div>

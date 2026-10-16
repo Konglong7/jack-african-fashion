@@ -6,7 +6,7 @@ import {
   INQUIRY_STORAGE_KEY,
   INQUIRY_UPDATED_EVENT,
   mergeInquiryItems,
-  refreshInquiryMinimums,
+  normalizeInquiryItems,
   notifyInquiryUpdated
 } from './inquiry';
 
@@ -16,7 +16,6 @@ describe('inquiry helpers', () => {
     name: 'Pleated Maxi Dress',
     slug: 'pleated-maxi-dress',
     image: '/images/products/dress.jpg',
-    moq: 50,
     quantity: 50,
     color: 'Black',
     size: 'XL'
@@ -32,19 +31,17 @@ describe('inquiry helpers', () => {
   test('builds a buyer-ready whatsapp inquiry message', () => {
     expect(buildInquiryMessage([dress])).toContain('Pleated Maxi Dress');
     expect(buildInquiryMessage([dress])).toContain('Style No: pleated-maxi-dress');
-    expect(buildInquiryMessage([dress])).toContain('Quantity: 50 pcs');
+    expect(buildInquiryMessage([dress])).toContain(
+      'Requested quantity: 50 pcs (subject to MOQ confirmation)'
+    );
   });
 
-  test('refreshes a saved MOQ while preserving buyer choices and order quantity', () => {
+  test('drops legacy unverified MOQ data while preserving the buyer request', () => {
     const saved = { ...dress, moq: 500, quantity: 600 };
-    expect(refreshInquiryMinimums([saved], { '1': 100 })[0])
-      .toMatchObject({ moq: 100, quantity: 600, color: 'Black', size: 'XL' });
-    expect(saved.moq).toBe(500);
-  });
+    const normalized = normalizeInquiryItems([saved]);
 
-  test('enforces the current minimum without deleting an unavailable saved style', () => {
-    expect(refreshInquiryMinimums([dress], { '1': 100 })[0].quantity).toBe(100);
-    expect(refreshInquiryMinimums([dress], {})).toEqual([dress]);
+    expect(normalized[0]).toMatchObject({ quantity: 600, color: 'Black', size: 'XL' });
+    expect(normalized[0]).not.toHaveProperty('moq');
   });
 
   test('counts selected styles from local storage', () => {

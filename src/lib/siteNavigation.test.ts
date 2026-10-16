@@ -13,6 +13,7 @@ describe('site navigation helpers', () => {
   test('builds header links from editable categories', () => {
     expect(buildNavLinks(categories)).toEqual([
       { label: 'New Arrivals', href: '/catalog?sort=newest' },
+      { label: 'Buying Markets', href: '/markets' },
       { label: 'Linen Dresses', href: '/catalog?category=Linen%20Dresses' },
       { label: 'Two Piece Sets', href: '/catalog?category=Two%20Piece%20Sets' },
       { label: 'Plus Size', href: '/catalog?category=Plus%20Size%20Dresses' },
@@ -28,11 +29,28 @@ describe('site navigation helpers', () => {
     const footer = buildFooterLinks(categories);
     expect(footer.products).toEqual([
       { label: 'African Dresses', href: '/wholesale/african-dresses' },
+      { label: 'Maxi Dresses', href: '/wholesale/maxi-dresses' },
+      { label: 'Jumpsuits', href: '/wholesale/jumpsuits' },
       { label: 'Two Piece Sets', href: '/wholesale/two-piece-sets' },
       { label: 'Plus Size Clothing', href: '/wholesale/plus-size-womens-clothing' },
       { label: 'Ready Stock', href: '/wholesale/ready-stock' }
     ]);
     expect(footer.markets).toHaveLength(5);
     expect(footer.help[0]).toEqual({ label: 'Wholesale FAQ', href: '/faq' });
+  });
+
+  test('takes buyers directly to the configured WhatsApp contact from both navigation menus', () => {
+    const whatsapp = 'https://wa.me/message/TESTCONTACT';
+    expect(buildNavLinks(categories, whatsapp).find((link) => link.label === 'Contact')?.href).toBe(
+      whatsapp
+    );
+    const footer = buildFooterLinks(categories, whatsapp);
+    expect(footer.company.find((link) => link.label === 'Contact')?.href).toBe(whatsapp);
+    expect(footer.help.find((link) => link.label === 'Contact Supplier')?.href).toBe(whatsapp);
+    expect(
+      Object.values(footer)
+        .flat()
+        .some((link) => link.href === '/inquiry')
+    ).toBe(false);
   });
 });

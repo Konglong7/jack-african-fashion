@@ -44,7 +44,7 @@ const TRUST_PILLARS = [
     )
   },
   {
-    title: 'Showroom Video Check',
+    title: 'Product Video Check',
     subtitle:
       'Current photos or video can be requested to review visible fabric, sizes and finishing when available before packing.',
     icon: (
@@ -64,9 +64,9 @@ const TRUST_PILLARS = [
     )
   },
   {
-    title: 'Dispatch After Confirmation',
+    title: 'Handover Terms Confirmed',
     subtitle:
-      'Packing and cargo handover are scheduled after stock, payment and shipping details are confirmed for the order.',
+      'Packing, cargo handover, timing and responsibilities are agreed for the specific order before dispatch.',
     icon: (
       <svg
         className='h-6 w-6'

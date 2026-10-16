@@ -4,12 +4,18 @@ import path from 'path';
 import Link from 'next/link';
 import { getAnalyticsSummary } from '@/lib/analyticsStore';
 import { AnalyticsDashboard } from './AnalyticsDashboard';
+import { getLeads, summarizeLeads } from '@/lib/leadsStore';
 
 export const dynamic = 'force-dynamic';
 
 // Dashboard: product stats + missing-image detection panel.
 export default async function AdminDashboard() {
-  const [products, analytics] = await Promise.all([getProducts(), getAnalyticsSummary()]);
+  const [products, analytics, leads] = await Promise.all([
+    getProducts(),
+    getAnalyticsSummary(),
+    getLeads()
+  ]);
+  const leadStats = summarizeLeads(leads);
 
   // Detect which products are missing their main image file on disk
   const uploadDir = path.join(process.cwd(), 'public', 'images', 'products');
@@ -50,6 +56,33 @@ export default async function AdminDashboard() {
         products={products}
         siteUrl={process.env.NEXT_PUBLIC_SITE_URL || ''}
       />
+
+      <section className='mb-8 rounded-xl border border-slate-200 bg-white p-5'>
+        <div className='mb-3 flex flex-wrap items-center justify-between gap-3'>
+          <h2 className='text-lg font-bold'>人工确认的询盘与成交</h2>
+          <Link href='/admin/leads' className='text-brand-emerald font-semibold'>
+            登记与管理询盘 →
+          </Link>
+        </div>
+        <p className='mb-4 text-sm text-slate-600'>
+          WhatsApp 点击只记录访问动作。有效询盘和成交需根据实际沟通登记；归档保留历史统计。
+        </p>
+        <div className='grid grid-cols-2 gap-4 sm:grid-cols-4'>
+          {(
+            [
+              ['已登记', leadStats.registered],
+              ['有效询盘', leadStats.qualified],
+              ['已报价', leadStats.quoted],
+              ['成交', leadStats.won]
+            ] as const
+          ).map(([label, value]) => (
+            <div key={label}>
+              <p className='text-2xl font-bold'>{value}</p>
+              <p className='text-sm text-slate-600'>{label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section className='mb-8'>
         <h2 className='text-brand-black mb-3 text-lg font-bold'>Product overview</h2>

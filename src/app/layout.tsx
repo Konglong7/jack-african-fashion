@@ -4,20 +4,19 @@ import './globals.css';
 import { Analytics } from '@/components/Analytics';
 import { RootChrome } from '@/components/RootChrome';
 import { getSiteContent } from '@/lib/siteContent';
-import { BRAND_ENTITY } from '@/lib/aioContent';
-import { isConfiguredSocialLink } from '@/lib/siteContentTypes';
 import { getSiteOrigin } from '@/lib/siteUrl';
+import { buildOrganizationJsonLd } from '@/lib/organizationJsonLd';
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-sans',
+  variable: '--font-jack-sans',
   display: 'swap',
   weight: ['400', '500', '600', '700']
 });
 
 const displayFont = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-display',
+  variable: '--font-jack-display',
   display: 'swap',
   weight: ['600', '700', '800', '900']
 });
@@ -25,7 +24,7 @@ const displayFont = Playfair_Display({
 const baseUrl = getSiteOrigin();
 
 export const viewport: Viewport = {
-  themeColor: '#1a1a1a',
+  themeColor: '#112b47',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -34,38 +33,39 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Jack African Fashion | Guangzhou African Women's Clothing Supplier",
-    template: '%s | Jack African Fashion'
+    default: "Jack Fashion | Women's Clothing Wholesale from Guangzhou",
+    template: '%s | Jack Fashion'
   },
   description:
-    "Jack African Fashion is a Guangzhou-based African women's clothing supplier for boutiques, wholesalers and importers. Ready stock, plus sizes, two piece sets and custom production.",
+    'Jack Fashion supplies dresses, matching sets and plus-size womenswear from Guangzhou for boutiques, wholesalers and importers worldwide. Discuss stock and prices on WhatsApp.',
   keywords: [
     "Guangzhou African women's clothing supplier",
     "African women's fashion wholesale supplier China",
     "women's clothing wholesale Guangzhou",
     'ready stock womenswear wholesale',
     'plus size clothing wholesale supplier',
-    'Nigeria Ghana Kenya fashion supplier'
+    'international womenswear wholesale supplier',
+    'wholesale dresses and matching sets'
   ],
-  authors: [{ name: 'Jack African Fashion' }],
-  creator: 'Jack African Fashion',
-  publisher: 'Jack African Fashion',
+  authors: [{ name: 'Jack Fashion' }],
+  creator: 'Jack Fashion',
+  publisher: 'Jack Fashion',
   metadataBase: new URL(baseUrl),
   openGraph: {
-    title: "Jack African Fashion | Guangzhou African Women's Clothing Supplier",
+    title: "Jack Fashion | Women's Clothing Wholesale from Guangzhou",
     description:
-      "Guangzhou-based women's clothing wholesale supplier serving boutiques, wholesalers and importers across African markets.",
+      "Guangzhou women's clothing wholesale for boutiques, wholesalers and importers worldwide.",
     type: 'website',
     url: baseUrl,
     locale: 'en_US',
-    siteName: 'Jack African Fashion',
-    images: ['/images/site/social-whatsapp-catalog-banner.webp']
+    siteName: 'Jack Fashion',
+    images: ['/images/site/jack-fashion-social.png']
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Jack African Fashion | Guangzhou Women's Clothing Supplier",
-    description: "Guangzhou women's clothing wholesale for African B2B buyers.",
-    images: ['/images/site/social-whatsapp-catalog-banner.webp']
+    title: "Jack Fashion | Guangzhou Women's Clothing Supplier",
+    description: "Guangzhou women's clothing wholesale for international B2B buyers.",
+    images: ['/images/site/jack-fashion-social.png']
   },
   robots: {
     index: true,
@@ -80,64 +80,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/images/site/logo-192.png', type: 'image/png', sizes: '192x192' }
+      { url: '/icon.svg', type: 'image/svg+xml', sizes: 'any' },
+      { url: '/images/site/jack-fashion-logo-192.png', type: 'image/png', sizes: '192x192' }
     ],
-    apple: '/apple-touch-icon.png'
+    apple: '/images/site/jack-fashion-logo-192.png'
   },
   manifest: '/manifest.webmanifest'
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const siteContent = await getSiteContent();
-  const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Organization',
-        '@id': `${baseUrl}/#organization`,
-        name: BRAND_ENTITY.name,
-        logo: `${baseUrl}/images/site/logo.png`,
-        url: baseUrl,
-        description: BRAND_ENTITY.identityStatement,
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: 'Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District',
-          addressLocality: 'Guangzhou',
-          addressRegion: 'Guangdong',
-          addressCountry: 'CN'
-        },
-        contactPoint: {
-          '@type': 'ContactPoint',
-          telephone: siteContent.whatsappDisplay,
-          url: siteContent.whatsappLink,
-          contactType: 'sales',
-          areaServed: ['Nigeria', 'Ghana', 'Kenya', 'Tanzania', 'South Africa'],
-          availableLanguage: ['en']
-        },
-        areaServed: ['Nigeria', 'Ghana', 'Kenya', 'Tanzania', 'South Africa'].map((name) => ({
-          '@type': 'Country',
-          name
-        })),
-        sameAs: [
-          siteContent.whatsappLink,
-          siteContent.socialLinks.facebook,
-          siteContent.socialLinks.tiktok,
-          siteContent.socialLinks.instagram
-        ].filter((url) => url === siteContent.whatsappLink || isConfiguredSocialLink(url)),
-        knowsAbout: [...BRAND_ENTITY.products, ...BRAND_ENTITY.capabilities]
-      },
-      {
-        '@type': 'WebSite',
-        '@id': `${baseUrl}/#website`,
-        url: baseUrl,
-        name: BRAND_ENTITY.name,
-        description: BRAND_ENTITY.identityStatement,
-        publisher: { '@id': `${baseUrl}/#organization` },
-        inLanguage: 'en'
-      }
-    ]
-  };
+  const organizationJsonLd = buildOrganizationJsonLd(siteContent, baseUrl);
 
   return (
     <html lang='en' className={`${sansFont.variable} ${displayFont.variable}`}>

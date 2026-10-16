@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { chinaDay, type AnalyticsEvent, type AnalyticsSummary } from '@/lib/analyticsStore';
 import type { Product } from '@/lib/db';
 import { CustomerLinkGenerator } from './CustomerLinkGenerator';
+import { referralSource } from '@/lib/analyticsAttribution';
 
 export function AnalyticsDashboard({
   analytics,
@@ -28,7 +29,20 @@ export function AnalyticsDashboard({
   const clickEvents = analytics.recent.filter((event) => event.event === 'whatsapp_click');
   const bestSources = rank(clickEvents.map(sourceLabel));
   const productNames = new Map(products.map((product) => [product.slug, product.name]));
-  const bestProducts = rank(clickEvents.map((event) => productLabel(event.path, productNames)));
+  const productIds = new Map(products.map((product) => [product.id, product.name]));
+  const bestProducts = rank(
+    clickEvents.map(
+      (event) =>
+        (event.productId && productIds.get(event.productId)) ||
+        productLabel(event.path, productNames)
+    )
+  );
+  const guideClicks = rank(
+    clickEvents.filter((event) => event.guideSlug).map((event) => event.guideSlug!)
+  );
+  const buttonClicks = rank(
+    clickEvents.filter((event) => event.ctaLocation).map((event) => event.ctaLocation!)
+  );
   const highIntent = analytics.recent
     .filter((event) => event.event === 'whatsapp_click' || event.path.startsWith('/products/'))
     .slice(0, 8);
@@ -76,8 +90,8 @@ export function AnalyticsDashboard({
       <div className='mb-4 grid grid-cols-2 gap-3 lg:grid-cols-4'>
         <Kpi label='Today visitors' value={todayVisitors} tone='black' />
         <Kpi label='Product viewers' value={productViewers} tone='orange' />
-        <Kpi label='WhatsApp customers' value={whatsappVisitors} tone='green' />
-        <Kpi label='WhatsApp rate' value={`${whatsappRate}%`} tone='orange' />
+        <Kpi label='WhatsApp clickers' value={whatsappVisitors} tone='green' />
+        <Kpi label='WhatsApp click rate' value={`${whatsappRate}%`} tone='orange' />
       </div>
 
       <div className='mb-4 grid gap-4 lg:grid-cols-2'>
@@ -110,8 +124,25 @@ export function AnalyticsDashboard({
       </div>
 
       <div className='mb-4 grid gap-4 lg:grid-cols-2'>
-        <RankPanel title='Best lead sources' note='Last 30 days' items={bestSources} />
+        <RankPanel
+          title='WhatsApp click sources'
+          note='Last 30 days · identifiable referrer or campaign'
+          items={bestSources}
+        />
         <RankPanel title='Best contact products' note='Last 30 days' items={bestProducts} />
+      </div>
+
+      <div className='mb-4 grid gap-4 lg:grid-cols-2'>
+        <RankPanel
+          title='Guide WhatsApp clicks'
+          note='Last 30 days · clicks, not confirmed enquiries'
+          items={guideClicks}
+        />
+        <RankPanel
+          title='WhatsApp button positions'
+          note='New tracking only · legacy records preserved'
+          items={buttonClicks}
+        />
       </div>
 
       <div className='border-brand-sand/60 mb-4 border bg-white'>
@@ -375,7 +406,14 @@ function rank(labels: string[]) {
 }
 
 function sourceLabel(event: AnalyticsEvent) {
-  return event.campaign || event.source || event.referrer || 'Direct';
+  const source =
+    event.source ||
+    referralSource(event.referrer.includes('://') ? event.referrer : 'https://' + event.referrer) ||
+    'Unknown';
+  return event.campaign &&
+    !['organic_search', 'ai_referral', 'ai_recommendation'].includes(event.campaign)
+    ? `${source} / ${event.campaign}`
+    : source;
 }
 
 function productLabel(path: string, products: Map<string, string>) {

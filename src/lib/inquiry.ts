@@ -6,7 +6,6 @@ export interface InquiryItem {
   name: string;
   slug: string;
   image: string;
-  moq: number;
   quantity: number;
   color?: string;
   size?: string;
@@ -21,23 +20,21 @@ export function productToInquiryItem(product: Product): InquiryItem {
     name: product.name,
     slug: product.slug,
     image: product.image,
-    moq: product.moq,
-    quantity: product.moq
+    quantity: 1
   };
 }
 
 export function mergeInquiryItems(items: InquiryItem[], item: InquiryItem): InquiryItem[] {
   const next = items.filter((current) => current.id !== item.id);
-  return [{ ...item, quantity: Math.max(item.moq, item.quantity || item.moq) }, ...next];
+  return [{ ...item, quantity: normalizeQuantity(item.quantity) }, ...next];
 }
 
-/** Refresh minimums without discarding the buyer's quantity, color or size. */
-export function refreshInquiryMinimums(items: InquiryItem[], minimums: Record<string, number>): InquiryItem[] {
-  return items.map((item) => {
-    const moq = minimums[item.id];
-    if (!Number.isFinite(moq) || moq <= 0) return item;
-    return { ...item, moq, quantity: Math.max(moq, item.quantity || moq) };
-  });
+/** Remove legacy catalog MOQ values while preserving the buyer's requested quantity. */
+export function normalizeInquiryItems(items: Array<InquiryItem & { moq?: unknown }>): InquiryItem[] {
+  return items.map(({ moq: _legacyMoq, ...item }) => ({
+    ...item,
+    quantity: normalizeQuantity(item.quantity)
+  }));
 }
 
 export function getInquiryItemCount(storage: Pick<Storage, 'getItem'>): number {
@@ -61,7 +58,7 @@ export function buildInquiryMessage(items: InquiryItem[]): string {
       `Link: ${absoluteSiteUrl(`/products/${item.slug}`)}`,
       `Color: ${item.color || 'To confirm'}`,
       `Size: ${item.size || 'To confirm'}`,
-      `Quantity: ${Math.max(item.moq, item.quantity || item.moq)} pcs`
+      `Requested quantity: ${normalizeQuantity(item.quantity)} pcs (subject to MOQ confirmation)`
     ].join('\n')
   );
 
@@ -71,4 +68,8 @@ export function buildInquiryMessage(items: InquiryItem[]): string {
     ...lines.flatMap((line) => [line, '']),
     'Please send me the wholesale price and more details.'
   ].join('\n');
+}
+
+function normalizeQuantity(value: number): number {
+  return Number.isFinite(value) && value > 0 ? Math.round(value) : 1;
 }

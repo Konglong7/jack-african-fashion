@@ -4,15 +4,31 @@ export interface SiteCategory {
   description?: string;
 }
 
+export interface WhatsAppContact {
+  link: string;
+  number: string;
+  display: string;
+}
+
+export const WHATSAPP_ROTATION_PATH = '/api/whatsapp';
+
+export interface SiteLocation {
+  name: string;
+  address: string;
+  mapUrl: string;
+}
+
 export interface SiteContent {
   name: string;
   slogan: string;
   location: string;
   locationUrl: string;
+  additionalLocations?: SiteLocation[];
   business: string;
   whatsappNumber: string;
   whatsappDisplay: string;
   whatsappLink: string;
+  whatsappContacts?: WhatsAppContact[];
   defaultWhatsAppMessage: string;
   heroEyebrow: string;
   heroTitle: string;
@@ -28,62 +44,89 @@ export interface SiteContent {
 }
 
 export const DEFAULT_SITE_CONTENT: SiteContent = {
-  name: 'Jack African Fashion',
-  slogan: "Guangzhou African Women's Clothing Supplier",
+  name: 'Jack Fashion',
+  slogan: "Women's Clothing Wholesale · Guangzhou",
   location: 'Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
-  // 通用地图搜索链接（不含具体商户点位）
   locationUrl: 'https://www.google.com/maps/search/?api=1&query=Yulong+Fashion+Plaza+Guangzhou',
-  business: "Women's Clothing Wholesale Supplier & Factory-Direct Manufacturer for African Markets",
-  // 官方 WhatsApp 联系方式：+86 189 2625 7367
+  additionalLocations: [
+    {
+      name: 'LIUHUA Market',
+      address: 'Shop 0081, LIUHUA Market, Guangzhou, China',
+      mapUrl:
+        'https://www.google.com/maps/search/?api=1&query=LIUHUA+Fashion+Wholesale+Market+Guangzhou'
+    }
+  ],
+  business: "Factory-direct women's clothing wholesale, ready stock and custom production",
   whatsappNumber: '8618926257367',
   whatsappDisplay: '+86 189 2625 7367',
   whatsappLink: 'https://wa.me/message/3N5VOJCFAQIGO1',
+  whatsappContacts: [
+    {
+      link: 'https://wa.me/message/3N5VOJCFAQIGO1',
+      number: '8618926257367',
+      display: '+86 189 2625 7367'
+    },
+    {
+      link: 'https://wa.me/message/YCF76Z5EEXJIF1',
+      number: '8618665055946',
+      display: '+86 186 6505 5946'
+    }
+  ],
   defaultWhatsAppMessage:
-    'Hello Jack, please add me on WhatsApp. I want to see current ready-stock styles, real stock photos/video, wholesale prices, and new arrivals.',
-  heroEyebrow: 'Jack African Fashion · Guangzhou, China',
-  heroTitle: "Guangzhou African Women's Clothing",
-  heroAccent: 'Wholesale Supplier',
+    'Hello Jack Fashion team, I want to see current ready-stock styles, stock photos/video, factory-direct wholesale prices and custom production options.',
+  heroEyebrow: 'Own factory · Guangzhou womenswear wholesale',
+  heroTitle: "Women's clothing wholesale,",
+  heroAccent: 'from Guangzhou.',
   heroBody:
-    "Ready stock and custom women's clothing from Guangzhou for African boutiques, wholesalers and importers.",
-  heroTrust: ['Own Factory', 'Guangzhou Showroom', 'African B2B', 'Export Packing'],
+    'Factory-direct dresses, matching sets and plus-size styles. Explore ready stock or custom production with our Guangzhou team.',
+  heroTrust: [
+    'Own factory',
+    'Factory-direct wholesale',
+    'Ready-stock selection',
+    'Custom production'
+  ],
   categories: [
     {
       name: 'Plus Size Dresses',
-      image: '/images/site/02-category-plus-size-dresses.webp',
+      image: '/images/products/0921056.webp',
       description:
-        'Extended-size dress options from XL to 5XL, with measurements confirmed per style.'
+        'Dress options for extended-size sourcing. Confirm the actual measurements and size run for each design.'
     },
     {
       name: 'Two Piece Sets',
-      image: '/images/site/03-category-two-piece-sets.webp',
-      description: 'Matching top and bottom sets that sell fast and photograph beautifully.'
-    },
-    {
-      name: 'Pleated Dresses',
-      image: '/images/site/04-category-pleated-styles.webp',
+      image: '/images/products/0921051.webp',
       description:
-        'Stretch pleated styles in multiple colors, subject to current batch confirmation.'
+        'Matching top and bottom styles. Confirm the pieces included and measure each piece separately.'
     },
     {
       name: 'Maxi Dresses',
-      image: '/images/site/05-category-maxi-dresses.webp',
-      description: 'Bold African print maxi dresses with full coverage and statement colour.'
+      image: '/images/products/0921053.webp',
+      description:
+        'Full-length silhouettes. Ask about dress length, lining, coverage and actual stock colors.'
     },
     {
       name: 'Jumpsuits',
-      image: '/images/site/category-jumpsuits-cover.webp',
-      description: 'Easy one-piece statements for everyday and occasion ranges.'
+      image: '/images/products/0921037.webp',
+      description:
+        'One-piece looks. Confirm construction, waist, hip and rise measurements before choosing sizes.'
+    },
+    {
+      name: 'Coordinated Styles',
+      image: '/images/products/0921047.webp',
+      description:
+        'Coordinated looks with the exact pieces and garment construction confirmed during enquiry.'
     },
     {
       name: 'Custom Orders',
-      image: '/images/site/12-category-custom-orders.webp',
-      description: 'Send your reference pictures — we quote by fabric, size and quantity.'
+      image: '/images/products/0921051.webp',
+      description:
+        'Send references, measurements, material expectations and quantity for a production review.'
     }
   ],
   socialLinks: {
-    facebook: 'https://www.facebook.com/',
-    tiktok: 'https://www.tiktok.com/',
-    instagram: 'https://www.instagram.com/'
+    facebook: 'https://www.facebook.com/people/Jack-African-Fashion-Wholesale/61593615337827/',
+    tiktok: 'https://www.tiktok.com/@jackafricanfashion',
+    instagram: 'https://www.instagram.com/jack.africanfashion/'
   }
 };
 
@@ -93,6 +136,12 @@ export function normalizeSiteContent(input: unknown): SiteContent {
     data.socialLinks && typeof data.socialLinks === 'object'
       ? (data.socialLinks as Record<string, unknown>)
       : {};
+  const contacts = Array.isArray(data.whatsappContacts)
+    ? normalizeWhatsAppContacts(data.whatsappContacts)
+    : typeof data.whatsappLink === 'string' || typeof data.whatsappNumber === 'string'
+      ? []
+      : DEFAULT_SITE_CONTENT.whatsappContacts || [];
+  const primaryContact = contacts[0];
 
   return {
     ...DEFAULT_SITE_CONTENT,
@@ -100,13 +149,18 @@ export function normalizeSiteContent(input: unknown): SiteContent {
     slogan: text(data.slogan, DEFAULT_SITE_CONTENT.slogan),
     location: text(data.location, DEFAULT_SITE_CONTENT.location),
     locationUrl: url(data.locationUrl, DEFAULT_SITE_CONTENT.locationUrl),
-    business: text(data.business, DEFAULT_SITE_CONTENT.business),
-    whatsappNumber: text(data.whatsappNumber, DEFAULT_SITE_CONTENT.whatsappNumber).replace(
-      /\D/g,
-      ''
+    additionalLocations: normalizeAdditionalLocations(
+      data.additionalLocations ?? (data.location ? [] : DEFAULT_SITE_CONTENT.additionalLocations)
     ),
-    whatsappDisplay: text(data.whatsappDisplay, DEFAULT_SITE_CONTENT.whatsappDisplay),
-    whatsappLink: whatsappUrl(data.whatsappLink, DEFAULT_SITE_CONTENT.whatsappLink),
+    business: text(data.business, DEFAULT_SITE_CONTENT.business),
+    whatsappNumber:
+      primaryContact?.number ||
+      text(data.whatsappNumber, DEFAULT_SITE_CONTENT.whatsappNumber).replace(/\D/g, ''),
+    whatsappDisplay:
+      primaryContact?.display || text(data.whatsappDisplay, DEFAULT_SITE_CONTENT.whatsappDisplay),
+    whatsappLink:
+      primaryContact?.link || whatsappUrl(data.whatsappLink, DEFAULT_SITE_CONTENT.whatsappLink),
+    whatsappContacts: contacts,
     defaultWhatsAppMessage: text(
       data.defaultWhatsAppMessage,
       DEFAULT_SITE_CONTENT.defaultWhatsAppMessage
@@ -151,17 +205,89 @@ function imagePath(value: unknown): string | undefined {
   return /^(\/|https?:\/\/)/.test(trimmed) ? trimmed : undefined;
 }
 
-export function siteWhatsAppLink(content: SiteContent, message = content.defaultWhatsAppMessage) {
+export function siteWhatsAppLink(content: SiteContent, message?: string): string {
+  if (message) return siteWhatsAppMessageLink(content, message);
+  if (getWhatsAppContacts(content).length > 1) return WHATSAPP_ROTATION_PATH;
   if (content.whatsappLink) return content.whatsappLink;
-  return `https://wa.me/${content.whatsappNumber}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${content.whatsappNumber}?text=${encodeURIComponent(content.defaultWhatsAppMessage)}`;
 }
 
 /** Business short links have fixed greetings; preserve buyer-written form text
  * by using the configured sales number for inquiry messages. */
 export function siteWhatsAppMessageLink(content: SiteContent, message: string) {
+  if (getWhatsAppContacts(content).length > 1) {
+    return `${WHATSAPP_ROTATION_PATH}?text=${encodeURIComponent(message)}`;
+  }
   const number = content.whatsappNumber.replace(/\D/g, '');
-  if (!/^[1-9]\d{7,14}$/.test(number)) return siteWhatsAppLink(content, message);
+  if (!/^[1-9]\d{7,14}$/.test(number)) return siteWhatsAppLink(content);
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+}
+
+export function getWhatsAppContacts(content: SiteContent): WhatsAppContact[] {
+  const contacts = normalizeWhatsAppContacts(content.whatsappContacts);
+  // Explicit single-link overrides remain compatible with existing callers.
+  if (contacts.length && contacts[0].link === content.whatsappLink) return contacts;
+  return [
+    { link: content.whatsappLink, number: content.whatsappNumber, display: content.whatsappDisplay }
+  ];
+}
+
+export function siteWhatsAppDisplay(content: SiteContent): string {
+  return getWhatsAppContacts(content)
+    .map((contact) => contact.display)
+    .join(' / ');
+}
+
+export function getSiteLocations(content: SiteContent): SiteLocation[] {
+  const locations: SiteLocation[] = [
+    {
+      name: 'Guangzhou wholesale showroom',
+      address: content.location,
+      mapUrl: content.locationUrl
+    }
+  ];
+  for (const location of normalizeAdditionalLocations(content.additionalLocations)) {
+    if (!locations.some((item) => item.address.toLowerCase() === location.address.toLowerCase())) {
+      locations.push(location);
+    }
+  }
+  return locations;
+}
+
+function normalizeAdditionalLocations(value: unknown): SiteLocation[] {
+  if (!Array.isArray(value)) return [];
+  return value.flatMap((item) => {
+    if (!item || typeof item !== 'object') return [];
+    const record = item as Record<string, unknown>;
+    const address = typeof record.address === 'string' ? record.address.trim() : '';
+    if (!address) return [];
+    const fallback = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    const mapUrl =
+      typeof record.mapUrl === 'string' && /^https:\/\//.test(record.mapUrl.trim())
+        ? record.mapUrl.trim()
+        : fallback;
+    return [{ name: text(record.name, 'Additional wholesale showroom'), address, mapUrl }];
+  });
+}
+
+function normalizeWhatsAppContacts(value: unknown): WhatsAppContact[] {
+  if (!Array.isArray(value)) return [];
+  const contacts: WhatsAppContact[] = [];
+  for (const item of value) {
+    if (!item || typeof item !== 'object') continue;
+    const record = item as Record<string, unknown>;
+    const link = whatsappUrl(record.link, '');
+    const number = typeof record.number === 'string' ? record.number.replace(/\D/g, '') : '';
+    if (
+      !link ||
+      !/^[1-9]\d{7,14}$/.test(number) ||
+      contacts.some((contact) => contact.number === number)
+    ) {
+      continue;
+    }
+    contacts.push({ link, number, display: text(record.display, `+${number}`) });
+  }
+  return contacts;
 }
 const SOCIAL_PLATFORM_HOME_PATHS = new Set([
   'facebook.com/',

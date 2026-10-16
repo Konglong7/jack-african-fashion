@@ -2,7 +2,7 @@
 
 import { Suspense, useCallback, useMemo, useRef, useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import type { Product } from '@/lib/db';
+import type { PublicProduct } from '@/lib/productPublicFacts';
 import type { SiteContent } from '@/lib/siteContentTypes';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
 import { WhatsAppIcon } from '@/components/Icons';
@@ -10,8 +10,7 @@ import { ProductCard } from '@/components/ProductCard';
 
 const SORT_OPTIONS = [
   { value: 'newest', label: 'Newest Styles' },
-  { value: 'popular', label: 'Most Popular' },
-  { value: 'custom', label: 'Custom Available' }
+  { value: 'popular', label: 'Most Popular' }
 ];
 
 const PAGE_SIZE = 24;
@@ -26,7 +25,7 @@ function CatalogUrlSync({ onChange }: { onChange: (query: string) => void }) {
 }
 
 interface Props {
-  products: Product[];
+  products: PublicProduct[];
   siteContent: SiteContent;
   categories: string[];
 }
@@ -47,11 +46,29 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
     }
     const params = new URLSearchParams(query);
     setCategory(params.get('category') || 'All');
-    setSort(params.get('sort') || 'newest');
+    const requestedSort = params.get('sort');
+    setSort(SORT_OPTIONS.some((option) => option.value === requestedSort) ? requestedSort! : 'newest');
     setSearch(params.get('q') || '');
     setDebouncedSearch(params.get('q') || '');
     setUrlReady(true);
   }, []);
+
+  // Ensure client-side filter is immediately interactive on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !urlReady) {
+      if (window.location.search) {
+        applyUrl(window.location.search.replace(/^\?/, ''));
+      } else {
+        setUrlReady(true);
+      }
+    }
+  }, [urlReady, applyUrl]);
+
+  const handleCategoryChange = (cat: string) => {
+    setCategory(cat);
+    setUrlReady(true);
+  };
+
   const [displayLimit, setDisplayLimit] = useState(PAGE_SIZE);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -95,7 +112,7 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
   }, [products]);
 
   const filtered = useMemo(() => {
-    let result: Product[] = [...products];
+    let result: PublicProduct[] = [...products];
 
     if (category !== 'All') {
       result = result.filter((p) => p.category === category);
@@ -105,8 +122,9 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
       result = result.filter(
         (p) =>
           p.name.toLowerCase().includes(q) ||
-          p.category.toLowerCase().includes(q) ||
-          p.tags.some((t) => t.toLowerCase().includes(q))
+          p.slug.toLowerCase().includes(q) ||
+          p.id.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q)
       );
     }
 
@@ -116,14 +134,6 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
           const aNew = a.isNew ? 1 : 0;
           const bNew = b.isNew ? 1 : 0;
           if (bNew !== aNew) return bNew - aNew;
-          return Number(b.id) - Number(a.id);
-        });
-        break;
-      case 'custom':
-        result.sort((a, b) => {
-          const aCust = a.stockType.includes('Custom') ? 1 : 0;
-          const bCust = b.stockType.includes('Custom') ? 1 : 0;
-          if (bCust !== aCust) return bCust - aCust;
           return Number(b.id) - Number(a.id);
         });
         break;
@@ -140,7 +150,6 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
 
   const visibleProducts = useMemo(() => filtered.slice(0, displayLimit), [filtered, displayLimit]);
   const hasMore = displayLimit < filtered.length;
-  const minimumMoq = products.length ? Math.min(...products.map((product) => product.moq)) : null;
 
   const resetFilters = () => {
     setCategory('All');
@@ -151,48 +160,58 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
 
   return (
     <section className='bg-brand-cream py-8 sm:py-12'>
-      <Suspense fallback={null}><CatalogUrlSync onChange={applyUrl} /></Suspense>
+      <Suspense fallback={null}>
+        <CatalogUrlSync onChange={applyUrl} />
+      </Suspense>
       <div className='mx-auto max-w-7xl px-3 sm:px-6 lg:px-8'>
         {/* Wholesale B2B Trust Banner */}
-        <div className='mb-8 overflow-hidden rounded-2xl bg-gradient-to-r from-stone-950 via-stone-900 to-amber-950 p-4 sm:p-6 text-white shadow-xl border border-amber-500/20'>
-          <div className='grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-6 text-left'>
+        <div className='mb-8 overflow-hidden rounded-2xl border border-amber-500/20 bg-gradient-to-r from-stone-950 via-stone-900 to-amber-950 p-4 text-white shadow-xl sm:p-6'>
+          <div className='grid grid-cols-2 gap-3 text-left sm:grid-cols-4 sm:gap-6'>
             <div className='flex items-center gap-2.5 sm:gap-3.5'>
-              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-400 font-bold text-lg'>
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-lg font-bold text-amber-400'>
                 🏭
               </div>
               <div>
-                <p className='text-xs font-bold text-amber-300 uppercase tracking-wider'>Guangzhou Direct</p>
-                <p className='text-[11px] text-stone-300'>No middleman markup</p>
+                <p className='text-xs font-bold tracking-wider text-amber-300 uppercase'>
+                  Guangzhou Direct
+                </p>
+                <p className='text-[11px] text-stone-300'>Talk directly with Jack</p>
               </div>
             </div>
 
             <div className='flex items-center gap-2.5 sm:gap-3.5'>
-              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-300 font-black text-sm'>
-                {minimumMoq ?? 'MOQ'}
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-sm font-black text-amber-300'>
+                MOQ
               </div>
               <div>
-                <p className='text-xs font-bold text-amber-300 uppercase tracking-wider'>MOQ by Style</p>
+                <p className='text-xs font-bold tracking-wider text-amber-300 uppercase'>
+                  MOQ by Style
+                </p>
                 <p className='text-[11px] text-stone-300'>Confirm quantity for each order</p>
               </div>
             </div>
 
             <div className='flex items-center gap-2.5 sm:gap-3.5'>
-              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400 font-bold text-lg'>
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/20 text-lg font-bold text-emerald-400'>
                 ⚡
               </div>
               <div>
-                <p className='text-xs font-bold text-emerald-400 uppercase tracking-wider'>Ready Stock</p>
-                <p className='text-[11px] text-stone-300'>Dispatch after confirmation</p>
+                <p className='text-xs font-bold tracking-wider text-emerald-400 uppercase'>
+                  Stock Status
+                </p>
+                <p className='text-[11px] text-stone-300'>Confirm the current batch</p>
               </div>
             </div>
 
             <div className='flex items-center gap-2.5 sm:gap-3.5'>
-              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-amber-400 font-bold text-lg'>
+              <div className='flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/20 text-lg font-bold text-amber-400'>
                 🚢
               </div>
               <div>
-                <p className='text-xs font-bold text-amber-300 uppercase tracking-wider'>African Cargo</p>
-                <p className='text-[11px] text-stone-300'>Nigeria, Ghana, Kenya & more</p>
+                <p className='text-xs font-bold tracking-wider text-amber-300 uppercase'>
+                  Cargo handover
+                </p>
+                <p className='text-[11px] text-stone-300'>Confirm for your destination</p>
               </div>
             </div>
           </div>
@@ -202,7 +221,7 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
         <div className='mb-6 flex flex-col gap-3 sm:flex-row sm:gap-4'>
           <div className='relative flex-1'>
             <svg
-              className='text-stone-400 absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2'
+              className='absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-stone-400'
               fill='none'
               stroke='currentColor'
               strokeWidth={2}
@@ -215,19 +234,27 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
               type='text'
               placeholder='Search dresses, styles, prints, sizes...'
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e) => {
+                setSearch(e.target.value);
+                setUrlReady(true);
+              }}
               aria-label='Search products'
-              disabled={!urlReady}
-              className='border-stone-200 text-stone-900 placeholder:text-stone-400 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 w-full rounded-full border bg-white py-3 pr-10 pl-12 text-sm shadow-sm focus:outline-none'
+              className='w-full rounded-full border border-stone-200 bg-white py-3 pr-10 pl-12 text-sm text-stone-900 shadow-sm placeholder:text-stone-400 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none'
             />
             {search && (
               <button
                 type='button'
                 onClick={() => setSearch('')}
                 aria-label='Clear search'
-                className='text-stone-400 hover:text-stone-700 hover:bg-stone-100 absolute top-1/2 right-3 -translate-y-1/2 rounded-full p-1 transition-colors'
+                className='absolute top-1/2 right-3 -translate-y-1/2 rounded-full p-1 text-stone-400 transition-colors hover:bg-stone-100 hover:text-stone-700'
               >
-                <svg className='h-4 w-4' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
+                <svg
+                  className='h-4 w-4'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeWidth={2}
+                  viewBox='0 0 24 24'
+                >
                   <path d='M18 6 6 18M6 6l12 12' />
                 </svg>
               </button>
@@ -235,10 +262,12 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
           </div>
           <select
             value={sort}
-            onChange={(e) => setSort(e.target.value)}
+            onChange={(e) => {
+              setSort(e.target.value);
+              setUrlReady(true);
+            }}
             aria-label='Sort products'
-            disabled={!urlReady}
-            className='border-stone-200 text-stone-800 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 cursor-pointer rounded-full border bg-white px-5 py-3 text-sm font-semibold shadow-sm focus:outline-none'
+            className='cursor-pointer rounded-full border border-stone-200 bg-white px-5 py-3 text-sm font-semibold text-stone-800 shadow-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 focus:outline-none'
           >
             {SORT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -250,8 +279,8 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
 
         {/* Category Filter Pills (Horizontal scrollable rail on mobile) */}
         <div className='mb-6 sm:mb-8'>
-          <div className='-mx-4 flex flex-nowrap items-center gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 scrollbar-none'>
-            <span className='text-stone-700 shrink-0 text-xs sm:text-sm font-bold uppercase tracking-wider mr-1'>
+          <div className='-mx-3 flex scrollbar-none flex-nowrap items-center gap-2 overflow-x-auto px-3 pb-1 sm:mx-0 sm:flex-wrap sm:px-0'>
+            <span className='mr-1 shrink-0 text-xs font-bold tracking-wider text-stone-700 uppercase sm:text-sm'>
               Category:
             </span>
             {['All', ...categories].map((cat) => {
@@ -260,12 +289,12 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
               return (
                 <button
                   key={cat}
-                  disabled={!urlReady}
-                  onClick={() => setCategory(cat)}
-                  className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-semibold whitespace-nowrap transition-all ${
+                  type='button'
+                  onClick={() => handleCategoryChange(cat)}
+                  className={`shrink-0 cursor-pointer rounded-full px-3.5 py-1.5 text-xs font-semibold whitespace-nowrap transition-all sm:text-sm ${
                     isActive
                       ? 'bg-stone-950 text-amber-400 shadow-md ring-1 ring-amber-500/40'
-                      : 'text-stone-700 hover:bg-stone-100 hover:text-stone-900 border border-stone-200 bg-white shadow-xs'
+                      : 'border border-stone-200 bg-white text-stone-700 shadow-xs hover:bg-stone-100 hover:text-stone-900'
                   }`}
                 >
                   <span>{cat}</span>
@@ -285,41 +314,43 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
         {/* Active Filter Tags */}
         {(category !== 'All' || debouncedSearch.trim() || sort !== 'newest') && (
           <div className='mb-6 flex flex-wrap items-center gap-2 text-xs'>
-            <span className='text-stone-500 font-bold uppercase tracking-wider text-[11px]'>Active Filters:</span>
+            <span className='text-[11px] font-bold tracking-wider text-stone-500 uppercase'>
+              Active Filters:
+            </span>
             {category !== 'All' && (
               <button
                 type='button'
                 onClick={() => setCategory('All')}
-                className='border-amber-300 bg-amber-50 hover:bg-amber-100 text-amber-900 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-semibold transition-colors'
+                className='inline-flex items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3 py-1 font-semibold text-amber-900 transition-colors hover:bg-amber-100'
               >
                 Category: {category}
-                <span className='text-amber-700 font-bold'>✕</span>
+                <span className='font-bold text-amber-700'>✕</span>
               </button>
             )}
             {debouncedSearch.trim() && (
               <button
                 type='button'
                 onClick={() => setSearch('')}
-                className='border-stone-300 bg-stone-100 hover:bg-stone-200 text-stone-800 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-semibold transition-colors'
+                className='inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-stone-100 px-3 py-1 font-semibold text-stone-800 transition-colors hover:bg-stone-200'
               >
                 Keyword: &quot;{debouncedSearch.trim()}&quot;
-                <span className='text-stone-600 font-bold'>✕</span>
+                <span className='font-bold text-stone-600'>✕</span>
               </button>
             )}
             {sort !== 'newest' && (
               <button
                 type='button'
                 onClick={() => setSort('newest')}
-                className='border-stone-300 bg-stone-100 hover:bg-stone-200 text-stone-800 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 font-semibold transition-colors'
+                className='inline-flex items-center gap-1.5 rounded-full border border-stone-300 bg-stone-100 px-3 py-1 font-semibold text-stone-800 transition-colors hover:bg-stone-200'
               >
                 Sort: {SORT_OPTIONS.find((s) => s.value === sort)?.label}
-                <span className='text-stone-600 font-bold'>✕</span>
+                <span className='font-bold text-stone-600'>✕</span>
               </button>
             )}
             <button
               type='button'
               onClick={resetFilters}
-              className='text-amber-700 hover:text-amber-800 ml-1 font-bold underline transition-colors'
+              className='ml-1 font-bold text-amber-700 underline transition-colors hover:text-amber-800'
             >
               Clear all
             </button>
@@ -327,40 +358,36 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
         )}
 
         {/* Product count stats */}
-        <div className='mb-5 flex items-center justify-between text-xs sm:text-sm text-stone-600'>
+        <div className='mb-5 flex items-center justify-between text-xs text-stone-600 sm:text-sm'>
           <p>
             Showing{' '}
-            <span className='text-stone-950 font-bold'>
+            <span className='font-bold text-stone-950'>
               {Math.min(displayLimit, filtered.length)}
             </span>{' '}
-            of <span className='text-stone-950 font-bold'>{filtered.length}</span>{' '}
+            of <span className='font-bold text-stone-950'>{filtered.length}</span>{' '}
             {filtered.length === 1 ? 'wholesale style' : 'wholesale styles'}
           </p>
-          <span className='hidden sm:inline-block text-stone-400'>
-            {minimumMoq ? `Starting MOQ ${minimumMoq} pcs · Confirm each style` : 'Confirm MOQ by style'}
+          <span className='hidden text-stone-400 sm:inline-block'>
+            Confirm MOQ by style and current batch
           </span>
         </div>
 
         {/* Product Grid */}
+        <h2 className='sr-only'>Browse Wholesale Styles</h2>
         {filtered.length > 0 ? (
           <>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-8'>
-              {visibleProducts.map((product, index) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  priority={index < 4}
-                  siteContent={siteContent}
-                />
+            <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8'>
+              {visibleProducts.map((product) => (
+                <ProductCard key={product.id} product={product} siteContent={siteContent} />
               ))}
             </div>
 
             {hasMore && (
-              <div className='mt-10 sm:mt-12 text-center'>
+              <div className='mt-10 text-center sm:mt-12'>
                 <button
                   type='button'
                   onClick={() => setDisplayLimit((prev) => prev + PAGE_SIZE)}
-                  className='border-amber-400/80 bg-white text-stone-900 hover:bg-amber-50 hover:border-amber-500 inline-flex items-center justify-center gap-2 rounded-full border px-8 py-3.5 text-sm font-bold shadow-sm transition-all active:scale-95'
+                  className='inline-flex items-center justify-center gap-2 rounded-full border border-amber-400/80 bg-white px-8 py-3.5 text-sm font-bold text-stone-900 shadow-sm transition-all hover:border-amber-500 hover:bg-amber-50 active:scale-95'
                 >
                   Load More Styles ({filtered.length - displayLimit} remaining)
                 </button>
@@ -368,13 +395,13 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
             )}
           </>
         ) : (
-          <div className='py-20 text-center rounded-2xl bg-white border border-stone-200/80 p-8'>
-            <p className='text-stone-500 mb-4 text-base sm:text-lg'>
+          <div className='rounded-2xl border border-stone-200/80 bg-white p-8 py-20 text-center'>
+            <p className='mb-4 text-base text-stone-500 sm:text-lg'>
               No styles found matching your filters.
             </p>
             <button
               onClick={resetFilters}
-              className='bg-stone-900 hover:bg-amber-600 inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold text-white transition-colors shadow-md'
+              className='inline-flex items-center gap-2 rounded-full bg-stone-900 px-6 py-3 font-bold text-white shadow-md transition-colors hover:bg-amber-600'
             >
               Reset Filters
             </button>
@@ -382,15 +409,17 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
         )}
 
         {/* Bottom CTA for custom sourcing */}
-        <div className='mt-14 sm:mt-16 rounded-2xl bg-gradient-to-r from-stone-950 via-stone-900 to-amber-950 p-6 sm:p-12 text-center text-white shadow-xl border border-amber-500/20'>
-          <span className='inline-block rounded-full bg-amber-500/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-amber-300 mb-3'>
-            Custom Sourcing &amp; Own Factory
+        <div className='mt-14 rounded-2xl border border-amber-500/20 bg-gradient-to-r from-stone-950 via-stone-900 to-amber-950 p-6 text-center text-white shadow-xl sm:mt-16 sm:p-12'>
+          <span className='mb-3 inline-block rounded-full bg-amber-500/20 px-3 py-1 text-xs font-bold tracking-wider text-amber-300 uppercase'>
+            Custom Sourcing from Guangzhou
           </span>
-          <h3 className='font-display mb-3 text-2xl font-bold sm:text-3xl text-white'>
+          <h2 className='font-display mb-3 text-2xl font-bold text-white sm:text-3xl'>
             Looking For Specific Designs or Larger Batches?
-          </h3>
-          <p className='text-stone-300 mx-auto mb-6 max-w-xl text-xs sm:text-sm leading-relaxed'>
-            We have hundreds of offline showroom samples and custom production lines in Guangzhou. Send us your design photos, target fabrics, or tech packs on WhatsApp for fast quotation and MOQ assessment.
+          </h2>
+          <p className='mx-auto mb-6 max-w-xl text-xs leading-relaxed text-stone-300 sm:text-sm'>
+            Send your reference photos, target fabrics, size requirements and quantity on WhatsApp.
+            Jack will confirm sourcing options, sample requirements and the MOQ for your proposed
+            order before quoting.
           </p>
           <a
             href={siteWhatsAppLink(
@@ -399,10 +428,11 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
             )}
             target='_blank'
             rel='noopener noreferrer'
-            className='inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] hover:bg-[#20BA5A] px-8 py-3.5 sm:py-4 font-bold text-white shadow-lg transition-transform hover:scale-105 active:scale-95'
+            data-cta-location='catalog-custom-sourcing'
+            className='inline-flex items-center justify-center gap-2 rounded-full bg-[#0B7A3E] px-8 py-3.5 font-bold text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#086532] active:scale-95 sm:py-4'
           >
             <WhatsAppIcon className='h-5 w-5' />
-            <span>Ask Custom Inquiry on WhatsApp</span>
+            <span>Chat on WhatsApp</span>
           </a>
         </div>
 
@@ -411,11 +441,17 @@ export function CatalogClient({ products, siteContent, categories }: Props) {
           <button
             type='button'
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className='border-stone-200 text-stone-900 hover:bg-stone-950 hover:text-white fixed right-4 bottom-20 z-40 flex h-11 w-11 items-center justify-center rounded-full border bg-white/95 shadow-xl backdrop-blur transition-all active:scale-95 md:right-8 md:bottom-8'
+            className='fixed right-4 bottom-20 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-white/95 text-stone-900 shadow-xl backdrop-blur transition-all hover:bg-stone-950 hover:text-white active:scale-95 md:right-8 md:bottom-8'
             aria-label='Scroll to top'
             title='Back to top'
           >
-            <svg className='h-5 w-5' fill='none' stroke='currentColor' strokeWidth={2.5} viewBox='0 0 24 24'>
+            <svg
+              className='h-5 w-5'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth={2.5}
+              viewBox='0 0 24 24'
+            >
               <path d='M5 15l7-7 7 7' />
             </svg>
           </button>

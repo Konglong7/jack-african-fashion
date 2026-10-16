@@ -2,18 +2,21 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { DEFAULT_SITE_CONTENT, siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
 import { ProductImage } from './ProductImage';
 import { WhatsAppIcon } from './Icons';
-import { InquiryAddButton } from './InquiryAddButton';
-import { ProductQuickZoomModal } from './ProductQuickZoomModal';
+const ProductQuickZoomModal = dynamic(
+  () => import('./ProductQuickZoomModal').then((module) => module.ProductQuickZoomModal),
+  { ssr: false }
+);
 import { downloadImageFile, getProductImageFilename } from '@/lib/downloadImage';
 import { getProductImageAspect } from '@/lib/productImageDimensions';
-import type { Product } from '@/lib/db';
+import { getPublicProductFacts, type PublicProduct } from '@/lib/productPublicFacts';
 
 interface ProductCardProps {
-  product: Product;
-  /** Mark as above-the-fold for the LCP image (first 4 items in a grid). */
+  product: PublicProduct;
+  /** Reserve priority for a measured primary visual, not entire card grids. */
   priority?: boolean;
   /** Responsive image sizes attribute. */
   sizes?: string;
@@ -30,6 +33,7 @@ export function ProductCard({
   variant = 'default'
 }: ProductCardProps) {
   const isHome = variant === 'home';
+  const facts = getPublicProductFacts(product);
   const [downloading, setDownloading] = useState(false);
   const [saved, setSaved] = useState(false);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
@@ -96,7 +100,7 @@ export function ProductCard({
           aria-label={`Preview full image of ${product.name}`}
           className={
             isHome
-              ? 'relative block w-full cursor-pointer overflow-hidden rounded-xl bg-[#FAF8F5] focus:ring-2 focus:ring-[#165C45] focus:outline-none'
+              ? 'relative block w-full cursor-pointer overflow-hidden rounded-xl bg-[#FAF8F5] focus:ring-2 focus:ring-[#105537] focus:outline-none'
               : 'relative block w-full cursor-pointer overflow-hidden rounded-xl bg-[#FAF8F5] focus:ring-2 focus:ring-amber-500/50 focus:outline-none'
           }
           style={{ aspectRatio: `${aspect}` }}
@@ -130,6 +134,9 @@ export function ProductCard({
             >
               {product.category}
             </span>
+            <span className='ml-2 shrink-0 text-xs text-slate-500'>
+              {product.image.match(/(\d{7})\./)?.[1] || `#${product.id}`}
+            </span>
           </div>
 
           {/* Product Title: Max 2 lines */}
@@ -137,7 +144,7 @@ export function ProductCard({
             <h3
               className={
                 isHome
-                  ? 'line-clamp-2 min-h-[2.4rem] text-sm leading-snug font-bold text-[#0C0A09] transition-colors group-hover/title:text-[#165C45] sm:min-h-[2.6rem] sm:text-base'
+                  ? 'line-clamp-2 min-h-[2.4rem] text-sm leading-snug font-bold text-[#0C0A09] transition-colors group-hover/title:text-[#105537] sm:min-h-[2.6rem] sm:text-base'
                   : 'line-clamp-2 min-h-[2.4rem] text-sm leading-snug font-bold text-[#0C0A09] transition-colors group-hover/title:text-amber-600 sm:min-h-[2.6rem] sm:text-base'
               }
             >
@@ -154,47 +161,41 @@ export function ProductCard({
             }
           >
             <span className={isHome ? 'font-semibold text-[#8A661B]' : 'font-bold text-amber-800'}>
-              MOQ: {product.moq} pcs
+              MOQ: {facts.moq}
             </span>
             <span className='text-stone-300'>·</span>
             <span
-              className={isHome ? 'font-semibold text-[#165C45]' : 'font-semibold text-emerald-700'}
+              className={isHome ? 'font-semibold text-[#105537]' : 'font-semibold text-emerald-700'}
             >
-              {product.stockType.includes('Ready') ? 'Ready Stock' : 'Custom'}
+              Stock: {facts.stock}
             </span>
           </div>
 
-          {/* Side-by-side CTA Actions: WhatsApp & Add to Inquiry */}
+          {/* Contact directly on WhatsApp. */}
           <div
             data-home-product-actions={isHome || undefined}
-            className={
-              isHome ? 'mt-auto grid gap-2 pt-4' : 'mt-3 grid grid-cols-2 gap-2 pt-1 sm:gap-2.5'
-            }
+            className={isHome ? 'mt-auto grid gap-2 pt-4' : 'mt-3 grid gap-2 pt-1 sm:gap-2.5'}
           >
             <a
+              data-product-id={product.id}
+              data-cta-location={isHome ? 'home-product-card' : 'catalog-product-card'}
               href={siteWhatsAppLink(siteContent, product.whatsappMessage)}
               target='_blank'
               rel='noopener noreferrer'
               aria-label={`Ask for ${product.name} price on WhatsApp`}
               className={
                 isHome
-                  ? 'inline-flex min-h-11 w-full flex-wrap items-center justify-center gap-[6px] rounded-lg bg-[#0B7A3C] px-[8px] py-[10px] text-xs font-semibold text-white transition-colors hover:bg-[#165C45]'
-                  : 'inline-flex min-h-[40px] w-full items-center justify-center gap-1.5 rounded-lg bg-[#25D366] px-2 py-2.5 text-xs font-bold text-white shadow-none transition-all hover:bg-[#20BA5A] active:scale-[0.98] sm:text-sm'
+                  ? 'inline-flex min-h-11 w-full flex-wrap items-center justify-center gap-[6px] rounded-lg bg-[#0B7A3E] px-[8px] py-[10px] text-xs font-semibold text-white transition-colors hover:bg-[#086532]'
+                  : 'inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-lg bg-[#0B7A3E] px-2 py-2.5 text-xs font-bold text-white shadow-none transition-all hover:bg-[#086532] active:scale-[0.98] sm:text-sm'
               }
             >
               <WhatsAppIcon
                 className={isHome ? 'h-[16px] w-[16px] shrink-0' : 'h-4 w-4 shrink-0'}
               />
-              <span className={isHome ? '[overflow-wrap:anywhere]' : 'truncate'}>WhatsApp</span>
+              <span className={isHome ? '[overflow-wrap:anywhere]' : 'truncate'}>
+                Chat on WhatsApp
+              </span>
             </a>
-            <InquiryAddButton
-              product={product}
-              className={
-                isHome
-                  ? 'inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-stone-300 bg-white px-2 py-2.5 text-xs font-semibold text-[#0C0A09] hover:border-[#165C45] hover:bg-stone-50'
-                  : 'inline-flex min-h-[40px] w-full items-center justify-center rounded-lg border border-stone-200 bg-white px-2 py-2.5 text-xs font-bold text-[#0C0A09] transition-all hover:border-stone-300 hover:bg-stone-50 active:scale-[0.98] sm:text-sm'
-              }
-            />
           </div>
         </div>
       </div>

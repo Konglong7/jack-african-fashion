@@ -2,6 +2,8 @@ import Link from 'next/link';
 import type { SiteCategory } from '@/lib/siteContentTypes';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { SiteImage } from '@/components/SiteImage';
+import { categoryImageSizes } from './categoryImageSizes';
+import { categoryHref } from '@/lib/siteNavigation';
 import styles from './homepage.module.css';
 
 const CATEGORY_POSITIONS: Record<string, string> = {
@@ -23,8 +25,12 @@ export function Categories({ categories }: { categories: SiteCategory[] }) {
     >
       <div className={styles.container}>
         <h2 id='home-categories-title' className={`font-display ${styles.sectionHeading}`}>
-          Browse by style
+          Browse wholesale clothing by style
         </h2>
+        <p className={`${styles.sectionDescription} mb-6`}>
+          Choose dresses, matching sets or plus-size styles by category. Open a product page and
+          send its style code on WhatsApp to confirm MOQ and a wholesale quotation.
+        </p>
         <div className={styles.categoryGrid}>
           {categories.slice(0, 6).map((category) => {
             const image =
@@ -37,7 +43,7 @@ export function Categories({ categories }: { categories: SiteCategory[] }) {
                 href={
                   custom
                     ? '/custom-orders'
-                    : `/catalog?category=${encodeURIComponent(category.name)}`
+                    : categoryHref(category.name)
                 }
                 className={styles.categoryCard}
               >
@@ -46,8 +52,9 @@ export function Categories({ categories }: { categories: SiteCategory[] }) {
                     <SiteImage
                       src={image}
                       alt={`${category.name} wholesale styles`}
-                      sizes='(max-width: 767px) 33vw, (max-width: 1279px) 16vw, 190px'
+                      sizes={categoryImageSizes(image)}
                       className='absolute inset-0'
+                      fit='contain'
                       position={CATEGORY_POSITIONS[category.name] || 'center'}
                     />
                   )}

@@ -51,7 +51,7 @@ describe('Analytics integration', () => {
   test('shows customer activity and protects production analytics during deployment', () => {
     expect(adminAnalytics).toContain('Recent Customer Activity');
     expect(adminAnalytics).toContain('Today visitors');
-    expect(adminAnalytics).toContain('WhatsApp rate');
+    expect(adminAnalytics).toContain('WhatsApp click rate');
     expect(adminAnalytics).toContain('<CustomerLinkGenerator');
     expect(deploy).toContain("--exclude='data/analytics.json'");
     expect(deploy).toContain("--exclude='data/analytics.json.tmp'");
@@ -62,7 +62,7 @@ describe('Analytics integration', () => {
     expect(dashboard).toContain('Lifetime visitors');
     expect(dashboard).toContain('Customer journey');
     expect(dashboard).toContain('7-day WhatsApp trend');
-    expect(dashboard).toContain('Best lead sources');
+    expect(dashboard).toContain('WhatsApp click sources');
     expect(dashboard).toContain('Best contact products');
     expect(dashboard).toContain('High-intent activity');
     expect(dashboard).toContain('<details');

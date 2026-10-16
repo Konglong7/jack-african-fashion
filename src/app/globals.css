@@ -1,24 +1,55 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand palette — African luxury, vibrant, high-contrast, regal */
-  --color-brand-black: #0c0a09;
-  --color-brand-brown: #2d1e15;
-  --color-brand-cream: #faf8f5;
-  --color-brand-sand: #e6dac6;
-  --color-brand-orange: #d96b0b;
-  --color-brand-gold: #d4af37;
+  /* Brand palette — Jack Fashion: navy, pearl, brass and WhatsApp green */
+  --color-brand-black: #112b47;
+  --color-brand-brown: #243c50;
+  --color-brand-cream: #f4f6f7;
+  --color-brand-sand: #dce3e8;
+  --color-brand-orange: #9c5e16;
+  --color-brand-gold: #e8bd68;
   --color-brand-wine: #831843;
   --color-brand-emerald: #059669;
 
   /* Typography */
   --font-sans:
-    var(--font-sans), 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-display), 'Playfair Display', Georgia, serif;
+    var(--font-jack-sans), 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-jack-display), 'Playfair Display', Georgia, serif;
 
   /* Spacing scale */
   --spacing-18: 4.5rem;
   --spacing-22: 5.5rem;
+  --spacing-header-h: 74px;
+
+  /* SENORI Warm Paper & Ink Aesthetic */
+  --color-senori-ink: #171615;
+  --color-senori-muted: #6f6a64;
+  --color-senori-paper: #f7f2eb;
+  --color-senori-paper-deep: #eee5da;
+  --color-senori-white: #ffffff;
+
+  /* SENORI Gold & Royal Accents */
+  --color-senori-gold: #e2ab2f;
+  --color-senori-gold-deep: #b17c0e;
+  --color-senori-blue: #0e2f63;
+  --color-senori-line: rgba(23, 22, 21, 0.14);
+
+  /* Canonical Aliases per R1 & ORIGINAL_REQUEST.md */
+  --color-paper: #f7f2eb;
+  --color-paper-deep: #eee5da;
+  --color-ink: #171615;
+  --color-gold: #e2ab2f;
+  --color-gold-deep: #b17c0e;
+
+  /* Elevation & Geometry (18px - 24px) */
+  --radius-senori: 18px;
+  --radius-senori-card: 22px;
+  --radius-senori-lg: 24px;
+  --shadow-senori: 0 24px 70px rgba(26, 19, 10, 0.14);
+  --shadow-senori-card: 0 10px 30px rgba(23, 22, 21, 0.08);
+
+  /* Container Boundaries */
+  --container-senori-max: 1440px;
 }
 
 /* Base styles */
@@ -28,8 +59,8 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-brand-black);
-  background-color: var(--color-brand-cream);
+  color: var(--color-senori-ink);
+  background-color: var(--color-senori-paper);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,16 +71,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-brand-cream);
+  background: var(--color-senori-paper);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand-sand);
+  background: var(--color-senori-paper-deep);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-brown);
+  background: var(--color-senori-muted);
 }
 
 /* Focus styles for accessibility */
@@ -82,7 +113,7 @@ img {
 /* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-brand-sand) var(--color-brand-cream);
+  scrollbar-color: var(--color-senori-paper-deep) var(--color-senori-paper);
 }
 
 /* Smooth hover transitions for interactive elements */
@@ -109,13 +140,13 @@ button {
 
 /* Selection styling */
 ::selection {
-  background-color: var(--color-brand-orange);
-  color: white;
+  background-color: var(--color-senori-gold);
+  color: var(--color-senori-ink);
 }
 
 ::-moz-selection {
-  background-color: var(--color-brand-orange);
-  color: white;
+  background-color: var(--color-senori-gold);
+  color: var(--color-senori-ink);
 }
 
 /* Respect users who prefer reduced motion: kill CSS animations/transitions and
@@ -165,5 +196,46 @@ button {
   .small-add-button:hover {
     border-color: var(--color-brand-orange);
     color: var(--color-brand-orange);
+  }
+}
+
+/* Reusable Utility Classes based on SENORI */
+@utility bg-senori-paper {
+  background-color: var(--color-senori-paper);
+}
+
+@utility bg-senori-paper-deep {
+  background-color: var(--color-senori-paper-deep);
+}
+
+@utility bg-senori-card {
+  background-color: var(--color-senori-paper-deep);
+  border: 1px solid var(--color-senori-line);
+  border-radius: var(--radius-senori-card);
+}
+
+@utility text-senori-ink {
+  color: var(--color-senori-ink);
+}
+
+@utility text-senori-gold {
+  color: var(--color-senori-gold-deep);
+}
+
+@utility btn-senori-gold {
+  background-color: var(--color-senori-gold);
+  color: var(--color-senori-ink);
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  &:hover {
+    background-color: var(--color-senori-gold-deep);
+    color: #ffffff;
+    transform: translateY(-1px);
   }
 }

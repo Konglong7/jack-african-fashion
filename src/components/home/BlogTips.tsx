@@ -6,12 +6,13 @@ import { useRef } from 'react';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { SiteImage } from '@/components/SiteImage';
 
-const BLOG_POSTS = [
+export const BLOG_POSTS = [
   {
     title: "How to Choose Women's Dresses for the African Market",
     excerpt:
       'Practical tips on styles, colours, sizes and fabrics that sell well across Nigeria, Ghana and East Africa.',
     tag: 'Buying Guide',
+    href: '/guides/size-color-ratios',
     image: SITE_IMAGES.blog[0],
     alt: "Women's dresses buying guide for African market boutiques"
   },
@@ -20,16 +21,18 @@ const BLOG_POSTS = [
     excerpt:
       'Understand the difference in MOQ, lead time, price and risk — and which option fits your boutique best.',
     tag: 'Business',
+    href: '/guides/ready-stock-custom-orders',
     image: SITE_IMAGES.blog[1],
     alt: 'Ready stock versus custom orders wholesale fashion guide'
   },
   {
-    title: 'How to Get Better Factory Prices from Guangzhou',
+    title: 'How Wholesale Pricing Works in Guangzhou',
     excerpt:
-      'What drives wholesale pricing and how ordering larger quantities unlocks better per-piece rates.',
+      'Questions to ask about unit prices, quantities and included services before accepting a quotation.',
     tag: 'Wholesale Tips',
+    href: '/guides/wholesale-moq',
     image: SITE_IMAGES.blog[2],
-    alt: 'Guangzhou factory price negotiation for wholesale fashion buyers'
+    alt: 'Guangzhou wholesale pricing guide for fashion buyers'
   }
 ];
 
@@ -91,7 +94,7 @@ export function BlogTips() {
               }}
             >
               <Link
-                href='/about'
+                href={post.href}
                 className='group bg-brand-cream block h-full overflow-hidden rounded-xl shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl'
               >
                 <motion.div

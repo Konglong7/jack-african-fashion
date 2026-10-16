@@ -3,10 +3,15 @@ import { promises as fs } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { isIP } from 'node:net';
 import path from 'node:path';
+import { runtimeDataFile } from './runtimeData';
 
 export type AnalyticsEventName = 'page_view' | 'whatsapp_click';
 
 export interface AnalyticsEvent {
+  productId?: string;
+  ctaLocation?: string;
+  marketSlug?: string;
+  guideSlug?: string;
   event: AnalyticsEventName;
   path: string;
   source: string;
@@ -39,21 +44,27 @@ interface AnalyticsMeta {
   secret?: string;
 }
 
-const DATA_FILE = path.join(process.cwd(), 'data', 'analytics.json');
 const MAX_RECENT_EVENTS = 5_000;
+const MAX_DAYS = 400;
+const MAX_COUNTER_KEYS = 1_000;
+const MAX_KNOWN_VISITORS = 20_000;
 const RETENTION_MS = 30 * 86_400_000;
 const DUPLICATE_WINDOW_MS = 10_000;
 let writeLock = false;
 
 export async function getAnalyticsSummary(): Promise<AnalyticsSummary> {
   try {
-    return normalizeAnalyticsSummary(JSON.parse(await fs.readFile(DATA_FILE, 'utf-8')));
-  } catch {
-    return emptySummary();
+    return normalizeAnalyticsSummary(
+      JSON.parse(await fs.readFile(runtimeDataFile('analytics.json'), 'utf-8'))
+    );
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT' || error instanceof SyntaxError) return emptySummary();
+    throw error;
   }
 }
 
 export async function recordAnalyticsEvent(input: unknown, meta: AnalyticsMeta = {}) {
+  const DATA_FILE = runtimeDataFile('analytics.json');
   const event = buildAnalyticsEvent(input, meta);
   if (!event) return false;
 
@@ -82,6 +93,7 @@ export async function recordAnalyticsEvent(input: unknown, meta: AnalyticsMeta =
     }
 
     summary.recent = retainRecentEvents([event, ...summary.recent], new Date(event.at));
+    compactSummary(summary);
 
     await mkdir(path.dirname(DATA_FILE), { recursive: true });
     await writeFile(DATA_FILE + '.tmp', JSON.stringify(summary, null, 2), 'utf-8');
@@ -142,6 +154,7 @@ export function buildAnalyticsEvent(
 
   return {
     event,
+    ...analyticsContext(data),
     path: cleanPath(data.path),
     source: clean(data.source, 60),
     campaign: clean(data.campaign, 80),
@@ -164,7 +177,7 @@ export function retainRecentEvents(events: AnalyticsEvent[], now = new Date()) {
     .sort((a, b) => Date.parse(b.at) - Date.parse(a.at))
     .filter((event) => {
       if (!event.visitorId) return true;
-      const key = `${event.visitorId}|${event.event}|${event.path}`;
+      const key = `${event.visitorId}|${event.event}|${event.path}|${event.productId || ''}|${event.ctaLocation || ''}`;
       const timestamp = Date.parse(event.at);
       const previous = seen.get(key);
       seen.set(key, timestamp);
@@ -203,12 +216,12 @@ export function normalizeAnalyticsSummary(input: unknown, now = new Date()): Ana
       page_view: Number(data.totals?.page_view) || 0,
       whatsapp_click: Number(data.totals?.whatsapp_click) || 0
     },
-    days: data.days && typeof data.days === 'object' ? data.days : {},
-    pages: data.pages && typeof data.pages === 'object' ? data.pages : {},
+    days: boundedDays(data.days),
+    pages: boundedCounters(data.pages),
     whatsappPages:
-      data.whatsappPages && typeof data.whatsappPages === 'object' ? data.whatsappPages : {},
-    campaigns: data.campaigns && typeof data.campaigns === 'object' ? data.campaigns : {},
-    knownVisitors: [...new Set(knownVisitors)],
+      boundedCounters(data.whatsappPages),
+    campaigns: boundedCounters(data.campaigns),
+    knownVisitors: [...new Set(knownVisitors)].slice(-MAX_KNOWN_VISITORS),
     statsStartedAt:
       typeof data.statsStartedAt === 'string' && Number.isFinite(Date.parse(data.statsStartedAt))
         ? data.statsStartedAt
@@ -221,6 +234,9 @@ export function rememberVisitor(summary: AnalyticsSummary, event: AnalyticsEvent
   if (!event.visitorId) return;
   // ponytail: linear lookup is enough for this low-traffic JSON store; move to a DB index if it reaches 50k IDs.
   if (!summary.knownVisitors.includes(event.visitorId)) summary.knownVisitors.push(event.visitorId);
+  if (summary.knownVisitors.length > MAX_KNOWN_VISITORS) {
+    summary.knownVisitors.splice(0, summary.knownVisitors.length - MAX_KNOWN_VISITORS);
+  }
   if (!summary.statsStartedAt) summary.statsStartedAt = event.at;
 }
 
@@ -241,6 +257,8 @@ function isRapidDuplicate(event: AnalyticsEvent, recent: AnalyticsEvent[]) {
       item.visitorId === event.visitorId &&
       item.event === event.event &&
       item.path === event.path &&
+      item.productId === event.productId &&
+      item.ctaLocation === event.ctaLocation &&
       Math.abs(Date.parse(event.at) - Date.parse(item.at)) <= DUPLICATE_WINDOW_MS
   );
 }
@@ -253,6 +271,7 @@ function normalizeStoredEvent(input: unknown): AnalyticsEvent | null {
 
   return {
     event: data.event,
+    ...analyticsContext(data),
     path: cleanPath(data.path),
     source: clean(data.source, 60),
     campaign: clean(data.campaign, 80),
@@ -283,6 +302,43 @@ function emptySummary(): AnalyticsSummary {
   };
 }
 
+function compactSummary(summary: AnalyticsSummary) {
+  summary.days = boundedDays(summary.days);
+  summary.pages = boundedCounters(summary.pages);
+  summary.whatsappPages = boundedCounters(summary.whatsappPages);
+  summary.campaigns = boundedCounters(summary.campaigns);
+}
+
+function boundedDays(input: unknown): AnalyticsSummary['days'] {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return {};
+  return Object.fromEntries(
+    Object.entries(input as Record<string, unknown>)
+      .filter(([, value]) => value && typeof value === 'object')
+      .sort(([left], [right]) => right.localeCompare(left))
+      .slice(0, MAX_DAYS)
+      .map(([key, value]) => {
+        const counters = value as Partial<Record<AnalyticsEventName, unknown>>;
+        return [
+          key.slice(0, 32),
+          {
+            page_view: Number(counters.page_view) || 0,
+            whatsapp_click: Number(counters.whatsapp_click) || 0
+          }
+        ];
+      })
+  );
+}
+
+function boundedCounters(input: unknown): Record<string, number> {
+  if (!input || typeof input !== 'object' || Array.isArray(input)) return {};
+  return Object.fromEntries(
+    Object.entries(input as Record<string, unknown>)
+      .map(([key, value]) => [key.slice(0, 240), Math.max(0, Number(value) || 0)] as const)
+      .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+      .slice(0, MAX_COUNTER_KEYS)
+  );
+}
+
 function cleanPath(value: unknown) {
   const pathValue = clean(value, 300).split('?')[0] || '/';
   return (pathValue.startsWith('/') ? pathValue : '/').slice(0, 160);
@@ -307,4 +363,14 @@ function classifyDevice(userAgent: string): AnalyticsEvent['device'] {
 
 function clean(value: unknown, maxLength: number) {
   return typeof value === 'string' ? value.trim().replace(/[<>]/g, '').slice(0, maxLength) : '';
+}
+
+function analyticsContext(data: Record<string, unknown>) {
+  const identifier = (value: unknown) => clean(value, 80).replace(/[^a-zA-Z0-9_-]/g, '');
+  return {
+    productId: identifier(data.productId),
+    ctaLocation: identifier(data.ctaLocation),
+    marketSlug: identifier(data.marketSlug),
+    guideSlug: identifier(data.guideSlug)
+  };
 }

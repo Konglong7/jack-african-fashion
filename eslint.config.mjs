@@ -18,7 +18,17 @@ const compat = new FlatCompat({
 
 const eslintConfigs = [
   {
-    ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts', 'tsconfig.tsbuildinfo', 'scripts/**']
+    ignores: [
+      '.next/**',
+      'node_modules/**',
+      'artifacts/**',
+      'output/**',
+      'test_screenshots/**',
+      'next-env.d.ts',
+      'tsconfig.tsbuildinfo',
+      'scripts/**',
+      '.agents/**'
+    ]
   },
   ...tseslint.configs.recommended,
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
@@ -44,7 +54,8 @@ const eslintConfigs = [
       '@typescript-eslint/no-explicit-any': 'warn',
 
       // 一般最佳实践
-      'no-console': process.env.NODE_ENV === 'production' ? ['warn', { allow: ['warn', 'error'] }] : 'off',
+      'no-console':
+        process.env.NODE_ENV === 'production' ? ['warn', { allow: ['warn', 'error'] }] : 'off',
       'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
       'no-var': 'error',
       'prefer-const': 'error',

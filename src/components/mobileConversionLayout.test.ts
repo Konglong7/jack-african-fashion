@@ -42,8 +42,8 @@ describe('mobile conversion layout', () => {
     const header = readComponent('Header.tsx');
 
     expect(header).toContain("{ label: 'Catalog', href: '/catalog' }");
-    expect(header).toContain('hidden items-center gap-4 md:flex');
-    expect(header).toContain('md:hidden');
+    expect(header).toContain('hidden items-center gap-4 lg:flex');
+    expect(header).toContain('lg:hidden');
   });
 
   test('equips product gallery and cards with image download and lookbook WhatsApp actions', () => {
@@ -53,7 +53,7 @@ describe('mobile conversion layout', () => {
     expect(gallery).toContain('handleDownloadCurrent');
     expect(gallery).toContain('handleDownloadAll');
     expect(gallery).toContain('High-Res Boutique Photos');
-    expect(gallery).toContain('Ask on WhatsApp');
+    expect(gallery).toContain('Chat on WhatsApp');
     expect(card).toContain('handleQuickDownload');
   });
 });

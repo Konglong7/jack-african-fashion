@@ -26,7 +26,7 @@ try {
     $r = Invoke-SSHCommand -SessionId $s.SessionId -Command $Command -TimeOut $Timeout
     Write-Output $r.Output
     if ($r.Error) { Write-Host "[stderr]" -ForegroundColor Yellow; Write-Host ($r.Error -join "`n") -ForegroundColor Yellow }
-    if ($r.ExitCode -ne 0) { Write-Host "[exit $($r.ExitCode)]" -ForegroundColor Red }
+    if ($r.ExitStatus -ne 0) { throw "Remote command failed with exit status $($r.ExitStatus)" }
 } finally {
     Remove-SSHSession -SessionId $s.SessionId | Out-Null
 }

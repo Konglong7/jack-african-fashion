@@ -140,4 +140,34 @@ describe('analytics visitor details', () => {
     expect(summary.knownVisitors).toEqual([visitor.visitorId]);
     expect(summary.statsStartedAt).toBe(visitor.at);
   });
+
+  test('bounds high-cardinality summary collections loaded from disk', () => {
+    const summary = normalizeAnalyticsSummary(
+      {
+        days: Object.fromEntries(
+          Array.from({ length: 500 }, (_, index) => [
+            `2025-${String(index).padStart(3, '0')}`,
+            { page_view: 1, whatsapp_click: 0 }
+          ])
+        ),
+        pages: Object.fromEntries(
+          Array.from({ length: 1_200 }, (_, index) => [`/spam-${index}`, index + 1])
+        ),
+        whatsappPages: Object.fromEntries(
+          Array.from({ length: 1_200 }, (_, index) => [`/wa-${index}`, index + 1])
+        ),
+        campaigns: Object.fromEntries(
+          Array.from({ length: 1_200 }, (_, index) => [`campaign-${index}`, index + 1])
+        ),
+        knownVisitors: Array.from({ length: 20_100 }, (_, index) => `V-${index}`)
+      },
+      NOW
+    );
+
+    expect(Object.keys(summary.days).length).toBeLessThanOrEqual(400);
+    expect(Object.keys(summary.pages).length).toBeLessThanOrEqual(1_000);
+    expect(Object.keys(summary.whatsappPages).length).toBeLessThanOrEqual(1_000);
+    expect(Object.keys(summary.campaigns).length).toBeLessThanOrEqual(1_000);
+    expect(summary.knownVisitors.length).toBeLessThanOrEqual(20_000);
+  });
 });

@@ -7,8 +7,8 @@ import { useState, useEffect } from 'react';
 import { buildNavLinks } from '@/lib/siteNavigation';
 import type { SiteContent } from '@/lib/siteContentTypes';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
+import { WhatsAppContacts } from '@/components/ContactLinks';
 import { WhatsAppIcon, SearchIcon } from '@/components/Icons';
-import { getInquiryItemCount, INQUIRY_UPDATED_EVENT } from '@/lib/inquiry';
 
 export function AnnouncementBar({
   siteContent,
@@ -26,17 +26,17 @@ export function AnnouncementBar({
           {variant === 'home' ? (
             'Guangzhou wholesale'
           ) : (
-            <>Jack African Fashion · Guangzhou African Women&apos;s Clothing Supplier</>
+            <>Jack Fashion · Women&apos;s clothing wholesale from Guangzhou</>
           )}
         </p>
         <a
           href={whatsappLink}
           target='_blank'
           rel='noopener noreferrer'
-          className='text-brand-gold inline-flex shrink-0 items-center gap-1.5 font-medium whitespace-nowrap transition-colors hover:text-white'
+          className='inline-flex shrink-0 items-center gap-1.5 font-medium whitespace-nowrap text-[#6EE7A0] transition-colors hover:text-white'
         >
           <WhatsAppIcon className='h-3.5 w-3.5 sm:h-4 sm:w-4' />
-          WhatsApp Us
+          Chat on WhatsApp
         </a>
       </div>
     </div>
@@ -55,17 +55,16 @@ export function Header({
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [inquiryCount, setInquiryCount] = useState(0);
   const [drawerSearch, setDrawerSearch] = useState('');
   const whatsappLink = siteWhatsAppLink(siteContent);
-  const navLinks = buildNavLinks(siteContent.categories);
+  const navLinks = buildNavLinks(siteContent.categories, whatsappLink);
   const desktopNavLinks = [
     { label: 'Catalog', href: '/catalog' },
     { label: 'New Arrivals', href: '/catalog?sort=newest' },
+    { label: 'Markets', href: '/markets' },
     { label: 'Custom Orders', href: '/custom-orders' },
     { label: 'About Us', href: '/about' },
-    { label: 'FAQ', href: '/faq' },
-    { label: 'Contact', href: '/contact' }
+    { label: 'FAQ', href: '/faq' }
   ];
 
   useEffect(() => {
@@ -74,19 +73,6 @@ export function Header({
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    function updateCount() {
-      setInquiryCount(getInquiryItemCount(localStorage));
-    }
-    updateCount();
-    window.addEventListener('storage', updateCount);
-    window.addEventListener(INQUIRY_UPDATED_EVENT, updateCount);
-    return () => {
-      window.removeEventListener('storage', updateCount);
-      window.removeEventListener(INQUIRY_UPDATED_EVENT, updateCount);
-    };
   }, []);
 
   function handleDrawerSearch(e: React.FormEvent) {
@@ -141,14 +127,13 @@ export function Header({
                   className='font-display text-brand-black text-lg font-bold tracking-tight sm:text-xl'
                   whileHover={{ scale: 1.02 }}
                 >
-                  Jack
+                  {siteContent.name}
                 </motion.span>
                 <motion.span
                   className='text-brand-brown text-[10px] tracking-[0.2em] uppercase sm:text-xs'
-                  animate={isHome ? { opacity: 1 } : { opacity: [0.7, 1, 0.7] }}
-                  transition={isHome ? { duration: 0 } : { duration: 3, repeat: Infinity }}
+                  animate={{ opacity: 1 }}
                 >
-                  African Fashion
+                  Guangzhou wholesale
                 </motion.span>
               </Link>
             </motion.div>
@@ -158,7 +143,7 @@ export function Header({
               className={
                 isHome
                   ? 'hidden max-w-full min-w-0 flex-wrap items-center gap-x-4 gap-y-2 lg:flex lg:gap-x-7'
-                  : 'hidden items-center gap-4 md:flex lg:gap-7'
+                  : 'hidden items-center gap-4 lg:flex lg:gap-6'
               }
               initial={isHome ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -175,6 +160,9 @@ export function Header({
                   >
                     <Link
                       href={link.href}
+                      prefetch={link.href === whatsappLink ? false : undefined}
+                      target={link.href === whatsappLink ? '_blank' : undefined}
+                      rel={link.href === whatsappLink ? 'noopener noreferrer' : undefined}
                       className={`group relative text-sm font-medium transition-colors ${
                         active
                           ? isHome
@@ -224,55 +212,20 @@ export function Header({
                 </Link>
               </motion.div>
 
-              <motion.div whileHover={{ scale: 1.08 }} whileTap={{ scale: 0.95 }}>
-                <Link
-                  href='/inquiry'
-                  className={
-                    isHome
-                      ? 'relative flex min-h-[44px] min-w-[44px] items-center justify-center text-[#0C0A09] hover:text-[#165C45]'
-                      : 'text-brand-brown hover:text-brand-orange relative flex p-1.5 transition-colors sm:p-2'
-                  }
-                  aria-label={
-                    inquiryCount > 0 ? `Inquiry cart (${inquiryCount} items)` : 'Inquiry cart'
-                  }
-                  title='Inquiry list'
-                >
-                  <svg
-                    className={isHome ? 'h-[20px] w-[20px]' : 'h-5 w-5'}
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth={2}
-                    viewBox='0 0 24 24'
-                  >
-                    <path d='M6 6h15l-1.5 9h-12L6 6Z' />
-                    <path d='M6 6 5.25 3H3' />
-                    <circle cx='9' cy='20' r='1' />
-                    <circle cx='18' cy='20' r='1' />
-                  </svg>
-                  {inquiryCount > 0 && (
-                    <span
-                      className={`${isHome ? 'bg-[#8A661B]' : 'bg-brand-orange'} absolute -top-0.5 -right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold text-white shadow-sm ring-1 ring-white`}
-                    >
-                      {inquiryCount}
-                    </span>
-                  )}
-                </Link>
-              </motion.div>
-
               <motion.a
                 href={whatsappLink}
                 target='_blank'
                 rel='noopener noreferrer'
                 className={
                   isHome
-                    ? 'hidden min-h-[44px] items-center gap-[8px] rounded-xl bg-[#0B7A3C] px-[16px] py-[10px] text-sm font-semibold text-white hover:bg-[#165C45] sm:inline-flex'
-                    : 'bg-brand-orange hover:bg-brand-gold hidden items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold text-white transition-colors sm:inline-flex'
+                    ? 'hidden min-h-[44px] items-center gap-[8px] rounded-xl bg-[#0B7A3E] px-[16px] py-[10px] text-sm font-semibold text-white hover:bg-[#086532] sm:inline-flex'
+                    : 'hidden min-h-[44px] items-center gap-2 rounded-full bg-[#0B7A3E] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#086532] sm:inline-flex'
                 }
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <WhatsAppIcon className={isHome ? 'h-[16px] w-[16px]' : 'h-4 w-4'} />
-                WhatsApp
+                Chat on WhatsApp
               </motion.a>
 
               {/* Mobile menu button */}
@@ -280,7 +233,7 @@ export function Header({
                 className={
                   isHome
                     ? '-mr-[8px] flex h-[44px] w-[44px] items-center justify-center p-[8px] text-[#0C0A09] lg:hidden'
-                    : 'text-brand-black -mr-2 p-2 md:hidden'
+                    : 'text-brand-black -mr-2 p-2 lg:hidden'
                 }
                 onClick={() => setMenuOpen(!menuOpen)}
                 aria-label='Toggle menu'
@@ -334,7 +287,7 @@ export function Header({
             className={
               isHome
                 ? 'border-brand-sand/60 border-b bg-white shadow-lg lg:hidden'
-                : 'border-brand-sand/60 border-b bg-white shadow-lg md:hidden'
+                : 'border-brand-sand/60 border-b bg-white shadow-lg lg:hidden'
             }
             role='dialog'
             aria-modal='true'
@@ -376,6 +329,9 @@ export function Header({
                   >
                     <Link
                       href={link.href}
+                      prefetch={link.href === whatsappLink ? false : undefined}
+                      target={link.href === whatsappLink ? '_blank' : undefined}
+                      rel={link.href === whatsappLink ? 'noopener noreferrer' : undefined}
                       className={`hover:bg-brand-cream/50 border-brand-sand/30 block rounded-lg border-b px-2 py-3 text-sm transition-colors last:border-0 ${
                         active
                           ? `${isHome ? 'text-[#165C45]' : 'text-brand-orange'} bg-brand-cream/30 font-bold`
@@ -392,7 +348,7 @@ export function Header({
                 href={whatsappLink}
                 target='_blank'
                 rel='noopener noreferrer'
-                className={`${isHome ? 'bg-[#0B7A3C]' : 'bg-brand-orange'} mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full py-3 font-semibold text-white`}
+                className='mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#0B7A3E] py-3 font-semibold text-white hover:bg-[#086532]'
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
@@ -400,16 +356,16 @@ export function Header({
                 whileTap={{ scale: 0.98 }}
               >
                 <WhatsAppIcon className='h-5 w-5' />
-                Contact on WhatsApp
+                Chat on WhatsApp
               </motion.a>
-              <motion.p
-                className={`${isHome ? 'text-[#453D36]' : 'text-brand-brown/60'} mt-3 text-center text-xs`}
+              <motion.div
+                className='mt-3 text-center text-[#0B7A3E]'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                {siteContent.whatsappDisplay}
-              </motion.p>
+                <WhatsAppContacts siteContent={siteContent} className='justify-center' />
+              </motion.div>
             </nav>
           </motion.div>
         )}

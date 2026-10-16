@@ -13,7 +13,7 @@ export const SITE_IMAGES = {
   warehouseShipping: '/images/site/07-warehouse-packing-shipping.webp',
   customOrders: '/images/site/08-custom-orders.webp',
   whatsappContact: '/images/site/09-whatsapp-contact.webp',
-  whatsappCatalogBanner: '/images/site/social-whatsapp-catalog-banner.webp',
+  whatsappCatalogBanner: '/images/site/jack-fashion-social.png',
   africanMarketCollage: '/images/site/10-african-market-collage.webp',
   trust: {
     showroomExterior: '/images/trust/showroom-yulong-exterior.webp',

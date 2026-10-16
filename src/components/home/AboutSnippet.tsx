@@ -18,7 +18,7 @@ export function AboutSnippet({ siteContent }: { siteContent: SiteContent }) {
 
       <div className='mx-auto max-w-7xl px-4'>
         <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-2'>
-          {/* Showroom image */}
+          {/* Guangzhou location visual */}
           <motion.div
             className='bg-brand-black relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl shadow-lg'
             initial={{ opacity: 0, x: -50, scale: 0.95 }}
@@ -27,14 +27,14 @@ export function AboutSnippet({ siteContent }: { siteContent: SiteContent }) {
           >
             <Image
               src={SITE_IMAGES.trust.showroomExterior}
-              alt='Jack Fashion physical showroom at Yulong Fashion Plaza Guangzhou'
+              alt='Yulong Fashion Plaza in Guangzhou, where Jack Fashion is based'
               fill
               sizes='(max-width: 1024px) 100vw, 50vw'
               className='object-cover'
             />
             <div className='absolute bottom-3 left-3 rounded-lg bg-black/75 px-3 py-1.5 backdrop-blur-sm'>
               <p className='text-xs font-bold text-white'>
-                📍 Guangzhou Showroom · Yulong Fashion Plaza
+                📍 Guangzhou Wholesale Base · Yulong Fashion Plaza
               </p>
             </div>
           </motion.div>
@@ -59,7 +59,7 @@ export function AboutSnippet({ siteContent }: { siteContent: SiteContent }) {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.4 }}
             >
-              About Jack African Fashion
+              About Jack Fashion
             </motion.h2>
 
             <motion.div
@@ -72,9 +72,9 @@ export function AboutSnippet({ siteContent }: { siteContent: SiteContent }) {
               }}
             >
               {[
-                'We are a Guangzhou-based women&apos;s clothing wholesale supplier and factory-direct manufacturer. From our own factory, office and Yulong Fashion Plaza showroom, we support African B2B buyers with ready stock and custom production.',
-                'We provide ready stock, own-factory custom production, quality checking and export packing for boutiques, wholesalers and importers. Whether you need a current stock batch or a custom run made to your reference pictures, we confirm fabric, production, quality control and shipping details before the order.',
-                'We have confirmed B2B service experience in Nigeria, Ghana, Kenya and other African markets. Our goal is to help buyers build ranges that fit their local market with direct Guangzhou communication.'
+                'Jack Fashion is a Guangzhou-based women&apos;s clothing wholesale supplier at Yulong Fashion Plaza. We help international B2B buyers shortlist styles and prepare clear product questions.',
+                'For ready-stock and custom enquiries, actual stock, fabric, measurements, MOQ, packing and cargo-handover details are confirmed for the selected style before ordering.',
+                'Our collection began with African market demand, and wholesale enquiries from Africa and other global markets are welcome through direct Guangzhou communication.'
               ].map((text, i) => (
                 <motion.p
                   key={i}
@@ -97,7 +97,7 @@ export function AboutSnippet({ siteContent }: { siteContent: SiteContent }) {
             >
               {[
                 { title: 'Market Base', label: siteContent.location },
-                { title: 'Ready Stock', label: 'Checked before packing' },
+                { title: 'Product Facts', label: 'Confirmed per enquiry' },
                 { title: 'Wholesale Focus', label: siteContent.business }
               ].map((stat, i) => (
                 <motion.div

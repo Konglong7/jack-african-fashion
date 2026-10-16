@@ -45,6 +45,12 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <NavLink href='/admin/products' pathname={pathname} icon='box'>
                 Products
               </NavLink>
+              <NavLink href='/admin/leads' pathname={pathname} icon='box'>
+                询盘与成交
+              </NavLink>
+              <NavLink href='/admin/search' pathname={pathname} icon='settings'>
+                搜索更新
+              </NavLink>
               <NavLink href='/admin/upload' pathname={pathname} icon='upload'>
                 Upload Images
               </NavLink>
@@ -133,6 +139,12 @@ function MobileNav({ pathname: pathname }: { pathname: string }) {
               onClick={() => setOpen(false)}
             >
               Products
+            </MobileNavLink>
+            <MobileNavLink href='/admin/leads' pathname={pathname} onClick={() => setOpen(false)}>
+              询盘与成交
+            </MobileNavLink>
+            <MobileNavLink href='/admin/search' pathname={pathname} onClick={() => setOpen(false)}>
+              搜索更新
             </MobileNavLink>
             <MobileNavLink href='/admin/upload' pathname={pathname} onClick={() => setOpen(false)}>
               Upload Images

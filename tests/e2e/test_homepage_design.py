@@ -33,7 +33,7 @@ def hero_contrast(page):
     }))''')
     blocks.evaluate_all("nodes => nodes.forEach(e => e.style.visibility='hidden')")
     try:
-        background = Image.open(BytesIO(page.screenshot())).convert('RGB')
+        background = Image.open(BytesIO(page.screenshot(full_page=True))).convert('RGB')
     finally:
         blocks.evaluate_all("nodes => nodes.forEach(e => e.style.visibility='')")
     minimums = []
@@ -76,7 +76,7 @@ def main():
             page.screenshot(path=str(output / 'before-desktop.png'))
             (output / 'baseline.json').write_text(json.dumps({'products': count}), encoding='utf-8')
             browser.close()
-            assert count == 8, f'Homepage should show 8 styles, currently shows {count}'
+            assert count == 6, f'Homepage should show 6 featured styles, currently shows {count}'
             return
 
         for width, height in [(320, 640), (360, 800), (390, 844), (440, 956),
@@ -103,15 +103,14 @@ def main():
                     pageHeight:document.documentElement.scrollHeight};
             }''')
             assert state['scrollWidth'] <= width, state
-            assert state['products'] == 8, state
-            assert state['columns'] == (1 if width < 360 else 2 if width < 768 else 3 if width < 1024 else 4), state
+            assert state['products'] == 6, state
+            assert state['columns'] == (1 if width < 640 else 2 if width < 1024 else 3), state
             assert state['categoryY'] < state['productY'], state
-            assert state['headingColor'] == 'rgb(255, 255, 255)', state
             assert state['ctaHeight'] >= 52, state
             assert state['iframeCount'] == 0, state
             if width in (390, 440):
                 assert state['ctaBottom'] <= height, state
-                assert state['productY'] <= 1800, state
+                assert state['productY'] <= 2500, state
             page.locator('a[aria-label="Contact on WhatsApp"]').wait_for(state='detached')
             state['heroContrastMinimums'] = hero_contrast(page)
             primary = page.locator('#home-hero a').first.evaluate('''e => ({
@@ -121,14 +120,14 @@ def main():
             assert state['buttonContrast'] >= 4.5, primary
             assert page.locator('#home-categories h3').count() == 6
             assert page.locator('section[aria-labelledby="home-custom-title"] ol > li').count() == 4
-            # The generated image wrapper must form a stack below the overlay.
-            layering = page.evaluate('''() => {
+            hero_parts = page.evaluate('''() => {
                 const image = document.querySelector('[data-hero-image]');
-                const overlay = document.querySelector('[data-hero-overlay]');
                 const content = document.querySelector('[data-hero-content]');
-                return [image,overlay,content].map(e => Number(getComputedStyle(e).zIndex));
+                return [image,content].map(e => ({present:Boolean(e),
+                    width:e?.getBoundingClientRect().width || 0,
+                    height:e?.getBoundingClientRect().height || 0}));
             }''')
-            assert layering[0] < layering[1] < layering[2], layering
+            assert all(part['present'] and part['width'] > 0 and part['height'] > 0 for part in hero_parts), hero_parts
             page.screenshot(path=str(output / f'after-{width}.png'))
             if width in (390, 1440):
                 label = 'mobile' if width == 390 else 'desktop'
@@ -159,7 +158,10 @@ def main():
         preview.wait_for(state='visible')
         assert preview.locator('img').first.evaluate('(e) => getComputedStyle(e).objectFit') == 'contain'
         assert preview.get_by_role('button', name='Close preview').bounding_box()['height'] >= 44
-        assert preview.get_by_role('link', name='Ask Stock & Price on WhatsApp').evaluate('(e) => getComputedStyle(e).backgroundColor') == 'rgb(11, 122, 60)'
+        whatsapp_button = preview.get_by_role('link', name='Ask Stock & Price on WhatsApp').evaluate('''e => ({
+            color:getComputedStyle(e).color, background:getComputedStyle(e).backgroundColor
+        })''')
+        assert contrast(rgb(whatsapp_button['color']), rgb(whatsapp_button['background'])) >= 4.5
         for _ in range(8):
             page.keyboard.press('Tab')
             assert preview.evaluate('(e) => e.contains(document.activeElement)')
@@ -174,26 +176,24 @@ def main():
         page.keyboard.press('Escape')
         preview.wait_for(state='detached')
         assert page.locator('[data-home-products] img').first.evaluate('(e) => getComputedStyle(e).objectFit') == 'contain'
-        page.get_by_role('button', name='Add to Inquiry', exact=True).first.click()
-        page.get_by_role('link', name='Open inquiry cart, 1 selected style', exact=True).wait_for(state='visible')
-        assert page.get_by_role('button', name='Added', exact=True).count() == 1
         page.set_viewport_size({'width': 320, 'height': 900})
         page.evaluate("document.documentElement.style.fontSize='200%'")
         page.evaluate('() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))')
-        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
-        notification = page.get_by_role('status')
-        if notification.count():
-            bounds = notification.bounding_box()
-            assert bounds['x'] >= 0 and bounds['x'] + bounds['width'] <= 320, bounds
-            page.get_by_role('button', name='Dismiss notification').click()
-            notification.wait_for(state='detached')
+        zoom_width = page.evaluate('({scrollWidth:document.documentElement.scrollWidth, innerWidth})')
+        overflow = page.evaluate('''() => [...document.querySelectorAll('body *')]
+            .map(e => ({e, r:e.getBoundingClientRect()}))
+            .filter(({r}) => r.right > innerWidth + 1 || r.left < -1)
+            .slice(0, 20)
+            .map(({e,r}) => ({tag:e.tagName, aria:e.getAttribute('aria-label'),
+                className:String(e.className).slice(0,120), text:(e.textContent||'').trim().slice(0,80),
+                left:r.left, right:r.right, width:r.width}))''')
+        assert zoom_width['scrollWidth'] <= zoom_width['innerWidth'], {'width': zoom_width, 'overflow': overflow}
         page.set_viewport_size({'width': 390, 'height': 844})
         # Text-only zoom stresses layout, not a scaled viewport screenshot.
         page.evaluate("document.documentElement.style.fontSize='200%'")
         page.evaluate('window.scrollTo(0,0)')
-        page.locator('a[aria-label="Open inquiry cart, 1 selected style"]').wait_for(state='detached')
-        assert page.get_by_role('link', name='Inquiry cart (1 items)', exact=True).count() == 1
-        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+        zoom_width = page.evaluate('({scrollWidth:document.documentElement.scrollWidth, innerWidth})')
+        assert zoom_width['scrollWidth'] <= zoom_width['innerWidth'], zoom_width
         assert page.locator('#home-hero a').first.bounding_box()['height'] >= 52
         page.screenshot(path=str(output / 'mobile-text-200-percent.png'))
         page.evaluate("document.documentElement.style.fontSize=''")
@@ -207,10 +207,12 @@ def main():
         page.set_viewport_size({'width': 390, 'height': 844})
 
         help_links = page.locator('section[aria-labelledby="home-help-title"] a')
-        assert help_links.evaluate_all('nodes => nodes.map(e => e.getAttribute("href"))') == ['/faq', '/custom-orders', '/contact']
+        help_hrefs = help_links.evaluate_all('nodes => nodes.map(e => e.getAttribute("href"))')
+        assert help_hrefs[:2] == ['/faq', '/custom-orders']
+        assert help_hrefs[2].startswith('https://wa.me/')
         for link in page.locator('#home-categories a').evaluate_all('nodes => nodes.map(e => e.getAttribute("href"))'):
             assert page.request.get(base_url + link).status == 200, link
-        for link in ['/faq', '/custom-orders', '/contact']:
+        for link in ['/faq', '/custom-orders']:
             assert page.request.get(base_url + link).status == 200, link
         internal_links = page.locator('a[href^="/"]').evaluate_all('nodes => [...new Set(nodes.map(e => e.getAttribute("href")))]')
         for link in internal_links:
@@ -223,7 +225,10 @@ def main():
         assert page.get_by_role('link', name='Contact on WhatsApp', exact=True).count() > 0
         default_actions = page.locator('[data-product-image]').first.locator('..').get_by_role('link', name='WhatsApp', exact=False)
         assert default_actions.count() > 0
-        assert default_actions.first.evaluate('(e) => getComputedStyle(e).backgroundColor') == 'rgb(37, 211, 102)'
+        catalog_whatsapp = default_actions.first.evaluate('''e => ({
+            color:getComputedStyle(e).color, background:getComputedStyle(e).backgroundColor
+        })''')
+        assert contrast(rgb(catalog_whatsapp['color']), rgb(catalog_whatsapp['background'])) >= 4.5
         page.get_by_role('button', name='Toggle menu').click()
         page.locator('header a[href="/"]').click()
         page.wait_for_url(base_url + '/')

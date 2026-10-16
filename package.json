@@ -4,16 +4,22 @@
   "private": true,
   "overrides": {
     "postcss": "8.5.28",
-    "sharp": "0.35.5"
+    "sharp": "0.35.5",
+    "source-map-js": "1.2.2"
   },
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run generate:discovery && npm run generate:image-dimensions",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest run",
     "verify:assets": "node scripts/verify-assets.mjs",
+    "generate:discovery": "node scripts/generate-discovery-files.mjs",
+    "generate:image-dimensions": "node scripts/build-image-variants.mjs --dimensions-only",
+    "verify:discovery": "node scripts/generate-discovery-files.mjs --check",
+    "prepare:indexnow-key": "node scripts/prepare-indexnow-key.mjs",
     "data:backup": "node scripts/data-snapshot.mjs backup",
     "data:list": "node scripts/data-snapshot.mjs list",
     "data:restore": "node scripts/data-snapshot.mjs restore",

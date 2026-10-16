@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { getProducts, createProduct } from '@/lib/db';
 import { normalizeProductInput } from '@/lib/productValidation';
 import { readJsonBody } from '@/lib/apiRequest';
+import { publishProductChanges } from '@/lib/productPublication';
 
 // GET /api/admin/products — list all products
 export async function GET() {
@@ -25,11 +26,9 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const before = await getProducts();
     const product = await createProduct(validation.product);
-    revalidatePath('/');
-    revalidatePath('/catalog');
-    revalidatePath(`/products/${product.slug}`);
-    revalidatePath('/sitemap.xml');
+    await publishProductChanges(before, await getProducts(), revalidatePath);
     return NextResponse.json({ ok: true, product }, { status: 201 });
   } catch (error) {
     return NextResponse.json(

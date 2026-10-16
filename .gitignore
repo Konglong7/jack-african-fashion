@@ -26,6 +26,11 @@ deploy/deploy.config.local.ps1
 *.keystore
 *.p12
 
+# IndexNow ownership proof and operational receipts stay outside source control.
+/public/indexnow-key.txt
+data/indexnow.json
+data/indexnow-products.json
+
 # ------------------------- 日志与运行时残留 -------------------------
 *.log
 tmp-next-*
@@ -102,3 +107,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
+
+# ------------------------- 协作 Agent 临时目录 -------------------------
+.agents/

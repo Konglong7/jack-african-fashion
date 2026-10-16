@@ -5,8 +5,6 @@ import { Suspense, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
-import { InquiryFloating } from '@/components/InquiryFloating';
-import { InquiryToast } from '@/components/InquiryToast';
 import { WhatsAppFloating } from '@/components/WhatsAppFloating';
 import type { SiteContent } from '@/lib/siteContentTypes';
 
@@ -20,9 +18,8 @@ export function RootChrome({
   const pathname = usePathname();
   const chromeVariant = pathname === '/' ? 'home' : 'default';
   const isAdmin = pathname === '/admin' || pathname.startsWith('/admin/');
-  // Rewritten 404s have different server and browser paths. Keep the initial
-  // floating controls identical, then choose their layout after hydration.
-  const [isProductPage, setIsProductPage] = useState(true);
+  // Respect product page floating suppression, defaulting from the actual pathname
+  const [isProductPage, setIsProductPage] = useState(pathname.startsWith('/products/'));
   useEffect(() => setIsProductPage(pathname.startsWith('/products/')), [pathname]);
 
   if (isAdmin) {
@@ -40,21 +37,18 @@ export function RootChrome({
         Skip to main content
       </a>
       <Header siteContent={siteContent} variant={chromeVariant} />
-      <InquiryToast variant={chromeVariant} />
-      <main id='main-content' className='flex-1'>
-        {/* Page modules can suspend during hydration. Keep their retry inside
-            main so the surrounding shell is never hydrated a second time. */}
-        <Suspense fallback={null}>{children}</Suspense>
+      <main id='main-content' className='min-h-[100svh] flex-1'>
+        {/* Keep the homepage in the visible server HTML. Other page modules
+            retain their hydration retry boundary inside the surrounding shell. */}
+        {chromeVariant === 'home' ? children : <Suspense fallback={null}>{children}</Suspense>}
       </main>
       <Footer siteContent={siteContent} variant={chromeVariant} />
       {isProductPage ? (
         <div className='hidden md:block'>
-          <InquiryFloating variant={chromeVariant} />
           <WhatsAppFloating siteContent={siteContent} variant={chromeVariant} />
         </div>
       ) : (
         <>
-          <InquiryFloating variant={chromeVariant} />
           <WhatsAppFloating siteContent={siteContent} variant={chromeVariant} />
         </>
       )}

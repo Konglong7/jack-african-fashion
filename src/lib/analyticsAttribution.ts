@@ -13,52 +13,76 @@ export function resolveAttribution(search: string, stored: string | null, referr
 
   // Detect AI answer engine & search referrers (e.g. ChatGPT, Perplexity, Claude)
   if (referrer) {
-    const aiSource = detectAiReferrer(referrer);
-    if (aiSource) {
-      return result(aiSource, 'ai_recommendation');
+    const source = referralSource(referrer);
+    if (source) {
+      return result(source, ['google', 'bing'].includes(source) ? 'organic_search' : 'ai_referral');
     }
   }
 
   return result('', '');
 }
 
-function detectAiReferrer(referrer: string): string {
+export function referralSource(referrer: string): string {
   try {
-    const ref = referrer.toLowerCase();
+    const url = new URL(referrer.includes('://') ? referrer : `https://${referrer}`);
+    if (!['http:', 'https:', 'android-app:'].includes(url.protocol)) return '';
+    const host = url.hostname.toLowerCase().replace(/^www\./, '');
+    const domains: Record<string, string> = {
+      'chatgpt.com': 'chatgpt',
+      'chat.openai.com': 'chatgpt',
+      'com.openai.chatgpt': 'chatgpt',
+      'perplexity.ai': 'perplexity',
+      'perplexity.com': 'perplexity',
+      'claude.ai': 'claude',
+      'copilot.microsoft.com': 'copilot',
+      'gemini.google.com': 'gemini',
+      'grok.com': 'grok'
+    };
+    if (domains[host]) return domains[host];
+    if (host === 'bing.com' || host.endsWith('.bing.com')) return 'bing';
     if (
-      ref.includes('chatgpt.com') ||
-      ref.includes('chat.openai.com') ||
-      ref.includes('com.openai.chatgpt')
+      /^google\.(com|co\.uk|com\.br|com\.mx|co\.za|co\.ke|com\.ng|com\.gh|ca|fr|de|it|es|com\.au|co\.in|co\.id|com\.my|com\.sa|ae|com\.ar|com\.tr|com\.sg)$/.test(
+        host
+      )
     ) {
-      return 'chatgpt';
-    }
-    if (ref.includes('perplexity.ai')) {
-      return 'perplexity';
-    }
-    if (ref.includes('claude.ai')) {
-      return 'claude';
-    }
-    if (
-      ref.includes('copilot.microsoft.com') ||
-      (ref.includes('bing.com') && ref.includes('chat'))
-    ) {
-      return 'copilot';
-    }
-    if (ref.includes('gemini.google.com')) {
-      return 'gemini';
+      return 'google';
     }
   } catch {}
   return '';
 }
 
 function result(sourceValue: unknown, campaignValue: unknown) {
-  const source = clean(sourceValue, 60);
+  const source = canonicalSource(clean(sourceValue, 60));
   const campaign = clean(campaignValue, 80);
   return {
     source,
     campaign,
     serialized: source || campaign ? JSON.stringify({ source, campaign }) : ''
   };
+}
+
+function canonicalSource(value: string): string {
+  const normalized = value.toLowerCase();
+  const sources: Record<string, string> = {
+    'chatgpt.com': 'chatgpt',
+    'chat.openai.com': 'chatgpt',
+    chatgpt: 'chatgpt',
+    'gemini.google.com': 'gemini',
+    gemini: 'gemini',
+    'perplexity.ai': 'perplexity',
+    'perplexity.com': 'perplexity',
+    perplexity: 'perplexity',
+    'copilot.microsoft.com': 'copilot',
+    copilot: 'copilot',
+    'grok.com': 'grok',
+    grok: 'grok',
+    'claude.ai': 'claude',
+    claude: 'claude',
+    google: 'google',
+    bing: 'bing',
+    whatsapp: 'whatsapp'
+  };
+  return sources[normalized] || value;
 }
 
 function clean(value: unknown, maxLength: number) {

@@ -1,20 +1,20 @@
 export default function manifest() {
   return {
-    name: 'Jack African Fashion',
+    name: 'Jack Fashion',
     short_name: 'Jack Fashion',
-    description: "Jack African Fashion — Guangzhou African women's clothing supplier",
+    description: "Jack Fashion — Women's clothing wholesale from Guangzhou",
     start_url: '/',
     display: 'standalone',
-    background_color: '#faf6f0',
-    theme_color: '#d97706',
+    background_color: '#f4f6f7',
+    theme_color: '#112b47',
     icons: [
       {
-        src: '/images/site/logo-192.png',
+        src: '/images/site/jack-fashion-logo-192.png',
         sizes: '192x192',
         type: 'image/png'
       },
       {
-        src: '/images/site/logo.png',
+        src: '/images/site/jack-fashion-logo-512.png',
         sizes: '512x512',
         type: 'image/png'
       }

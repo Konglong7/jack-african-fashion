@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { getSiteContent } from '@/lib/siteContent';
 import { InquiryClient } from './InquiryClient';
-import { getProducts } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default async function InquiryPage() {
-  const [siteContent, products] = await Promise.all([getSiteContent(), getProducts()]);
-  const minimums = Object.fromEntries(products.map((product) => [product.id, product.moq]));
-  return <InquiryClient siteContent={siteContent} minimums={minimums} />;
+  const siteContent = await getSiteContent();
+  return <InquiryClient siteContent={siteContent} />;
 }

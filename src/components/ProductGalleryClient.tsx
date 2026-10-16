@@ -15,10 +15,11 @@ import { ImageViewerModal } from '@/components/ImageViewerModal';
 interface Props {
   images: string[];
   productName: string;
+  productId?: string;
   whatsappLink?: string;
 }
 
-export function ProductGalleryClient({ images, productName, whatsappLink }: Props) {
+export function ProductGalleryClient({ images, productName, productId, whatsappLink }: Props) {
   const [mainIdx, setMainIdx] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [zoomed, setZoomed] = useState(false);
@@ -162,7 +163,7 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
     <>
       {/* Main image with zoom & mobile touch swipe */}
       <motion.div
-        className={`bg-stone-50 border border-stone-200/60 relative mb-4 cursor-zoom-in overflow-hidden rounded-xl select-none transition-[aspect-ratio] duration-300 ${aspectClass}`}
+        className={`relative mb-4 cursor-zoom-in overflow-hidden rounded-xl border border-stone-200/60 bg-stone-50 transition-[aspect-ratio] duration-300 select-none ${aspectClass}`}
         onClick={() => {
           if (typeof window !== 'undefined' && window.innerWidth < 768) {
             setLightboxOpen(true);
@@ -191,10 +192,12 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
             sizes='(max-width: 1024px) 100vw, 50vw'
             objectFit='contain'
             objectPosition='object-top'
-            onLoad={(event) => setCurrentImageMeta({
-              width: event.currentTarget.naturalWidth,
-              height: event.currentTarget.naturalHeight
-            })}
+            onLoad={(event) =>
+              setCurrentImageMeta({
+                width: event.currentTarget.naturalWidth,
+                height: event.currentTarget.naturalHeight
+              })
+            }
           />
         </motion.div>
 
@@ -371,11 +374,21 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
             e.stopPropagation();
             setLightboxOpen(true);
           }}
-          className='absolute right-2.5 bottom-2.5 z-10 flex sm:hidden items-center gap-1.5 rounded-full bg-stone-950/80 px-2.5 py-1 text-[11px] font-semibold text-white shadow-md backdrop-blur border border-white/10 active:scale-95'
+          className='absolute right-2.5 bottom-2.5 z-10 flex items-center gap-1.5 rounded-full border border-white/10 bg-stone-950/80 px-2.5 py-1 text-[11px] font-semibold text-white shadow-md backdrop-blur active:scale-95 sm:hidden'
           aria-label='Tap to view full screen photo'
         >
-          <svg className='h-3.5 w-3.5 text-amber-400' fill='none' stroke='currentColor' strokeWidth={2} viewBox='0 0 24 24'>
-            <path strokeLinecap='round' strokeLinejoin='round' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4' />
+          <svg
+            className='h-3.5 w-3.5 text-amber-400'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth={2}
+            viewBox='0 0 24 24'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'
+            />
           </svg>
           <span>Tap to Zoom Full</span>
         </button>
@@ -571,10 +584,10 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
               href={whatsappLink}
               target='_blank'
               rel='noopener noreferrer'
-              className='inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-[#25D366] px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:bg-[#20ba59] active:scale-95 sm:flex-none'
+              className='inline-flex flex-1 items-center justify-center gap-1.5 rounded-md min-h-11 bg-[#0B7A3E] px-3 py-1.5 text-xs font-semibold text-white shadow-sm transition-all hover:bg-[#086532] active:scale-95 sm:flex-none'
             >
               <WhatsAppIcon className='h-3.5 w-3.5' />
-              <span>Ask on WhatsApp</span>
+              <span>Chat on WhatsApp</span>
             </a>
           )}
         </div>
@@ -585,6 +598,7 @@ export function ProductGalleryClient({ images, productName, whatsappLink }: Prop
         images={displayImages}
         initialIndex={mainIdx}
         productName={productName}
+        productId={productId}
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
         whatsappLink={whatsappLink}

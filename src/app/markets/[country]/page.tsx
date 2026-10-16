@@ -1,363 +1,241 @@
 import type { Metadata } from 'next';
-import Image from '@/components/ResponsiveImage';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { BRAND_ENTITY, MARKET_PAGES, getMarketPage } from '@/lib/aioContent';
+import { MARKET_PAGES, getMarketPage } from '@/lib/aioContent';
+import { MARKET_REGIONS, getMarketRegion } from '@/lib/marketRegions';
+import { getMarketEditorial } from '@/lib/marketEditorials';
 import { getSiteContent } from '@/lib/siteContent';
 import { siteWhatsAppLink } from '@/lib/siteContentTypes';
-import { SITE_IMAGES } from '@/lib/siteImages';
-import { getSiteOrigin } from '@/lib/siteUrl';
-import { WhatsAppIcon } from '@/components/Icons';
+import { getProducts } from '@/lib/db';
+import { buildCollectionJsonLd } from '@/lib/collectionJsonLd';
 import { pageMetadata } from '@/lib/pageMetadata';
+import { BUYER_GUIDES } from '@/lib/buyerGuides';
+import { ProductCard } from '@/components/ProductCard';
+import { WhatsAppIcon } from '@/components/Icons';
+import Image from '@/components/ResponsiveImage';
+import styles from '@/components/home/homepage.module.css';
+import { toPublicProduct } from '@/lib/productPublicFacts';
+import { selectMarketProducts } from '@/lib/marketProductSelection';
 
 interface PageProps {
   params: Promise<{ country: string }>;
 }
-
-const baseUrl = getSiteOrigin();
+export const revalidate = 60;
+// Reject unknown editorial slugs before the route streams a soft-404 response.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return MARKET_PAGES.map((market) => ({ country: market.slug }));
+  return [...MARKET_PAGES, ...MARKET_REGIONS].map((page) => ({ country: page.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { country } = await params;
-  const market = getMarketPage(country);
-  if (!market) return { title: 'Market Page Not Found' };
-
-  return {
-    ...pageMetadata(`/markets/${market.slug}`, market.title, market.description),
-    title: market.title,
-    description: market.description,
-    alternates: { canonical: `${baseUrl}/markets/${market.slug}` },
-    openGraph: {
-      title: `${market.title} | Jack African Fashion`,
-      description: market.description,
-      url: `${baseUrl}/markets/${market.slug}`,
-      siteName: BRAND_ENTITY.name,
-      type: 'website',
-      images: [SITE_IMAGES.whatsappCatalogBanner]
-    }
-  };
+  const page = getMarketRegion(country) || getMarketPage(country);
+  if (!page) notFound();
+  return pageMetadata(`/markets/${page.slug}`, page.title, page.description);
 }
-
-const orderSteps = [
-  ['1. Select', 'Choose styles from the catalog or send reference pictures for custom production.'],
-  [
-    '2. Confirm',
-    'Share quantity, sizes, colors and destination so we can verify MOQ and availability.'
-  ],
-  [
-    '3. Quote',
-    'Review the written product, production, packing and shipping details before payment.'
-  ],
-  [
-    '4. Check & pack',
-    'Goods are counted, checked and packed in Guangzhou for the agreed dispatch route.'
-  ]
-];
 
 export default async function MarketPage({ params }: PageProps) {
   const { country } = await params;
+  const region = getMarketRegion(country);
+  const editorial = region ? getMarketEditorial(region.slug) : undefined;
   const market = getMarketPage(country);
-  if (!market) notFound();
-
-  const siteContent = await getSiteContent();
-  const whatsappLink = siteWhatsAppLink(
-    siteContent,
-    `Hello Jack, I am a wholesale buyer in ${market.country}. Please send current styles, MOQ and shipping information.`
+  if (!region && !market) notFound();
+  const [siteContent, products] = await Promise.all([getSiteContent(), getProducts()]);
+  const name = region?.name || market!.country;
+  const title = region?.title || market!.title;
+  const intro = region?.introduction || market!.description;
+  const categories = region?.categories || market!.availableCategories;
+  const checks =
+    region?.buyingChecks ||
+    market!.buyerNeeds.map((body, index) => ({
+      title: ['Choose your styles', 'Confirm the fit', 'Agree your order', 'Plan the handover'][
+        index
+      ],
+      body
+    }));
+  const message =
+    region?.whatsappMessage ||
+    `Hello Jack, I am a wholesale buyer in ${name}. Please help confirm styles, measurements, MOQ and cargo handover for my order.`;
+  const orderGuides = BUYER_GUIDES.filter((guide) =>
+    ['wholesale-moq', 'photos-order-confirmation', 'packing-cargo-handover'].includes(guide.slug)
   );
-  const pageUrl = `${baseUrl}/markets/${market.slug}`;
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebPage',
-        '@id': `${pageUrl}#webpage`,
-        url: pageUrl,
-        name: market.title,
-        description: market.description,
-        about: { '@id': `${baseUrl}/#organization` },
-        areaServed: { '@type': 'Country', name: market.country },
-        inLanguage: 'en'
-      },
-      {
-        '@type': 'Service',
-        name: `Women's clothing wholesale supply for ${market.country}`,
-        provider: { '@id': `${baseUrl}/#organization` },
-        areaServed: { '@type': 'Country', name: market.country },
-        serviceType: "Women's clothing wholesale from Guangzhou"
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-          { '@type': 'ListItem', position: 2, name: market.country, item: pageUrl }
-        ]
-      }
+  const selected = selectMarketProducts(products, categories).map((product) =>
+    toPublicProduct(product)
+  );
+  const jsonLd = buildCollectionJsonLd({
+    path: `/markets/${country}`,
+    name: title,
+    description: region?.description || market!.description,
+    products: selected,
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Buying markets', path: '/markets' },
+      { name, path: `/markets/${country}` }
     ]
-  };
-
-  const countryEvidence =
-    market.slug === 'nigeria'
-      ? [
-        {
-          image: SITE_IMAGES.trust.waybillHandoverLagos,
-          badge: 'Lagos Cargo Waybill',
-          title: 'Guangzhou ➔ Lagos Freight Waybill & Container Staging',
-          desc: 'Official cargo receipt waybill (12 CTNS, 285 KGS, Guangzhou to Lagos) stamped and handed over at Guangzhou Africa Route cargo depot.'
-        },
-        {
-          image: SITE_IMAGES.trust.packingNigeriaLagos,
-          badge: 'LOS - NIG Marking',
-          title: 'Waterproof Yellow-Tape Bale Packing for Lagos',
-          desc: 'High-tensile yellow export tape wrapping around waterproof woven bales, hand-marked "LOS - NIG" for air and sea cargo protection.'
-        }
-      ]
-      : market.slug === 'ghana'
-        ? [
-          {
-            image: SITE_IMAGES.trust.markingGhanaBale,
-            badge: 'ACC - GHA Destination',
-            title: 'Hand-Marked Cargo Bale for Accra, Ghana',
-            desc: 'Marking export destination code ACC - GHA on heavy-duty waterproof bundles before dispatch to Guangzhou airport forwarder.'
-          },
-          {
-            image: SITE_IMAGES.trust.warehouseStagingAfrica,
-            badge: 'Guangzhou Staging',
-            title: 'Pan-African Cargo Staging (Accra, Lagos, Nairobi)',
-            desc: 'Sealed and labeled bales staged at Guangzhou warehouse ready for direct air cargo consolidation.'
-          }
-        ]
-        : market.slug === 'kenya'
-          ? [
-            {
-              image: SITE_IMAGES.trust.warehouseStagingAfrica,
-              badge: 'NBO - KEN Staging',
-              title: 'Staged Bales Marked for Nairobi, Kenya (NBO - KEN)',
-              desc: 'Export bales prepared with client IDs and destination codes for regular consolidation flights to Nairobi.'
-            },
-            {
-              image: SITE_IMAGES.trust.styleSelectionSwatch,
-              badge: 'Style Verification',
-              title: 'Color Swatch & Batch Verification in Guangzhou',
-              desc: 'Confirming print swatches and sizes in our showroom before bulk packing and export documentation.'
-            }
-          ]
-          : [
-            {
-              image: SITE_IMAGES.trust.warehouseStagingAfrica,
-              badge: 'Pan-African Export',
-              title: 'Professional Multi-Country Staging in Guangzhou',
-              desc: 'Export-ready bales packed with yellow moisture-resistant tape and verified against strict packing lists.'
-            },
-            {
-              image: SITE_IMAGES.trust.sizeBust4xl,
-              badge: 'True African Plus Size',
-              title: '4XL Flat Tape Measurements (120 cm Bust)',
-              desc: 'Authentic measurements verified with soft tape to ensure generous African fit for dresses and two-piece sets.'
-            }
-          ];
-
+  });
   return (
     <>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
-      <section className='bg-brand-black py-14 text-white sm:py-20'>
-        <div className='mx-auto max-w-6xl px-4'>
-          <p className='text-brand-gold text-sm font-bold tracking-[0.2em] uppercase'>
-            Guangzhou supplier · {market.country} market
-          </p>
-          <h1 className='font-display mt-3 max-w-4xl text-4xl font-bold sm:text-5xl'>
-            {market.title}
-          </h1>
-          <p className='text-brand-cream/80 mt-5 max-w-3xl text-lg leading-8'>
-            {market.description}
-          </p>
-          <div className='mt-8 flex flex-col gap-3 sm:flex-row'>
-            <Link
-              href='/catalog'
-              className='bg-brand-orange hover:bg-brand-gold inline-flex min-h-12 items-center justify-center rounded-full px-7 font-bold text-white'
-            >
-              Browse Wholesale Styles
-            </Link>
-            <a
-              href={whatsappLink}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='hover:text-brand-black inline-flex min-h-12 items-center justify-center rounded-full border border-white/40 px-7 font-bold text-white hover:bg-white'
-            >
-              Ask About {market.country}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className='bg-white py-12 sm:py-16'>
-        <div className='mx-auto max-w-6xl px-4'>
-          <div className='grid gap-8 lg:grid-cols-2'>
-            <article className='border-brand-sand rounded-xl border p-6 sm:p-8'>
-              <p className='text-brand-orange text-xs font-bold tracking-[0.18em] uppercase'>
-                Local buyer needs
-              </p>
-              <h2 className='font-display text-brand-black mt-3 text-3xl font-bold'>
-                Buying support for {market.country}
-              </h2>
-              <ul className='text-brand-brown/80 mt-6 space-y-3'>
-                {market.buyerNeeds.map((need) => (
-                  <li key={need} className='flex gap-3'>
-                    <span className='bg-brand-orange mt-2 h-2 w-2 shrink-0 rounded-full' />
-                    <span>{need}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-            <article className='bg-brand-cream rounded-xl p-6 sm:p-8'>
-              <p className='text-brand-orange text-xs font-bold tracking-[0.18em] uppercase'>
-                Available categories
-              </p>
-              <h2 className='font-display text-brand-black mt-3 text-3xl font-bold'>
-                Product categories available for inquiry
-              </h2>
-              <div className='mt-6 flex flex-wrap gap-3'>
-                {market.availableCategories.map((product) => (
-                  <span
-                    key={product}
-                    className='border-brand-sand text-brand-brown rounded-full border bg-white px-4 py-2 text-sm font-semibold'
-                  >
-                    {product}
-                  </span>
-                ))}
+      <div className={styles.pageIntro}>
+        <div className={styles.container}>
+          <nav className={styles.breadcrumb} aria-label='Breadcrumb'>
+            <Link href='/'>Home</Link> / <Link href='/markets'>Buying markets</Link> / {name}
+          </nav>
+          <div className={editorial ? styles.marketIntroLayout : undefined}>
+            <div>
+              <h1 className='font-display'>{title}</h1>
+              <p>{intro}</p>
+              <div className={styles.heroActions}>
+                <a
+                  href={siteWhatsAppLink(siteContent, message)}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className={`${styles.button} ${styles.primary}`}
+                >
+                  <WhatsAppIcon className='h-5 w-5' />
+                  Chat on WhatsApp
+                </a>
+                <Link href='/catalog' className={`${styles.button} ${styles.secondary}`}>
+                  Browse all styles
+                </Link>
               </div>
-              <p className='text-brand-brown/75 mt-6 leading-7'>
-                Styles shown are product directions, not a promise of live stock. We confirm the
-                current batch, size mix, colors and MOQ before quotation.
-              </p>
-            </article>
+              <div className={`${styles.linkList} mt-5`}>
+                <Link href='/wholesale/ready-stock' className={styles.textLink}>
+                  Ready-stock wholesale
+                </Link>
+                <Link href='/custom-orders' className={styles.textLink}>
+                  Custom clothing production
+                </Link>
+              </div>
+              {region && (
+                <p className='!text-sm'>
+                  Enquiry destinations include {region.countries.join(', ')}. Stock suitability and
+                  shipping are confirmed for each order.
+                </p>
+              )}
+            </div>
+            {editorial && (
+              <figure className={styles.marketEditorial} data-market-editorial={region!.slug}>
+                <Image
+                  src={editorial.src}
+                  alt={editorial.alt}
+                  width={editorial.width}
+                  height={editorial.height}
+                  priority
+                  sizes='(max-width: 1023px) calc(100vw - 48px), (max-width: 1319px) calc((100vw - 116px) / 2), 602px'
+                />
+                <figcaption>
+                  Collection inspiration. Discuss style, fit and available options with Jack.
+                </figcaption>
+              </figure>
+            )}
           </div>
         </div>
-      </section>
-
-      <section className='bg-brand-cream py-12 sm:py-16'>
-        <div className='mx-auto max-w-6xl px-4'>
-          <p className='text-brand-orange text-xs font-bold tracking-[0.18em] uppercase'>
-            Ordering process
-          </p>
-          <h2 className='font-display text-brand-black mt-3 text-3xl font-bold'>
-            From Guangzhou selection to export packing
+      </div>
+      <section className={`${styles.section} ${styles.whiteSection}`}>
+        <div className={styles.container}>
+          <h2 className={`font-display ${styles.sectionHeading}`}>
+            What to confirm for your market
           </h2>
-          <div className='mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
-            {orderSteps.map(([title, body]) => (
-              <article key={title} className='rounded-xl bg-white p-5 shadow-sm'>
-                <h3 className='text-brand-black font-bold'>{title}</h3>
-                <p className='text-brand-brown/75 mt-3 text-sm leading-6'>{body}</p>
+          <p className={`${styles.sectionDescription} mb-6`}>
+            Confirm finished measurements, fabric and coverage for your customers in {name}. MOQ,
+            available size-color quantities and cargo handover are reviewed for each selected style
+            and destination.
+          </p>
+          <div className={styles.checkGrid}>
+            {checks.map((item) => (
+              <article key={item.title} className={styles.checkCard}>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
+            ))}
+          </div>
+          {market && <p className={styles.sectionDescription}>{market.shipping}</p>}
+          {country === 'africa' && (
+            <div className={`${styles.linkList} mt-6`}>
+              {MARKET_PAGES.map((page) => (
+                <Link key={page.slug} href={`/markets/${page.slug}`} className={styles.textLink}>
+                  {page.country} buyer information
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+      <section className={`${styles.section} ${styles.whiteSection}`}>
+        <div className={styles.container}>
+          <h2 className={`font-display ${styles.sectionHeading}`}>Plan your wholesale order</h2>
+          <p className={`${styles.sectionDescription} mb-6`}>
+            Compare the order quantity, garment details and cargo handover requirements before
+            requesting a quotation for {name}. These buying guides help you prepare a style list and
+            the questions to confirm with Jack.
+          </p>
+          <div className={styles.checkGrid}>
+            {orderGuides.map((guide) => (
+              <article key={guide.slug} className={styles.checkCard}>
+                <h3>
+                  <Link href={`/guides/${guide.slug}`} className={styles.textLink}>
+                    {guide.title}
+                  </Link>
+                </h3>
+                <p>{guide.summary}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
-
-      <section className='bg-white py-12 sm:py-16'>
-        <div className='mx-auto grid max-w-6xl gap-8 px-4 lg:grid-cols-2'>
-          <article>
-            <p className='text-brand-orange text-xs font-bold tracking-[0.18em] uppercase'>MOQ</p>
-            <h2 className='font-display text-brand-black mt-3 text-3xl font-bold'>
-              Confirmed by style and order type
-            </h2>
-            <p className='text-brand-brown/75 mt-4 leading-7'>
-              MOQ is not one fixed number for every item. Jack African Fashion does not promise a
-              universally low MOQ. The quantity depends on the product, ready-stock batch, color and
-              size mix, or custom-production requirements; product pages show the starting MOQ.
-            </p>
-          </article>
-          <article>
-            <p className='text-brand-orange text-xs font-bold tracking-[0.18em] uppercase'>
-              Shipping
-            </p>
-            <h2 className='font-display text-brand-black mt-3 text-3xl font-bold'>
-              Packed in Guangzhou for the agreed route
-            </h2>
-            <p className='text-brand-brown/75 mt-4 leading-7'>{market.shipping}</p>
-          </article>
-        </div>
-      </section>
-
-      {/* Verified Export Proof Section */}
-      <section className='border-brand-sand/60 bg-brand-cream/40 border-t py-12 sm:py-16'>
-        <div className='mx-auto max-w-6xl px-4'>
-          <div className='flex flex-col justify-between gap-4 sm:flex-row sm:items-end'>
-            <div>
-              <p className='text-brand-orange text-xs font-bold tracking-[0.2em] uppercase'>
-                Export Evidence · {market.country}
-              </p>
-              <h2 className='font-display text-brand-black mt-2 text-2xl font-bold sm:text-3xl'>
-                Real Warehouse Packing & Logistics for {market.country}
-              </h2>
-            </div>
-            <p className='text-brand-brown/70 max-w-md text-sm leading-relaxed'>
-              Unedited evidence from our Guangzhou warehouse showing actual destination-marked
-              bales, freight waybills, and export preparation for African cargo forwarders.
-            </p>
-          </div>
-
-          <div className='mt-8 grid gap-6 sm:grid-cols-2'>
-            {countryEvidence.map((item) => (
-              <div
-                key={item.title}
-                className='border-brand-sand group overflow-hidden rounded-2xl border bg-white shadow-sm transition-all hover:shadow-md'
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={`font-display ${styles.sectionHeading}`}>
+            Styles to start your shortlist
+          </h2>
+          <p className={`${styles.sectionDescription} mb-6`}>
+            Use these {selected.length} wholesale styles as a shortlist, then request current
+            garment photos, measurements and a bulk-price quotation. Confirm suitability for your
+            customers before choosing the order mix.
+          </p>
+          <div className={`${styles.linkList} mb-6`}>
+            {categories.map((category) => (
+              <Link
+                key={category}
+                href={`/catalog?category=${encodeURIComponent(category)}`}
+                className={styles.textLink}
               >
-                <div className='relative aspect-[4/3] w-full overflow-hidden bg-stone-50 p-1 flex items-center justify-center'>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes='(max-width: 640px) 100vw, 560px'
-                    className='object-contain transition-transform duration-500 group-hover:scale-105'
-                  />
-                  <div className='absolute top-3 left-3'>
-                    <span className='rounded-md bg-black/75 px-3 py-1 text-xs font-bold text-white backdrop-blur-sm'>
-                      {item.badge}
-                    </span>
-                  </div>
-                </div>
-                <div className='p-6'>
-                  <h3 className='text-brand-black font-display text-lg font-bold'>{item.title}</h3>
-                  <p className='text-brand-brown/75 mt-2 text-sm leading-relaxed'>{item.desc}</p>
-                </div>
-              </div>
+                {category}
+              </Link>
+            ))}
+          </div>
+          <div className={styles.productGrid}>
+            {selected.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                siteContent={siteContent}
+                variant='home'
+                sizes='(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw'
+              />
             ))}
           </div>
         </div>
       </section>
-      <section className='bg-brand-black py-12 text-white sm:py-16'>
-        <div className='mx-auto max-w-4xl px-4 text-center'>
-          <h2 className='font-display text-3xl font-bold'>
-            Confirmed B2B service for {market.country} buyers
-          </h2>
-          <p className='text-brand-cream/75 mx-auto mt-4 max-w-2xl leading-7'>
-            Jack African Fashion has confirmed service experience with {market.country} boutiques,
-            wholesalers and importers. Share your target styles, quantity and destination so our
-            Guangzhou team can confirm the current product, factory and cargo details for your
-            order.
+      <section className={`${styles.section} ${styles.whiteSection}`}>
+        <div className={styles.container}>
+          <h2 className={`font-display ${styles.sectionHeading}`}>Buying for another market?</h2>
+          <p className={`${styles.sectionDescription} mb-6`}>
+            Choose another buying market below, or send Jack your country, style codes and quantity
+            on WhatsApp. Product suitability and receiving arrangements are confirmed for the
+            destination in your enquiry.
           </p>
-          <div className='mt-8 flex flex-col justify-center gap-3 sm:flex-row'>
-            <a
-              href={whatsappLink}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#25D366] px-8 font-bold text-white shadow-lg shadow-green-950/20 transition-all hover:bg-[#20ba59] active:scale-95'
-            >
-              <WhatsAppIcon className='h-5 w-5' />
-              Chat on WhatsApp for {market.country} Orders
-            </a>
-            <Link
-              href='/catalog'
-              className='hover:text-brand-black inline-flex min-h-12 items-center justify-center rounded-full border border-white/40 px-8 font-bold text-white transition-all hover:bg-white'
-            >
-              Browse Wholesale Styles
-            </Link>
+          <div className={styles.linkList}>
+            {MARKET_REGIONS.filter((page) => page.slug !== country).map((page) => (
+              <Link key={page.slug} href={`/markets/${page.slug}`} className={styles.textLink}>
+                {page.name}
+              </Link>
+            ))}
           </div>
         </div>
       </section>

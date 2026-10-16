@@ -28,9 +28,7 @@ describe('site image mapping', () => {
     expect(SITE_IMAGES.warehouseShipping).toBe('/images/site/07-warehouse-packing-shipping.webp');
     expect(SITE_IMAGES.customOrders).toBe('/images/site/08-custom-orders.webp');
     expect(SITE_IMAGES.whatsappContact).toBe('/images/site/09-whatsapp-contact.webp');
-    expect(SITE_IMAGES.whatsappCatalogBanner).toBe(
-      '/images/site/social-whatsapp-catalog-banner.webp'
-    );
+    expect(SITE_IMAGES.whatsappCatalogBanner).toBe('/images/site/jack-fashion-social.png');
     expect(SITE_IMAGES.africanMarketCollage).toBe('/images/site/10-african-market-collage.webp');
     expect(SITE_IMAGES.blog).toEqual([
       '/images/site/13-blog-buying-guide.webp',

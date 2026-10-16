@@ -1,5 +1,22 @@
 import type { NextConfig } from 'next';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-ancestors 'self'",
+  "form-action 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} https://www.googletagmanager.com https://static.cloudflareinsights.com`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://images.unsplash.com https://www.google-analytics.com",
+  "font-src 'self' data:",
+  `connect-src 'self'${isDev ? ' ws: wss:' : ''} https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://cloudflareinsights.com`,
+  'frame-src https://www.google.com https://maps.google.com',
+  ...(isDev ? [] : ['upgrade-insecure-requests'])
+].join('; ');
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   // Quote-only pages generate metadata from local data. Emit it in head for
@@ -34,7 +51,7 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     qualities: [75, 85],
     minimumCacheTTL: 14_400,
-    deviceSizes: [320, 480, 640, 960, 1280, 1920],
+    deviceSizes: [320, 480, 640, 768, 960, 1280, 1920],
     imageSizes: [32, 64, 96, 128, 160, 256],
     // Restrict remote patterns to trusted hosts to prevent SSRF
     remotePatterns: [
@@ -46,6 +63,10 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/indexnow-key.txt',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex' }]
+      },
       {
         source: '/admin/:path*',
         headers: [
@@ -75,6 +96,14 @@ const nextConfig: NextConfig = {
           {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()'
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=15552000'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: contentSecurityPolicy
           }
         ]
       }

@@ -1,0 +1,9 @@
+{
+  "name": "Cache public website pages",
+  "expression": "http.host eq \"zamique.com\" and http.request.method in {\"GET\" \"HEAD\" \"PURGE\"} and not any(http.request.headers[\"rsc\"][*] eq \"1\") and not (http.request.uri.query contains \"_rsc=\") and (http.request.uri.path in {\"/\" \"/catalog\" \"/about\" \"/contact\" \"/custom-orders\" \"/faq\"} or starts_with(http.request.uri.path, \"/products/\") or starts_with(http.request.uri.path, \"/markets/\") or starts_with(http.request.uri.path, \"/wholesale/\"))",
+  "cache": true,
+  "edge_ttl_mode": "bypass_by_default",
+  "browser_ttl_mode": "respect_origin",
+  "query_string_policy": "Preserve all query parameters; do not strip _rsc.",
+  "scope": "Public HTML eligibility only. Private inquiry/admin/API and RSC requests remain outside this rule; origin privacy headers are authoritative. PURGE matches Cloudflare's internal single-file purge evaluation; it does not enable POST caching."
+}

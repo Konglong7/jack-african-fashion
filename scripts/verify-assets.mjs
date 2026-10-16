@@ -43,9 +43,18 @@ async function isFile(filePath) {
   }
 }
 
+/**
+ * @param {{
+ *   publicDir: string,
+ *   productFile: string,
+ *   variantFile?: string | null,
+ *   batchPattern?: RegExp
+ * }} options
+ */
 export async function verifyAssetManifest({
   publicDir,
   productFile,
+  variantFile = null,
   batchPattern = /^0921.*\.png$/i
 }) {
   const publicRoot = resolve(publicDir);
@@ -55,6 +64,9 @@ export async function verifyAssetManifest({
   const invalidLocal = [];
   const externalReferences = [];
   const referencedLocalFiles = new Set();
+  const preparedReferences = [];
+  const preparedMissing = [];
+  const preparedInvalid = [];
 
   for (const imagePath of references) {
     if (/^https?:\/\//i.test(imagePath)) {
@@ -79,6 +91,27 @@ export async function verifyAssetManifest({
     }
   }
 
+  if (variantFile) {
+    const manifest = JSON.parse(await readFile(variantFile, 'utf8'));
+    for (const variants of Object.values(manifest)) {
+      if (!variants || typeof variants !== 'object') continue;
+      for (const imagePath of Object.values(variants)) {
+        if (typeof imagePath !== 'string') continue;
+        preparedReferences.push(imagePath);
+        if (!imagePath.startsWith('/')) {
+          preparedInvalid.push(imagePath);
+          continue;
+        }
+        const candidate = resolve(publicRoot, imagePath.slice(1));
+        if (!isInsideDirectory(publicRoot, candidate)) {
+          preparedInvalid.push(imagePath);
+          continue;
+        }
+        if (!(await isFile(candidate))) preparedMissing.push(imagePath);
+      }
+    }
+  }
+
   const batchDirectory = join(publicRoot, 'images', 'products');
   const unregisteredBatch = [];
   try {
@@ -99,6 +132,9 @@ export async function verifyAssetManifest({
     referencedCount: references.length,
     missing,
     invalidLocal,
+    preparedReferencedCount: preparedReferences.length,
+    preparedMissing: [...new Set(preparedMissing)].sort(),
+    preparedInvalid: [...new Set(preparedInvalid)].sort(),
     externalCount: externalReferences.length,
     unregisteredBatch: unregisteredBatch.sort()
   };
@@ -108,11 +144,13 @@ async function main() {
   const repositoryRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
   const result = await verifyAssetManifest({
     publicDir: join(repositoryRoot, 'public'),
-    productFile: join(repositoryRoot, 'data', 'products.json')
+    productFile: join(repositoryRoot, 'data', 'products.json'),
+    variantFile: join(repositoryRoot, 'src', 'lib', 'generated', 'imageVariants.json')
   });
 
   console.log(`Asset references checked: ${result.referencedCount}`);
   console.log(`External references skipped: ${result.externalCount}`);
+  console.log(`Prepared image variants checked: ${result.preparedReferencedCount}`);
   if (result.missing.length > 0) {
     console.error('Missing local assets:');
     result.missing.forEach((imagePath) => console.error(`- ${imagePath}`));
@@ -121,12 +159,25 @@ async function main() {
     console.error('Invalid local asset paths:');
     result.invalidLocal.forEach((imagePath) => console.error(`- ${imagePath}`));
   }
+  if (result.preparedMissing.length > 0) {
+    console.error('Missing prepared image variants:');
+    result.preparedMissing.forEach((imagePath) => console.error(`- ${imagePath}`));
+  }
+  if (result.preparedInvalid.length > 0) {
+    console.error('Invalid prepared image variant paths:');
+    result.preparedInvalid.forEach((imagePath) => console.error(`- ${imagePath}`));
+  }
   if (result.unregisteredBatch.length > 0) {
     console.warn(`Unregistered 0921 batch assets (${result.unregisteredBatch.length}):`);
     result.unregisteredBatch.forEach((fileName) => console.warn(`- ${fileName}`));
   }
 
-  if (result.missing.length > 0 || result.invalidLocal.length > 0) {
+  if (
+    result.missing.length > 0 ||
+    result.invalidLocal.length > 0 ||
+    result.preparedMissing.length > 0 ||
+    result.preparedInvalid.length > 0
+  ) {
     process.exitCode = 1;
   }
 }

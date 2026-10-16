@@ -1,26 +1,26 @@
 import Link from 'next/link';
-import { SiteImage } from '@/components/SiteImage';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import { BRAND_ENTITY, MARKET_PAGES, WHOLESALE_PAGES } from '@/lib/aioContent';
-import { SITE_IMAGES } from '@/lib/siteImages';
+import { getSiteLocations, siteWhatsAppLink } from '@/lib/siteContentTypes';
+import { WhatsAppContacts } from '@/components/ContactLinks';
+import { CheckIcon, WhatsAppIcon } from '@/components/Icons';
 import styles from './homepage.module.css';
 
-const SERVICES = [
+export const BUYING_CHECKS = [
   {
-    title: 'Ready stock & B2B service',
-    body: 'Confirm available styles, size mixes and colors with our Guangzhou team before ordering.'
+    title: 'See the actual garment',
+    body: 'Request current stock photos or a video of the style, including the back, seams, lining and fabric close-ups.'
   },
   {
-    title: 'Own-factory custom production',
-    body: 'Share reference pictures, fabric requirements, measurements and quantity for a production quotation.'
+    title: 'Check the measurements',
+    body: 'Confirm bust, waist, hip and garment length in centimetres. Size labels vary between styles and markets.'
   },
   {
-    title: 'Checking & export packing',
-    body: 'Order details are confirmed before goods are checked and packed for handover.'
+    title: 'Agree the order in writing',
+    body: 'Confirm style codes, quantity, size and color ratios, price, payment terms and the agreed delivery arrangement.'
   },
   {
-    title: 'Cargo agent coordination',
-    body: 'Coordinate transfer to an agreed cargo agent. Route, fees and timing are confirmed for each order.'
+    title: 'Plan the cargo handover',
+    body: 'Share your delivery city and cargo agent. Packing, freight charges, timing and import responsibilities are confirmed per order.'
   }
 ];
 
@@ -30,70 +30,64 @@ export function SupplierSupport({ siteContent }: { siteContent: SiteContent }) {
       className={`${styles.section} ${styles.whiteSection}`}
       aria-labelledby='supplier-identity-title'
     >
-      <div className={styles.container}>
-        <div className={styles.supplyLayout}>
-          <figure>
-            <div className={styles.supplyImage}>
-              <SiteImage
-                src={SITE_IMAGES.trust.showroomExterior}
-                alt='Jack Fashion showroom at Yulong Fashion Plaza, Guangzhou'
-                className='absolute inset-0'
-                sizes='(max-width: 1023px) 100vw, 42vw'
-                position='center'
-              />
+      <div className={`${styles.container} ${styles.supplyLayout}`}>
+        <div>
+          <p className={styles.heroEyebrow}>Own factory · Talk directly with our Guangzhou team</p>
+          <h2 id='supplier-identity-title' className={`font-display ${styles.sectionHeading}`}>
+            Factory-direct wholesale, ready stock and custom production
+          </h2>
+          <p className={styles.sectionDescription}>
+            Jack Fashion has its own factory and offers ready-stock womenswear and custom
+            production. Request a factory-direct quote, then confirm the actual garments, finished
+            measurements, quantities and cargo handover for your order.
+          </p>
+          <dl className={styles.identity}>
+            {getSiteLocations(siteContent).map((location) => (
+              <div key={location.address}>
+                <dt>{location.name}</dt>
+                <dd>
+                  <a href={location.mapUrl} target='_blank' rel='noopener noreferrer'>
+                    {location.address}
+                  </a>
+                </dd>
+              </div>
+            ))}
+            <div>
+              <dt>Direct contact</dt>
+              <dd>
+                <WhatsAppContacts siteContent={siteContent} className='text-[#0B7A3E]' />
+              </dd>
             </div>
-            <figcaption className={styles.caption}>
-              Guangzhou showroom · Yulong Fashion Plaza
-            </figcaption>
-          </figure>
-          <div>
-            <h2 id='supplier-identity-title' className={`font-display ${styles.sectionHeading}`}>
-              Showroom & wholesale supply support
-            </h2>
-            <p className={styles.sectionDescription}>{BRAND_ENTITY.identityStatement}</p>
-            <dl className={styles.identity}>
-              {[
-                ['Company', siteContent.name],
-                ['Business', siteContent.business],
-                ['Office & showroom', siteContent.location],
-                ['Markets served', MARKET_PAGES.map((market) => market.country).join(', ')]
-              ].map(([term, detail]) => (
-                <div key={term}>
-                  <dt>{term}</dt>
-                  <dd>{detail}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className={styles.serviceGrid}>
-              {SERVICES.map((service) => (
-                <div key={service.title} className={styles.service}>
-                  <h3>{service.title}</h3>
-                  <p>{service.body}</p>
-                </div>
-              ))}
-            </div>
-            <Link href='/about' className={styles.textLink}>
-              About Jack African Fashion
-            </Link>
-          </div>
+          </dl>
+          <a
+            className={`${styles.button} ${styles.primary}`}
+            href={siteWhatsAppLink(
+              siteContent,
+              'Hello Jack, please send current stock photos/video, garment measurements and a written quotation for my selected styles.'
+            )}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <WhatsAppIcon className='h-5 w-5' />
+            Chat on WhatsApp
+          </a>
+          <Link href='/about' className={styles.textLink}>
+            Meet Jack Fashion
+          </Link>
         </div>
-        <div className={styles.relatedLinks}>
-          <h3>African markets served</h3>
-          <div className={styles.linkList}>
-            {MARKET_PAGES.map((market) => (
-              <Link key={market.slug} href={`/markets/${market.slug}`} className={styles.textLink}>
-                {market.country}
-              </Link>
+        <div className={styles.buyingPanel}>
+          <h3>Before you place an order</h3>
+          <ul>
+            {BUYING_CHECKS.map((item) => (
+              <li key={item.title}>
+                <CheckIcon className='h-5 w-5 shrink-0' />
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.body}</p>
+                </div>
+              </li>
             ))}
-          </div>
-          <h3 className='mt-4'>Wholesale categories</h3>
-          <div className={styles.linkList}>
-            {WHOLESALE_PAGES.map((page) => (
-              <Link key={page.slug} href={`/wholesale/${page.slug}`} className={styles.textLink}>
-                {page.title.split('|')[0]}
-              </Link>
-            ))}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

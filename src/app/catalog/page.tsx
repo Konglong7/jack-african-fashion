@@ -1,58 +1,63 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { getProducts } from '@/lib/db';
 import { getSiteContent } from '@/lib/siteContent';
-import { ProductGridSkeleton } from '@/components/Skeleton';
 import { CatalogClient } from './CatalogClient';
 import { pageMetadata } from '@/lib/pageMetadata';
+import Link from 'next/link';
+import styles from '@/components/home/homepage.module.css';
+import { ProductDirectory } from './ProductDirectory';
+import { toPublicProduct } from '@/lib/productPublicFacts';
+import { buildCollectionJsonLd } from '@/lib/collectionJsonLd';
 
-// Catalog uses ISR: cached and revalidated every 60 seconds so new products
-// appear quickly without sacrificing performance.
 export const revalidate = 60;
-
-export const metadata: Metadata = pageMetadata('/catalog',
+export const metadata: Metadata = pageMetadata(
+  '/catalog',
   "Women's Clothing Wholesale Catalog",
-  "Browse women's dresses, plus sizes, two piece sets and jumpsuits for African boutiques. Confirm current MOQ, sizes, stock and custom production with our Guangzhou team."
+  'Browse wholesale dresses, matching sets, jumpsuits and plus-size styles from Jack Fashion. Send style codes and quantities to confirm MOQ, stock and a bulk-price quote.'
 );
-
-// Catalog data is rendered server-side; URL filters stay in the client so this
-// page remains eligible for ISR and edge caching.
 export default async function CatalogPage() {
   const [products, siteContent] = await Promise.all([getProducts(), getSiteContent()]);
-  const categories = Array.from(
-    new Set([
-      ...siteContent.categories.map((category) => category.name),
-      ...products.map((p) => p.category)
-    ])
-  );
+  const publicProducts = products.map((product) => toPublicProduct(product));
+  const categories = Array.from(new Set(products.map((product) => product.category)));
+  const schema = buildCollectionJsonLd({
+    path: '/catalog',
+    name: 'Women’s Clothing Wholesale Catalog',
+    description:
+      'Browse dresses, matching sets, jumpsuits and plus-size styles from Jack Fashion in Guangzhou. Confirm current stock, measurements and wholesale prices.',
+    products: publicProducts,
+    breadcrumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Wholesale catalog', path: '/catalog' }
+    ]
+  });
   return (
     <>
-      <section className='bg-stone-950 py-12 text-white sm:py-16 border-b border-amber-500/20'>
-        <div className='mx-auto max-w-7xl px-4 text-center'>
-          <span className='inline-block rounded-full bg-amber-500/15 border border-amber-500/30 px-3.5 py-1 text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-amber-400'>
-            Wholesale Catalog · MOQ by Style
-          </span>
-          <h1 className='font-display mt-3 text-3xl font-bold sm:text-4xl lg:text-5xl text-white'>
-            Guangzhou Women&apos;s Clothing Wholesale Catalog
-          </h1>
-          <p className='text-stone-300 mx-auto mt-4 max-w-2xl text-sm sm:text-base leading-relaxed'>
-            Jack African Fashion supplies factory-direct women&apos;s clothing for African
-            boutiques, wholesalers and importers. Check each style for its current MOQ, sizes and colors, then confirm stock and cargo dispatch on WhatsApp.
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}
+      />
+      <section className={styles.pageIntro}>
+        <div className={styles.container}>
+          <nav aria-label='Breadcrumb' className={styles.breadcrumb}>
+            <Link href='/'>Home</Link> / Wholesale catalog
+          </nav>
+          <h1 className='font-display'>Women’s Clothing Wholesale Catalog</h1>
+          <p>
+            Dresses, matching sets and plus-size womenswear from Guangzhou. Browse the complete
+            images and search by name or style code. Confirm current MOQ for each selected style.
           </p>
+          <div className={styles.linkList}>
+            <Link href='/buying-guide' className={styles.textLink}>
+              How to prepare your order
+            </Link>
+            <Link href='/markets' className={styles.textLink}>
+              Browse buying markets
+            </Link>
+          </div>
         </div>
       </section>
-
-      <Suspense
-        fallback={
-          <section className='bg-brand-cream py-10 sm:py-12'>
-            <div className='mx-auto max-w-7xl px-4'>
-              <ProductGridSkeleton count={8} />
-            </div>
-          </section>
-        }
-      >
-        <CatalogClient products={products} siteContent={siteContent} categories={categories} />
-      </Suspense>
+      <CatalogClient products={publicProducts} siteContent={siteContent} categories={categories} />
+      <ProductDirectory products={publicProducts} />
     </>
   );
 }

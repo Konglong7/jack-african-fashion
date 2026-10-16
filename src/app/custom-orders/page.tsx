@@ -3,9 +3,10 @@ import { getSiteContent } from '@/lib/siteContent';
 import { CustomOrdersClient } from './CustomOrdersClient';
 import { pageMetadata } from '@/lib/pageMetadata';
 
-export const metadata: Metadata = pageMetadata('/custom-orders',
-  "Custom Women's Clothing Production in Guangzhou",
-  'Send reference photos, fabric requirements, sizes and quantity to Jack African Fashion for own-factory custom production, MOQ confirmation and a Guangzhou quotation.'
+export const metadata: Metadata = pageMetadata(
+  '/custom-orders',
+  "Custom Women's Clothing Manufacturing & Wholesale",
+  'See Jack Fashion factory cutting, sewing and finishing photos. Discuss custom womenswear, samples, measurements, MOQ and a factory-direct quote with our team.'
 );
 
 export default async function CustomOrdersPage() {

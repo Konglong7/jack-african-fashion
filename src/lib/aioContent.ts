@@ -1,30 +1,31 @@
 export const BRAND_ENTITY = {
-  name: 'Jack African Fashion',
+  name: 'Jack Fashion',
   website: 'https://zamique.com',
-  officialWebsiteStatement: 'zamique.com is the official B2B website of Jack African Fashion.',
+  officialWebsiteStatement: 'zamique.com is the official B2B website of Jack Fashion.',
   location: 'Guangzhou, China',
   marketBase: 'Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
-  businessType: "Women's clothing wholesale supplier and factory-direct manufacturer",
-  market: 'African market',
+  businessType: "Women's clothing manufacturer and wholesale supplier",
+  market: 'International wholesale, with an African womenswear focus',
   audience:
-    'African boutique owners, clothing wholesalers, importers, retailers and online sellers',
+    'Boutique owners, clothing wholesalers, importers, retailers and online sellers worldwide',
   identityStatement:
-    "Jack African Fashion is a Guangzhou-based African women's clothing supplier with its own factory, an office and showroom at Yulong Fashion Plaza, and confirmed B2B service experience across African markets.",
+    'Jack Fashion is a Guangzhou women’s clothing manufacturer and wholesale supplier with its own factory. We offer factory-direct dresses, matching sets and plus-size styles, with ready-stock options and custom production. Visit our wholesale showrooms at Yulong Fashion Plaza or Shop 0081 in LIUHUA Market by appointment.',
   products: [
-    "African women's dresses",
+    "Women's dresses",
     'Two piece sets',
-    "Women's suits and blazer sets",
-    'Pleated and knit dresses',
+    'Pleated styles',
     "Plus size women's clothing",
     'Ready-stock fashion'
   ],
   capabilities: [
-    'Ready-stock selection with current availability confirmed before ordering',
-    'Mixed colors and sizes where the current batch allows',
-    'Own-factory custom production and repeat-order support',
-    'Quality checking and export packing in Guangzhou',
-    'International shipping coordination after route, cost and responsibilities are confirmed',
-    'Direct WhatsApp communication for stock, quotation and order updates'
+    'Own factory and factory-direct womenswear wholesale',
+    'Ready-stock selection alongside custom production',
+    'Style selection and current-stock confirmation before ordering',
+    'Size and color mixes confirmed per style and batch',
+    'Custom production enquiries reviewed by reference, quantity and specifications',
+    'Quality-check and packing requirements agreed for the order',
+    'Cargo handover and shipping coordination subject to destination and order confirmation',
+    'Direct WhatsApp communication for quotation and order details'
   ]
 } as const;
 
@@ -42,115 +43,114 @@ export const MARKET_PAGES: MarketPageContent[] = [
   {
     slug: 'nigeria',
     country: 'Nigeria',
-    title: "Women's Clothing Wholesale Supplier for Nigeria",
+    title: 'Sourcing Womenswear from China to Nigeria | Guangzhou Wholesale Supplier',
     description:
-      "Jack African Fashion is a Guangzhou women's clothing wholesale supplier with confirmed B2B service experience for Nigerian boutiques, wholesalers, importers and online fashion sellers.",
+      'Factory-direct guide for sourcing womenswear from China to Nigeria. Jack Fashion helps Nigeria boutiques with style selection, batch confirmation, and Guangzhou cargo handover.',
     buyerNeeds: [
-      'Preferred product categories and target quantity for the planned restock',
-      'Required size and color ratios for the intended customer group',
-      'Current stock photos or video and written quotation before payment',
-      'Packing and handover requirements for the buyer’s China-based cargo agent'
+      'Style selection: Choose verified style codes, silhouettes and size runs suited for Nigerian boutiques and celebratory events.',
+      'Order confirmation: Confirm physical garment measurements, actual batch colors, fabric opacity, and a written proforma quotation before payment.',
+      'Pre-shipment verification: Review real photos or video of packed goods and check the itemized packing list with carton marks.',
+      'Guangzhou cargo handover: Coordinate delivery to your nominated Lagos, Abuja, or Kano cargo agent in Guangzhou (Yuexiu or Baiyun districts).'
     ],
     availableCategories: [
-      'Plus size dresses',
-      'Pleated dresses',
-      'Two piece sets',
-      'Maxi dresses',
-      'Party styles'
+      'Plus Size Dresses',
+      'Two Piece Sets',
+      'Coordinated Styles',
+      'Maxi Dresses',
+      'Midi Dresses'
     ],
     shipping:
-      'Orders can be packed in Guangzhou and handed to the buyer’s nominated cargo agent or a suitable shipping partner. Route, chargeable weight, delivery estimate and destination handling must be confirmed for each shipment.'
+      'We coordinate delivery directly with your nominated air or sea cargo agent in Guangzhou. Provide your agent’s warehouse address, buyer mark/ID, and packing instructions. Final carton count, chargeable weight, freight receipt, and handover confirmation are documented before dispatch to Nigeria.'
   },
   {
     slug: 'ghana',
     country: 'Ghana',
-    title: "Women's Clothing Wholesale Supplier for Ghana",
+    title: 'Ghana Boutique Womenswear Sourcing | Guangzhou Factory-Direct',
     description:
-      "Jack African Fashion is a Guangzhou women's clothing wholesale supplier with confirmed B2B service experience for Ghanaian boutiques and importers, including ready-stock and own-factory custom-production orders.",
+      'Guangzhou factory-direct womenswear for Ghana boutiques. Curated dress and matching set selections, physical size verification, and seamless first-order handover.',
     buyerNeeds: [
-      'Preferred dress or set categories and intended retail positioning',
-      'Target quantity and acceptable size or color mix',
-      'Product details and stock confirmation before ordering',
-      'Consolidation and packing requirements for the selected cargo route'
+      'Boutique product selection: Shortlist fast-selling maxi dresses, pleated styles, and two-piece sets tailored for boutique retail in Accra, Kumasi, and Takoradi.',
+      'Physical size & fit verification: Check flat-laid garment measurements in centimetres (bust, waist, hips, length) against Ghanaian customer preferences.',
+      'First-order collaboration process: Start with a flexible test order across key styles, approve stock photos/video, and confirm batch colors in writing.',
+      'Cargo consolidation & handover: Provide your cargo forwarder’s Guangzhou warehouse address and buyer mark for prompt local handover and transit to Ghana.'
     ],
     availableCategories: [
-      'Colorful maxi dresses',
-      'Two piece sets',
-      'Plus size dresses',
-      'Pleated styles',
-      'Occasion wear'
+      'Maxi Dresses',
+      'Midi Dresses',
+      'Two Piece Sets',
+      'Plus Size Dresses',
+      'Coordinated Styles'
     ],
     shipping:
-      'Goods are checked and packed in Guangzhou for transfer to the buyer’s nominated forwarder or an available Ghana route. Final freight cost and transit time depend on carton size, weight and the selected service.'
+      'Packing and delivery to your agreed Ghana freight forwarder in Guangzhou are coordinated once your style list and quantities are finalized. Itemized packing lists with carton numbers and gross weights are provided for customs clearance in Tema or Kotoka Airport.'
   },
   {
     slug: 'kenya',
     country: 'Kenya',
-    title: "Women's Clothing Wholesale Supplier for Kenya",
+    title: "Women's Clothing Wholesale for Kenya Buyers",
     description:
-      "Jack African Fashion is a Guangzhou women's clothing wholesale supplier with confirmed B2B service experience for Kenyan boutiques, importers, retailers and online fashion businesses.",
+      'Source wholesale dresses and matching sets from Jack Fashion in Guangzhou for Kenya boutiques. Explore ready-stock styles and custom production.',
     buyerNeeds: [
-      'Preferred categories for physical-store or online resale',
-      'Required size options and measurements',
-      'Ready-stock or repeat-production requirements',
-      'Packing-list and cargo-agent handover details'
+      'Send the categories, codes and intended retail occasions for your collection.',
+      'Confirm fabric, lining, fit and measurements from actual stock details.',
+      'Ask about samples or a confirmed size run before selecting your order mix.',
+      'Agree packing-list details and your nominated agent’s receiving and handover instructions.'
     ],
     availableCategories: [
-      'Knit dresses',
-      'Blazer sets',
-      'Two piece sets',
-      'Plus size dresses',
-      'Jumpsuits'
+      'Two Piece Sets',
+      'Plus Size Dresses',
+      'Jumpsuits',
+      'Maxi Dresses',
+      'Midi Dresses'
     ],
     shipping:
-      'We prepare the order in Guangzhou for the buyer’s selected cargo agent or an agreed shipping partner. Air, sea and consolidated options vary, so freight and timing are quoted after order volume is known.'
+      'Tell us the delivery city in Kenya and the agent or shipping arrangement you want to use. Air, sea or consolidated cargo availability, freight and delivery estimates are confirmed for each order.'
   },
   {
     slug: 'tanzania',
     country: 'Tanzania',
-    title: "Women's Clothing Wholesale Supplier for Tanzania",
+    title: "Women's Clothing Wholesale for Tanzania Buyers",
     description:
-      "Jack African Fashion is a Guangzhou women's clothing wholesale supplier with confirmed B2B service experience for Tanzanian fashion retailers and importers, with stock, custom-order and export-packing details confirmed per order.",
+      'Factory-direct dresses and sets from Guangzhou for Tanzania boutiques. Ask Jack Fashion about ready stock, custom production and wholesale quantities.',
     buyerNeeds: [
-      'Preferred categories and target customer profile',
-      'Target quantity and requested style mix',
-      'MOQ, size, color and production information',
-      'Packing requirements for the buyer’s selected cargo route'
+      'Select codes and quantities for your shop or wholesale assortment.',
+      'Check dress length, sleeve coverage and lining for your intended customers.',
+      'Request current stock photos, available color-size quantities and a written quote.',
+      'Share your Tanzania receiving city and any consolidation, marking or packing instructions.'
     ],
     availableCategories: [
-      'Maxi dresses',
-      'Pleated dresses',
-      'Two piece sets',
-      'Plus size fashion',
-      'Ready-stock collections'
+      'Maxi Dresses',
+      'Midi Dresses',
+      'Coordinated Styles',
+      'Two Piece Sets',
+      'Plus Size Dresses'
     ],
     shipping:
-      'After inspection, orders are packed in Guangzhou and released to the nominated forwarder or agreed shipping partner. The exact route, freight cost and delivery estimate are confirmed per order.'
+      'Goods and packing requirements are agreed for the confirmed order. The forwarder, route, freight cost, transit estimate and destination handling responsibilities must be confirmed before dispatch to Tanzania.'
   },
   {
     slug: 'south-africa',
     country: 'South Africa',
-    title: "Women's Clothing Wholesale Supplier for South Africa",
+    title: "Women's Clothing Wholesale for South Africa Buyers",
     description:
-      "Jack African Fashion is a Guangzhou women's clothing wholesale supplier with confirmed B2B service experience for South African boutiques, distributors, importers and online retailers.",
+      'Wholesale dresses, matching sets and plus-size styles for South Africa buyers. Discuss ready stock and factory-direct custom production with Jack Fashion.',
     buyerNeeds: [
-      'Preferred contemporary womenswear categories and target quantity',
-      'Required sizing and fit guidance',
-      'Custom label, color or reference requirements when applicable',
-      'Quality-check and packing requirements before cargo handover'
+      'Choose the dress or set styles and intended retail price positioning for your range.',
+      'Use garment measurements to prepare your size guide; do not assume labels equal local sizes.',
+      'Review material, care and labeling requirements with your importer.',
+      'Confirm quantity, quality-check instructions, carton breakdown and the agreed delivery arrangement.'
     ],
     availableCategories: [
-      'Blazer pants sets',
-      'Knit dresses',
-      'Plus size dresses',
-      'Two piece sets',
-      'Occasion dresses'
+      'Two Piece Sets',
+      'Plus Size Dresses',
+      'Maxi Dresses',
+      'Midi Dresses',
+      'Jumpsuits'
     ],
     shipping:
-      'Orders can be transferred from our Guangzhou packing flow to the buyer’s forwarder or an agreed shipping provider. Freight method, cost, insurance and import responsibilities are confirmed before dispatch.'
+      'Share your delivery city and nominated cargo agent or preferred shipping arrangement. Confirm freight, insurance where required, delivery estimates and import responsibilities in writing before dispatch.'
   }
 ];
-
 export function getMarketPage(slug: string) {
   return MARKET_PAGES.find((page) => page.slug === slug);
 }
@@ -164,6 +164,7 @@ export interface WholesalePageContent {
   suitableBuyers: string[];
   productDetails: string[];
   catalogCategory?: string;
+  updatedDate?: string;
 }
 
 export const WHOLESALE_PAGES: WholesalePageContent[] = [
@@ -171,64 +172,114 @@ export const WHOLESALE_PAGES: WholesalePageContent[] = [
     slug: 'african-dresses',
     title: 'African Dresses Wholesale from Guangzhou',
     description:
-      "Source African women's dresses wholesale from Jack African Fashion in Guangzhou. Explore ready-stock, own-factory custom, pleated, occasion and plus-size styles for B2B buyers.",
-    heading: "African Women's Dresses Wholesale Supplier in Guangzhou",
+      'Explore dresses for African boutiques and wholesalers from Jack Fashion. Browse full catalog images and ask about stock, garment measurements, MOQ and prices.',
+    heading: 'Dresses for African boutiques and wholesalers',
     introduction:
-      "Jack African Fashion supplies African women's dresses from Guangzhou through ready-stock selection and custom production at our own factory for B2B boutiques, wholesalers, importers and online retailers.",
+      'Choose dresses by silhouette, coverage and your customers’ fit needs. Our Guangzhou catalog is a starting point for building a boutique or wholesale range; actual stock, fabric, sizes and colors are confirmed by style.',
     suitableBuyers: [
-      'African boutique owners',
+      'African boutiques',
       'Dress wholesalers',
       'Fashion importers',
       'Online and social sellers'
     ],
     productDetails: [
-      'Maxi, midi, pleated, knit and occasion dress options',
-      'Standard and plus-size ranges depending on the style',
-      'Available colors and mixed ratios confirmed against the current batch',
-      'Custom fabric, color, size or label requests reviewed by quantity'
+      'Dress length, neckline, sleeves and lining',
+      'Finished garment measurements and the available size run',
+      'Actual stock colors and permitted size-color ratios',
+      'Order quantity, quoted price and packing requirements'
     ]
   },
   {
-    slug: 'two-piece-sets',
-    title: "Two Piece Sets Wholesale | Women's Sets from Guangzhou",
+    slug: 'maxi-dresses',
+    title: 'Maxi Dresses Wholesale from Guangzhou',
     description:
-      "Wholesale women's two piece sets from Jack African Fashion, a Guangzhou supplier for African boutiques and importers. Ready stock and custom production available by style.",
-    heading: "Women's Two Piece Sets Wholesale for African Markets",
+      'Browse maxi dresses wholesale from Jack Fashion in Guangzhou. Own factory, ready-stock enquiries and custom production; confirm style codes, measurements and quotes.',
+    heading: 'Long dresses for overseas boutiques and wholesalers',
     introduction:
-      "Jack African Fashion sources and coordinates women's two piece sets wholesale in Guangzhou for African fashion buyers. Matching tops, skirts and trousers are available across casual, boutique and occasion directions.",
+      'Jack Fashion is a Guangzhou womenswear manufacturer and wholesale supplier with its own factory. Shortlist maxi dresses by silhouette, neckline, sleeves and print, then send the style codes for a factory-direct quotation. For a long dress, check finished garment length against your customers’ height and intended footwear; a catalog picture alone cannot establish the fit. Confirm ready-stock colors, size runs, lining and slit details for each selected design. Custom production can be reviewed using reference pictures or a sample, measurements and your planned quantity.',
     suitableBuyers: [
-      'Boutique owners',
-      'Clothing wholesalers',
-      'Importers and distributors',
-      'Online fashion retailers'
+      'African boutiques building a long-dress collection',
+      'Dress wholesalers and clothing importers',
+      'Overseas fashion retailers',
+      'Online and social sellers'
     ],
     productDetails: [
-      'Matching top-and-trouser or top-and-skirt combinations',
-      'Boutique, office, casual and occasion directions',
-      'Size and color options confirmed per current stock or production run',
-      'Custom references reviewed for fabric, measurements, quantity and lead time'
+      'Finished dress length, bust, waist and hip measurements for each size',
+      'Neckline, sleeves, slit position, lining and fabric opacity',
+      'Current stock colors and the confirmed size-color quantities',
+      'Style-specific MOQ, factory-direct quotation and packing requirements',
+      'Custom reference, size grading and sample requirements, subject to review'
+    ],
+    catalogCategory: 'Maxi Dresses',
+    updatedDate: '2026-10-14'
+  },
+  {
+    slug: 'jumpsuits',
+    title: "Women's Jumpsuits Wholesale from Guangzhou",
+    description:
+      'Source women’s jumpsuits wholesale from Jack Fashion in Guangzhou. Own factory, ready-stock enquiries and custom production; confirm fit, style MOQ and quotes.',
+    heading: 'One-piece outfits for international boutiques and wholesalers',
+    introduction:
+      'Jack Fashion supplies women’s jumpsuits from Guangzhou, with its own factory for custom production enquiries. Browse the current printed jumpsuit and overall styles, then send the style codes and quantities for a factory-direct quotation. One-piece garments need more than a bust and waist check: confirm torso length, rise, inseam and hip ease for your customers. Check the fastening, sleeve coverage, fabric stretch and lining on the actual garment before selecting a size run. Ready-stock colors and quantities are confirmed by style; custom fabric, fit or design requirements are reviewed with your reference pictures or sample.',
+    suitableBuyers: [
+      'African boutiques adding printed one-piece outfits',
+      'Womenswear wholesalers and clothing importers',
+      'International boutiques selecting measured size runs',
+      'Online and social fashion sellers'
+    ],
+    productDetails: [
+      'Torso length, rise, inseam and finished bust, waist and hip measurements',
+      'Neckline, sleeves, fastening, lining and fabric stretch',
+      'Current stock colors, size run and quantity for each style code',
+      'Style-specific MOQ, factory-direct quotation and packing requirements',
+      'Custom fit, fabric and sample requirements, subject to review'
+    ],
+    catalogCategory: 'Jumpsuits',
+    updatedDate: '2026-10-14'
+  },
+  {
+    slug: 'two-piece-sets',
+    title: 'Two Piece Sets Wholesale Supplier | Matching Outfits Guangzhou',
+    description:
+      'Two piece sets wholesale supplier in Guangzhou. Factory-direct matching top-and-trouser and top-and-skirt sets. Confirm pieces included, separate measurements, and mix-and-match rules.',
+    heading: 'Two Piece Sets Wholesale Supplier: Top & Bottom Specifications',
+    introduction:
+      'As a direct Guangzhou womenswear manufacturer and two piece sets wholesale supplier, Jack Fashion provides matching top-and-trouser, top-and-skirt, and vest-and-pant sets for boutiques and clothing distributors. When sourcing matching sets, confirming the exact pieces included (such as top, bottom, belt, or sash) is vital. Because tops and bottoms fit differently, our factory provides separate flat measurements for each component. We also clarify batch-specific mix rules for colors and sizes before quotation, ensuring your boutique receives a balanced, high-sell-through assortment.',
+    suitableBuyers: [
+      'Boutique owners building coordinated capsule collections',
+      'Clothing wholesalers and regional fashion distributors',
+      'Overseas fashion importers and trading houses',
+      'Online and social boutique fashion retailers'
+    ],
+    productDetails: [
+      'Exact pieces included in each quoted set (top + pants, vest + skirt, included belt)',
+      'Separate flat measurements for tops (bust, shoulder, length) and bottoms (waist, hips, rise, inseam/length)',
+      'Fabric composition, lining opacity, stretch elasticity, and waist fastening (elastic vs. zip)',
+      'Flexible color and size mixing conditions per batch for wholesale orders',
+      'Ready-stock availability alongside custom matching set production'
     ],
     catalogCategory: 'Two Piece Sets'
   },
   {
     slug: 'plus-size-womens-clothing',
-    title: "Plus Size Women's Clothing Wholesale Supplier",
+    title: 'Wholesale Plus Size Dresses from China | Guangzhou Supplier',
     description:
-      "Source plus size women's clothing wholesale from Guangzhou for African boutiques. Jack African Fashion offers dresses and coordinated sets with sizes confirmed per style.",
-    heading: "Plus Size Women's Clothing Wholesale from Guangzhou",
+      'Source wholesale plus size dresses from China with Jack Fashion in Guangzhou. Factory-direct curved fits, flat tape measurements, fabric stretch and size run guidance for boutiques.',
+    heading: 'Wholesale Plus Size Dresses from China: Measured Fit & Factory Sourcing',
     introduction:
-      "Jack African Fashion supplies plus size women's clothing for African boutiques, wholesalers and importers. Fit varies by design, so each inquiry should confirm the available measurements, size ratio and current batch before ordering.",
+      'Sourcing wholesale plus size dresses from China requires verified measurements rather than generic size labels. Jack Fashion produces factory-direct plus size dresses in Guangzhou tailored for fuller curves, including XL to 5XL options. Every design features flat-laid measurements across bust, waist, hips, and length, alongside clear notes on fabric stretch, ease allowance, lining, and sleeve comfort. Use our catalog to shortlist key styles, review physical batch measurements, and confirm your size-color assortment directly on WhatsApp.',
     suitableBuyers: [
-      'Plus-size boutiques',
-      'General fashion wholesalers',
-      'Importers serving inclusive-size customers',
-      'Online retailers'
+      'Plus-size and curve boutiques seeking reliable fit grading',
+      'Womenswear wholesalers and African boutique importers',
+      'Inclusive-size retail store chains and department buyers',
+      'Online curve fashion sellers requiring accurate sizing charts'
     ],
     productDetails: [
-      'Loose dresses, wrap dresses, pleated styles and selected sets',
-      'Common extended-size options shown on each product page',
-      'Measurements and fit direction confirmed before the order',
-      'Custom grading or size requests reviewed for eligible production quantities'
+      'Flat-laid measurements: finished bust, waist, hip, and length in cm for XL to 5XL',
+      'Silhouette cut: A-line, wrap-front, pleated, empire waist, peplum and kaftan styles',
+      'Stretch level, ease allowance, lining opacity, and movement comfort',
+      'Confirmed size runs and permitted color-size ratios per order batch',
+      'Sample review and custom size-grading options for boutique collections'
     ],
     catalogCategory: 'Plus Size Dresses'
   },
@@ -236,25 +287,24 @@ export const WHOLESALE_PAGES: WholesalePageContent[] = [
     slug: 'ready-stock',
     title: "Ready Stock Women's Clothing Wholesale Guangzhou",
     description:
-      "Browse ready-stock women's clothing wholesale from Jack African Fashion in Guangzhou for African boutiques and importers. Confirm live colors, sizes, MOQ and packing on WhatsApp.",
-    heading: "Ready Stock Women's Clothing for African Wholesale Buyers",
+      'Factory-direct ready-stock womenswear from Jack Fashion in Guangzhou. Confirm style codes, size-color quantities, wholesale prices and cargo handover.',
+    heading: 'Factory-direct ready-stock womenswear from Guangzhou',
     introduction:
-      "Jack African Fashion offers ready-stock women's fashion from Guangzhou for buyers who need a faster route to restocking. Website listings are a showroom; live quantity, size mix, colors and MOQ are reconfirmed before payment because batches move quickly.",
+      'We offer a broad ready-stock selection alongside custom production at our own factory. Stock changes between batches, so select your styles from the catalog and send the codes to our team. Confirm the actual garments, size-color quantities, factory-direct quotation and order terms before arranging payment.',
     suitableBuyers: [
-      'Boutiques testing new styles',
-      'Wholesalers planning quick replenishment',
-      'Importers consolidating mixed products',
-      'Online sellers following new arrivals'
+      'Boutiques planning a restock',
+      'Clothing wholesalers',
+      'Importers consolidating orders',
+      'Online retailers'
     ],
     productDetails: [
-      'Current dresses, two piece sets, jumpsuits and plus-size options',
-      'Real stock photos or video available during inquiry',
-      'Mixed colors and sizes where the available batch permits',
-      'Quality checking, export packing and shipping coordination from Guangzhou'
+      'Real stock photos or video for the selected styles',
+      'Available colors, sizes and quantity breakdown',
+      'MOQ for the selected style, confirmed with your quote',
+      'Packing, cargo handover and any shipping charges'
     ]
   }
 ];
-
 export function getWholesalePage(slug: string) {
   return WHOLESALE_PAGES.find((page) => page.slug === slug);
 }
@@ -263,156 +313,85 @@ export interface FaqItem {
   question: string;
   answer: string;
 }
-
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    question: "Where can I find women's clothing wholesalers in Guangzhou?",
+    question: 'What does Jack Fashion supply?',
     answer:
-      "Jack African Fashion is a Guangzhou-based women's clothing wholesale supplier at Yulong Fashion Plaza. We serve African boutiques, wholesalers and importers with ready-stock selection, custom production coordination, quality checking and export packing."
+      'Jack Fashion is a Guangzhou women’s clothing manufacturer and wholesaler with its own factory. We supply dresses, matching sets and plus-size styles, with ready-stock options and custom production for international buyers.'
   },
   {
-    question: 'Who supplies African fashion clothing from China?',
+    question: 'Do you have your own factory and accept custom clothing orders?',
     answer:
-      "Jack African Fashion supplies women's clothing from Guangzhou, China, for African market buyers. Our B2B range includes dresses, two piece sets, plus-size fashion, suits, jumpsuits and ready-stock styles."
+      'Yes. Jack Fashion has its own factory and offers factory-direct wholesale and custom production. Send a reference image or sample details, fabric requirements, measurements and quantity. Our team confirms feasibility, sampling, MOQ, quotation and the production schedule for your design.'
   },
   {
-    question: 'Is Jack African Fashion a manufacturer or a wholesale supplier?',
+    question: 'Who handles WhatsApp enquiries?',
     answer:
-      "Jack African Fashion is a Guangzhou women's clothing wholesale supplier and factory-direct manufacturer. We supply ready-stock styles and operate our own factory for confirmed custom or repeat production, followed by quality checking and export packing."
+      'Jack is available on +86 189 2625 7367 and Amber on +86 186 6505 5946. Website WhatsApp buttons connect you with our sales team. Send your product codes, quantity and destination for a factory-direct quote.'
   },
   {
-    question: 'Where is Jack African Fashion located?',
+    question: 'Where is Jack Fashion based?',
     answer:
-      'Jack African Fashion is based at Yulong Fashion Plaza in Guangzhou, China. This wholesale location is close to garment showrooms, production resources, packing services and export logistics used by international buyers.'
+      'We operate two Guangzhou wholesale showrooms: Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, and Shop 0081 in LIUHUA Market. Arrange your visit on WhatsApp and confirm which showroom, appointment time and selected styles you want to see.'
   },
   {
-    question: 'Who does Jack African Fashion serve?',
+    question: 'Can buyers outside Africa enquire?',
     answer:
-      'We serve B2B buyers, including African boutique owners, clothing wholesalers, importers, distributors, fashion retailers and online sellers. Please send your country, buyer type and target quantity when requesting a quote.'
+      'Yes. We welcome wholesale enquiries from the Middle East, Europe, North America, Latin America and Southeast Asia, alongside Africa. Share your selling market, selected styles and destination so suitability and delivery arrangements can be reviewed.'
   },
   {
-    question: 'Which African countries do you supply?',
+    question: 'How do I get a wholesale quotation?',
     answer:
-      'Jack African Fashion works with buyers across African markets, including Nigeria, Ghana, Kenya, Tanzania and South Africa. Shipping availability, freight cost and import requirements are confirmed for each destination and order.'
+      'Send the style codes or product links, quantity per style, required sizes and colors, and destination city on WhatsApp. We confirm stock and prepare order-specific product, packing, payment and delivery terms.'
   },
   {
-    question: 'Do you supply clothing boutiques in Nigeria?',
+    question: 'What is Jack Fashion’s minimum order quantity (MOQ)?',
     answer:
-      "Yes. Nigerian boutiques, wholesalers and importers can source women's dresses, two piece sets, plus-size fashion and ready stock through Jack African Fashion in Guangzhou. Current stock and shipping details are confirmed by inquiry."
+      'Confirm the MOQ for each selected style on WhatsApp before ordering. Jack Fashion does not publish one fixed minimum for all catalog styles or custom orders. Send your style codes, quantity and size-color mix for a factory-direct quotation. Ready-stock quantities depend on the actual batch; custom-production minimums depend on the design, fabric and sampling requirements. The accepted quantity and price are confirmed in writing for your order.'
   },
   {
-    question: 'Do you supply fashion retailers in Ghana?',
+    question: 'Do you offer low MOQ wholesale clothing?',
     answer:
-      "Yes. Jack African Fashion supports Ghanaian boutiques and importers sourcing women's clothing wholesale from Guangzhou. We can help confirm styles, available sizes and colors, packing details and transfer to an agreed cargo agent."
+      'Jack Fashion does not promise a universally low MOQ. Check the product page quantity and ask whether a smaller test order is available for the specific style. The final accepted quantity and price must be confirmed in writing.'
   },
   {
-    question: 'Can Kenyan boutiques order from Guangzhou?',
+    question: 'How do I confirm current stock?',
     answer:
-      'Yes. Kenyan B2B fashion buyers can order from Jack African Fashion in Guangzhou. Share your preferred products, sizes, quantity and delivery city so we can confirm stock, MOQ, packing and suitable shipping coordination.'
+      'Send the style codes, sizes, colors and quantities you need on WhatsApp. Our team will confirm current availability, garment measurements and the quotation for your order.'
   },
   {
-    question: 'Do you ship wholesale clothing to Tanzania?',
+    question: 'Can I mix colors and sizes?',
     answer:
-      'We can prepare and pack wholesale clothing in Guangzhou for transfer to a buyer-nominated forwarder or an agreed Tanzania shipping route. Final freight cost, transit estimate and destination handling depend on the confirmed order.'
+      'Ask for the available quantities by color and size for each selected style. Mixed ratios depend on the current batch or production plan. Agree the complete order breakdown before confirming the quote.'
   },
   {
-    question: 'Can South African retailers buy from Jack African Fashion?',
+    question: 'Do XL to 5XL labels match US or EU sizes?',
     answer:
-      "Yes. South African boutiques, importers and online retailers can inquire about Jack African Fashion's Guangzhou women's clothing wholesale range, including contemporary dresses, sets, plus sizes and custom production."
+      'Do not assume that a size label matches a US, EU or other local standard. Ask for finished bust, waist, hip and length measurements in centimetres, the measurement method and any stretch or grading details for your selected design.'
   },
   {
-    question: 'What products do you supply for African boutiques?',
+    question: 'Can I request samples or real stock video?',
     answer:
-      "Our main wholesale products are African women's dresses, two piece sets, women's suits, blazer pants sets, pleated dresses, knit dresses, plus-size clothing, jumpsuits and ready-stock fashion sourced or produced in Guangzhou."
+      'Ask Jack about sample availability and cost for your selected style, plus current garment photos or video. Confirm sample details, freight and the relationship to the intended production batch before paying.'
   },
   {
-    question: 'Do you wholesale African dresses from Guangzhou?',
+    question: 'Can I enquire about OEM/ODM or private-label clothing?',
     answer:
-      "Yes. Jack African Fashion supplies women's dresses wholesale from Guangzhou for African market buyers. Available directions include maxi, midi, pleated, knit, occasion and plus-size dresses, subject to current stock or production confirmation."
+      'OEM/ODM and private-label requirements are reviewed case by case. Send reference pictures, material expectations, measurements, labels and quantity so feasibility, sampling, MOQ, costs and the production timeline can be confirmed before a custom order proceeds.'
   },
   {
-    question: 'Do you wholesale two piece sets for women?',
+    question: 'Which payment methods and currencies can I use?',
     answer:
-      "Yes. Our Guangzhou wholesale range includes women's two piece sets with matching tops and trousers or skirts. Buyers should confirm the current fabric, colors, size ratio, MOQ and stock status for the selected style."
+      'Payment method, currency, deposit, balance and beneficiary details are confirmed with your written order. The website is a wholesale enquiry catalog and does not offer an online checkout. Verify payment instructions directly with Jack on the official WhatsApp contact.'
   },
   {
-    question: "Do you offer plus size women's clothing wholesale?",
+    question: 'Can you hand goods to my Guangzhou cargo agent?',
     answer:
-      "Yes. Jack African Fashion offers selected plus-size women's dresses and sets for African boutiques and wholesalers. Sizes and measurements differ by design, so we confirm each style's available range before ordering."
+      'Share your nominated agent’s receiving details and packing instructions. The quote should define the handover point, carton information, freight charges, delivery estimates and which party handles insurance and import clearance.'
   },
   {
-    question: 'Do you have ready-stock women’s clothing?',
+    question: 'What happens if an order has a problem?',
     answer:
-      "Yes. Ready-stock women's clothing is part of our Guangzhou wholesale service. Because batches can change quickly, Jack African Fashion reconfirms live quantity, colors, sizes, MOQ and wholesale pricing before payment."
-  },
-  {
-    question: 'What is the minimum order quantity for wholesale clothing?',
-    answer:
-      'For ready-stock styles, our wholesale minimum order quantity starts from 100 pieces per style across 68 featured showroom designs. For custom factory production, MOQ is evaluated per design and fabric.'
-  },
-  {
-    question: 'Do you offer low MOQ wholesale clothing for African boutiques?',
-    answer:
-      'Jack African Fashion does not promise a universally low MOQ. However, ready-stock wholesale currently starts from 100 pieces per style across 68 showroom styles, allowing African boutiques to place low-MOQ test orders. Custom production MOQ depends on fabric and style; use the listed product page quantity as the starting point and ask whether a smaller test order is available for that specific style.'
-  },
-  {
-    question: 'Can I mix colors and sizes in one wholesale order?',
-    answer:
-      'Mixed colors and sizes may be possible when the ready-stock batch or production plan allows it. Jack African Fashion confirms the available ratio for each style before quotation so buyers receive accurate order information.'
-  },
-  {
-    question: 'Can I combine different styles in one shipment?',
-    answer:
-      'Different styles can usually be consolidated after each product meets its confirmed MOQ and availability. We then count, check and pack the Guangzhou wholesale order for transfer to the agreed shipping agent.'
-  },
-  {
-    question: 'Can you make clothing from my reference pictures?',
-    answer:
-      'Yes. For custom production, send clear reference pictures, fabric direction, measurements, sizes, colors, label requirements and quantity. We review feasibility, MOQ, sample policy, price and lead time before production.'
-  },
-  {
-    question: 'Do you support private labels or custom branding?',
-    answer:
-      'Private-label or branding requests can be reviewed for eligible custom-production quantities. Availability depends on the product and factory requirements, so labels, packaging, MOQ, cost and lead time must be confirmed in writing.'
-  },
-  {
-    question: 'How long does custom production take?',
-    answer:
-      'Production time depends on the style, fabric availability, sampling, quantity and factory schedule. Jack African Fashion provides an order-specific estimate after the design details and deposit terms are confirmed.'
-  },
-  {
-    question: 'How do I check current stock and wholesale prices?',
-    answer:
-      'Open a product page and send the style through WhatsApp. Jack African Fashion will confirm the current Guangzhou stock batch, available sizes and colors, MOQ, real photos or video and the applicable wholesale quotation.'
-  },
-  {
-    question: 'Can you send real product photos or videos?',
-    answer:
-      'For serious wholesale inquiries, we can share current product or stock-batch photos and video when available. This helps buyers verify the selected style, color and visible details before confirming the order.'
-  },
-  {
-    question: 'How do you check product quality?',
-    answer:
-      'Our Guangzhou order flow includes checking quantity, visible fabric or stitching issues, color and size mix, finishing and packing against the confirmed order. Any special inspection standard must be agreed before production or packing.'
-  },
-  {
-    question: 'How are wholesale orders packed?',
-    answer:
-      'Packing is arranged according to product type, quantity and shipping method. Jack African Fashion can sort and count goods, prepare export cartons and coordinate any buyer-specific labels or packing requests agreed before dispatch.'
-  },
-  {
-    question: 'Do you provide international shipping support?',
-    answer:
-      'Yes. We can coordinate transfer to a buyer-appointed freight forwarder or discuss available shipping partners. Freight price, route, transit estimate, insurance, duties and destination handling are confirmed separately for each order.'
-  },
-  {
-    question: 'How do I order from Jack African Fashion?',
-    answer:
-      'Choose products from the catalog, send the style links or inquiry list, and tell us your country, quantity, size and color needs. We confirm stock or production, MOQ, quotation, packing and shipping steps before payment.'
-  },
-  {
-    question: 'Why choose a Guangzhou supplier for the African market?',
-    answer:
-      'A Guangzhou base gives buyers access to a dense garment supply, production and export ecosystem. Jack African Fashion adds African-market product focus, B2B communication, stock checks, quality coordination and export packing.'
+      'Keep the written order, packing list and delivery evidence. Contact Jack on the official WhatsApp number with the style code, quantity and clear photos or video. Inspection, discrepancy handling and any return or refund terms should be agreed before payment.'
   }
 ];

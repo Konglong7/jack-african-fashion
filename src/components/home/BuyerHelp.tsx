@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
 import styles from './homepage.module.css';
 
 const HELP_LINKS = [
@@ -10,16 +11,11 @@ const HELP_LINKS = [
   {
     title: 'Custom Orders',
     href: '/custom-orders',
-    body: 'See what to prepare for a factory quotation and production plan.'
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-    body: 'Get in touch with our Guangzhou team or plan a showroom visit.'
+    body: 'See what to prepare for a custom-order quotation and production discussion.'
   }
 ];
 
-export function BuyerHelp() {
+export function BuyerHelp({ siteContent }: { siteContent: SiteContent }) {
   return (
     <section
       className={`${styles.section} ${styles.whiteSection}`}
@@ -29,6 +25,10 @@ export function BuyerHelp() {
         <h2 id='home-help-title' className={`font-display ${styles.sectionHeading}`}>
           Help with your wholesale order
         </h2>
+        <p className={`${styles.sectionDescription} mb-6`}>
+          Check the FAQ for MOQ, stock and payment questions, or prepare a custom-production
+          enquiry. For a quotation on a selected style, contact our team directly on WhatsApp.
+        </p>
         <div className={styles.helpGrid}>
           {HELP_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className={styles.helpLink}>
@@ -36,6 +36,17 @@ export function BuyerHelp() {
               <p>{link.body}</p>
             </Link>
           ))}
+          <a
+            href={siteWhatsAppLink(siteContent)}
+            target='_blank'
+            rel='noopener noreferrer'
+            className={styles.helpLink}
+          >
+            <h3>Chat on WhatsApp</h3>
+            <p>
+              Message our Guangzhou team directly about any question, order or visit appointment.
+            </p>
+          </a>
         </div>
       </div>
     </section>

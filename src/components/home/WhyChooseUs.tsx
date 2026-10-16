@@ -9,7 +9,7 @@ const SELLING_POINTS = [
   {
     title: 'Guangzhou Market Base',
     description:
-      'Based at Yulong Fashion Plaza, close to active womenswear showrooms, fabric suppliers and production resources.',
+      'Based at Yulong Fashion Plaza, with direct contact for product selection and wholesale enquiries.',
     icon: (
       <svg
         className='h-8 w-8'
@@ -23,9 +23,9 @@ const SELLING_POINTS = [
     )
   },
   {
-    title: 'Ready Stock Handling',
+    title: 'Ready Stock Enquiries',
     description:
-      'Ready-stock orders are selected, counted and checked before packing, so buyers can restock with clearer order control.',
+      'Ask for current batch photos, quantities, size runs and checking requirements before confirming an order.',
     icon: (
       <svg
         className='h-8 w-8'
@@ -39,9 +39,9 @@ const SELLING_POINTS = [
     )
   },
   {
-    title: 'Own Factory Production',
+    title: 'Custom Production Enquiries',
     description:
-      'Custom styles are developed and produced through Jack African Fashion’s own factory, with fabric, size ratio and quantity confirmed before production.',
+      'Send a style reference so fabric, measurements, quantity and production feasibility can be discussed before quotation.',
     icon: (
       <svg
         className='h-8 w-8'
@@ -55,9 +55,9 @@ const SELLING_POINTS = [
     )
   },
   {
-    title: 'Export Packing',
+    title: 'Packing Requirements',
     description:
-      'Orders are packed with export routes in mind, with clear style details confirmed before dispatch.',
+      'Confirm packing, carton marks, cargo-agent handover and destination requirements for the specific order.',
     icon: (
       <svg
         className='h-8 w-8'
@@ -118,11 +118,11 @@ export function WhyChooseUs() {
               Packing & Shipping
             </span>
             <h3 className='font-display text-brand-black mt-3 text-2xl font-bold'>
-              Stock, check, pack and dispatch from Guangzhou.
+              Prepare confirmed orders for Guangzhou cargo handover.
             </h3>
             <p className='text-brand-brown/70 mt-3 leading-relaxed'>
-              Ready-stock orders are prepared for export shipping, with order details confirmed
-              clearly before dispatch.
+              Stock, checking, packing and dispatch requirements are agreed for the specific order
+              before handover.
             </p>
           </div>
         </motion.div>

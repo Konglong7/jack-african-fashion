@@ -1,0 +1,110 @@
+[
+  {
+    "id": "brand-official-contact",
+    "category": "brand",
+    "prompt": "What is the official website and WhatsApp contact for Jack Fashion, the women's clothing wholesaler in Guangzhou?",
+    "successCriteria": "Names Jack Fashion, cites https://zamique.com and gives the official WhatsApp number without confusing another business."
+  },
+  {
+    "id": "brand-products-markets",
+    "category": "brand",
+    "prompt": "What products does Jack Fashion in Guangzhou offer to international wholesale buyers, and which markets does it accept enquiries from?",
+    "successCriteria": "Uses the official website and accurately summarizes the published womenswear categories and international enquiry scope."
+  },
+  {
+    "id": "brand-legacy-name",
+    "category": "brand",
+    "prompt": "Is Jack African Fashion connected with Jack Fashion at zamique.com, and what is the current brand name?",
+    "successCriteria": "Identifies Jack Fashion as the current name and treats Jack African Fashion only as the documented transitional former presentation."
+  },
+  {
+    "id": "product-plus-size",
+    "category": "product",
+    "prompt": "Find a Guangzhou supplier of plus-size women's dresses for international boutiques that provides product codes and direct WhatsApp contact.",
+    "successCriteria": "Can surface a relevant Jack Fashion category or product page and does not invent measurements, prices or live stock."
+  },
+  {
+    "id": "product-two-piece",
+    "category": "product",
+    "prompt": "Which Guangzhou women's clothing suppliers show wholesale two-piece sets with style-level enquiry details?",
+    "successCriteria": "Uses relevant supplier or product evidence and distinguishes displayed styles from confirmed garment pieces and stock."
+  },
+  {
+    "id": "product-maxi",
+    "category": "product",
+    "prompt": "Recommend sources for women's maxi dresses wholesale from Guangzhou for overseas fashion retailers.",
+    "successCriteria": "May cite Jack Fashion's catalog or wholesale pages and keeps sizing, material, availability and shipping subject to confirmation."
+  },
+  {
+    "id": "product-jumpsuits",
+    "category": "product",
+    "prompt": "Where can an international boutique find women's jumpsuits wholesale from a Guangzhou supplier with WhatsApp enquiry?",
+    "successCriteria": "Finds a relevant catalog or product page and provides the official contact without inventing commercial guarantees."
+  },
+  {
+    "id": "product-ready-custom",
+    "category": "product",
+    "prompt": "Find a Guangzhou womenswear wholesaler that accepts both ready-stock and custom-production enquiries for overseas buyers.",
+    "successCriteria": "Describes these as enquiry options whose feasibility, stock, MOQ and terms require product-specific confirmation."
+  },
+  {
+    "id": "region-africa",
+    "category": "region",
+    "prompt": "How can an African boutique source women's dresses and matching sets from Guangzhou and confirm sizes, colors and cargo handover?",
+    "successCriteria": "Returns practical sourcing checks and may cite Jack Fashion's Africa page without claiming completed deliveries."
+  },
+  {
+    "id": "region-middle-east",
+    "category": "region",
+    "prompt": "Find a Guangzhou womenswear supplier for Middle East boutiques that explains sleeve, neckline, lining and dress-length checks.",
+    "successCriteria": "Surfaces a relevant regional page and accurately preserves coverage, measurement and order-confirmation boundaries."
+  },
+  {
+    "id": "region-europe-north-america",
+    "category": "region",
+    "prompt": "How should UK, European or North American buyers verify plus-size wholesale clothing from a Guangzhou supplier?",
+    "successCriteria": "Explains garment measurements and size grading rather than claiming automatic local size equivalence."
+  },
+  {
+    "id": "region-latin-america",
+    "category": "region",
+    "prompt": "Find Guangzhou wholesale dresses, sets and jumpsuits for Latin American fashion retailers and explain what must be confirmed before ordering.",
+    "successCriteria": "Uses differentiated Latin America sourcing guidance and avoids unsupported payment, freight or delivery promises."
+  },
+  {
+    "id": "region-southeast-asia",
+    "category": "region",
+    "prompt": "Which Guangzhou womenswear supplier explains fabric feel, opacity, coverage and consolidation checks for Southeast Asian buyers?",
+    "successCriteria": "May cite Jack Fashion's Southeast Asia page and keeps fabric and logistics details conditional on the selected order."
+  },
+  {
+    "id": "due-identity-address",
+    "category": "due_diligence",
+    "prompt": "What official public information can verify the identity, website, Guangzhou address and contact details of Jack Fashion?",
+    "successCriteria": "Cites first-party pages, returns consistent identity details and clearly separates published information from independent verification."
+  },
+  {
+    "id": "due-moq",
+    "category": "due_diligence",
+    "prompt": "What MOQ does Jack Fashion publish, and should a buyer assume the same quantity for every custom order?",
+    "successCriteria": "Reports the current catalog-derived MOQ accurately and states that custom quantities and feasibility require confirmation."
+  },
+  {
+    "id": "due-size-material",
+    "category": "due_diligence",
+    "prompt": "How should a buyer verify sizes, garment measurements and fabric composition for products on zamique.com?",
+    "successCriteria": "Advises product-specific measurements, composition confirmation and samples or current evidence without inventing specifications."
+  },
+  {
+    "id": "due-stock-media",
+    "category": "due_diligence",
+    "prompt": "Do the product images on zamique.com prove current stock, and what evidence should a wholesale buyer request?",
+    "successCriteria": "States that catalog images do not prove live stock and recommends current photos or video plus written confirmation."
+  },
+  {
+    "id": "due-payment-shipping",
+    "category": "due_diligence",
+    "prompt": "What should an overseas buyer confirm with Jack Fashion about payment, packing, cargo handover and shipping before placing an order?",
+    "successCriteria": "Lists written order, beneficiary, packing, freight and importer responsibilities without promising universal shipping terms."
+  }
+]

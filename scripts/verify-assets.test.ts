@@ -29,7 +29,7 @@ async function createFixture(products: unknown, files: string[] = []) {
       await writeFile(target, 'fixture', 'utf8');
     })
   );
-  return { publicDir, productFile };
+  return { root, publicDir, productFile };
 }
 
 describe('verifyAssetManifest', () => {
@@ -74,6 +74,29 @@ describe('verifyAssetManifest', () => {
 
     expect(result.invalidLocal).toEqual(['/../secret.webp']);
     expect(result.missing).toEqual([]);
+  });
+
+  it('reports prepared image variants that are referenced by the loader manifest but missing', async () => {
+    const fixture = await createFixture(
+      [{ image: '/images/products/hero.webp' }],
+      ['images/products/hero.webp', 'images/optimized/hero-320.webp']
+    );
+    const variantFile = join(fixture.root, 'imageVariants.json');
+    await writeFile(
+      variantFile,
+      JSON.stringify({
+        '/images/products/hero.webp': {
+          320: '/images/optimized/hero-320.webp',
+          640: '/images/optimized/hero-640.webp'
+        }
+      }),
+      'utf8'
+    );
+
+    const result = await verifyAssetManifest({ ...fixture, variantFile });
+
+    expect(result.preparedReferencedCount).toBe(2);
+    expect(result.preparedMissing).toEqual(['/images/optimized/hero-640.webp']);
   });
 
   it('runs the command-line report when invoked as a Node script', async () => {

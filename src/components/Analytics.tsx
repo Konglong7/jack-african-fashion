@@ -35,21 +35,37 @@ export function Analytics() {
 
   useEffect(() => {
     function trackWhatsAppClick(event: MouseEvent) {
-      const link = (event.target as Element | null)?.closest('a[href^="https://wa.me/"]');
+      const link = (event.target as Element | null)?.closest(
+        'a[href^="https://wa.me/"], a[href="/api/whatsapp"], a[href^="/api/whatsapp?"]'
+      );
       if (!link) return;
 
-      sendLocalEvent('whatsapp_click', window.location.pathname);
+      const context = {
+        productId: link.getAttribute('data-product-id') || '',
+        ctaLocation: link.getAttribute('data-cta-location') || 'page-contact',
+        marketSlug:
+          link.getAttribute('data-market-slug') ||
+          window.location.pathname.match(/^\/markets\/([^/]+)/)?.[1] ||
+          '',
+        guideSlug:
+          link.getAttribute('data-guide-slug') ||
+          window.location.pathname.match(/^\/guides\/([^/]+)/)?.[1] ||
+          ''
+      };
+      sendLocalEvent('whatsapp_click', window.location.pathname, context);
 
       if (!measurementId || !window.gtag) return;
       window.gtag('event', 'whatsapp_click', {
         link_text: link.textContent?.trim() || 'WhatsApp',
         link_url: (link as HTMLAnchorElement).href,
-        page_path: window.location.pathname
+        page_path: window.location.pathname,
+        ...context
       });
     }
 
-    document.addEventListener('click', trackWhatsAppClick);
-    return () => document.removeEventListener('click', trackWhatsAppClick);
+    // Modals stop bubbling to protect their backdrop; capture still records the contact click.
+    document.addEventListener('click', trackWhatsAppClick, true);
+    return () => document.removeEventListener('click', trackWhatsAppClick, true);
   }, []);
 
   if (!measurementId) return null;
@@ -72,7 +88,11 @@ export function Analytics() {
   );
 }
 
-function sendLocalEvent(event: 'page_view' | 'whatsapp_click', path: string) {
+function sendLocalEvent(
+  event: 'page_view' | 'whatsapp_click',
+  path: string,
+  context: Record<string, string> = {}
+) {
   let stored: string | null = null;
   try {
     stored = sessionStorage.getItem(attributionKey);
@@ -87,6 +107,7 @@ function sendLocalEvent(event: 'page_view' | 'whatsapp_click', path: string) {
   const payload = JSON.stringify({
     event,
     path,
+    ...context,
     source: attribution.source,
     campaign: attribution.campaign,
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -95,8 +116,9 @@ function sendLocalEvent(event: 'page_view' | 'whatsapp_click', path: string) {
   });
 
   if (navigator.sendBeacon) {
-    navigator.sendBeacon('/api/analytics', new Blob([payload], { type: 'application/json' }));
-    return;
+    if (navigator.sendBeacon('/api/analytics', new Blob([payload], { type: 'application/json' }))) {
+      return;
+    }
   }
 
   fetch('/api/analytics', {

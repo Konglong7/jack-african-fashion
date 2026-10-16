@@ -8,7 +8,15 @@ import { ProductGalleryClient } from '@/components/ProductGalleryClient';
 import ProductJsonLd from './jsonLd';
 import { ProductInfo } from './ProductInfo';
 import { ProductDetailNav, ProductDetailSections } from './ProductDetailSections';
-import { getSiteOrigin, absoluteSiteUrl } from '@/lib/siteUrl';
+import { getSiteOrigin, absoluteSiteUrl, toAbsoluteImageUrl } from '@/lib/siteUrl';
+import { pageMetadata } from '@/lib/pageMetadata';
+import { relatedProducts } from '@/lib/productCollections';
+import {
+  buildPublicProductKeywords,
+  buildProductMetaDescription,
+  getPublicProductFacts,
+  toPublicProduct
+} from '@/lib/productPublicFacts';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -28,33 +36,26 @@ export async function generateMetadata({ params }: PageProps) {
   if (!product) notFound();
 
   const baseUrl = getSiteOrigin();
+  const publicFacts = getPublicProductFacts(product);
+  const description = buildProductMetaDescription(publicFacts.description);
 
   return {
-    title: `${product.name} Wholesale`,
-    description: product.description.slice(0, 160),
-    keywords: [
-      product.name,
-      product.category,
-      ...product.tags,
-      'wholesale',
-      'African fashion',
-      'Guangzhou'
-    ].join(', '),
+    ...pageMetadata(`/products/${product.slug}`, `${product.name} Wholesale`, description),
+    keywords: buildPublicProductKeywords(product),
     openGraph: {
-      title: `${product.name} Wholesale | Jack African Fashion Guangzhou`,
-      description: product.description.slice(0, 160),
-      images: product.images && product.images.length > 0 ? product.images : [product.image],
+      title: `${product.name} Wholesale | Jack Fashion Guangzhou`,
+      description,
+      images: (product.images && product.images.length > 0 ? product.images : [product.image]).map(
+        (image) => toAbsoluteImageUrl(image)
+      ),
       url: `${baseUrl}/products/${product.slug}`,
-      siteName: 'Jack African Fashion'
+      siteName: 'Jack Fashion'
     },
     twitter: {
       card: 'summary_large_image',
       title: product.name,
-      description: product.description.slice(0, 160),
-      images: [product.image]
-    },
-    alternates: {
-      canonical: `${baseUrl}/products/${product.slug}`
+      description,
+      images: [toAbsoluteImageUrl(product.image)]
     }
   };
 }
@@ -68,23 +69,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
   }
 
   const [all, siteContent] = await Promise.all([getProducts(), getSiteContent()]);
-  const related = all
-    .filter((p) => p.id !== product.id)
-    .map((p) => ({
-      product: p,
-      score:
-        (p.category === product.category ? 4 : 0) +
-        p.tags.filter((tag) => product.tags.includes(tag)).length
-    }))
-    .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .map((item) => item.product)
-    .slice(0, 4);
+  const publicProduct = toPublicProduct(product);
+  const related = relatedProducts(product, all).map((item) => toPublicProduct(item));
 
   const productUrl = absoluteSiteUrl(`/products/${product.slug}`);
-  const galleryWhatsAppMessage = product.whatsappMessage.includes('http')
-    ? product.whatsappMessage
-    : `${product.whatsappMessage} (${productUrl})`;
+  const galleryWhatsAppMessage = `${publicProduct.whatsappMessage} (${productUrl})`;
   const whatsappLink = siteWhatsAppLink(siteContent, galleryWhatsAppMessage);
 
   return (
@@ -95,7 +84,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
       {/* Breadcrumb */}
       <div className='bg-brand-cream border-brand-sand/60 border-b'>
         <div className='mx-auto max-w-7xl px-4 py-3'>
-          <nav aria-label='Breadcrumb' className='text-brand-brown/60 flex min-w-0 items-center gap-2 text-xs sm:text-sm'>
+          <nav
+            aria-label='Breadcrumb'
+            className='text-brand-brown/60 flex min-w-0 items-center gap-2 text-xs sm:text-sm'
+          >
             <Link href='/' className='hover:text-brand-orange transition-colors'>
               Home
             </Link>
@@ -124,21 +116,24 @@ export default async function ProductDetailPage({ params }: PageProps) {
             <div className='lg:sticky lg:top-24 lg:self-start'>
               <ProductGalleryClient
                 images={
-                  product.images && product.images.length > 0 ? product.images : [product.image]
+                  publicProduct.images && publicProduct.images.length > 0
+                    ? publicProduct.images
+                    : [publicProduct.image]
                 }
-                productName={product.name}
+                productName={publicProduct.name}
+                productId={publicProduct.id}
                 whatsappLink={whatsappLink}
               />
             </div>
 
             {/* Right: Info */}
-            <ProductInfo product={product} siteContent={siteContent} />
+            <ProductInfo product={publicProduct} siteContent={siteContent} />
           </div>
         </div>
       </section>
 
       <ProductDetailNav />
-      <ProductDetailSections product={product} />
+      <ProductDetailSections product={publicProduct} />
 
       {/* Related products */}
       {related.length > 0 && (
@@ -150,6 +145,11 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 <h2 className='font-display text-brand-black text-2xl font-bold sm:text-3xl'>
                   More styles for this buyer profile
                 </h2>
+                <p className='text-brand-brown/70 mt-3 max-w-2xl text-sm leading-6'>
+                  Compare related styles by finished measurements, fabric and the size-color mix
+                  your customers need. Ask for MOQ and a separate wholesale quotation for each
+                  product you select.
+                </p>
               </div>
               <Link
                 href={`/catalog?category=${encodeURIComponent(product.category)}`}
@@ -158,7 +158,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 View category
               </Link>
             </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-6 lg:gap-8'>
+            <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4'>
               {related.map((p) => (
                 <ProductCard key={p.id} product={p} siteContent={siteContent} />
               ))}

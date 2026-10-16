@@ -31,11 +31,3 @@ try {
     Write-Host "❌ 连接失败: $($_.Exception.Message)" -ForegroundColor Red
     Write-Host "   检查密码是否正确、服务器是否在线" -ForegroundColor Yellow
 }
-    Write-Host "验证连接: " -ForegroundColor Green
-    Write-Host ($r.Output -join "`n")
-    Remove-SSHSession -SessionId $s.SessionId | Out-Null
-    Write-Host "✅ 连接正常，jack-fashion 进程在线" -ForegroundColor Green
-} catch {
-    Write-Host "❌ 连接失败: $($_.Exception.Message)" -ForegroundColor Red
-    Write-Host "   检查密码是否正确、服务器是否在线" -ForegroundColor Yellow
-}

@@ -1,14 +1,20 @@
-import type { Product, ProductDetailSection } from '@/lib/db';
+import type { ProductDetailSection } from '@/lib/db';
 import { ProductImage } from '@/components/ProductImage';
 import { CheckIcon } from '@/components/Icons';
+import { getPublicProductFaq } from '@/lib/productFaq';
+import {
+  getPublicProductFacts,
+  type PublicProduct,
+  type PublicProductFacts
+} from '@/lib/productPublicFacts';
 
 interface Props {
-  product: Product;
+  product: PublicProduct;
 }
 
 const NAV_ITEMS = [
   { href: '#overview', label: 'Hot Style' },
-  { href: '#stock-check', label: 'Ready Stock' },
+  { href: '#stock-check', label: 'Stock Check' },
   { href: '#faq', label: 'FAQ' },
   { href: '#similar-styles', label: 'Similar Styles' }
 ];
@@ -34,12 +40,21 @@ export function ProductDetailNav() {
 }
 
 export function ProductDetailSections({ product }: Props) {
+  const facts = getPublicProductFacts(product);
   const detail = product.detailPage;
-  const specs = detail?.specs && detail.specs.length > 0 ? detail.specs : getFallbackSpecs(product);
-  const detailSections =
-    detail?.detailSections?.filter((section) => section.enabled !== false) || [];
-  const sizeChart = detail?.sizeChart?.enabled === false ? undefined : detail?.sizeChart;
-  const faq = detail?.faq && detail.faq.length > 0 ? detail.faq : getFallbackFaq(product);
+  const specs =
+    facts.allowDetailedContent && detail?.specs && detail.specs.length > 0
+      ? detail.specs
+      : getFallbackSpecs(facts);
+  const detailSections = facts.allowDetailedContent
+    ? detail?.detailSections?.filter((section) => section.enabled !== false) || []
+    : [];
+  const sizeChart = facts.allowDetailedContent
+    ? detail?.sizeChart?.enabled === false
+      ? undefined
+      : detail?.sizeChart
+    : undefined;
+  const faq = getPublicProductFaq(product, facts.allowDetailedContent);
 
   return (
     <section className='bg-brand-cream/70 py-10 sm:py-14'>
@@ -48,16 +63,16 @@ export function ProductDetailSections({ product }: Props) {
           <div className='mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between'>
             <div>
               <p className='text-brand-orange text-xs font-bold uppercase'>
-                Professional ready-stock supply
+                Product facts to confirm
               </p>
               <h2 className='font-display text-brand-black text-2xl font-bold sm:text-3xl'>
-                A showroom page built to start serious buyer conversations
+                What are the MOQ, stock and wholesale price?
               </h2>
             </div>
             <p className='text-brand-brown/70 max-w-2xl text-sm leading-6'>
-              Use the photos to choose styles your customers may want. WhatsApp is where we confirm
-              ready-stock batches, real photos/video, size mix, colors, packing, delivery, and
-              wholesale price.
+              MOQ, current availability and bulk price are confirmed for this style on WhatsApp.
+              Send the product code, quantity and destination to request current garment photos,
+              measurements and a written quotation.
             </p>
           </div>
 
@@ -81,11 +96,11 @@ export function ProductDetailSections({ product }: Props) {
           <section className='bg-white p-5 shadow-sm sm:p-8'>
             <p className='text-brand-orange text-xs font-bold uppercase'>Selling points</p>
             <h3 className='font-display text-brand-black mt-2 text-2xl font-bold'>
-              Why this style can help your boutique get attention
+              What to confirm for this style
             </h3>
-            <p className='text-brand-brown/75 mt-3 leading-7'>{product.description}</p>
+            <p className='text-brand-brown/75 mt-3 leading-7'>{facts.description}</p>
             <ul className='mt-5 space-y-3'>
-              {product.features.map((feature) => (
+              {facts.features.map((feature) => (
                 <li key={feature} className='text-brand-brown/75 flex gap-3 text-sm'>
                   <CheckIcon className='text-brand-emerald mt-0.5 h-4 w-4 shrink-0' />
                   <span>{feature}</span>
@@ -98,8 +113,8 @@ export function ProductDetailSections({ product }: Props) {
         <section id='stock-check' className='scroll-mt-32 bg-white p-5 shadow-sm sm:p-8'>
           <SectionHeader
             eyebrow='Ready-stock check'
-            title='Talk on WhatsApp for reliable stock details'
-            body='Ready-stock batches move quickly, so this website works as the display window. Send the style on WhatsApp and we will discuss current photos/video, available size mix, color options, MOQ, packing, delivery, and wholesale quote.'
+            title='How do I confirm sizes, colors and availability?'
+            body='Send the style code and your required size-color quantities on WhatsApp. Ask for current batch photos or video and finished measurements before confirming the available mix, MOQ and quotation.'
           />
           {sizeChart && sizeChart.rows.length > 0 ? (
             <div className='overflow-x-auto'>
@@ -131,8 +146,8 @@ export function ProductDetailSections({ product }: Props) {
             </div>
           ) : (
             <div className='grid gap-3 sm:grid-cols-3'>
-              <StockCheckCard label='Common size range' value={product.sizes.join(' / ')} />
-              <StockCheckCard label='Color options' value='Ready batch update' />
+              <StockCheckCard label='Size range' value={facts.sizes} />
+              <StockCheckCard label='Color options' value={facts.colors} />
               <StockCheckCard label='Private proof' value='Photos or video on WhatsApp' />
             </div>
           )}
@@ -141,8 +156,8 @@ export function ProductDetailSections({ product }: Props) {
         <section id='faq' className='scroll-mt-32 bg-white p-5 shadow-sm sm:p-8'>
           <SectionHeader
             eyebrow='FAQ'
-            title='Add WhatsApp for serious wholesale follow-up'
-            body='The website shows attractive styles. WhatsApp is where we give professional support, confirm real stock, send new arrivals, and help you choose the styles worth ordering.'
+            title='Wholesale questions about this style'
+            body='Confirm MOQ, bulk price, available sizes and colors for the style you select. Use the answers below to prepare your enquiry, then agree the current goods and order terms with Jack on WhatsApp.'
           />
           <div className='grid gap-3 md:grid-cols-2'>
             {faq.map((item, idx) => (
@@ -220,45 +235,15 @@ function StockCheckCard({ label, value }: { label: string; value: string }) {
   );
 }
 
-function getFallbackSpecs(product: Product) {
+function getFallbackSpecs(facts: PublicProductFacts) {
   return [
-    { label: 'MOQ', value: `${product.moq} pcs` },
-    { label: 'Stock status', value: product.stockType },
+    { label: 'MOQ', value: facts.moq },
+    { label: 'Stock status', value: facts.stock },
     { label: 'Suitable buyers', value: 'Boutiques, wholesalers & importers' },
-    { label: 'Sizes', value: product.sizes.join(' / ') || 'Confirm by style' },
-    {
-      label: 'Colors',
-      value: product.colors.map((color) => color.name).join(' / ') || 'Confirm current batch'
-    },
-    { label: 'Fabric', value: 'Confirmed for the selected style' },
-    {
-      label: 'Custom options',
-      value: product.stockType.includes('Custom') ? 'Available by quantity' : 'Ask for feasibility'
-    },
-    { label: 'Shipping', value: 'Guangzhou export packing & coordination' }
-  ];
-}
-
-function getFallbackFaq(product: Product) {
-  return [
-    {
-      question: 'Why should I contact you on WhatsApp?',
-      answer: `WhatsApp is where we give professional buying support for ${product.name}: real stock photos/video, current colors, available size mix, new arrivals, and wholesale price.`
-    },
-    {
-      question: 'Do you have ready stock for serious buyers?',
-      answer:
-        'We focus on ready-stock and repeat wholesale styles. Because batches move fast, we confirm the current available stock privately before you decide.'
-    },
-    {
-      question: 'Can you support repeat orders and stable new arrivals?',
-      answer:
-        'Yes. After you add WhatsApp, we can keep sharing suitable new arrivals and similar styles for your market when batches are available.'
-    },
-    {
-      question: 'Can we discuss packing, delivery, and market fit?',
-      answer:
-        'Yes. Send your country, target quantity, size ratio, and customer type. We can discuss the buying details before quotation.'
-    }
+    { label: 'Sizes', value: facts.sizes },
+    { label: 'Colors', value: facts.colors },
+    { label: 'Fabric', value: 'Confirm composition for this style' },
+    { label: 'Custom options', value: 'Ask for feasibility and quantity' },
+    { label: 'Shipping', value: 'Confirm packing and cargo handover' }
   ];
 }

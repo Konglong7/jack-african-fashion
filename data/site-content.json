@@ -1,53 +1,77 @@
 {
-  "name": "Jack African Fashion",
-  "slogan": "Guangzhou African Women's Clothing Supplier",
+  "name": "Jack Fashion",
+  "slogan": "Women's Clothing Wholesale · Guangzhou",
   "location": "Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China",
   "locationUrl": "https://www.google.com/maps/search/?api=1&query=Yulong+Fashion+Plaza+Guangzhou",
-  "business": "Women's Clothing Wholesale Supplier & Factory-Direct Manufacturer for African Markets",
+  "business": "Factory-direct women's clothing wholesale, ready stock and custom production",
   "whatsappNumber": "8618926257367",
   "whatsappDisplay": "+86 189 2625 7367",
   "whatsappLink": "https://wa.me/message/3N5VOJCFAQIGO1",
-  "defaultWhatsAppMessage": "Hello Jack, please add me on WhatsApp. I want to see current ready-stock styles, real stock photos/video, wholesale prices, and new arrivals.",
-  "heroEyebrow": "Jack African Fashion · Guangzhou, China",
-  "heroTitle": "Guangzhou African Women's Clothing",
-  "heroAccent": "Wholesale Supplier",
-  "heroBody": "Ready stock and custom women's clothing from Guangzhou for African boutiques, wholesalers and importers.",
-  "heroTrust": ["Own Factory", "Guangzhou Showroom", "African B2B", "Export Packing"],
+  "defaultWhatsAppMessage": "Hello Jack Fashion team, I want to see current ready-stock styles, stock photos/video, factory-direct wholesale prices and custom production options.",
+  "heroEyebrow": "Own factory · Guangzhou womenswear wholesale",
+  "heroTitle": "Women's clothing wholesale,",
+  "heroAccent": "from Guangzhou.",
+  "heroBody": "Factory-direct dresses, matching sets and plus-size styles. Explore ready stock or custom production with our Guangzhou team.",
+  "heroTrust": [
+    "Own factory",
+    "Factory-direct wholesale",
+    "Ready-stock selection",
+    "Custom production"
+  ],
   "categories": [
     {
       "name": "Plus Size Dresses",
-      "image": "/images/site/02-category-plus-size-dresses.webp",
-      "description": "Extended-size dress options from XL to 5XL, with measurements confirmed per style."
+      "image": "/images/products/0921056.webp",
+      "description": "Dress options for extended-size sourcing. Confirm the actual measurements and size run for each design."
     },
     {
       "name": "Two Piece Sets",
-      "image": "/images/site/03-category-two-piece-sets.webp",
-      "description": "Matching top and bottom sets that sell fast and photograph beautifully."
-    },
-    {
-      "name": "Pleated Dresses",
-      "image": "/images/site/04-category-pleated-styles.webp",
-      "description": "Stretch pleated styles in multiple colors, subject to current batch confirmation."
+      "image": "/images/products/0921051.webp",
+      "description": "Matching top and bottom styles. Confirm the pieces included and measure each piece separately."
     },
     {
       "name": "Maxi Dresses",
-      "image": "/images/site/05-category-maxi-dresses.webp",
-      "description": "Bold African print maxi dresses with full coverage and statement colour."
+      "image": "/images/products/0921053.webp",
+      "description": "Full-length silhouettes. Ask about dress length, lining, coverage and actual stock colors."
     },
     {
       "name": "Jumpsuits",
-      "image": "/images/site/category-jumpsuits-cover.webp",
-      "description": "Easy one-piece statements for everyday and occasion ranges."
+      "image": "/images/products/0921037.webp",
+      "description": "One-piece looks. Confirm construction, waist, hip and rise measurements before choosing sizes."
+    },
+    {
+      "name": "Coordinated Styles",
+      "image": "/images/products/0921047.webp",
+      "description": "Coordinated looks with the exact pieces and garment construction confirmed during enquiry."
     },
     {
       "name": "Custom Orders",
-      "image": "/images/site/12-category-custom-orders.webp",
-      "description": "Send your reference pictures — we quote by fabric, size and quantity."
+      "image": "/images/products/0921051.webp",
+      "description": "Send references, measurements, material expectations and quantity for a production review."
     }
   ],
   "socialLinks": {
-    "facebook": "https://www.facebook.com/",
-    "tiktok": "https://www.tiktok.com/",
-    "instagram": "https://www.instagram.com/"
-  }
+    "facebook": "https://www.facebook.com/people/Jack-African-Fashion-Wholesale/61593615337827/",
+    "tiktok": "https://www.tiktok.com/@jackafricanfashion",
+    "instagram": "https://www.instagram.com/jack.africanfashion/"
+  },
+  "whatsappContacts": [
+    {
+      "link": "https://wa.me/message/3N5VOJCFAQIGO1",
+      "number": "8618926257367",
+      "display": "+86 189 2625 7367"
+    },
+    {
+      "link": "https://wa.me/message/YCF76Z5EEXJIF1",
+      "number": "8618665055946",
+      "display": "+86 186 6505 5946"
+    }
+  ],
+  "additionalLocations": [
+    {
+      "name": "LIUHUA Market",
+      "address": "Shop 0081, LIUHUA Market, Guangzhou, China",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=LIUHUA+Fashion+Wholesale+Market+Guangzhou"
+    }
+  ]
 }

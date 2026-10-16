@@ -1,29 +1,34 @@
 import { DeferredMapEmbed } from '@/components/DeferredMapEmbed';
 import { WhatsAppIcon } from '@/components/Icons';
+import { SocialLinks, WhatsAppContacts } from '@/components/ContactLinks';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import { isConfiguredSocialLink, siteWhatsAppLink } from '@/lib/siteContentTypes';
+import {
+  getSiteLocations,
+  siteWhatsAppLink
+} from '@/lib/siteContentTypes';
 import styles from './homepage.module.css';
 
 export function WholesaleContact({ siteContent }: { siteContent: SiteContent }) {
-  const socialLinks = [
-    { name: 'Facebook', href: siteContent.socialLinks.facebook },
-    { name: 'Instagram', href: siteContent.socialLinks.instagram },
-    { name: 'TikTok', href: siteContent.socialLinks.tiktok }
-  ].filter((link) => isConfiguredSocialLink(link.href));
   return (
     <section className={styles.section} aria-labelledby='home-contact-title'>
       <div className={`${styles.container} ${styles.contactLayout}`}>
         <div>
           <h2 id='home-contact-title' className={`font-display ${styles.sectionHeading}`}>
-            Find the right styles for your next order
+            Confirm MOQ and request a bulk-price quote
           </h2>
           <p className={styles.sectionDescription}>
-            Ask for current stock, available sizes and colors, wholesale prices and shipping
-            options.
+            Send the style codes, quantity per style and destination on WhatsApp for a quotation.
+            MOQ, current stock, size-color mix and shipping charges are confirmed for your order.
           </p>
           <div className={styles.contactAddress}>
-            <strong>Visit our Guangzhou showroom</strong>
-            <p>{siteContent.location}</p>
+            <strong>Visit our Guangzhou wholesale showrooms</strong>
+            {getSiteLocations(siteContent).map((location) => (
+              <p key={location.address}>
+                <a href={location.mapUrl} target='_blank' rel='noopener noreferrer'>
+                  {location.address}
+                </a>
+              </p>
+            ))}
           </div>
           <div className={styles.contactActions}>
             <a
@@ -33,7 +38,7 @@ export function WholesaleContact({ siteContent }: { siteContent: SiteContent }) 
               className={`${styles.button} ${styles.primary}`}
             >
               <WhatsAppIcon className='h-5 w-5 shrink-0' />
-              Talk Stock on WhatsApp
+              Chat on WhatsApp
             </a>
             <a
               href={siteContent.locationUrl}
@@ -44,28 +49,19 @@ export function WholesaleContact({ siteContent }: { siteContent: SiteContent }) 
               Open in Google Maps
             </a>
           </div>
-          <p className='mt-4 text-sm text-[#453D36]'>WhatsApp: {siteContent.whatsappDisplay}</p>
-          {socialLinks.length > 0 && (
-            <div className={styles.linkList}>
-              {socialLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className={styles.textLink}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-          )}
+          <WhatsAppContacts siteContent={siteContent} className='mt-3 text-[#0B7A3E]' />
+          <SocialLinks siteContent={siteContent} className='mt-3' />
         </div>
-        <div className={styles.map}>
-          <DeferredMapEmbed
-            title='Yulong Fashion Plaza location map'
-            src='https://www.google.com/maps?q=Yulong%20Fashion%20Plaza%2C%20Guangzhou&output=embed'
-          />
+        <div className='space-y-6'>
+          {getSiteLocations(siteContent).map((location) => (
+            <div key={location.address} className={styles.map}>
+              <h3 className='p-4 font-semibold'>{location.name}</h3>
+              <DeferredMapEmbed
+                title={`${location.name} location map`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(location.address)}&output=embed`}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
