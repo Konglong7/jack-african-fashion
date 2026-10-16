@@ -61,7 +61,8 @@ if ($Phase -in @('All', 'Stage')) {
             src scripts data package.json package-lock.json next.config.ts `
             ecosystem.config.cjs tsconfig.json next-env.d.ts eslint.config.mjs `
             postcss.config.mjs vitest.config.mts deploy public/llms.txt public/llms-full.txt `
-            public/images/optimized public/images/products public/images/site public/images/scene-illustrations
+            public/images/optimized public/images/products public/images/site public/images/scene-illustrations `
+            public/images/factory public/images/trust
         if ($LASTEXITCODE -ne 0 -or -not (Test-Path $archive)) { throw 'Tar archive creation failed' }
     } finally {
         Pop-Location
