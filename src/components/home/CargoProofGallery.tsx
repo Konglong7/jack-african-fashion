@@ -1,7 +1,7 @@
 'use client';
 
 import Image from '@/components/ResponsiveImage';
-import { buildWhatsAppLink } from '@/lib/whatsappRouter';
+import { siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
 
 const CARGO_EVIDENCES = [
   {
@@ -49,7 +49,7 @@ const LOGISTICS_BADGES = [
   }
 ];
 
-export function CargoProofGallery() {
+export function CargoProofGallery({ siteContent }: { siteContent: SiteContent }) {
   return (
     <section
       id='cargo-proof'
@@ -71,7 +71,7 @@ export function CargoProofGallery() {
           </div>
 
           <a
-            href={buildWhatsAppLink('lucas', 'Hello Lucas, I would like to check air and sea shipping rates to my destination.')}
+            href={siteWhatsAppLink(siteContent, 'Hello Jack, I would like to check air and sea shipping rates to my destination.')}
             target='_blank'
             rel='noopener noreferrer'
             className='inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0B7A3E] px-6 py-3.5 text-xs font-bold text-white shadow-md transition-all hover:bg-[#086532]'

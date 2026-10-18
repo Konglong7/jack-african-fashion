@@ -30,22 +30,17 @@ beforeEach(() => {
   mocks.randomInt.mockReturnValue(0);
 });
 
-describe('WhatsApp contact rotation', () => {
-  it.each([
-    [0, 0],
-    [79, 0],
-    [80, 1],
-    [99, 1]
-  ])('assigns draw %s to contact %s with a non-cacheable redirect', async (draw, index) => {
+describe('default WhatsApp contact', () => {
+  it.each([0, 79, 80, 99])('always sends a new visitor to Jack even for draw %s', async (draw) => {
     mocks.randomInt.mockReturnValue(draw);
     const response = await GET(new NextRequest('https://zamique.com/api/whatsapp'));
-    expect(mocks.randomInt).toHaveBeenCalledWith(100);
+    expect(mocks.randomInt).not.toHaveBeenCalled();
     expect(response.status).toBe(307);
-    expect(response.headers.get('location')).toBe(contacts[index].link);
+    expect(response.headers.get('location')).toBe(contacts[0].link);
     expect(response.headers.get('cache-control')).toContain('no-store');
     expect(response.headers.get('x-robots-tag')).toContain('noindex');
     expect(response.headers.get('set-cookie')).toContain('HttpOnly');
-    expect(response.cookies.get('jack_whatsapp_contact')?.value).toBe(contacts[index].number);
+    expect(response.cookies.get('jack_whatsapp_contact')?.value).toBe(contacts[0].number);
   });
 
   it('keeps the same visitor on the same account even when the enquiry text changes', async () => {
@@ -68,15 +63,23 @@ describe('WhatsApp contact rotation', () => {
       headers: { cookie: 'jack_whatsapp_contact=not-a-configured-account' }
     });
     expect((await GET(request)).headers.get('location')).toBe(contacts[0].link);
-    expect(mocks.randomInt).toHaveBeenCalledWith(100);
+    expect(mocks.randomInt).not.toHaveBeenCalled();
   });
 
-  it('preserves an existing Amber assignment', async () => {
+  it('replaces an existing Amber assignment with the requested default Jack', async () => {
     const request = new NextRequest('https://zamique.com/api/whatsapp', {
       headers: { cookie: 'jack_whatsapp_contact=8618665055946' }
     });
-    expect((await GET(request)).headers.get('location')).toBe(contacts[1].link);
+    const response = await GET(request);
+    expect(response.headers.get('location')).toBe(contacts[0].link);
+    expect(response.cookies.get('jack_whatsapp_contact')?.value).toBe(contacts[0].number);
     expect(mocks.randomInt).not.toHaveBeenCalled();
+  });
+
+  it('finds Jack even when the configured contact list has Amber first', async () => {
+    mocks.getSiteContent.mockResolvedValue({ ...settings, whatsappContacts: [...contacts].reverse(), whatsappLink: contacts[1].link });
+    const response = await GET(new NextRequest('https://zamique.com/api/whatsapp'));
+    expect(response.headers.get('location')).toBe(contacts[0].link);
   });
 
   it('does not draw when only one account is configured', async () => {

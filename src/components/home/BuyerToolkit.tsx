@@ -1,15 +1,15 @@
 'use client';
 
-import { buildWhatsAppLink } from '@/lib/whatsappRouter';
+import { siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
 
-export function BuyerToolkit() {
+export function BuyerToolkit({ siteContent }: { siteContent: SiteContent }) {
   const tools = [
     {
       badge: 'B2B Catalog Resource',
       title: '2026 Seasonal Lookbook & Price List',
       desc: 'Access high-resolution product photography, detailed fabric specs, and wholesale tier pricing for over 100+ active catalog styles.',
       actionText: 'Request Lookbook (PDF)',
-      href: buildWhatsAppLink('sarah', 'Hello Sarah, please send me the latest 2026 Jack Fashion Lookbook & wholesale catalog PDF.'),
+      href: siteWhatsAppLink(siteContent, 'Hello Jack, please send me the latest 2026 Jack Fashion Lookbook & wholesale catalog PDF.'),
       highlight: false
     },
     {
@@ -17,7 +17,7 @@ export function BuyerToolkit() {
       title: 'African Plus-Size Measurement & Grading Guide',
       desc: 'Engineered specifically for African female silhouettes. Review bust, waist, and hip ratios spanning L, XL, 2XL, 3XL, 4XL, up to 7XL.',
       actionText: 'Get Sizing Chart',
-      href: buildWhatsAppLink('david', 'Hello David, please send me the African Plus-Size measurements and size grading chart.'),
+      href: siteWhatsAppLink(siteContent, 'Hello Jack, please send me the African Plus-Size measurements and size grading chart.'),
       highlight: false
     },
     {
@@ -25,7 +25,7 @@ export function BuyerToolkit() {
       title: '1-on-1 Video Showroom & Factory Tour',
       desc: 'Cannot travel to Guangzhou in person? Schedule a live WhatsApp video walk-through of our Yulong and LIUHUA showrooms and fabric racks.',
       actionText: 'Book Video Audit',
-      href: buildWhatsAppLink('jack', 'Hello Jack, I would like to schedule a 1-on-1 live WhatsApp video tour of your Guangzhou showrooms.'),
+      href: siteWhatsAppLink(siteContent, 'Hello Jack, I would like to schedule a 1-on-1 live WhatsApp video tour of your Guangzhou showrooms.'),
       highlight: true
     }
   ];

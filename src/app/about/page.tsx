@@ -12,7 +12,7 @@ import { AFRICAN_FASHION_SALES_ACCOUNTS, buildWhatsAppLink } from '@/lib/whatsap
 export const metadata = pageMetadata(
   '/about',
   'Guangzhou Womenswear Manufacturer & Wholesaler | Jack Fashion Profile',
-  'Two decades of specialized African womenswear manufacturing. Guangzhou wholesale showrooms at Yulong Plaza & LIUHUA Market, ready-stock warehouse and custom OEM production.'
+  'Two decades of specialized African womenswear manufacturing. Guangzhou wholesale showrooms at Yulong Plaza Building 2 (Shop 3063) & LIUHUA Market, 50,000+ ready-stock warehouse and custom OEM production.'
 );
 
 const MILESTONES = [
@@ -29,7 +29,7 @@ const MILESTONES = [
   {
     year: '2019',
     title: 'Dual Showrooms at Yulong & LIUHUA Market',
-    desc: 'Opened flagship wholesale showrooms at Yulong Fashion Plaza (Guangyuan Xi Road) and LIUHUA Market (Shop 0081) to welcome international trade delegations.'
+    desc: 'Opened flagship wholesale showrooms at Yulong Fashion Plaza (Building 2, Shop 3063) and LIUHUA Market (Shop 0081) to welcome international trade delegations.'
   },
   {
     year: '2026',
@@ -41,11 +41,11 @@ const MILESTONES = [
 const CORE_VALUES = [
   {
     title: 'Guaranteed Physical Showrooms',
-    desc: 'Real, physical wholesale showrooms at Yulong Fashion Plaza and LIUHUA Market Shop 0081 where buyers inspect fabric drape, seams, and fit live in Guangzhou.'
+    desc: 'Real, physical wholesale showrooms at Yulong Fashion Plaza (Building 2, Shop 3063) and LIUHUA Market Shop 0081 where buyers inspect fabric drape, seams, and fit live in Guangzhou.'
   },
   {
     title: 'Honest Inventory & Fast Dispatch',
-    desc: 'Over 600,000 units of physical ready stock ready for same-week shipping. No fictitious mockups or phantom lead times.'
+    desc: 'Over 50,000 units of physical ready stock ready for same-week shipping alongside 600K+ annual manufacturing capacity. No fictitious mockups or phantom lead times.'
   },
   {
     title: 'Strict Needle & Seam Safety QC',

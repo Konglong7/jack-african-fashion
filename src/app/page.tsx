@@ -43,15 +43,25 @@ export default async function HomePage() {
       <TrustMetricBar />
       <Categories categories={siteContent.categories} />
       <PopularProducts />
-      <ProductionProcess />
-      <CargoProofGallery />
+      <details data-home-workflow='production' className='border-y border-slate-200 bg-[#F7F2EB]'>
+        <summary className='mx-auto max-w-7xl cursor-pointer px-5 py-6 text-base font-semibold text-[#112B47] focus-visible:outline-2 focus-visible:outline-offset-4'>
+          View manufacturing &amp; quality control details
+        </summary>
+        <ProductionProcess siteContent={siteContent} />
+      </details>
+      <CargoProofGallery siteContent={siteContent} />
       <MarketCollections />
       <GarmentExamples />
       <SupplierSupport siteContent={siteContent} />
       <FactoryGallery path='/' compact />
-      <CustomOrderProcess siteContent={siteContent} />
+      <details data-home-workflow='order' className='border-y border-slate-200 bg-[#F7F2EB]'>
+        <summary className='mx-auto max-w-7xl cursor-pointer px-5 py-6 text-base font-semibold text-[#112B47] focus-visible:outline-2 focus-visible:outline-offset-4'>
+          View the wholesale order process
+        </summary>
+        <CustomOrderProcess siteContent={siteContent} />
+      </details>
       <BuyingIllustrations whatsAppHref={siteWhatsAppLink(siteContent)} compact />
-      <BuyerToolkit />
+      <BuyerToolkit siteContent={siteContent} />
       <BuyerHelp siteContent={siteContent} />
       <ShowroomProof siteContent={siteContent} />
       <WholesaleContact siteContent={siteContent} />

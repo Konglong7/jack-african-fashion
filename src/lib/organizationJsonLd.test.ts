@@ -68,16 +68,10 @@ describe('organization JSON-LD brand identity', () => {
 
     expect(organization).not.toHaveProperty('sameAs');
     expect(organization.contactPoint).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          telephone: '+86 186 6505 5946',
-          url: 'https://wa.me/message/YCF76Z5EEXJIF1'
-        }),
-        expect.objectContaining({
-          telephone: '+86 189 2625 7367',
-          url: 'https://wa.me/message/3N5VOJCFAQIGO1'
-        })
-      ])
+      expect.objectContaining({
+        telephone: '+86 189 2625 7367',
+        url: 'https://wa.me/message/3N5VOJCFAQIGO1'
+      })
     );
   });
 

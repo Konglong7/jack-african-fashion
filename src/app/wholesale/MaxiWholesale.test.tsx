@@ -26,7 +26,7 @@ describe('maxi dress wholesale discovery', () => {
     const html = renderToStaticMarkup(await WholesalePage({ params: params() }));
     expect(html).toContain('Maxi Dresses Wholesale from Guangzhou');
     expect(html).toContain('/catalog?category=Maxi%20Dresses');
-    expect(html).toContain('/api/whatsapp');
+    expect(html).toMatch(/wa\.me\/8618926257367|\/api\/whatsapp/);
     expect(html).toContain('object-contain');
     for (const product of expected) {
       expect(html).toContain(`href="/products/${product.slug}"`);

@@ -46,7 +46,7 @@ describe('jumpsuit wholesale buyer discovery', () => {
       expected.map((product) => `https://zamique.com/products/${product.slug}`)
     );
     expect(html).toContain('/catalog?category=Jumpsuits');
-    expect(html).toContain('/api/whatsapp');
+    expect(html).toMatch(/wa\.me\/8618926257367|\/api\/whatsapp/);
     expect(html).toContain('object-contain');
     expect(html).toMatch(/inseam|torso/);
     expect(html).not.toMatch(/100[- ]piece minimum|guaranteed stock|lowest price/i);

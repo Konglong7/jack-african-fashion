@@ -1,13 +1,7 @@
 'use client';
 
-import { Suspense, useCallback, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import type { SiteContent } from '@/lib/siteContentTypes';
-import {
-  buildWhatsAppLink,
-  JACK_WHATSAPP_LINK,
-  resolveSalesAccount
-} from '@/lib/whatsappRouter';
+import { JACK_WHATSAPP_LINK } from '@/lib/whatsappRouter';
 
 function WhatsAppIcon({ className = 'h-5 w-5' }: { className?: string }) {
   return (
@@ -22,24 +16,6 @@ function WhatsAppIcon({ className = 'h-5 w-5' }: { className?: string }) {
   );
 }
 
-/**
- * Isolated leaf component listening to Next.js searchParams without SSR bailout
- */
-function SalesUrlSync({
-  onSalesChange
-}: {
-  onSalesChange: (sales: string | null) => void;
-}) {
-  const searchParams = useSearchParams();
-  const sales = searchParams.get('sales');
-
-  useEffect(() => {
-    onSalesChange(sales);
-  }, [sales, onSalesChange]);
-
-  return null;
-}
-
 export interface WhatsAppFloatingProps {
   siteContent?: SiteContent;
   variant?: 'default' | 'home';
@@ -49,64 +25,19 @@ export function WhatsAppFloating({
   variant = 'default'
 }: WhatsAppFloatingProps) {
   const isHome = variant === 'home';
-  const [activeSalesKey, setActiveSalesKey] = useState<string | null>(null);
-
-  const handleSalesChange = useCallback((sales: string | null) => {
-    if (sales) {
-      setActiveSalesKey(sales);
-    }
-  }, []);
-
-  // Inspect browser hash and search query on mount as safety fallback
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    try {
-      const url = new URL(window.location.href);
-      const query = url.searchParams.get('sales');
-      const hash = url.hash.replace(/^#/, '');
-      const hashSales = hash.startsWith('sales=') ? hash.slice(6) : hash;
-      const detected = query || (hashSales ? hashSales : null);
-      if (detected) {
-        setActiveSalesKey(detected);
-      }
-    } catch {
-      // Ignore URL parsing errors
-    }
-  }, []);
-
-  // If specific ?sales=xxx is provided, resolve that representative's greeting.
-  // Otherwise, default directly to Jack (Director & Showroom Founder).
-  const resolved = resolveSalesAccount(
-    activeSalesKey,
-    undefined,
-    undefined,
-    'jack'
-  );
-  const isMatched = resolved.matched && resolved.id !== 'jack';
-
-  const href = activeSalesKey ? buildWhatsAppLink(resolved) : JACK_WHATSAPP_LINK;
 
   return (
     <>
-      {/* Zero SSR-bailout URL sync wrapped in Suspense */}
-      <Suspense fallback={null}>
-        <SalesUrlSync onSalesChange={handleSalesChange} />
-      </Suspense>
-
       {/* Direct Floating WhatsApp Trigger */}
       <a
-        href={href}
+        href={JACK_WHATSAPP_LINK}
         target='_blank'
         rel='noopener noreferrer'
         data-cta-location='floating-whatsapp'
         className={`group fixed right-4 bottom-[calc(1rem+env(safe-area-inset-bottom,0px))] z-50 flex items-center justify-center rounded-full bg-[#0B7A3E] text-white shadow-xl shadow-green-950/25 transition-all hover:scale-105 hover:bg-[#086532] active:scale-95 md:right-6 md:bottom-6 ${
           isHome ? 'p-[14px] md:p-[16px]' : 'p-3.5 md:p-4'
         }`}
-        aria-label={
-          isMatched
-            ? `Chat with Advisor ${resolved.name} on WhatsApp`
-            : 'Chat directly with Jack on WhatsApp · Online'
-        }
+        aria-label='Chat directly with Jack on WhatsApp'
       >
         {/* Pulsing online green beacon */}
         <span className='absolute -top-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-emerald-500 shadow-md ring-2 ring-white'>
@@ -125,9 +56,7 @@ export function WhatsAppFloating({
         {/* Desktop Hover Tooltip */}
         <span className='pointer-events-none absolute top-1/2 right-full mr-3 hidden -translate-y-1/2 items-center gap-2 rounded-xl bg-[#171615] px-3.5 py-2 text-xs font-semibold whitespace-nowrap text-[#F7F2EB] opacity-0 shadow-xl ring-1 ring-white/10 transition-opacity group-hover:opacity-100 sm:flex'>
           <span className='h-2 w-2 animate-pulse rounded-full bg-emerald-400' />
-          {isMatched
-            ? `Chat with Advisor: ${resolved.name}`
-            : 'Chat on WhatsApp · Online'}
+          Chat with Jack on WhatsApp
         </span>
       </a>
     </>

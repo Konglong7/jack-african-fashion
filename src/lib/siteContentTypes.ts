@@ -46,7 +46,8 @@ export interface SiteContent {
 export const DEFAULT_SITE_CONTENT: SiteContent = {
   name: 'Jack Fashion',
   slogan: "Women's Clothing Wholesale · Guangzhou",
-  location: 'Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
+  location:
+    'Shop 3063, Building 2, Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
   locationUrl: 'https://www.google.com/maps/search/?api=1&query=Yulong+Fashion+Plaza+Guangzhou',
   additionalLocations: [
     {
@@ -56,7 +57,8 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
         'https://www.google.com/maps/search/?api=1&query=LIUHUA+Fashion+Wholesale+Market+Guangzhou'
     }
   ],
-  business: "Factory-direct women's clothing wholesale, ready stock and custom production",
+  business:
+    "One of Guangzhou's largest factory-direct womenswear manufacturers and wholesale suppliers, featuring 50,000+ ready stock, high-volume custom production, and global export fulfillment",
   whatsappNumber: '8618926257367',
   whatsappDisplay: '+86 189 2625 7367',
   whatsappLink: 'https://wa.me/message/3N5VOJCFAQIGO1',
@@ -65,25 +67,20 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
       link: 'https://wa.me/message/3N5VOJCFAQIGO1',
       number: '8618926257367',
       display: '+86 189 2625 7367'
-    },
-    {
-      link: 'https://wa.me/message/YCF76Z5EEXJIF1',
-      number: '8618665055946',
-      display: '+86 186 6505 5946'
     }
   ],
   defaultWhatsAppMessage:
     'Hello Jack Fashion team, I want to see current ready-stock styles, stock photos/video, factory-direct wholesale prices and custom production options.',
-  heroEyebrow: 'Own factory · Guangzhou womenswear wholesale',
-  heroTitle: "Women's clothing wholesale,",
-  heroAccent: 'from Guangzhou.',
+  heroEyebrow: 'Premier Manufacturer · 15+ Yrs Industry Leader · Guangzhou Wholesale Hub',
+  heroTitle: 'Guangzhou premier womenswear wholesale,',
+  heroAccent: 'direct from factory.',
   heroBody:
-    'Factory-direct dresses, matching sets and plus-size styles. Explore ready stock or custom production with our Guangzhou team.',
+    'One of Guangzhou’s leading women\'s clothing manufacturers with our own factory and 50,000+ ready-to-ship stock. Supplying 2,000+ global boutiques and wholesalers with factory-direct dresses, two-piece sets, and African plus-size styles. Visit our flagship showroom at Yulong Building 2 Shop 3063 or connect with Founder Jack.',
   heroTrust: [
-    'Own factory',
-    'Factory-direct wholesale',
-    'Ready-stock selection',
-    'Custom production'
+    'Own Factory & Supply Chain',
+    '50,000+ Ready-to-Ship Inventory',
+    'Flagship Showroom: Yulong Bldg 2 #3063',
+    '2,000+ Global Wholesale Clients'
   ],
   categories: [
     {

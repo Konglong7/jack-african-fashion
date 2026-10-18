@@ -28,7 +28,8 @@ const CONTACT_TOPICS = [
   },
   {
     title: 'Visit appointments',
-    description: 'Arrange a visit to Yulong Fashion Plaza or LIUHUA Market, Shop 0081.'
+    description:
+      'Arrange a visit to Yulong Fashion Plaza (Building 2, Shop 3063) or LIUHUA Market (Shop 0081).'
   },
   {
     title: 'Any other question',
@@ -105,9 +106,7 @@ export function ContactClient({
                 Our Guangzhou Team
               </h2>
               <p className='text-brand-brown/80 mt-3 text-sm leading-relaxed'>
-                Contact Jack or Amber through our official WhatsApp numbers. We operate wholesale
-                showrooms at Yulong Fashion Plaza and LIUHUA Market, Shop 0081, in Guangzhou.
-                Confirm which showroom, appointment time and styles you want to see before visiting.
+                Contact Founder &amp; Head of Wholesale Jack directly on WhatsApp (+86 189 2625 7367) for factory-direct quotations, 50,000+ ready-stock video verification, and cargo coordination. Visit our flagship wholesale showroom at Yulong Fashion Plaza (Building 2, Shop 3063) or our LIUHUA Market boutique showroom (Shop 0081) in Guangzhou. Confirm your appointment time and selected styles before visiting.
               </p>
               <dl className='mt-6 space-y-5 text-sm'>
                 <div>

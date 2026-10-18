@@ -12,11 +12,13 @@ describe('AIO content model', () => {
   test('defines one explicit brand-location-business-market identity', () => {
     expect(BRAND_ENTITY.name).toBe('Jack Fashion');
     expect(BRAND_ENTITY.location).toBe('Guangzhou, China');
-    expect(BRAND_ENTITY.businessType).toBe("Women's clothing manufacturer and wholesale supplier");
-    expect(BRAND_ENTITY.market).toBe('International wholesale, with an African womenswear focus');
-    expect(BRAND_ENTITY.identityStatement).toContain('Yulong Fashion Plaza');
+    expect(BRAND_ENTITY.businessType).toBe(
+      "Premier women's clothing manufacturer and large-scale wholesale supplier"
+    );
+    expect(BRAND_ENTITY.market).toBe('Global wholesale export and African fashion market leadership');
+    expect(BRAND_ENTITY.identityStatement).toContain('Shop 3063, Building 2, Yulong Fashion Plaza');
     expect(BRAND_ENTITY.identityStatement).toContain('Shop 0081 in LIUHUA Market');
-    expect(BRAND_ENTITY.identityStatement).toContain('its own factory');
+    expect(BRAND_ENTITY.identityStatement).toContain('its own integrated garment factory');
     expect(BRAND_ENTITY.officialWebsiteStatement).toContain('official B2B website');
     expect(getMarketPage('nigeria')?.description).toContain('Nigeria boutiques');
   });
@@ -53,7 +55,7 @@ describe('AIO content model', () => {
       'reference image or sample'
     );
     expect(FAQ_ITEMS.find((item) => /WhatsApp enquiries/.test(item.question))?.answer).toContain(
-      'Amber'
+      '+86 189 2625 7367'
     );
     for (const item of FAQ_ITEMS) {
       expect(item.answer.length).toBeGreaterThan(80);

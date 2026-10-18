@@ -1,7 +1,7 @@
-import { randomInt } from 'node:crypto';
 import { NextRequest, NextResponse } from 'next/server';
 import { getSiteContent } from '@/lib/siteContent';
 import { getWhatsAppContacts } from '@/lib/siteContentTypes';
+import { CONSOLIDATED_WHATSAPP_NUMBER } from '@/lib/whatsappRouter';
 
 export const dynamic = 'force-dynamic';
 const cookieName = 'jack_whatsapp_contact';
@@ -19,15 +19,10 @@ export async function GET(request: NextRequest) {
     return new NextResponse(null, { status: 204, headers });
   }
   const contacts = getWhatsAppContacts(await getSiteContent());
-  const previousNumber = request.cookies.get(cookieName)?.value;
-  const previousContact = contacts.find((item) => item.number === previousNumber);
-  // The first configured account is primary. Keep existing conversations stable;
-  // new visitors go to the primary account 80% of the time.
+  // General enquiries always go to Jack, including visitors with an old assignment.
+  // Named contact links remain available for buyers choosing another contact.
   const contact =
-    previousContact ||
-    (contacts.length === 1 || randomInt(100) < 80
-      ? contacts[0]
-      : contacts[contacts.length === 2 ? 1 : randomInt(1, contacts.length)]);
+    contacts.find((item) => item.number === CONSOLIDATED_WHATSAPP_NUMBER) || contacts[0];
   const message = request.nextUrl.searchParams.get('text');
   const target =
     message && /^[1-9]\d{7,14}$/.test(contact.number)

@@ -17,20 +17,18 @@ export function ShowroomProof({ siteContent }: { siteContent: SiteContent }) {
     >
       <div className='mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-9'>
         {/* Section Header */}
-        <div className='mb-10 max-w-2xl'>
+        <div className='mb-10 max-w-3xl'>
           <span className='mb-3 inline-block text-xs font-bold uppercase tracking-[0.16em] text-[#B17C0E]'>
-            Visit Our Guangzhou Wholesale Showrooms
+            Premier Twin-Showrooms · Guangzhou Wholesale Heart
           </span>
           <h2
             id='home-showroom-title'
             className='font-display text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-5xl'
           >
-            Two Showrooms Across Guangzhou&apos;s Wholesale Hubs
+            Flagship Showrooms Across China&apos;s Most Prestigious Apparel Export Hubs
           </h2>
           <p className='mt-4 text-base leading-relaxed text-[#6F6A64]'>
-            Examine our newest seasonal collections, feel fabric textures in person, and inspect
-            ready-stock pieces directly inside Guangzhou’s premier apparel wholesale hubs at Yulong
-            Fashion Plaza and LIUHUA Market.
+            Maintaining permanent flagship presences in Guangzhou’s most competitive and high-barrier apparel trading clusters demonstrates our immense factory backing and direct capital strength. Inspect 50,000+ ready-stock units, feel fabric textures in person, and meet Founder Jack directly at Yulong Fashion Plaza Building 2 and LIUHUA Market.
           </p>
         </div>
 
@@ -44,22 +42,25 @@ export function ShowroomProof({ siteContent }: { siteContent: SiteContent }) {
                 <div className='flex items-center gap-2'>
                   <span className='h-2.5 w-2.5 animate-pulse rounded-full bg-[#E2AB2F]' />
                   <span className='text-xs font-bold uppercase tracking-widest text-[#B17C0E]'>
-                    Showroom 01 · Yuexiu District
+                    Flagship Showroom · Asia&apos;s African Export Hub
                   </span>
                 </div>
                 <span className='rounded-full bg-[#171615]/5 px-3 py-1 text-[11px] font-semibold text-[#171615]'>
-                  Sanyuanli Cluster
+                  Building 2 · Shop 3063
                 </span>
               </div>
 
               <h3 className='font-display mb-2 text-xl font-bold text-[#171615] sm:text-2xl'>
-                Yulong Fashion Plaza Wholesale Showroom
+                Yulong Fashion Plaza Flagship Showroom (Shop 3063)
               </h3>
-              <p className='mb-1 text-sm leading-relaxed font-medium text-[#171615] sm:text-base'>
-                Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China
+              <p className='mb-1 text-sm leading-relaxed font-semibold text-[#171615] sm:text-base'>
+                Shop 3063, Building 2, Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China
               </p>
-              <p className='mb-5 text-xs text-[#6F6A64]'>
-                (广州市越秀区广园西路229号玉龙服装城)
+              <p className='mb-2 text-xs text-[#6F6A64]'>
+                (广州市越秀区广园西路229号御龙服装城2号楼3063档)
+              </p>
+              <p className='mb-5 text-xs leading-relaxed text-[#55504A]'>
+                Recognized across Asia and Africa as China&apos;s premier export center for African womenswear. Our high-profile Building 2 showroom displays our daily-updated 50,000+ ready-stock sample lines and volume production collections for immediate inspection.
               </p>
 
               <div className='flex flex-wrap items-center gap-3'>
@@ -75,14 +76,14 @@ export function ShowroomProof({ siteContent }: { siteContent: SiteContent }) {
                 <a
                   href={siteWhatsAppLink(
                     siteContent,
-                    'Hello Jack Fashion, I would like to schedule a visit to your Yulong Fashion Plaza showroom.'
+                    'Hello Jack, I would like to schedule a visit to your Yulong Fashion Plaza showroom (Building 2, Shop 3063).'
                   )}
                   target='_blank'
                   rel='noopener noreferrer'
                   className='inline-flex items-center gap-1.5 rounded-full bg-[#E2AB2F] px-4 py-2.5 text-xs font-bold text-[#171615] shadow-sm transition-all hover:bg-[#B17C0E] hover:text-white'
                 >
                   <WhatsAppIcon className='h-3.5 w-3.5 shrink-0' />
-                  <span>Book Yulong Visit</span>
+                  <span>Book Yulong 3063 Visit</span>
                 </a>
               </div>
             </div>
@@ -93,22 +94,25 @@ export function ShowroomProof({ siteContent }: { siteContent: SiteContent }) {
                 <div className='flex items-center gap-2'>
                   <span className='h-2.5 w-2.5 animate-pulse rounded-full bg-[#E2AB2F]' />
                   <span className='text-xs font-bold uppercase tracking-widest text-[#B17C0E]'>
-                    Showroom 02 · Export Apparel Hub
+                    Showroom 02 · Historic Global Export Gateway
                   </span>
                 </div>
                 <span className='rounded-full bg-[#171615]/5 px-3 py-1 text-[11px] font-semibold text-[#171615]'>
-                  Liuhua Cluster
+                  Shop 0081
                 </span>
               </div>
 
               <h3 className='font-display mb-2 text-xl font-bold text-[#171615] sm:text-2xl'>
                 LIUHUA Market Boutique Showroom (Shop 0081)
               </h3>
-              <p className='mb-1 text-sm leading-relaxed font-medium text-[#171615] sm:text-base'>
+              <p className='mb-1 text-sm leading-relaxed font-semibold text-[#171615] sm:text-base'>
                 Shop 0081, LIUHUA Market, Guangzhou, China
               </p>
-              <p className='mb-5 text-xs text-[#6F6A64]'>
+              <p className='mb-2 text-xs text-[#6F6A64]'>
                 (广州市流花服装批发市场 0081档)
+              </p>
+              <p className='mb-5 text-xs leading-relaxed text-[#55504A]'>
+                Guangzhou’s landmark international trade hub connecting apparel buyers from over 160 countries. Dedicated to volume custom orders, container shipments, and official buyer delegations.
               </p>
 
               <div className='flex flex-wrap items-center gap-3'>
@@ -124,7 +128,7 @@ export function ShowroomProof({ siteContent }: { siteContent: SiteContent }) {
                 <a
                   href={siteWhatsAppLink(
                     siteContent,
-                    'Hello Jack Fashion, I would like to schedule a visit to your LIUHUA Market showroom (Shop 0081).'
+                    'Hello Jack, I would like to schedule a visit to your LIUHUA Market showroom (Shop 0081).'
                   )}
                   target='_blank'
                   rel='noopener noreferrer'
@@ -140,16 +144,16 @@ export function ShowroomProof({ siteContent }: { siteContent: SiteContent }) {
             <div className='flex flex-col items-start justify-between gap-4 rounded-xl border border-[#171615]/10 bg-white/70 p-4 backdrop-blur-sm sm:flex-row sm:items-center'>
               <div>
                 <p className='text-xs font-bold uppercase tracking-wider text-[#6F6A64]'>
-                  Visiting Guidelines
+                  Visiting Guidelines &amp; Founder Reception
                 </p>
                 <p className='mt-0.5 text-xs text-[#171615]'>
-                  Hours: Mon–Sat 09:30–18:30 (UTC+8). Appointments & walk-in buyers welcome.
+                  Hours: Mon–Sat 09:30–18:30 (UTC+8). Meet Founder Jack at Yulong Bldg 2 Shop 3063 for 1-on-1 wholesale pricing.
                 </p>
               </div>
               <a
                 href={siteWhatsAppLink(
                   siteContent,
-                  'Hello Jack Fashion, I would like to arrange a Guangzhou showroom visit.'
+                  'Hello Jack, I would like to arrange a Guangzhou showroom visit at Yulong Building 2 Shop 3063.'
                 )}
                 target='_blank'
                 rel='noopener noreferrer'

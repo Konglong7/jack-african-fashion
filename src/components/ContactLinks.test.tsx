@@ -5,13 +5,12 @@ import { SocialLinks, WhatsAppContacts } from './ContactLinks';
 import { DEFAULT_SITE_CONTENT } from '@/lib/siteContentTypes';
 
 describe('explicit contact links', () => {
-  it('shows Jack first and sends each named contact directly to the matching account', () => {
+  it('shows Jack and sends direct inquiry to his official WhatsApp account', () => {
     const html = renderToStaticMarkup(
       createElement(WhatsAppContacts, { siteContent: DEFAULT_SITE_CONTENT })
     );
-    expect(html.indexOf('Jack:')).toBeLessThan(html.indexOf('Amber:'));
+    expect(html).toContain('Jack:');
     expect(html).toContain('href="https://wa.me/message/3N5VOJCFAQIGO1"');
-    expect(html).toContain('href="https://wa.me/message/YCF76Z5EEXJIF1"');
     expect(html).toContain('+86 189 2625 7367');
     expect(html).not.toContain('/api/whatsapp');
   });

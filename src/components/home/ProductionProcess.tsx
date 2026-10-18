@@ -2,7 +2,7 @@
 
 import Image from '@/components/ResponsiveImage';
 import { useState } from 'react';
-import { buildWhatsAppLink } from '@/lib/whatsappRouter';
+import { siteWhatsAppLink, type SiteContent } from '@/lib/siteContentTypes';
 
 const PRODUCTION_STAGES = [
   {
@@ -114,7 +114,7 @@ const FACTORY_SHOWCASE = [
   }
 ];
 
-export function ProductionProcess() {
+export function ProductionProcess({ siteContent }: { siteContent: SiteContent }) {
   const [activeCategory, setActiveCategory] = useState<string>('All');
   const categories = ['All', 'Design & Sourcing', 'Cutting & Sewing', 'Quality Control', 'Packaging', 'Fulfillment'];
 
@@ -143,7 +143,7 @@ export function ProductionProcess() {
           </div>
 
           <a
-            href={buildWhatsAppLink('chloe', 'Hello Chloe, I would like to consult on OEM/ODM garment production feasibility.')}
+            href={siteWhatsAppLink(siteContent, 'Hello Jack, I would like to consult on OEM/ODM garment production feasibility.')}
             target='_blank'
             rel='noopener noreferrer'
             className='inline-flex shrink-0 items-center gap-2 rounded-full bg-[#171615] px-6 py-3.5 text-xs font-bold text-[#F7F2EB] shadow-md transition-all hover:bg-[#B17C0E] hover:text-white'

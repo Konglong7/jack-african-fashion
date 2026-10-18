@@ -94,17 +94,25 @@ describe('site content helpers', () => {
     ]);
   });
 
-  test('uses the shared redirect for two contacts and preserves enquiry messages', () => {
-    const content = normalizeSiteContent({});
-    expect(content.whatsappContacts).toHaveLength(2);
-    expect(siteWhatsAppLink(content)).toBe('/api/whatsapp');
-    expect(siteWhatsAppLink(content, 'Dress & 200 pieces')).toBe('/api/whatsapp?text=Dress%20%26%20200%20pieces');
-    const url = new URL(
-      siteWhatsAppMessageLink(content, 'Dress & 200 pieces'),
-      'https://zamique.com'
+  test('uses the direct link for default single contact and the shared redirect when multiple contacts configured', () => {
+    const singleContent = normalizeSiteContent({});
+    expect(singleContent.whatsappContacts).toHaveLength(1);
+    expect(siteWhatsAppLink(singleContent)).toBe('https://wa.me/message/3N5VOJCFAQIGO1');
+    expect(siteWhatsAppLink(singleContent, 'Dress & 200 pieces')).toBe(
+      'https://wa.me/8618926257367?text=Dress%20%26%20200%20pieces'
     );
-    expect(url.pathname).toBe('/api/whatsapp');
-    expect(url.searchParams.get('text')).toBe('Dress & 200 pieces');
+
+    const multiContent = normalizeSiteContent({
+      whatsappContacts: [
+        { link: 'https://wa.me/message/3N5VOJCFAQIGO1', number: '8618926257367', display: '+86 189 2625 7367' },
+        { link: 'https://wa.me/message/OTHER', number: '8618999999999', display: '+86 189 9999 9999' }
+      ]
+    });
+    expect(multiContent.whatsappContacts).toHaveLength(2);
+    expect(siteWhatsAppLink(multiContent)).toBe('/api/whatsapp');
+    expect(siteWhatsAppLink(multiContent, 'Dress & 200 pieces')).toBe(
+      '/api/whatsapp?text=Dress%20%26%20200%20pieces'
+    );
   });
 
   test('rejects invalid contact links and prevents duplicate accounts from receiving extra weight', () => {

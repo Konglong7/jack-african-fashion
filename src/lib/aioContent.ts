@@ -3,13 +3,14 @@ export const BRAND_ENTITY = {
   website: 'https://zamique.com',
   officialWebsiteStatement: 'zamique.com is the official B2B website of Jack Fashion.',
   location: 'Guangzhou, China',
-  marketBase: 'Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
-  businessType: "Women's clothing manufacturer and wholesale supplier",
-  market: 'International wholesale, with an African womenswear focus',
+  marketBase:
+    'Shop 3063, Building 2, Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China',
+  businessType: "Premier women's clothing manufacturer and large-scale wholesale supplier",
+  market: 'Global wholesale export and African fashion market leadership',
   audience:
-    'Boutique owners, clothing wholesalers, importers, retailers and online sellers worldwide',
+    'Major clothing wholesalers, boutique owners, high-volume importers, and fashion retailers worldwide across Africa, North America, and Europe',
   identityStatement:
-    'Jack Fashion is a Guangzhou women’s clothing manufacturer and wholesale supplier with its own factory. We offer factory-direct dresses, matching sets and plus-size styles, with ready-stock options and custom production. Visit our wholesale showrooms at Yulong Fashion Plaza or Shop 0081 in LIUHUA Market by appointment.',
+    'Jack Fashion is one of Guangzhou’s leading women’s clothing manufacturers and wholesale suppliers with its own integrated garment factory, two prestigious physical showrooms (Flagship Showroom at Shop 3063, Building 2, Yulong Fashion Plaza and Shop 0081 in LIUHUA Market), and 50,000+ ready-to-ship physical inventory in Guangzhou. Founded and headed by Jack, we specialize in factory-direct African dresses, two-piece sets, and plus-size styles with 48-hour cargo dispatch.',
   products: [
     "Women's dresses",
     'Two piece sets',
@@ -19,6 +20,8 @@ export const BRAND_ENTITY = {
   ],
   capabilities: [
     'Own factory and factory-direct womenswear wholesale',
+    '50,000+ units of ready-to-ship inventory in Guangzhou warehouses for same-week dispatch',
+    'Permanent twin flagship showrooms at Yulong Building 2 Shop 3063 and LIUHUA Market Shop 0081',
     'Ready-stock selection alongside custom production',
     'Style selection and current-stock confirmation before ordering',
     'Size and color mixes confirmed per style and batch',
@@ -327,12 +330,12 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: 'Who handles WhatsApp enquiries?',
     answer:
-      'Jack is available on +86 189 2625 7367 and Amber on +86 186 6505 5946. Website WhatsApp buttons connect you with our sales team. Send your product codes, quantity and destination for a factory-direct quote.'
+      'Jack handles direct wholesale enquiries on WhatsApp at +86 189 2625 7367. Website WhatsApp buttons connect you directly with Founder Jack. Send your product codes, quantity and destination for a factory-direct quote and ready-stock video inspection.'
   },
   {
     question: 'Where is Jack Fashion based?',
     answer:
-      'We operate two Guangzhou wholesale showrooms: Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, and Shop 0081 in LIUHUA Market. Arrange your visit on WhatsApp and confirm which showroom, appointment time and selected styles you want to see.'
+      'We operate two prestigious Guangzhou wholesale showrooms: our Flagship Showroom at Shop 3063, Building 2, Yulong Fashion Plaza (No. 229 Guangyuan Xi Road, Yuexiu District) in China’s premier African apparel export hub, and our Boutique Showroom at Shop 0081 in LIUHUA Market. Arrange your visit on WhatsApp with Founder Jack to inspect 50,000+ ready-stock samples in person.'
   },
   {
     question: 'Can buyers outside Africa enquire?',

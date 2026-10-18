@@ -34,7 +34,7 @@
     "subjectType": "brand",
     "subjectId": "jack-fashion",
     "field": "location",
-    "publicValue": "Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China",
+    "publicValue": "Shop 3063, Building 2, Yulong Fashion Plaza, No. 229 Guangyuan Xi Road, Yuexiu District, Guangzhou, China",
     "status": "verified",
     "evidenceId": "owner-maintained-site-location-2026-10-05",
     "verifiedAt": "2026-10-05"
@@ -286,7 +286,7 @@
     "subjectId": "jack-fashion",
     "field": "whatsapp",
     "publicValue": "+86 186 6505 5946",
-    "status": "verified",
+    "status": "retired",
     "evidenceId": "owner-confirmed-two-whatsapp-accounts-2026-10-12",
     "verifiedAt": "2026-10-12"
   },
@@ -325,7 +325,7 @@
     "subjectType": "brand",
     "subjectId": "jack-fashion",
     "field": "salesContacts",
-    "publicValue": "Jack: +86 189 2625 7367; Amber: +86 186 6505 5946.",
+    "publicValue": "Jack: +86 189 2625 7367.",
     "status": "verified",
     "evidenceId": "owner-business-card-front:sha256:77de64451eba1c18fcea2da31e9fcb6d2dea6397dcb7c30d739643b54fcb73c7",
     "verifiedAt": "2026-10-12"
